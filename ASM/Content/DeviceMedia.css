@@ -1,0 +1,142 @@
+﻿
+/********** Large devices only **********/
+@media (min-width: 1200px) {
+    
+     #linkCol 
+    {
+        width: 35%;
+    }
+    #messageCol
+    { width:55% ; }
+    #LogoCol { 
+        width:10%;
+    }
+    .col-lg-4, .col-lg-6, .col-lg-12 {
+        float: left;
+        padding: 0px;
+    }
+
+    .col-lg-4 {
+        width: 33.33%;
+    }
+
+    .col-lg-6 {
+        width: 50%;
+    }
+
+    .col-lg-12 {
+        width: 100%;
+    }
+
+}
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* Header */
+     
+    /* End Header */
+     #linkCol 
+    {
+        width: 45%;
+    }
+    #messageCol
+    { width:45% ; }
+    #LogoCol { 
+        width:10%;
+    }
+
+    .col-md-4, .col-md-6, .col-md-12 {
+        float: left;
+        padding:0px;
+    }
+
+    .col-md-4 {
+        width: 33.33%;
+    }
+
+    .col-md-6 {
+        width: 50%;
+    }
+
+    .col-md-12 {
+        width: 100%;
+    }
+}
+
+/********** Small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+    #linkCol 
+    {
+        width: 65%;
+    }
+    #messageCol
+    { width:25% ; }
+    #LogoCol { 
+        width:10%;
+    }
+    .col-sm-4, .col-sm-6, .col-sm-12 {
+        float: left;
+        padding: 0px;
+    }
+
+    .col-sm-4 {
+        width: 33.33%;
+    }
+
+    .col-sm-6 {
+        width: 50%;
+    }
+
+    .col-sm-12 {
+        width: 100%;
+    }
+}
+
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+    /* Header */
+    .navbar-brand {
+        padding-top: 5px;
+        height: 80px;
+    }
+
+     
+    #collapsable-nav a { /* Collapsed nav menu text */
+        font-size: 1.2em;
+    }
+        #collapsable-nav a span { /* Collapsed nav menu glyph */
+            font-size: 1em;
+            margin-right: 5px;
+        }
+  #linkCol 
+    {
+        width: 85%;
+    }
+    #messageCol
+    { width:15% ; }
+    #LogoCol { 
+        width:5%;
+    }
+  .TopMenubar
+  {  height:400px;
+
+  }
+
+    .col-xs-4, .col-xs-6, .col-xs-12 {
+        float: left;
+        padding: 0px;
+    }
+
+    .col-xs-4 {
+        width: 33.33%;
+    }
+
+    .col-xs-6 {
+        width: 50%;
+    }
+
+    .col-xs-12 {
+        width: 100%;
+    }
+}
+ 

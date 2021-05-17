@@ -1,0 +1,30 @@
+{
+  "firstname": "Frank",
+  "lastname": "Mi",
+  "age": 60,
+  "gender": "male",
+  "IsAdmin": false,
+  "Address": {
+    "aptNumber": "608",
+    "street": "80 Sheppard Ave. East",
+    "city": "North York",
+    "province": "Ontario",
+    "postalCode": "M2N 6E8",
+    "country": "Canada"
+  },
+  "PhoneNumbers": [
+    {
+      "type": "home",
+      "number": "4164923451"
+    },
+    {
+      "type": "mobile",
+      "number": "4167055883"
+    },
+    {
+      "type": "work",
+      "number": "4162228282 ext.2251"
+    }
+  ],
+  "Health": "Good"
+}

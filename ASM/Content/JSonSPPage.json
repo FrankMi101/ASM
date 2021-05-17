@@ -1,0 +1,376 @@
+{
+  "DataAccessSource": [
+    {
+      "page": "General",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "DDList",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_List",
+          "parameters": " @Operate,@Para1,@Para1,@Para2,@Para3"
+        },
+        {
+          "source": "DB",
+          "action": "Schools",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_ListSchools",
+          "parameters": " @Operate,@Para1,@Para1,@Para2,@Para3"
+        },
+        {
+          "source": "DB",
+          "action": "SearchList",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_SearchList",
+          "parameters": " @Operate,@UserID, @SchoolYear,@PositionType,@SearchType"
+        },
+        {
+          "source": "DB",
+          "action": "DefaulDate",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_DefaultDate",
+          "parameters": " @Operate, @UserID, @SchoolYear,@PositionType"
+        },
+        {
+          "source": "DB",
+          "action": "DefaulDateOpen",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_DefaultDate",
+          "parameters": " @Operate, @UserID, @SchoolYear,@PositionType,@PublishDate"
+        },
+        {
+          "source": "DB",
+          "action": "DefaulDateClose",
+          "objName": "dbo.tcdsb_LTO_PageGeneral_DefaultDate",
+          "parameters": " @Operate, @UserID, @SchoolYear,@PositionType,@PublishDate"
+        }
+      ]
+    },
+    {
+      "page": "Request",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageRequest_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@Status,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageRequest_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "New",
+          "objName": "dbo.tcdsb_LTO_PageRequest_OperationNew",
+          "parameters": "  @Operate, @UserID, @SchoolYear, @SchoolCode, @PositionID,@PositionType"
+        },
+        {
+          "source": "DB",
+          "action": "Cancel",
+          "objName": "dbo.tcdsb_LTO_PageRequest_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments"
+        },
+        {
+          "source": "DB",
+          "action": "Delete",
+          "objName": "dbo.tcdsb_LTO_PageRequest_Operation",
+          "parameters": " @Operate, @UserID, @SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments"
+        },
+        {
+          "source": "DB",
+          "action": "Save",
+          "objName": "dbo.tcdsb_LTO_PageRequest_OperationSave",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments, @PositionTitle ,@PositionLevel, @Description, @Qualification, @QualificationCode,@FTE, @FTEPanel, @StartDate, @EndDate, @DatePublish, @DateApplyOpen,@DateApplyClose,@ReplaceTeacherID, @ReplaceTeacher, @ReplaceReason, @OtherReason, @Owner"
+        },
+        {
+          "source": "DB",
+          "action": "Update",
+          "objName": "dbo.tcdsb_LTO_PageRequest_OperationSave",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType, @StartDate, @EndDate, @Comments, @PositionLevel, @PositionTitle, @Description, @Qualification, @QualificationCode, @FTE, @FTEPanel, @ReplaceTeacherID, @ReplaceReason, @OtherReason, @Owner"
+        }
+      ]
+    },
+    {
+      "page": "Approve",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageApprove_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@Status,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageApprove_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Posting",
+          "objName": "dbo.tcdsb_LTO_PageApprove_Operation",
+          "parameters": "  @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID, @Comments, @CPNum, @StartDate, @EndDate, @DatePublish, @DateApplyOpen, @DateApplyClose, @RequestSource"
+        },
+        {
+          "source": "DB",
+          "action": "Reject",
+          "objName": "dbo.tcdsb_LTO_PageApprove_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID, @Comments, @CPNum"
+        },
+        {
+          "source": "DB",
+          "action": "Save",
+          "objName": "dbo.tcdsb_LTO_PageApprove_OperationSave",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID, @Comments, @PositionLevel, @Qualification, @QualificationCode, @Description, @FTE, @FTEPanel, @StartDate, @EndDate, @Owner"
+        }
+      ]
+    },
+    {
+      "page": "Publish",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PagePublish_Position",
+          "parameters": " @SchoolYear, @PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PagePublish_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@Status,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "New",
+          "objName": "dbo.tcdsb_LTO_PagePublish_OperationNew",
+          "parameters": "  @Operate, @UserID, @SchoolYear, @SchoolCode, @PositionID,@PositionType"
+        },
+        {
+          "source": "DB",
+          "action": "Cancel",
+          "objName": "dbo.tcdsb_LTO_PagePublish_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments"
+        },
+        {
+          "source": "DB",
+          "action": "RePosting",
+          "objName": "dbo.tcdsb_LTO_PagePublish_Operation",
+          "parameters": " @Operate, @UserID, @SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments,@PostingCycle,@TakeApplicant,@PostingNumber"
+        },
+        {
+          "source": "DB",
+          "action": "Delete",
+          "objName": "dbo.tcdsb_LTO_PagePublish_Operation",
+          "parameters": " @Operate, @UserID, @SchoolYear,@SchoolCode,@PositionID, @PositionType"
+        },
+        {
+          "source": "DB",
+          "action": "Save",
+          "objName": "dbo.tcdsb_LTO_PagePublish_OperationSave",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments, @PositionTitle ,@PositionLevel, @Description, @Qualification, @QualificationCode,@FTE, @FTEPanel, @StartDate, @EndDate, @DatePublish, @DateApplyOpen,@DateApplyClose,@ReplaceTeacherID, @ReplaceTeacher, @ReplaceReason, @OtherReason, @Owner"
+        },
+        {
+          "source": "DB",
+          "action": "Update",
+          "objName": "dbo.tcdsb_LTO_PagePublish_OperationSave",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@PositionType,@Comments, @PositionTitle ,@PositionLevel, @Description, @Qualification, @QualificationCode,@FTE, @FTEPanel, @StartDate, @EndDate, @DatePublish, @DateApplyOpen,@DateApplyClose,@ReplaceTeacherID, @ReplaceTeacher, @ReplaceReason, @OtherReason, @Owner"
+        }
+      ]
+    },
+    {
+      "page": "Candidate",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@Status,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "CandidatesNotice",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_CandidateList",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Candidates",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_PositionCandidate",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Select",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_CandidateSelect",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@CPNum,@Action"
+        },
+        {
+          "source": "DB",
+          "action": "UnSelect",
+          "objName": "dbo.tcdsb_LTO_PageCandidate_CandidateSelect",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode,@PositionID,@CPNum, @Action"
+        }
+
+      ]
+    },
+    {
+      "page": "Interview",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@SchoolCode"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Candidates",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Candidates",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Candidate",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Candidate",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Update",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Recommendation,@InterviewDate,@EffectiveDate,@OutCome,@Acceptance"
+        },
+        {
+          "source": "DB",
+          "action": "Recommend",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Recommendation,@InterviewDate,@EffectiveDate,@OutCome,@Acceptance"
+        },
+        {
+          "source": "DB",
+          "action": "Withdraw",
+          "objName": "dbo.tcdsb_LTO_PageInterview_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Recommendation"
+        }
+
+      ]
+    },
+    {
+      "page": "Hiring",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageHiring_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageHiring_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+        {
+          "source": "DB",
+          "action": "Position4th",
+          "objName": "dbo.tcdsb_LTO_PageHiring_Position4th",
+          "parameters": "  @Operate, @UserID, @SchoolYear,@PositionID "
+        },
+        {
+          "source": "DB",
+          "action": "Confirm",
+          "objName": "dbo.tcdsb_LTO_PageHiring_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Comments,@Acceptance,@DateConfiem,@DateEffective,@DateEnd,@PayStatus"
+        },
+        {
+          "source": "DB",
+          "action": "Confirm4th",
+          "objName": "dbo.tcdsb_LTO_PageHiring_Operation4th",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Comments,@Acceptance,@DateConfiem,@DateEffective,@DateEnd,@PayStatus,@TecherName"
+        }
+      ]
+    },
+    {
+      "page": "Hired",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "Positions",
+          "objName": "dbo.tcdsb_LTO_PageHired_Positions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@SearchBy,@SearchValue1,@SearchValue2"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageHired_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID"
+        },
+
+        {
+          "source": "DB",
+          "action": "Revoke",
+          "objName": "dbo.tcdsb_LTO_PageHired_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Comments"
+        }
+      ]
+    },
+    {
+      "page": "Apply",
+      "SourceList": [
+        {
+          "source": "DB",
+          "action": "AvailablePositions",
+          "objName": "dbo.tcdsb_LTO_PageApply_AvailablePositions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@Panel,@SearchBy,@SearchValue1,@UserRole,@CPNum"
+        },
+        {
+          "source": "DB",
+          "action": "AppliedPositions",
+          "objName": "dbo.tcdsb_LTO_PageApply_AppliedPositions",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionType,@CPNum"
+        },
+        {
+          "source": "DB",
+          "action": "Position",
+          "objName": "dbo.tcdsb_LTO_PageApply_Position",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum"
+        },
+        {
+          "source": "DB",
+          "action": "Apply",
+          "objName": "dbo.tcdsb_LTO_PageApply_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Comments"
+        },
+        {
+          "source": "DB",
+          "action": "Rescind",
+          "objName": "dbo.tcdsb_LTO_PageApply_Operation",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@Comments"
+        },
+        {
+          "source": "DB",
+          "action": "ApplicantInfo",
+          "objName": "dbo.tcdsb_LTO_PageApply_ApplicantInfo",
+          "parameters": " @Operate,@PositionID, @CPNum,@HomePhone,@CellPhone,@Email"
+        },
+        {
+          "source": "DB",
+          "action": "ApplicantQualfication",
+          "objName": "dbo.tcdsb_LTO_PageApply_QualificationCheck",
+          "parameters": " @Operate,@UserID,@SchoolYear,@PositionID,@CPNum,@OTType"
+        }
+      ]
+    }
+  ]
+}
