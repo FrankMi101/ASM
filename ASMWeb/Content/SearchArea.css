@@ -1,0 +1,107 @@
+﻿.SearchAreaRow {
+    margin-top: 1px;
+    height: 25px;
+}
+.SearchArea-SchoolRow {
+    display:block;
+    height:25px;
+}
+.SearchTextBox {
+width:100px;
+}
+.SearchAreaDIV {
+    display: inline-block;
+}
+
+.Search-Area-Sigal {
+    border: 1px solid dodgerblue;
+    border-radius: 20px;
+    height: 30px;
+    padding: 5px;
+    margin: 5px;
+    margin-bottom:1px;
+}
+
+.highlightSearchBox {
+    border: 1px solid #0094ff;
+    
+}
+
+.term {
+    display: inline-block;
+    float: right;
+}
+
+.imgHelp {
+    width: 23px;
+    height: 23px;
+    margin-top: -10px;
+}
+
+#alphabateSearch .alphabateKey {
+    list-style-type: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+#alphabateSearch ul {
+    margin-top: -20px;
+}
+
+#TextSearch {
+    margin-bottom: -5px;
+}
+
+.SearchGoButton {
+    margin-bottom: -5px;
+    border: 1px solid dodgerblue;
+    border-radius: 9px;
+    height: 18px;
+    width: 40px;
+}
+
+    .SearchGoButton:hover {
+        border: 2px ridge dodgerblue;
+        /*  filter: grayscale(20%) blur(1px);*/
+        filter: contrast(200%);
+    }
+
+.action-button {
+    border: 2px solid dodgerblue;
+      text-align: center;
+      outline: 0;
+
+    border-radius: 9px;
+    height: 25px;
+    margin-left:15px;
+}
+
+   .action-button:hover {
+        filter: contrast(200%);
+        border: 2px solid #0094ff;
+        box-shadow: 0 0 0 3px rgba(24,117,255,0.25);
+    }
+
+ 
+
+.hideMe {
+    display: none;
+}
+
+.Gobutton {
+    display: inline;
+    padding-top: 0px;
+    margin-bottom: -5px;
+}
+
+#btnSearch:hover {
+    color: white;
+    background-color: dodgerblue;
+    cursor: pointer;
+}
+
+#SearchBar {
+    position: absolute;
+    top: 40px;
+    left: 1000px;
+}

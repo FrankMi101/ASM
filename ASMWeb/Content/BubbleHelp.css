@@ -1,0 +1,46 @@
+﻿.bubble {
+	BORDER-RIGHT: #fbaa21 0px solid; PADDING-RIGHT: 1px; BORDER-TOP: #fbaa21 0px solid; PADDING-LEFT: 1px; Z-INDEX: 10; BACKGROUND: #fff; LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #fbaa21 0px solid; WIDTH: 250px; height:150px; PADDING-TOP: 0px; BORDER-BOTTOM: #fbaa21 0px solid; POSITION: absolute; TOP: 0px; 
+}
+
+.bubbleS {
+	POSITION: absolute; 
+	BORDER-RIGHT: #fbaa21 2px solid; 
+	BORDER-TOP: #fbaa21 2px solid; 
+	BORDER-LEFT: #fbaa21 2px solid; 
+	BORDER-BOTTOM: #fbaa21 2px solid; 
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	PADDING-BOTTOM: 2px; 
+	PADDING-TOP: 2px; 
+	Z-INDEX: 10;  
+	BACKGROUND: #fff; 
+	WIDTH: 120px; 
+	height: 40px; 
+	font-size:xx-small ;
+ }
+ 
+.show {
+	DISPLAY: block   ;
+}
+.epahide {
+	DISPLAY: none  ;
+}	
+ 
+ .bubbleS1 {
+	POSITION: absolute; 
+	BORDER-RIGHT: #fbaa21 2px solid; 
+	BORDER-TOP: #fbaa21 2px solid; 
+	BORDER-LEFT: #fbaa21 2px solid; 
+	BORDER-BOTTOM: #fbaa21 2px solid; 
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	PADDING-BOTTOM: 2px; 
+	PADDING-TOP: 2px; 
+	Z-INDEX: 10;  
+	BACKGROUND: #fff; 
+	WIDTH: 150px; 
+	height: 200px; 
+	TOP: 210px; 
+	left:620px; 
+}
+ 

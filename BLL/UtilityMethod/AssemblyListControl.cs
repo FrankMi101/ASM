@@ -13,6 +13,10 @@ namespace BLL
         {           
                 AssemblingMyList(myListControl, myListData, "Value", "Name");
         }
+        public static void SetLists(string ValueField, string NameField, System.Web.UI.WebControls.ListControl myListControl, List<NameValueList> myListData)
+        {
+            AssemblingMyList(myListControl, myListData, ValueField, NameField);
+        }
         public static void SetLists(System.Web.UI.WebControls.ListControl myListControl, List<NameValueList> myListData, object initialValue)
         {
 
@@ -29,54 +33,42 @@ namespace BLL
             SetLists(JsonSource, myListControl, ddlType, parameter);
             SetValue(myListControl, initialValue);
         }
-   
-        public static void SetValue(System.Web.UI.WebControls.ListControl myListControl, object objectValue)
+        public static void SetLists(string ValueField, string NameField, string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter)
+        {
+            List<NameValueList> myListData = ListDataSource(JsonSource, ddlType, parameter, "DDList");
+            SetLists(ValueField, NameField,myListControl, myListData);
+        }
+        public static void SetLists(string ValueField, string NameField, string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter, object initialValue)
+        {
+            SetLists(ValueField, NameField,JsonSource, myListControl, ddlType, parameter);
+            SetValue(myListControl, initialValue);
+        }
 
+        public static void SetValue(System.Web.UI.WebControls.ListControl myListControl, object objectValue)
         {
             try
             {
                 myListControl.ClearSelection();
-                if (myListControl.Items.Count > 0)
-                {
-                    if (myListControl.Items.Count == 1)
-                    {
-                        myListControl.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        if (objectValue != null)
-                        {
-                            if (objectValue.ToString() == "0")
-                            {
-                                myListControl.SelectedIndex = 0;
-                            }
-                            else
-                            {
-                                foreach (ListItem item in myListControl.Items)
-                                {
-                                    if (item.Value.ToString().ToLower() == objectValue.ToString().ToLower())
-                                    {
-                                        item.Selected = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                if (myListControl.Items.Count == 0) return;
 
+                if (objectValue != null)
+                {
+                    myListControl.Items.FindByValue(objectValue.ToString()).Selected = true;
+
+                    //foreach (ListItem item in myListControl.Items)
+                    //{
+                    //    if (item.Value.ToString().ToLower() == objectValue.ToString().ToLower())
+                    //    {
+                    //        item.Selected = true;
+                    //        break;
+                    //    }
+                    //}
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                if (myListControl.Items.Count > 0)
-                { myListControl.SelectedIndex = 0; }
-                else
-                {
-                    var error = ex.Message;
-                    throw new Exception(error);
-                }
-
-            }
+                myListControl.SelectedIndex = 0;
+           }
         }
         public static void SetValueMultiple(System.Web.UI.WebControls.ListControl myListControl, string value)
         {
@@ -114,6 +106,11 @@ namespace BLL
                 myListControl.DataValueField = ValueField;
                 myListControl.DataBind();
                 myListControl.SelectedIndex = 0;
+
+                if (myListControl.Items.Count > 1)
+                    myListControl.Enabled = true;
+                else
+                    myListControl.Enabled = false;
 
             }
             catch (Exception ex)

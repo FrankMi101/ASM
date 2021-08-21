@@ -18,6 +18,7 @@
         public string IsAlternative { get; set; }
         public string IsSSN { get; set; }
         public string IsESL { get; set; }
+        public string Selected { get; set; }
 
 
 

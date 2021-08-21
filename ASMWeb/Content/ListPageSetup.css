@@ -1,0 +1,89 @@
+﻿body {
+    height: 100%;
+    width: 100%;
+    /*background-image: url(../images/message_body_m.bmp);*/
+}
+
+table {
+    height: 100%;
+    width: 100%;
+}
+
+td {
+    font-family: Arial, sans-serif;
+    font-size: x-small;
+}
+
+
+table tbody tr:nth-child(odd) {
+    background-color: aliceblue;
+}
+
+.loading {
+    font-size: large;
+}
+
+
+#GridView1 td {
+    border: 1px solid #e1d9d9;
+}
+
+
+
+#GridView2 tr {
+    background: dodgerblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
+}
+
+#GridView2 th {
+    border: 1px solid #e1d9d9;
+}
+
+#DivRoot {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#btnSearch, #btApplicant, #Button1, .GoButton {
+    background-color: dodgerblue;
+    color: white;
+    font-weight: 600;
+    height: 22px;
+    width: 40px;
+}
+
+.myDomain, .myCompetency, .listIDs, .myKey, .myUserID, .mySchoolCode, .myDomainID {
+    display: none;
+}
+
+
+
+
+#GridView1 tr {
+    height: 35px;
+    vertical-align: middle;
+}
+
+  
+.myCode, .myName, .myComment, .myCheck, .myAction, .mySteps, .myPoint, .myUserRole, .mySupervisor, .myDistrict, .myOfficer, .myUser,.mySchool, .myShared,.myDomainBank
+   {
+    border: 0px;
+    background-color: transparent;
+}
+    /*#GridView2 tr th:first-child {
+        display:none;
+        }*/
+   
+
+.myCheck, .myCheckT, .myCheckN, .myCheckL  {
+    margin-top: 11px;
+}
+
+.mySave ,  .myAction {
+    margin-top: 7px;
+}

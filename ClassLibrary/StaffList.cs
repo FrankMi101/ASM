@@ -18,5 +18,6 @@
         public string SearchValue { get; set; }
         public string Scope { get; set; }
     }
-
+    public class StaffMemberOf : StaffListSearch
+    { }
 }

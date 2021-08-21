@@ -5,19 +5,15 @@ using System.Web;
 using ClassLibrary;
 namespace BLL
 {
-    public class AppsSecurityManagement
+    public class AppsSecurityManagement : CommonSP
     {
+        public override string GetSPandParametersByOverride(string action)
+        {
+            return GetSPNameWithParameters(action);
+        }
         public static string GetSP(string action)
         {
-            switch (SPSource.SPFile)
-            {
-                case "JsonFile":
-                    return GetSPFrom.JsonFile(action);
-                case "DBTable":
-                    return GetSPFrom.DbTable(action, "AppraisalGeneral");
-                default:
-                    return GetSPInClass(action);
-            }
+            return GetSPNameWithParameters(action);
         }
         public static List<T> CommonList<T>(string action, object parameter)
         {
@@ -51,7 +47,18 @@ namespace BLL
             }
 
         }
- 
+        private static string GetSPNameWithParameters(string action)
+        {
+            switch (SPSource.SPFile)
+            {
+                case "JsonFile":
+                    return GetSPFrom.JsonFile(action);
+                case "DBTable":
+                    return GetSPFrom.DbTable(action, "AppraisalPageHelp");
+                default:
+                    return GetSPInClass(action);
+            }
+        }
         private static string GetSPInClass(string action)
         {
             string parameter = " @Operate,@UserID,@UserRole,@AppID,@RoleID,@RoleType";
@@ -97,7 +104,6 @@ namespace BLL
                     return "dbo.SIC_sys_UserGroupMember_PushToApps @Operate,@UserID,@SchoolCode,@AppID,@GroupID,@AppIDTo,@InCludeMemberS,@InCludeMemberT";
                  case "ActionMenuList":
                     return "dbo.SIC_sys_ActionMenuList" + parameter1 + ",@TabID,@ObjID,@Semester,@Term,@AppID";
-
                 default:
                     return action;
 

@@ -15,6 +15,10 @@ namespace BLL
         {
             get { return getNamebyKey("CurrentDB"); }
         }
+        public static string OtherDB(string name)
+        {
+            return getNamebyKey(name); 
+        }
         public static string TestDB
         {
             get { return getNamebyKey("Test"); }

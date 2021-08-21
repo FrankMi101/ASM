@@ -1,3 +1,4 @@
+using ClassLibrary;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -9,9 +10,9 @@ using System.Web.Configuration;
 namespace BLL
 {
 
-    public class ReportRender
+    public class ReportRenderADO
     {
-        public ReportRender()
+        public ReportRenderADO()
         {
         }
 
@@ -28,20 +29,29 @@ namespace BLL
                 string error = ex.Message;
             }
         }
+        public static void RenerReport(string _reportName,string _reportFormat, byte[] pdffile)
+        {
+            try
+            {
+                HttpContext.Current.Response.AppendHeader("content-disposition", "filename=" + _reportName + "." + _reportFormat);
+                HttpContext.Current.Response.ContentType = getReportContentType(_reportFormat);
+                HttpContext.Current.Response.OutputStream.Write(pdffile, 0, pdffile.GetLength(0));
+                HttpContext.Current.Response.End();
+
+            }
+            catch (Exception ex)
+            {
+                string showmsg = ex.Message;
+            }
+        }
 
         public static void RenderReport(string _reportName, MyADO.MyParameterRS[] _reportParameter)
         {
             try
             {
-                Byte[] result = GetReportR2(_reportName, _reportParameter);
                 string rFormat = WebConfigurationManager.AppSettings["ReportFormat"];//  WebConfig.ReportFormat();
-                HttpContext.Current.Response.AppendHeader("content-disposition", "filename=" + _reportName + "." + rFormat);
-                HttpContext.Current.Response.ContentType = getReportContentType(rFormat);
-
-                HttpContext.Current.Response.OutputStream.Write(result, 0, result.GetLength(0));
-
-                HttpContext.Current.Response.End();
-
+                Byte[] result = GetReportR2(_reportName, _reportParameter);
+                RenerReport(_reportName, rFormat, result);
             }
             catch (Exception ex)
             {
@@ -50,34 +60,20 @@ namespace BLL
 
         }
 
-
-        public static void RenderReport(string reportName, string reportFormat, List<ReportParameter> myParameter)
+        public static void RenderReport(string _reportName, string _reportFormat, List<ReportParameter> myParameter)
         {
             try
             {
-
-
-                string rFormat = WebConfigurationManager.AppSettings["ReportFormat"];//WebConfig.ReportFormat();
-                Byte[] result = GetReportR2(reportName, reportFormat, myParameter);
+                Byte[] result = GetReportR2(_reportName, _reportFormat, myParameter);
 
                 if (result.Length != 0)
                 {
-                    HttpContext.Current.Response.AppendHeader("content-disposition", "filename=" + reportName + "." + rFormat);
-                    HttpContext.Current.Response.ContentType = getReportContentType(rFormat);
-
-                    HttpContext.Current.Response.OutputStream.Write(result, 0, result.GetLength(0));
-
-                    HttpContext.Current.Response.End();
-
+                    RenerReport(_reportName, _reportFormat, result);
                 }
                 else
                 {
-
                     HttpContext.Current.Response.Redirect("PDFPageFile2.aspx?");
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -99,8 +95,6 @@ namespace BLL
                 // end the response
                 HttpContext.Current.Response.Flush();
                 HttpContext.Current.Response.End();
-
-
             }
             catch (Exception ex)
             {
@@ -130,7 +124,7 @@ namespace BLL
             var pdfDoc = new Document();
 
             PdfWriter.GetInstance(pdfDoc, HttpContext.Current.Response.OutputStream);
-            pdfDoc.Open(); 
+            pdfDoc.Open();
             pdfDoc.Close();
 
             HttpContext.Current.Response.Write(pdfDoc);
@@ -249,25 +243,6 @@ namespace BLL
 
                 var rptParameters = GetReportingServiceParameters(_reportParameter);
 
-                //int pLeng = _reportParameter.Count; //  .Length;
-                //ReportingWebService.ParameterValue[] rptParameters = new ReportingWebService.ParameterValue[pLeng];
-
-
-                //int i = 0;
-                //foreach (var item in _reportParameter)
-                //{
-                //    rptParameters[i] = new ReportingWebService.ParameterValue()
-                //    {
-                //        Name = item.ParaName,
-                //        Value = item.ParaValue.ToString()
-                //    };
-                //    //  rptParameters[i].Name = item.ParaName;
-                //    //  rptParameters[i].Value = item.ParaValue.ToString();  
-                //    i += 1;
-                //}
-
-                // ReDim rptParameters(cnt - 1)
-
                 ReportingWebService.ExecutionInfo execInfo = new ReportingWebService.ExecutionInfo();
                 ReportingWebService.ExecutionHeader execHeader = new ReportingWebService.ExecutionHeader();
 
@@ -324,7 +299,7 @@ namespace BLL
                 ReportingWebService.ServerInfoHeader sh = new ReportingWebService.ServerInfoHeader();
                 RS.ServerInfoHeaderValue = sh;
 
-               var rptParameters = GetReportingServiceParameters(_reportParameter);
+                var rptParameters = GetReportingServiceParameters(_reportParameter);
 
                 //int pLeng = _reportParameter.Count;
 
@@ -406,7 +381,6 @@ namespace BLL
 
             for (int j = 0; j < mySelectIDArray.Length; j++)
             {
-
                 string userID = HttpContext.Current.User.Identity.Name;
                 string employeeID = mySelectIDArray[j].ToString();
                 if (employeeID != "")
@@ -452,6 +426,26 @@ namespace BLL
 
         }
 
+        private static Byte[] GetOneReport(string reportName, ListOfSelected parameter)
+        {
+            var reportParameters = GetReportParameter(parameter);
+ 
+            return GetReportR2(reportName, "PDF", reportParameters);
+
+        }
+        private static List<ReportParameter> GetReportParameter(ListOfSelected parameter)
+        {
+            var reportParameters = new List<ReportParameter>();
+            reportParameters.Add(new ReportParameter() { ParaName = "Operate", ParaValue = "Report" });
+            reportParameters.Add(new ReportParameter() { ParaName = "UserID", ParaValue = parameter.UserID });
+            reportParameters.Add(new ReportParameter() { ParaName = "SchoolYear", ParaValue = parameter.SchoolYear });
+            reportParameters.Add(new ReportParameter() { ParaName = "SchoolCode", ParaValue = parameter.SchoolCode});
+            reportParameters.Add(new ReportParameter() { ParaName = "EmployeeID", ParaValue = parameter.ObjID });
+            reportParameters.Add(new ReportParameter() { ParaName = "SessionID", ParaValue = parameter.ObjNo});
+            reportParameters.Add(new ReportParameter() { ParaName = "Category", ParaValue = parameter.ObjType});
+            return reportParameters;
+     }
+
         public static string reportFormat(string pFormat)
         {
             string rValue = "";
@@ -493,7 +487,7 @@ namespace BLL
             return rValue;
 
         }
-        public static string getReportContentType(string _reportFormat)
+        private static string getReportContentType(string _reportFormat)
         {
 
             string rValue = "";
@@ -589,33 +583,35 @@ namespace BLL
         public static Byte[] AddPWtoPDFMemory(Byte[] pdfDocument, string reviewerPassword, string ownerPassword)
         {
             try
-            {          MemoryStream stream1 = new MemoryStream(pdfDocument);
-            MemoryStream output = new MemoryStream();
-
-            PdfReader input = new PdfReader(stream1.ToArray());
-            PdfEncryptor.Encrypt(input, output, true, reviewerPassword, ownerPassword, PdfWriter.ALLOW_SCREENREADERS);
-
-            return output.ToArray();
-            }
-            catch ( Exception ex)
             {
+                MemoryStream stream1 = new MemoryStream(pdfDocument);
+                MemoryStream output = new MemoryStream();
+
+                PdfReader input = new PdfReader(stream1.ToArray());
+                PdfEncryptor.Encrypt(input, output, true, reviewerPassword, ownerPassword, PdfWriter.ALLOW_SCREENREADERS);
+
+                return output.ToArray();
+            }
+            catch (Exception ex)
+            {
+                var em = ex.Message;
                 return null;
             }
-  
+
         }
 
         public static void SavePDFReport(Byte[] pdfDocument, string fileName, string filePath)
         {
-      
+
             fileName = fileName.Replace(@"\", "");
             fileName = fileName.Replace("/", "");
             fileName = fileName.Replace("`", "");
             fileName = fileName.Replace("'", "");
-           // fileName = filePath + @"\" + fileName; 
+            // fileName = filePath + @"\" + fileName; 
             var goFile = Path.Combine(filePath, fileName);
             try
             {
-                if (! Directory.Exists(filePath))
+                if (!Directory.Exists(filePath))
                 { System.IO.Directory.CreateDirectory(filePath); }
                 else
                 {
@@ -638,14 +634,5 @@ namespace BLL
         }
 
     }
-    public class ReportParameter
-    {
-        public string ParaName { get; set; }
-        public string ParaValue { get; set; }
-
-
-    }
-
-
-
+  
 }

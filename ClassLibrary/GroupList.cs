@@ -12,7 +12,10 @@ namespace ClassLibrary
         public string Actions { get; set; }
         public string DeleteAction { get; set; }
         public string EditAction { get; set; }
+        public string ViewAction { get; set; }
         public string SubActions { get; set; }
         // public ItemsOnList Actions { get; set; }
     }
+    public class GroupListStudent : GroupList { }
+    public class GroupListTeacher : GroupList { }
 }

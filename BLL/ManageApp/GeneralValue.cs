@@ -3,19 +3,15 @@ using System.Collections.Generic;
 
 namespace BLL
 {
-    public class GeneralValue
+    public class GeneralValue : CommonSP
     {
+        public override string GetSPandParametersByOverride(string action)
+        {
+            return GetSPNameWithParameters(action);
+        }
         public static string GetSP(string action)
         {
-            switch (SPSource.SPFile)
-            {
-                case "JsonFile":
-                    return GetSPFrom.JsonFile(action);
-                case "DBTable":
-                    return GetSPFrom.DbTable(action, "AppraisalGeneral");
-                default:
-                    return GetSPInClass(action);
-            }
+            return GetSPNameWithParameters(action);
         }
      
         public static T CommonValue<T>(string action, object parameter)
@@ -32,9 +28,34 @@ namespace BLL
                 string em = ex.StackTrace;
                 throw;
             }
-
         }
-
+        public static T CommonValue<T>(string db, string action, object parameter)
+        {
+            try
+            {
+                string sp = GetSP(action);
+                var myValue = new CommonOperate<T>();
+                return myValue.ValueOfT(db,sp, parameter);
+                //  return CommonExecute<T>.ValueOfT(sp, parameter);
+            }
+            catch (Exception ex)
+            {
+                string em = ex.StackTrace;
+                throw;
+            }
+        }
+        private static string GetSPNameWithParameters(string action)
+        {
+            switch (SPSource.SPFile)
+            {
+                case "JsonFile":
+                    return GetSPFrom.JsonFile(action);
+                case "DBTable":
+                    return GetSPFrom.DbTable(action, "AppraisalPageHelp");
+                default:
+                    return GetSPInClass(action);
+            }
+        }
         private static string GetSPInClass(string action)
         {
             string parameter = " @Operate,@UserID,@UserRole,@SchoolYear,@SchoolCode";

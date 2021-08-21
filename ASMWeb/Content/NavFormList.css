@@ -1,0 +1,132 @@
+﻿
+ #LeftMenuItems
+{  
+	margin-top:0px; 
+    width:190px;
+    margin-left:0px;
+ 
+}
+
+#LeftMenuItems ul 
+{   
+	list-style:none;
+    position:relative; 
+	float:left;
+    display:block ;
+	width:190px;
+    margin:0;
+	padding:0;
+    margin-left:0px;
+    border:1px solid cornflowerblue;
+     
+    background: skyblue; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left,skyblue,white ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right,skyblue,white  ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,skyblue,white  ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right,skyblue,white ); /* Standard syntax (must be last) */
+
+
+    
+}
+
+#LeftMenuItems ul a
+{
+	display: inline-block;
+	color:#333;
+	text-decoration:none;
+	font-weight:500;
+	font-size:12px;
+	line-height:20px;
+	padding-left:1px;
+    
+   width:155px; 
+	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+ 
+#LeftMenuItems ul li
+{  
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0;
+    display:block;
+    width:190px;
+
+    
+}
+
+li a, li img {
+display:inline-block;
+} 
+
+#LeftMenuItems ul li a:hover
+{ 
+	text-decoration:underline;
+}
+
+#LeftMenuItems ul li.current-menu-item
+{
+	background:#ddd
+}
+
+#LeftMenuItems ul li:hover
+{
+	background:orange;
+}
+
+#LeftMenuItems ul ul
+{
+	z-index: auto; /*9999, */
+    display:none;
+	position:absolute;
+	top:-1px;
+	left:190px;
+    margin-left:0px;
+	background:#fff;
+	padding:0;
+    width:150%;
+           
+   background:  skyblue; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left,skyblue,white ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right,skyblue,white  ); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,skyblue,white  ); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right,skyblue,white ); /* Standard syntax (must be last) */
+
+}
+
+#LeftMenuItems ul ul li
+{
+	float:none;
+	width:100%;
+ 
+}
+#LeftMenuItems ul li ul li a:hover
+{ 
+	text-decoration:underline;
+}
+
+
+#LeftMenuItems ul ul a
+{
+	line-height:100%;
+	padding:3px 1px; 
+    width:87%;
+}
+
+#LeftMenuItems ul ul ul
+{
+	top:0;
+	left:100%
+}
+
+#LeftMenuItems ul li:hover > ul
+{
+	display:block;
+}
+
+
+#LeftMenuItems ul ul li:hover > ul
+{
+	display:block
+}
+ 

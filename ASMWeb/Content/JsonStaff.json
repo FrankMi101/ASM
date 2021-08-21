@@ -1,0 +1,40 @@
+{
+  "ContactStaffs": [
+    {
+      "userid": "boreanf",
+      "extention": "Fiorella Borean  Ext. 2321",
+      "email": "Fiorella.Borean@tcdsb.org"
+    },
+    {
+      "userid": "frijiom",
+      "extention": "Mary Frijio Ext. 2730",
+      "email": "Mary.Frijio@tcdsb.org"
+    },
+    {
+      "userid": "krasnor",
+      "extention": "Rosemarie Krasnovitch  Ext. 2370",
+      "email": "Rosemarie.Krasnovitch@tcdsb.org"
+    },
+    {
+      "userid": "difonzm",
+      "extention": "Margherita Di Fonzo  Ext. 2322",
+      "email": "Margherita.DiFonzo@tcdsb.org"
+    },
+    {
+      "userid": "angilll",
+      "extention": "Laura Angilletta  Ext. 2370",
+      "email": "Laura.Angilletta@tcdsb.org"
+    },
+    {
+      "userid": "ruscicj",
+      "extention": "Joanne Ruscica  Ext. 2322",
+      "email": "Joanne.Ruscica@tcdsb.org"
+    },
+    {
+      "userid": "marchem",
+      "extention": "Maria Marchetta Ext. 2664",
+      "email": "Joanne.Ruscica@tcdsb.org"
+    } 
+  ]
+  
+}

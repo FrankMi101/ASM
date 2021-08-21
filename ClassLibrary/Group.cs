@@ -9,6 +9,7 @@ namespace ClassLibrary
     public class Group
     {
         public string AppID { get; set; }
+        public string AppRole { get; set; }
         public string GroupID { get; set; }
         public string GroupName { get; set; }
         public string GroupType { get; set; }
@@ -24,6 +25,7 @@ namespace ClassLibrary
         public string IDs { get; set; }
         public string StudentMember { get; set; }
         public bool HasMemberT { get; set; }
+
 
     }
     public class GroupOperation : Group

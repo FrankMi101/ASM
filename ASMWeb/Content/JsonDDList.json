@@ -1,0 +1,209 @@
+{
+  "SearchBy": [
+    {
+      "name": "All",
+      "value": "All"
+    },
+    {
+      "name": "Area",
+      "value": "Area"
+    },
+    {
+      "name": "School",
+      "value": "School"
+    },
+    {
+      "name": "Panel",
+      "value": "Panel"
+    },
+    {
+      "name": "Title",
+      "value": "Title"
+    },
+    {
+      "name": "Level",
+      "value": "Level"
+    },
+    {
+      "name": "Posting State",
+      "value": "PostingState"
+    },
+    {
+      "name": "Posting Number",
+      "value": "PostingNum"
+    },
+    {
+      "name": "Posting Cycle",
+      "value": "PostingCycle"
+    },
+    {
+      "name": "Posting Open Date",
+      "value": "OpenDate"
+    },
+    {
+      "name": "Posting Close Date",
+      "value": "CloseDate"
+    },
+    {
+      "name": "Publish Date",
+      "value": "PublishDate"
+    },
+    {
+      "name": "Deadline Date",
+      "value": "DeadlineDate"
+    },
+    {
+      "name": "Position Start Date",
+      "value": "StartDate"
+    },
+    {
+      "name": "Position End Date",
+      "value": "EndDate"
+    },
+    {
+      "name": "Pending Confirm",
+      "value": "PendingConfirm"
+    },
+    {
+      "name": "Applicants",
+      "value": "Applicants"
+    }
+  ],
+  "SearchByShort": [
+    {
+      "name": "All",
+      "value": "All"
+    },
+    {
+      "name": "Area",
+      "value": "Area"
+    },
+    {
+      "name": "School",
+      "value": "School"
+    },
+    {
+      "name": "Panel",
+      "value": "Panel"
+    },
+    {
+      "name": "Title",
+      "value": "Title"
+    },
+    {
+      "name": "Level",
+      "value": "Level"
+    },
+    
+    {
+      "name": "Posting Number",
+      "value": "PostingNum"
+    },
+    {
+      "name": "Posting Cycle",
+      "value": "PostingCycle"
+    }
+    
+  ],
+  "Panel": [
+    {
+      "name": "Elementary",
+      "value": "Elementary"
+    },
+    {
+      "name": "Secondary",
+      "value": "Secondary"
+    }
+  ],
+  "SchoolArea": [
+    {
+      "name": "Select a an Area",
+      "value": ""
+    },
+    {
+      "name": "Area 01",
+      "value": "Area 01"
+    },
+    {
+      "name": "Area 02",
+      "value": "Area 02"
+    },
+    {
+      "name": "Area 03",
+      "value": "Area 03"
+    },
+    {
+      "name": "Area 04",
+      "value": "Area 04"
+    },
+    {
+      "name": "Area 05",
+      "value": "Area 05"
+    },
+    {
+      "name": "Area 06",
+      "value": "Area 06"
+    },
+    {
+      "name": "Area 07",
+      "value": "Area 08"
+    },
+    {
+      "name": "Area 08",
+      "value": "Area 08"
+    },
+    {
+      "name": "Area 09",
+      "value": "Area 09"
+    }
+  ],
+  "RoundCycle": [
+    {
+      "name": "Round 1",
+      "value": "1"
+    },
+    {
+      "name": "Round 2",
+      "value": "2"
+    },
+    {
+      "name": "Round 3",
+      "value": "3"
+    },
+    {
+      "name": "Round 4",
+      "value": "4"
+    }
+  ],
+  "PostingState": [
+    {
+      "name": "Select a State",
+      "value": ""
+    },
+    {
+      "name": "Hired",
+      "value": "Hired"
+    },
+    {
+      "name": "Revoke",
+      "value": "Revoke"
+    },
+    {
+      "name": "Noticed",
+      "value": "Noticed"
+    },
+    {
+      "name": "Recommend",
+      "value": "Recommend"
+    },
+    {
+      "name": "Revoked",
+      "value": "Revoked"
+    },
+    {
+      "name": "New Posting",
+      "value": "New Posting"
+    }
+  ]
+
+}

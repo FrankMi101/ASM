@@ -1,0 +1,221 @@
+﻿
+body {
+    margin: 1px;
+}
+
+img {
+    height: 25px;
+    width: 25px;
+    margin-bottom: -5px;
+}
+
+img:hover { 
+    filter: contrast(200%);
+}
+.helpImg, .imgHelp {
+    height: 25px;
+    width: 25px;
+    margin-bottom: -5px;
+}
+
+
+.imgChat {
+    height: 25px;
+    width: 25px;
+    margin-bottom: -5px;
+}
+
+header {
+    display: none;
+    height: 25px;
+}
+
+footer {
+    display: block;
+    height: 25px;
+    margin-bottom: -10px;
+}
+
+section {
+    height: 600px;
+    width: 100%;
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+
+.ContentPageHeader {
+    width: 100%;
+    background: lightblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(skyblue, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(skyblue, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(skyblue, white); /* Standard syntax */
+}
+
+.pageTitle {
+    font-weight: 900;
+    color: #000000;
+    margin-top: -5px;
+    padding-left: 5px;
+}
+
+.saveButton {
+    width: 120px;
+    margin-right: 50px;
+}
+
+    .saveButton:hover {
+        background-color: coral;
+        color: white;
+    }
+.saveButtonDisable {
+    width: 120px;
+    margin-right: 20px;
+}
+
+
+
+#HelpDIV {
+    border: 2px solid lightsalmon;
+    height: 180px;
+    width: 300px;
+    -o-border-top-right-bottom-left-radius: 12px;
+    -moz-border-radius-toprightbottonleft: 12px;
+    -webkit-border-top-right-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: #fde9e1;
+}
+
+#textHelp {
+    margin: 5px;
+}
+
+#ActionMenuDIV {
+    border: 2px solid salmon;
+    height: 120px;
+    width: 200px;
+    background: lightblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(skyblue, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(skyblue, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(skyblue, white); /* Standard syntax */
+}
+
+.HelpMenuDIV {
+    border: 2px solid salmon;
+    background: lightblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(skyblue, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(skyblue, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(skyblue, white); /* Standard syntax */
+}
+
+#textCount {
+    border: 1px solid #6666ff;
+    width: 35px;
+    height: 18px;
+}
+
+#HelpEditDIV {
+    border: 2px solid salmon;
+    height: 200px;
+    width: 300px;
+    text-align: center;
+    -o-border-top-right-bottom-left-radius: 12px;
+    -moz-border-radius-toprightbottonleft: 12px;
+    -webkit-border-top-right-bottom-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#TitleEditDIV {
+    padding-top: 5px;
+    border: 2px solid salmon;
+    height: 520px;
+    width: 650px;
+    text-align: center;
+    -o-border-top-right-bottom-left-radius: 8px;
+    -moz-border-radius-toprightbottonleft: 8px;
+    -webkit-border-top-right-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#TextHelpEdit {
+    margin: 2px;
+}
+.HelpTextBox {
+    margin-top: 1px;
+    margin-left: 2px;
+    margin-right: 1px;
+    height: 97%;
+    width: 99%;
+    border: 0px solid blue;
+    color: blue;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: hidden; 
+    background: transparent;
+}
+#ButtonHelpSave {
+    text-align: center;
+}
+
+.Title1 {
+    color: forestgreen;
+}
+
+.Title2 {
+    font-style: italic;
+}
+
+.ContentTitle {
+    display: block;
+}
+  
+#ContentTitleLeft {
+    display: inline;
+    float: left;
+    width: 75%;
+}
+
+#ContentTitleRight {
+    display: inline;
+    float: right;
+    text-align: right;
+    width: 25%;
+}
+
+#ActionPOPDIV {
+    margin-left: -5px;
+    border: 2px solid salmon;
+    text-align: center;
+    -o-border-top-right-bottom-left-radius: 8px;
+    -moz-border-radius-toprightbottonleft: 8px;
+    -webkit-border-top-right-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.myEditItem {
+   background-color: cornsilk;
+}
+.myEditItemDisable {
+   background-color: #f6f4f4;
+}
+.EditDIV {
+    border: 2px solid salmon;
+    border-radius: 10px;
+    padding: 5px;
+}
+ 

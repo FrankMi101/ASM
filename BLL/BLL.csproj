@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
     <AssemblyName>BLL</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,9 +37,8 @@
     <Reference Include="itextsharp.pdfa">
       <HintPath>..\..\DLLReferance\itextsharp.pdfa.dll</HintPath>
     </Reference>
-    <Reference Include="MyBaseClassC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Projects\DLLReferance\MyBaseClassC.dll</HintPath>
+    <Reference Include="MyBaseClassC">
+      <HintPath>..\..\DLLReferance\MyBaseClassC.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -59,18 +58,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckStoreProcedureParameters.cs" />
     <Compile Include="Common.cs" />
-    <Compile Include="CommonDb.cs" />
     <Compile Include="CommonExecute.cs" />
+    <Compile Include="CommonSP.cs" />
+    <Compile Include="CommonSPandParamter.cs" />
     <Compile Include="GetSPFrom.cs" />
+    <Compile Include="IStoreProcedureNameAndParameters.cs" />
     <Compile Include="ManageApp\AppsSecurityManagement.cs" />
     <Compile Include="ManageApp\GeneralList.cs" />
     <Compile Include="ManageApp\AppsPageHelp.cs" />
-    <Compile Include="ManageApp\CommentsBank.cs" />
     <Compile Include="ManageApp\GeneralValue.cs" />
+    <Compile Include="ISecurityManageData.cs" />
+    <Compile Include="SISInfo\SISInfoBase.cs" />
     <Compile Include="SPandParameters.cs" />
     <Compile Include="UserProfiles\UserLastWorking.cs" />
     <Compile Include="UserProfiles\UserProfile.cs" />
+    <Compile Include="UtilityMethod\AssemblyList2.cs" />
     <Compile Include="UtilityMethod\AssemblyListControl.cs" />
     <Compile Include="CommonOperate.cs" />
     <Compile Include="CommonParameters.cs" />
@@ -91,10 +95,16 @@
     <Compile Include="UtilityMethod\DateFormat.cs" />
     <Compile Include="UtilityMethod\DBConnection.cs" />
     <Compile Include="UtilityMethod\eMailNotification.cs" />
+    <Compile Include="UtilityMethod\GeneratePDFReport.cs" />
     <Compile Include="UtilityMethod\Generic.cs" />
     <Compile Include="UtilityMethod\HelpContext.cs" />
     <Compile Include="UtilityMethod\iCalendar.cs" />
+    <Compile Include="UtilityMethod\IReportParameter.cs" />
+    <Compile Include="UtilityMethod\MenuItem.cs" />
+    <Compile Include="UtilityMethod\ParameterFactory.cs" />
     <Compile Include="UtilityMethod\RandomCharacter.cs" />
+    <Compile Include="UtilityMethod\RenderDocuments.cs" />
+    <Compile Include="UtilityMethod\ReportBase.cs" />
     <Compile Include="UtilityMethod\ReportRender.cs" />
     <Compile Include="UtilityMethod\StringUtility.cs" />
     <Compile Include="UtilityMethod\SymetricEncryption.cs" />

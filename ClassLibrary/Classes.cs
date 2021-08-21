@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class Classes
+    public class Classes: BaseClassT
     {
         public string ClassCode { get; set; }
         public string ClassName { get; set; }

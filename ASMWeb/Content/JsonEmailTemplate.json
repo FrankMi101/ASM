@@ -1,0 +1,191 @@
+{
+  "LTO": [
+    {
+      "action": "Request",
+      "Subject": "Request New posting Position Notification",
+      "template": "PostingNotification_RequestNew.htm"
+    },
+    {
+      "action": "MoreInterview",
+      "Subject": "Request More Interview Candidate Notification",
+      "template": "RequestMoreInterviewCandidate.htm"
+    },
+    {
+      "action": "Reject",
+      "Subject": "Reject New posting Request Notification",
+      "template": "PostingNotification_Reject.htm"
+    },
+    {
+      "action": "Remind",
+      "Subject": "Reminder to complete LTO/POP Position hiring process",
+      "template": "ReminderPrincipalToConfirmLTO.htm"
+    },
+    {
+      "action": "Posting",
+      "Subject": "New LTO/POP Position Posting Notification",
+      "template": "PostingNotification.htm"
+    },
+
+    {
+      "action": "CancelA",
+      "Subject": "Cancel Posted PositionTitle Notification",
+      "template": "PostingNotification_CancelA.htm"
+    },
+    {
+      "action": "CancelP",
+      "Subject": "Cancel Posted PositionTitle Notification",
+      "template": "PostingNotification_CancelP.htm"
+    },
+    {
+      "action": "Repost",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting.htm"
+    },
+    {
+      "action": "Repost2",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting2_LTO.htm"
+    },
+    {
+      "action": "Repost3",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting3_LTO.htm"
+    },
+    {
+      "action": "Repost4",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting4_LTO.htm"
+    },
+    {
+      "action": "ConfirmHire",
+      "Subject": "Confirm for PositionTitle hired Notification",
+      "template": "ConfirmHiredNotification.htm"
+    },
+
+    {
+      "action": "Revoke",
+      "Subject": "Revoke Position confirm hired Notification",
+      "template": "ConfirmHiredNotificationRevoke.htm"
+    },
+
+    {
+      "action": "Notice",
+      "Subject": "Interview Candidate list for PositionTitle Notification",
+      "template": "ConfirmInterviewNotificationLTO.htm"
+    },
+    {
+      "action": "Recommend",
+      "Subject": "Principal Recommend for Hire Notification",
+      "template": "RecommendForHiringLTO.htm"
+    },
+    {
+      "action": "Revoke Re",
+      "Subject": "Revoke Principal Recommend for Hire Notification",
+      "template": "RecommendForHiringLTORevoke.htm"
+    },
+    {
+      "action": "Applied",
+      "Subject": "Confirmation for PositionTitle Notification",
+      "template": "ConfirmApplyNotificationLTO.htm"
+    },
+    {
+      "action": "Cancel",
+      "Subject": "Confirmation for PositionTitle Notification",
+      "template": "ConfirmApplyNotificationCancel.htm"
+    }
+  ],
+  "POP": [
+    {
+      "action": "Request",
+      "Subject": "Request New posting Position Notification",
+      "template": "PostingNotification_RequestNew.htm"
+    },
+    {
+      "action": "MoreInterview",
+      "Subject": "Request More Interview Candidate Notification",
+      "template": "RequestMoreInterviewCandidate.htm"
+    },
+    {
+      "action": "Reject",
+      "Subject": "Reject New posting Request Notification",
+      "template": "PostingNotification_Reject.htm"
+    },
+    {
+      "action": "Remind",
+      "Subject": "Reminder to complete LTO/POP Position hiring process",
+      "template": "ReminderPrincipalToConfirmLTO.htm"
+    },
+    {
+      "action": "Posting",
+      "Subject": "New LTO/POP Position Posting Notification",
+      "template": "PostingNotification.htm"
+    },
+    {
+      "action": "CancelA",
+      "Subject": "Cancel Posted PositionTitle Notification",
+      "template": "PostingNotification_CancelA.htm"
+    },
+    {
+      "action": "CancelP",
+      "Subject": "Cancel Posted PositionTitle Notification",
+      "template": "PostingNotification_CancelP.htm"
+    },
+    {
+      "action": "Repost",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting.htm"
+    },
+    {
+      "action": "Repost2",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting2_POP.htm"
+    },
+    {
+      "action": "Repost3",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting3_POP.htm"
+    },
+    {
+      "action": "Repost4",
+      "Subject": "Position Reposting Notification",
+      "template": "PostingNotification_Reposting4_POP.htm"
+    },
+    {
+      "action": "ConfirmHire",
+      "Subject": "Confirm for PositionTitle hired Notification",
+      "template": "ConfirmHiredNotificationPOP.htm"
+    },
+
+    {
+      "action": "Revoke",
+      "Subject": "Revoke Position confirm hired Notification",
+      "template": "ConfirmHiredNotificationPOPRevoke.htm"
+    },
+
+    {
+      "action": "Notice",
+      "Subject": "Interview Candidate list for PositionTitle Notification",
+      "template": "ConfirmInterviewNotificationPOP.htm"
+    },
+    {
+      "action": "Recommend",
+      "Subject": "Principal Recommend for Hire Notification",
+      "template": "RecommendForHiringPOP.htm"
+    },
+    {
+      "action": "Revoke Re",
+      "Subject": "Revoke Principal Recommend for Hire Notification",
+      "template": "RecommendForHiringPOPRevoke.htm"
+    },
+    {
+      "action": "Applied",
+      "Subject": "Confirmation for PositionTitle Notification",
+      "template": "ConfirmApplyNotificationPOP.htm"
+    },
+    {
+      "action": "Cancel",
+      "Subject": "Confirmation for PositionTitle Notification",
+      "template": "ConfirmApplyNotificationCancel.htm"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+﻿
+.category {
+    height: 28px;
+    width: 800px; /*set a long width px to handel some long content in the menu text*/
+    font-weight: 700;
+    border: 1px solid white;
+    padding-left: 10px;
+    padding-top: 5px;
+    background: dodgerblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
+}
+.itemDisable {
+       color:silver;
+}
+.categoryDisable {
+    height: 28px;
+    width: 800px; /*set a long width px to handel some long content in the menu text*/
+    font-weight: 400;
+    border: 1px solid white;
+    padding-left: 10px;
+    padding-top: 5px;
+    background: dodgerblue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
+    color:silver;
+}
+
+.Menulevel2 {
+    margin: auto;
+    padding-left: 20px;
+    list-style-type: none !important;
+    /*list-style-position: inside;*/
+}
+
+
+.leafMenuALP, .leafMenuLOG,  .leafMenuOBS, .leafMenuSUM, .leafMenuIMP, .leafMenuENR, .leafMenuSTR, .leafMenuAGP, .leafMenuAPP, .leafMenuAPM, .leafMenuMMF{
+    display: none;
+    margin-left: -35px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    list-style-type: none !important;
+}
+
+.leafMenuOOO {
+    display: block;
+}
+
+.MenuPanel .category:hover {
+    /*background-color: lightsalmon;*/
+    background: lightsalmon; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(lightsalmon, whit); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(lightsalmon, whit); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(lightsalmon, whit); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(lightsalmon, whit); /* Standard syntax */
+}
+
+img {
+    width: 20px;
+    height: 16px;
+    margin-bottom: -2px;
+}
+
+.MenuPanel a {
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+    height:30px;
+}
+ 
+
+    .MenuPanel a:hover {
+        text-decoration: underline;
+        color: purple;
+    }
+
+.MenuPanel ul li {
+    white-space: nowrap;
+}
