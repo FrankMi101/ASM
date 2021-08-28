@@ -14,7 +14,7 @@ namespace ASMBLL.Tests
     {
         private MenuListParameter _spParamater = new MenuListParameter();
      //   private readonly ActionMenuItem action = new ActionMenuItem();
-        private readonly ActionGet<MenuItems> _action = new ActionGet<MenuItems>(new ActionMenuItem());
+        private readonly IActionGet<MenuItems> _action = new ActionMenuItem();
 
         [TestInitialize]
         public void Setup()

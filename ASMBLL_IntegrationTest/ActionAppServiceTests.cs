@@ -15,7 +15,7 @@ namespace ASMBLL.Tests
         private int _ids = 0;
        // private UserGroup _para = new UserGroup();
         //  private readonly IAction<UserGroup> _action = new ActionAppUserGroup();
-        private readonly ActionAppService<UserGroup> _action = new ActionAppService<UserGroup>();
+        private readonly ActionAppService<UserGroup> _action = new ActionAppService<UserGroup>("SQL");
   
 
         [TestInitialize]

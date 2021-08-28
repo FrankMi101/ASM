@@ -8,8 +8,8 @@ namespace ASMBLL
 {
     public class ActionGet<T> 
     {
-        private readonly IGet<T> _iGet;
-        public ActionGet(IGet<T> iGet){
+        private readonly IActionGet<T> _iGet;
+        public ActionGet(IActionGet<T> iGet){
             _iGet = iGet;
         }
 

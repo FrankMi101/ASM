@@ -13,7 +13,7 @@ namespace ASMBLL
         private string _sp = MapClass<UserGroupPush>.SPName("Push");
         private readonly string _invalidMessage = "Invalid Group ID";
         private readonly string _objName = typeof(UserGroupPush).Name;
-        private readonly DataOperateService<UserGroupPush> _dataOperate = (DataOperateService<UserGroupPush>)MapClass<UserGroupPush>.DBSource();  // new DataOperateService<UserGroupPush>(new DataOperateServiceSQL<UserGroupPush>());
+        private readonly IDataOperateService<UserGroupPush> _dataOperate = (IDataOperateService<UserGroupPush>)MapClass<UserGroupPush>.DBSource();  // new DataOperateService<UserGroupPush>(new DataOperateServiceSQL<UserGroupPush>());
 
         public string GetSPName(string action)
         {

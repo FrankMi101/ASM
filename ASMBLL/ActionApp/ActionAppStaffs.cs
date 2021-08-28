@@ -14,7 +14,7 @@ namespace ASMBLL
 
         private readonly string _invalidMessage = "Invalid Group ID";
         private readonly string _objName = typeof(StaffListSearch).Name;
-        private readonly DataOperateService<StaffListSearch> _dataOperate = (DataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource();  // new DataOperateService<StaffListSearch>(new DataOperateServiceSQL<StaffListSearch>());
+        private readonly IDataOperateService<StaffListSearch> _dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource("SQL");  // new DataOperateService<StaffListSearch>(new DataOperateServiceSQL<StaffListSearch>());
 
         public string GetSPName(string action)
         {
@@ -51,22 +51,5 @@ namespace ASMBLL
         {
             throw new NotImplementedException();
         }
-       
-        private object GetParameter(string operate, StaffListSearch paraObj)
-        {
-            var parameter = new
-            {
-                Operate = operate,
-                paraObj.UserID,
-                paraObj.UserRole,
-                paraObj.SchoolCode,
-                paraObj.SearchBy,
-                paraObj.SearchValue,
-                paraObj.Scope,
-            };
-            return parameter;
-        }
-
-
     }
 }

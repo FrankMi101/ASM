@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ASMBLL
 {
-    public interface IActionAppService<T>:IGet<T>
+    public interface IActionApp<T>:IActionGet<T>
     {
         ////List<T> GetObjList(object parameter);
         ////List<T> GetObjByID(int id);
-        string AddObj(object parameter);
-        string EditObj(object parameter);
-        string RemoveObj(object parameter);
+        string AddObj(T parameter);
+        string EditObj(T parameter);
+        string RemoveObj(T parameter);
         string DeleteObj(int id);
     }
 }

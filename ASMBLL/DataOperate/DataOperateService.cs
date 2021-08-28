@@ -12,25 +12,25 @@ namespace ASMBLL
 /// <typeparam name="T"></typeparam>
     public class DataOperateService<T>
     {
-        private readonly IDataOperateService<T> _iDos;
-        public DataOperateService(IDataOperateService<T> iDos)
+        private readonly IDataOperateService<T> _iDataOperateService;
+        public DataOperateService(string dataSource) //IDataOperateService<T> iDos)
         {
-            this._iDos = iDos;
+            this._iDataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);// iDos;
         }
         public string EditResult(string apiType, string sp, object parameter)
         {
-           return _iDos.EditResult(apiType, sp, parameter);
+           return _iDataOperateService.EditResult(apiType, sp, parameter);
     
         }
 
         public List<T> ListOfT(string apiType, string sp, object parameter)
         {
-            return _iDos.ListOfT(apiType, sp, parameter);
+            return _iDataOperateService.ListOfT(apiType, sp, parameter);
         
         }
         public List<T> ListOfT(string sp, object parameter)
         {
-            return _iDos.ListOfT( sp, parameter);
+            return _iDataOperateService.ListOfT( sp, parameter);
         }
     }
 }

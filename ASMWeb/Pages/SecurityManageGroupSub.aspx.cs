@@ -120,18 +120,17 @@ namespace ASM.Pages
             switch (Grade)
             {
                 case "SAP":
-                    GridView_SAP.DataSource = GetDataSource<StaffList>(); //GetDataSource_SAP();
+                    GridView_SAP.DataSource = GetDataSource<StaffList>(Grade); //GetDataSource_SAP();
                     GridView_SAP.DataBind();
                     GridView_SAP.Visible = true;
                     break;
                 case "SIS":
-                    GridView_SIS.DataSource = GetDataSource<ClassesList>(); // GetDataSource_SIS();
+                    GridView_SIS.DataSource = GetDataSource<ClassesList>(Grade); // GetDataSource_SIS();
                     GridView_SIS.DataBind();
                     GridView_SIS.Visible = true;
                     break;
                 case "APP":
-
-                    GridView_APP.DataSource = GetDataSource<GroupList>(); // GetDataSource_APP();
+                    GridView_APP.DataSource = GetDataSource<GroupList>(Grade); // GetDataSource_APP();
                     GridView_APP.DataBind();
                     GridView_APP.Visible = true;
                     break;
@@ -139,7 +138,7 @@ namespace ASM.Pages
                     break;
             }
         }
-        private List<T> GetDataSource<T>()
+        private List<T> GetDataSource<T>(string grade)
         {
             var para = new
             {
@@ -151,60 +150,21 @@ namespace ASM.Pages
                 CPNum = Page.Request.QueryString["CPNum"].ToString()
             };
 
-            var myList = ManagePageList<T, StaffMemberOf>.GetListbyT2(para.Operate, para);
-
-
-           // var myList = ListData.GeneralList<T>("SecurityManage", pageID, parameter);
-            return myList;
-        }
-/*
-        private List<StaffList> GetDataSource_SAP()
-        {
-            var parameter = new
+            List<T> myList;
+            if (WebConfig.DataSource() == "API")
             {
-                Operate = "SecurityContentSAP",
-                UserID = User.Identity.Name,
-                UserRole = hfUserRole.Value,
-                SchoolYear = WorkingProfile.SchoolYear,
-                SchoolCode = Page.Request.QueryString["sCode"].ToString(),
-                CPNum = Page.Request.QueryString["CPNum"].ToString()
-            };
-
-            var myList = ListData.GeneralList<StaffList>("SecurityManage", pageID, parameter);
-            return myList;
-        }
-        private List<ClassesList> GetDataSource_SIS()
-        {
-            var parameter = new
+                string uri = "staff/" + grade; // SAP";
+                string qStr = "/" + para.SchoolCode + "/" + para.SchoolYear + "/" + para.CPNum;
+                myList = ManagePageList<T, UserGroup>.GetList("API",uri, qStr);
+             }
+            else
             {
-                Operate = "SecurityContentSIS",
-                UserID = User.Identity.Name,
-                UserRole = hfUserRole.Value,
-                SchoolYear = WorkingProfile.SchoolYear,
-                SchoolCode = Page.Request.QueryString["sCode"].ToString(),
-                CPNum = Page.Request.QueryString["CPNum"].ToString()
-
-            };
-
-            var myList = ListData.GeneralList<ClassesList>("SecurityManage", pageID, parameter);
+                // var myList = ListData.GeneralList<T>("SecurityManage", pageID, parameter);
+                 myList = ManagePageList<T, StaffMemberOf>.GetList("SQL",para.Operate, para);
+            }
             return myList;
         }
-        private List<GroupList> GetDataSource_APP()
-        {
-            var parameter = new
-            {
-                Operate = "SecurityContentAPP",
-                UserID = User.Identity.Name,
-                UserRole = hfUserRole.Value,
-                SchoolYear = WorkingProfile.SchoolYear,
-                SchoolCode = Page.Request.QueryString["sCode"].ToString(),
-                CPNum = Page.Request.QueryString["CPNum"].ToString()
-            };
 
-            var myList = ListData.GeneralList<GroupList>("SecurityManage", pageID, parameter);
-            return myList;
-        }
-*/
         private void Assembing_Tab()
         {
             var parameters = new

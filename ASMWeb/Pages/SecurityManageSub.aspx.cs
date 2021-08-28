@@ -83,14 +83,14 @@ namespace ASM.Pages
             if (gType == "GroupListStudent") {
                // var actionClass = new ActionGet<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
                // return ManagePageList<T, UserGroupMemberStudent>.GetList(actionClass, parameter);
-                return ManagePageList<T, UserGroupMemberStudent>.GetList(gType, parameter);
+                return ManagePageList<T, UserGroupMemberStudent>.GetList("SQL","ClassCall", parameter);
             }
 
             if (gType == "GroupListTeacher")
             {
               //  var actionClass = new ActionGet<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
              //   return ManagePageList<T, UserGroupMemberTeacher>.GetList(actionClass, parameter);
-                return ManagePageList<T, UserGroupMemberTeacher>.GetList(gType, parameter);
+                return ManagePageList<T, UserGroupMemberTeacher>.GetList("SQL","ClassCall", parameter);
             }
 
             return null;     

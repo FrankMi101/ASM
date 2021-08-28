@@ -69,7 +69,7 @@ namespace ASM.Tests
             int expect = 0;
             int para = 9999; // new { Operate = "Get", UserID = "asm", IDs = "28" };
             //Act 
-            var actionClass = new ActionApp<UserGroup>(new ActionAppUserGroup());
+            var actionClass =  new ActionAppUserGroup();
             var list = ManageFormContent<UserGroup>.GetListbyID(actionClass, para);
 
             var result = list.Count;
@@ -100,7 +100,7 @@ namespace ASM.Tests
             string expect = "0000";
             int para = 6932; // new { Operate = "Get", UserID = "asm", IDs = "28" };
             //Act 
-            var actionClass = new ActionApp<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
+            var actionClass = new ActionAppUserGroupMemberS();
             var list = ManageFormContent<UserGroupMemberStudent>.GetListbyID(actionClass, para);
 
             var result = list[0].MemberID;
@@ -131,7 +131,7 @@ namespace ASM.Tests
             string expect = "felicid";
             int para = 5130; // new { Operate = "Get", UserID = "asm", IDs = "28" };
             //Act 
-            var actionClass = new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
+            var actionClass = new ActionAppUserGroupMemberT();
             var list = ManageFormContent<UserGroupMemberTeacher>.GetListbyID(actionClass, para);
 
             var result = list[0].MemberID;

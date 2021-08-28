@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListItemsController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\UserGroupTeacherController.cs" />
     <Compile Include="Controllers\UserGroupStudentController.cs" />
     <Compile Include="Controllers\UserGroupController.cs" />
@@ -177,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\APIAction.cs" />
+    <Compile Include="Models\DataSource.cs" />
     <Compile Include="Models\IAPIAction.cs" />
     <Compile Include="Models\ReturnMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

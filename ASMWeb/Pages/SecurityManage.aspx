@@ -92,7 +92,7 @@
         .staff-container {
             margin-top: 5px;
             display: grid;
-            grid-template-columns: 54% auto;
+            grid-template-columns: 50% auto;
             grid-template-rows: repeat(1,100%);
             margin: auto;
             text-align: left;
@@ -220,17 +220,17 @@
                                         <ItemStyle Width="30%" Wrap="true" />
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="GroupType" ReadOnly="True" HeaderText="Group Type" ItemStyle-CssClass="myGroupType">
-                                        <ItemStyle Width="10%" Wrap="False" />
+                                        <ItemStyle Width="8%" Wrap="False" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="Permission" ReadOnly="True" HeaderText="Permission" ItemStyle-CssClass="Permission">
-                                        <ItemStyle Width="10%" />
+                                        <ItemStyle Width="8%" />
                                     </asp:BoundField>
 
                                     <asp:TemplateField HeaderText="Active">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chbPickup" Checked='<%# Convert.ToBoolean(Eval("IsActive"))%>' runat="server" CssClass="myCheckPickedForGAL"></asp:CheckBox>
                                         </ItemTemplate>
-                                        <ItemStyle Width="5%" HorizontalAlign="center" />
+                                        <ItemStyle Width="3%" HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="" ItemStyle-CssClass="myEditAction">
                                         <ItemTemplate>

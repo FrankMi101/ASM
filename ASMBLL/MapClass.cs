@@ -18,18 +18,21 @@ namespace ASMBLL
             {
 
                 case "UserGroup":
-                    return new ActionApp<UserGroup>(new ActionAppUserGroup());
+                    return new ActionAppUserGroup();
                 case "UserGroupPush":
-                    return new ActionApp<UserGroupPush>(new ActionAppUserGroupPush());
+                    return new  ActionAppUserGroupPush();
                 case "GroupListStudent":
                 case "UserGroupStudent":
-                    return new ActionApp<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
+                    return  new ActionAppUserGroupMemberS();
 
                 case "GroupListTeacher":
                 case "UserGroupTeacher":
-                    return new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
+                    return new ActionAppUserGroupMemberT();
+                case "ActionAppList":
+                    return new ActionAppList<T,T>(_dbSource);
                 default:
                     return null;
+                  //  return new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
             }
         }
         public static string SPName(string action)
@@ -53,9 +56,9 @@ namespace ASMBLL
                 case "UserGroupMemberTeacher":
                     return "dbo.SIC_asm_AppUserGroupMemberT_" + action;
                 case "StaffList":
-                    return "dbo.SIC_asm_AppSchoolStaffs";
+                    return "dbo.SIC_asm_AppSchoolStaffs_" +action;
                 case "StaffMemberOf":
-                    return "dbo.SIC_asm_AppSchoolStaffs_MemberOf";
+                    return "dbo.SIC_asm_AppSchoolStaffsMember_" +action;
                 default:
                     return action;
             }
@@ -65,13 +68,29 @@ namespace ASMBLL
             switch (_dbSource)
             {
                 case "SQL":
-                    return new DataOperateService<T>(new DataOperateServiceSQL<T>());
+                    return  new DataOperateServiceSQL<T>();
+                   // return new DataOperateService<T>(new DataOperateServiceSQL<T>());
                 case "ORA":
-                    return new DataOperateService<T>(new DataOperateServiceORA<T>());
+                    return new   DataOperateServiceORA<T>();
                 case "API":
-                    return new DataOperateService<T>(new DataOperateServiceAPI<T>());
+                    return new  DataOperateServiceAPI<T>();
                 default:
-                    return null;
+                    return new DataOperateServiceSQL<T>();
+            }
+
+        }
+        public static object DBSource(string dataSource)
+        {
+            switch (dataSource)
+            {
+                case "SQL":
+                    return new  DataOperateServiceSQL<T>();
+                case "ORA":
+                    return new  DataOperateServiceORA<T>();
+                case "API":
+                    return new  DataOperateServiceAPI<T>();
+                default:
+                    return new DataOperateServiceSQL<T>();
             }
 
         }

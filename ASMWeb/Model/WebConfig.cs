@@ -7,6 +7,15 @@ namespace ASM
 
     public class WebConfig
     {
+        public static string DataSource()
+        {
+            return WebConfigurationManager.ConnectionStrings["DataSource"].ConnectionString;
+        }
+        public static string APISite()
+        {
+            return WebConfigurationManager.ConnectionStrings["APISite"].ConnectionString;
+        }
+
         public static string getDB(string source)
         {
             string currentDataSource = WebConfigurationManager.ConnectionStrings["currentDB"].ConnectionString;             

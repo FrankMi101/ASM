@@ -210,7 +210,7 @@ namespace ASM.Models
             try
             {
                 string result = ValueData.GeneralValue<string>("SecurityManage", "ManageGroupMember", parameter);
-                 return result;
+                return result;
             }
             catch (Exception ex)
             {
@@ -234,7 +234,36 @@ namespace ASM.Models
         }
 
         [WebMethod]
-        public string SaveSecurityGroupMember(string memberType, string operation, GroupOperation parameter)
+        public string SaveSecurityGroupMember(string memberType, string operation, GroupOperation para)
+        {
+            try
+            {
+                string result = "";
+                UserGroupMemberTeacher parameter = new UserGroupMemberTeacher { Operate = para.Operate, UserID = para.UserID, SchoolCode = para.SchoolCode };
+
+                if (memberType == "Students")
+                {
+                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent(operation, "StudentGroup", parameter);
+
+                }
+
+                if (memberType == "Teachers")
+                {
+
+                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent(operation, "TeacherGroup", parameter);
+
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var em = ex.Message;
+                return "Failed";
+            }
+        }
+        [WebMethod]
+        public string SaveSecurityGroupMember2(string memberType, string operation, GroupOperation parameter)
         {
             try
             {
@@ -271,7 +300,7 @@ namespace ASM.Models
             try
             {
                 string result = ManageFormSave<UserGroupPush>.SaveFormContent(operate, "UserGroupPush", parameter);
-              //  string result = AppsBase.GeneralValue<string>("SecurityManage", "PushGroupToApps", parameter);
+                //  string result = AppsBase.GeneralValue<string>("SecurityManage", "PushGroupToApps", parameter);
                 return result;
             }
             catch (Exception ex)
@@ -384,11 +413,11 @@ namespace ASM.Models
                 return null;
             }
         }
-      
+
         [WebMethod(EnableSession = true)]
         public void SelectedStudentDataSet(string operate, List<ListOfSelected> parameters)
         {
-            Session["SelectedDataSet"] = parameters; 
+            Session["SelectedDataSet"] = parameters;
         }
     }
 }

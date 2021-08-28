@@ -10,27 +10,27 @@ namespace ASMBLL
 {
     public class ActionAppUserGroupMemberT : IActionApp<UserGroupMemberTeacher>
     {
-        private string _sp = "";
-        private readonly string _spRead = "dbo.SIC_asm_AppUserGroupMemberT_Read";
-        private readonly string _spEdit = "dbo.SIC_asm_AppUserGroupMemberT_Edit";
+        private string _sp = MapClass<UserGroupMemberTeacher>.SPName("Read");
+        //private readonly string _spRead = "dbo.SIC_asm_AppUserGroupMemberT_Read";
+        //private readonly string _spEdit = "dbo.SIC_asm_AppUserGroupMemberT_Edit";
         private readonly string _invalidMessage = "Invalid Group Member ID";
         private readonly string _objName = typeof(UserGroupMember).Name;
-        private readonly DataOperateService<UserGroupMemberTeacher> _dataOperate = (DataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        private readonly IDataOperateService<UserGroupMemberTeacher> _dataOperate = (IDataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
         public string GetSPName(string action)
         {
-            if (_sp == "") return _spRead;
+           
             return _sp;
         }
         public List<UserGroupMemberTeacher> GetObjList(object parameter)
         {
-            _sp = _spRead;// CheckStoreProcedureParameters.GetParamerters(_spRead, parameter);
+          //  _sp = _spRead;// CheckStoreProcedureParameters.GetParamerters(_spRead, parameter);
             return _dataOperate.ListOfT(_objName, _sp, parameter);
         }
 
         public List<UserGroupMemberTeacher> GetObjByID(int id)
         {
             var para = new { Operate = "Get", UserID = "asm", IDs = id.ToString() };
-            _sp = _spEdit;// CheckStoreProcedureParameters.GetParamerters(_spEdit, para);
+           _sp =  MapClass<UserGroupMemberTeacher>.SPName("Edit");
             return _dataOperate.ListOfT(_objName, _sp, para);
         }
         public string AddObj(UserGroupMemberTeacher parameter)
@@ -61,7 +61,7 @@ namespace ASMBLL
         private string ObjOperation(string action, UserGroupMemberTeacher parameter)
         {
             var para = GetParameter(action, parameter);
-            _sp = _spEdit;// CheckStoreProcedureParameters.GetParamerters(_spEdit, para);// "dbo.SIC_asm_AppRoleEdit @Operate,@UserID,@IDs,@RoleID,@RoleName";
+            _sp = MapClass<UserGroupMemberTeacher>.SPName("Edit");  // CheckStoreProcedureParameters.GetParamerters(_spEdit, para);// "dbo.SIC_asm_AppRoleEdit @Operate,@UserID,@IDs,@RoleID,@RoleName";
 
             return _dataOperate.EditResult(_objName, _sp, para);
         }

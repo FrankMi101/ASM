@@ -120,9 +120,20 @@ namespace ASM.Pages
                 SearchValue = hfSearchValue.Value,  
                 Scope = "Board" // ddlType.SelectedValue
             };
-            var myList = ManagePageList<T, StaffListSearch>.GetList("StaffList", parameter, btnSearchGoFirstName);
 
-           // var myList = ListData.GeneralList<StaffList>("SecurityManage", pageID, parameter, btnSearchGoCPNum);
+            List<T> myList;
+            
+            if (WebConfig.DataSource() == "API")
+            {
+                string uri = "staff/list";
+                string qStr = "/" + parameter.SchoolCode + "/" + parameter.SearchBy + "/" + parameter.SearchValue + "/" + parameter.Scope;
+                 myList = ManagePageList<T, StaffList>.GetList("API",uri, qStr, btnSearchGoFirstName);
+            }
+            else
+            {
+              myList = ManagePageList<T, StaffList>.GetList("SQL","StaffList", parameter, btnSearchGoFirstName);
+            }
+            // var myList = ListData.GeneralList<StaffList>("SecurityManage", pageID, parameter, btnSearchGoCPNum);
             return myList;
         }
  

@@ -8,6 +8,8 @@ namespace ASM.Tests
     [TestClass()]
     public class ManagePageListTests
     {
+        private readonly string _dataSource = "SQL";
+        private readonly string _callMethod = "ClassCall";
         [TestInitialize]
         public void Setup()
         {
@@ -21,7 +23,7 @@ namespace ASM.Tests
             var expect = "All School Students Group";
             var para = new { Operate = "GroupList", UserID = "tester", UserRole = "Admin", SchoolCode = "0000", AppID = "SIC" };
             //Act 
-            var list = ManagePageList<GroupList, UserGroup>.GetList("UserGroup", para);
+            var list = ManagePageList<GroupList, UserGroup>.GetList(_dataSource, _callMethod, para);
 
 
             var result = from s in list
@@ -39,7 +41,7 @@ namespace ASM.Tests
             int expect = 0;
             var para = new { Operate = "GroupList", UserID = "tester", UserRole = "Admin", SchoolCode = "0000", AppID = "ZZZ" };
             //Act 
-            var list = ManagePageList<GroupList, UserGroup>.GetList("UserGroup", para);
+            var list = ManagePageList<GroupList, UserGroup>.GetList(_dataSource, _callMethod, para);
 
 
             var result = list.Count;
@@ -58,8 +60,8 @@ namespace ASM.Tests
             var expect = "All School Students Group";
             var para = new { Operate = "GroupList", UserID = "tester", UserRole = "Admin", SchoolCode = "0000", AppID = "SIC" };
             //Act 
-            var mapClass = new ActionApp<UserGroup>(new ActionAppUserGroup());
-            var list = ManagePageList<GroupList, UserGroup>.GetList(mapClass, para);
+            // var mapClass = new ActionApp<UserGroup>(new ActionAppUserGroup());
+            var list = ManagePageList<GroupList, UserGroup>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
                          where s.GroupID == "All Students Work Group"
@@ -70,13 +72,13 @@ namespace ASM.Tests
 
         }
         [TestMethod()]
-        public void GetListby_GetUserGroupMemberStudentbyPara_returnMemberofStudent()
+        public void GetList_GetUserGroupMemberStudentbyPara_returnMemberofStudent()
         {
             //Arrange
             int expect = 3;
             var para = new { Operate = "GroupListStudent", UserID = "tester", UserRole = "Admin", SchoolCode = "0000", AppID = "SIC", GroupID = "Primary Student Work group" };
             //Act 
-            var list = ManagePageList<GroupList, UserGroupMemberStudent>.GetList("UserGroupStudent", para);
+            var list = ManagePageList<GroupList, UserGroupMemberStudent>.GetList(_dataSource, _callMethod, para);
 
             var result = list.Count;
 
@@ -85,14 +87,14 @@ namespace ASM.Tests
 
         }
         [TestMethod()]
-        public void GetListbyID_GetUserGroupMemberStudentbyIDPassMapClass_returnMemberofStudent()
+        public void GetList_GetUserGroupMemberStudentbyIDPassMapClass_returnMemberofStudent()
         {
             //Arrange
             int expect = 3;
             var para = new { Operate = "GroupListStudent", UserID = "tester", UserRole = "Admin", SchoolCode = "0000", AppID = "SIC", GroupID = "Primary Student Work group" };
             //Act 
-            var mapClass = new ActionApp<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
-            var list = ManagePageList<GroupList, UserGroupMemberStudent>.GetList(mapClass, para);
+            //  var mapClass = new ActionApp<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
+            var list = ManagePageList<GroupList, UserGroupMemberStudent>.GetList(_dataSource, _callMethod, para);
 
             var result = list.Count;
 
@@ -101,13 +103,13 @@ namespace ASM.Tests
 
         }
         [TestMethod()]
-        public void GetListby_GetUserGroupMemberTeacherbyID_returnMemberofTeacher()
+        public void GetList_GetUserGroupMemberTeacherbyID_returnMemberofTeacher()
         {
             //Arrange
             int expect = 3;
             var para = new { Operate = "GroupListTeacher", UserID = "tester", UserRole = "Admin", SchoolCode = "0354", AppID = "SIC", GroupID = "Primary Student Work group" };
             //Act 
-            var list = ManagePageList<GroupList, UserGroupMemberTeacher>.GetList("UserGroupTeacher", para);
+            var list = ManagePageList<GroupList, UserGroupMemberTeacher>.GetList(_dataSource, _callMethod, para);
 
             var result = list.Count;
 
@@ -116,14 +118,14 @@ namespace ASM.Tests
 
         }
         [TestMethod()]
-        public void GetListby_GetUserGroupMemberTeacherbyIDPassMapClass_returnMemberofTeacher()
+        public void GetList_GetUserGroupMemberTeacherbyIDPassMapClass_returnMemberofTeacher()
         {
             //Arrange
             int expect = 3;
             var para = new { Operate = "GroupListTeacher", UserID = "tester", UserRole = "Admin", SchoolCode = "0354", AppID = "SIC", GroupID = "Primary Student Work group" };
             //Act 
-            var actionClass = new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
-            var list = ManagePageList<GroupList, UserGroupMemberTeacher>.GetList(actionClass, para);
+            //  var actionClass = new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
+            var list = ManagePageList<GroupList, UserGroupMemberTeacher>.GetList(_dataSource, _callMethod, para);
 
             var result = list.Count;
 
@@ -136,10 +138,10 @@ namespace ASM.Tests
         public void GetList_StaffListbySurName_ReturnStaffListStartwithP()
         {
             // Arrange
-            var para  = new
+            var para = new
             {
                 Operate = "SecurityStaffList",
-                UserID ="tester",
+                UserID = "tester",
                 UserRole = "admin",
                 SchoolCode = "0000",
                 SearchBy = "SurName",
@@ -149,48 +151,48 @@ namespace ASM.Tests
 
             string expect = "Pas";
 
-             //Act 
-            var list = ManagePageList<StaffList, StaffListSearch>.GetList("StaffListSearch", para);
+            //Act 
+            var list = ManagePageList<StaffList, StaffList>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.LastName.Substring(0,3) == para.SearchValue
+                         where s.LastName.Substring(0, 3) == para.SearchValue
                          select s.LastName;
 
- 
+
             //Assert
-            Assert.AreEqual(expect, result.FirstOrDefault().Substring(0,3), $" Geoup Member Student type  . ");
- 
+            Assert.AreEqual(expect, result.FirstOrDefault().Substring(0, 3), $" Geoup Member Student type  . ");
+
         }
 
         [TestMethod()]
-        public void GetListbyT2_GetStaffDefaultSAPProfile_ReturnStaffSAPProfile()
+        public void GetList_GetStaffDefaultSAPProfile_ReturnStaffSAPProfile()
         {
             // Arrange 
             var para = new
             {
                 Operate = "SAP",
-                UserID ="Tester",
+                UserID = "Tester",
                 UserRole = "Test",
                 SchoolYear = "20202021",
-                SchoolCode = "0000",
-                CPNum = ""
+                SchoolCode = "0354",
+                CPNum = "00050347"
             };
 
-            string expect = "Pas";
+            string expect = "bonavoj";
 
             //Act 
-            
-            var list = ManagePageList<StaffList, StaffMemberOf>.GetListbyT2(para.Operate, para);
+
+            var list = ManagePageList<StaffList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
                          where s.CPNum == para.CPNum
-                         select s.FirstName;
+                         select s.UserID;
 
             //Assert
-            Assert.AreEqual(expect, result.FirstOrDefault().Substring(0, 3), $" Geoup Member Student type  . ");
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" Geoup Member Student type  . ");
         }
         [TestMethod()]
-        public void GetListbyT2_GetStaffSISInformation_ReturnStaffSISClassInfo()
+        public void GetList_GetStaffSISInformation_ReturnStaffSISClassInfo()
         {
             // Arrange 
             var para = new
@@ -199,25 +201,25 @@ namespace ASM.Tests
                 UserID = "Tester",
                 UserRole = "Test",
                 SchoolYear = "20202021",
-                SchoolCode = "0000",
-                CPNum = ""
+                SchoolCode = "0354",
+                CPNum = "00051449"
             };
 
-            string expect = "ClassName";
+            string expect = "W04-05/2";
 
             //Act 
 
-            var list = ManagePageList<ClassesList, StaffMemberOf>.GetListbyT2(para.Operate, para);
+            var list = ManagePageList<ClassesList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.ClassCode == "MEM4D1"
+                         where s.ClassCode == "W04-05/2"
                          select s.ClassName;
 
             //Assert
-            Assert.AreEqual(expect, result.FirstOrDefault().Substring(0, 3), $" Geoup Member Student type  . ");
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" Geoup Member Student type  . ");
         }
         [TestMethod()]
-        public void GetListbyT2_GetStaffAppGroupInfo_ReturnStaffAppGroupInof()
+        public void GetList_GetStaffAppGroupInfo_ReturnStaffAppGroupInof()
         {
             // Arrange 
             var para = new
@@ -226,22 +228,23 @@ namespace ASM.Tests
                 UserID = "Tester",
                 UserRole = "Test",
                 SchoolYear = "20202021",
-                SchoolCode = "0000",
-                CPNum = ""
+                SchoolCode = "0354",
+                CPNum = "00050347"
             };
 
-            string expect = "Pas";
+            string expect = "Grade 05 Students";
 
             //Act 
 
-            var list = ManagePageList<GroupList, StaffMemberOf>.GetListbyT2(para.Operate, para);
+            var list = ManagePageList<GroupList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.GroupID  == ""
+                         where s.MemberID == "05"
                          select s.GroupName;
 
             //Assert
-            Assert.AreEqual(expect, result.FirstOrDefault().Substring(0, 3), $" Geoup Member Student type  . ");
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" Geoup Member Student type  . ");
         }
+     
     }
 }

@@ -14,11 +14,7 @@ namespace ASMBLL.Tests
     {
         private int _ids = 0;
         private UserGroup _para = new UserGroup();
-        //  private readonly IAction<UserGroup> _action = new ActionAppUserGroup();
-        private readonly ActionApp<UserGroup> _action = new ActionApp<UserGroup>(new ActionAppUserGroup());
-      //  private readonly IGet<UserGroup> _get = new ActionGet<UserGroup>(new ActionAppUserGroup());
-        //  private readonly IAction<UserGroup> _action = new FakeAppAction<UserGroup>(new ActionAppUserGroup());
-
+        private readonly IActionApp<UserGroup> _action = new ActionAppUserGroup();
 
         [TestInitialize]
         public void Setup()

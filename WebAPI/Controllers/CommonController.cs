@@ -14,25 +14,45 @@ namespace WebAPI.Controllers
 /// </summary>
 /// <typeparam name="T"></typeparam>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-
-    public class CommonController<T>: ApiController where T : class, new()
-     //public class GenericApiController<TEntity> : BaseApiController where TEntity : class, new() 
+    public class CommonController : ApiController
     {
-    private readonly ActionAppService<T> _action = new ActionAppService<T>();
+        private readonly string _dataSource = DataSource.Type();
         // GET: api/Common
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
-        // GET: api/UserGroup?
-        [HttpGet]
-        [Route("api/usergroup/list/{schoolcode}")]
-        public IList<T> Get(string roleType)
-        {
-            var para = new { Operate = "GetListbyType", IDs = "0", UserID = "asm", UserRole = "admin", RoleType = roleType };
+  
 
-            return _action.GetObjList(para);
+        // GET: api/UserGroup
+        [HttpGet]
+        [Route("api/common/grouplist/{schoolCode}/{appID}")]
+        public IHttpActionResult Get(string SchoolCode, string AppID)
+        {
+            var _action = new ActionAppList<GroupList,UserGroup>(_dataSource);
+            IList<GroupList> result = null;
+            var para = new { Operate = "GroupList", UserID = "asm", UserRole = "admin", SchoolCode, AppID };
+            result = _action.GetObjList( para);
+
+            if (result.Count == 0)
+                return NotFound();
+            else
+                return Ok(result);
         }
-         
+
+        [HttpGet]
+        [Route("api/common/stafflist/{schoolCode}/{searchBy}/{searchValue}/{scope}")]
+        public IHttpActionResult Get(string SchoolCode, string Searchby, string SearchValue, string Scope)
+        {
+            var _action = new ActionAppList<StaffListSearch,StaffList>(_dataSource);
+            IList<StaffListSearch> result = null;
+            var para = new { Operate = "GetList", UserID = "asm", UserRole = "admin", SchoolCode, Searchby, SearchValue, Scope };
+            result = _action.GetObjList(para);
+
+            if (result.Count == 0)
+                return NotFound();
+            else
+                return Ok(result);
+        }
     }
 }

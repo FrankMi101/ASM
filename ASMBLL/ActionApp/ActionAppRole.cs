@@ -11,13 +11,12 @@ namespace ASMBLL
     public class ActionAppRole : IActionApp<AppRole> 
     {
         private string _sp = MapClass<AppRole>.SPName("Read");
-        private readonly string _spRead = "dbo.SIC_asm_AppRole_Read";
-        private readonly string _spEdit = "dbo.SIC_asm_AppRole_Edit";
+        //private readonly string _spRead = "dbo.SIC_asm_AppRole_Read";
+        //private readonly string _spEdit = "dbo.SIC_asm_AppRole_Edit";
         private readonly string _invalidMessage = "Invalid Role ID";
         private readonly string _objName = typeof(AppRole).Name;
-        private readonly DataOperateService<AppRole> _dataOperate = (DataOperateService<AppRole>)MapClass<AppRole>.DBSource(); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
-        //  private AppClass myMap = MapClass<AppRole>.GetClass(); 
-
+        private readonly IDataOperateService<AppRole> _dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource("SQL"); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
+                                                                                                                                      //  private AppClass myMap = MapClass<AppRole>.GetClass(); 
         public string GetSPName(string action)
         {
             return _sp;
@@ -28,6 +27,15 @@ namespace ASMBLL
           //  _sp = _spRead;//  CheckStoreProcedureParameters.GetParamerters(_spRead, parameter);// "dbo.SIC_asm_AppRoleList @Operate";
                           //  var para = new { Operate = "GetList" };
             return _dataOperate.ListOfT(_objName, _sp, parameter);
+        }
+        public List<AppRole> GetObjList(string dataSource, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AppRole> GetObjByID(string dataSource, int id)
+        {
+            throw new NotImplementedException();
         }
         public List<AppRole> GetObjByID(int id)
         {
@@ -94,6 +102,6 @@ namespace ASMBLL
             return parameter;
         }
 
-
+   
     }
 }

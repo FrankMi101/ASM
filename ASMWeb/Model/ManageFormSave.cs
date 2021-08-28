@@ -6,23 +6,23 @@ using System.Web;
 
 namespace ASM
 {
-    public class ManageFormSave<T2>
+    public class ManageFormSave<T>
     {
-        public static string SaveFormContent(string action,ActionApp<T2> actionClass, T2 parameter)
+        public static string SaveFormContent(string action, IActionApp<T> actionClass, T parameter)
         {
-           return RunSaveToDB(action, actionClass, parameter);
+            return RunSaveToDB(action, actionClass, parameter);
         }
-        public static string SaveFormContent(string action, string obj, T2 parameter)
+        public static string SaveFormContent(string action, string obj, T parameter)
         {
-            ActionApp<T2> actionClass = (ActionApp<T2>)MapClass<T2>.ClassType(obj);
+            IActionApp<T> actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return   SaveFormContent(action, actionClass, parameter);
         }
-        public static string DeleteFormContent(int id, string obj, T2 parameter)
+        public static string DeleteFormContent(int id, string obj, T parameter)
         {
-            ActionApp<T2> actionClass = (ActionApp<T2>)MapClass<T2>.ClassType(obj);
+            IActionApp<T> actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return actionClass.DeleteObj(id);
         }
-        private static string RunSaveToDB(string action, ActionApp<T2> actionClass, T2 parameter)
+        private static string RunSaveToDB(string action, IActionApp<T> actionClass, T parameter)
         {
             switch (action)
             {

@@ -15,7 +15,7 @@ namespace ASMBLL.Tests
         private int _ids = 0;
         private UserGroupMemberStudent _para = new UserGroupMemberStudent();
         //  private readonly IAction<UserGroup> _action = new ActionAppUserGroup();
-        private readonly ActionApp<UserGroupMemberStudent> _action = new ActionApp<UserGroupMemberStudent>(new ActionAppUserGroupMemberS());
+        private readonly IActionApp<UserGroupMemberStudent> _action = new ActionAppUserGroupMemberS();
       //  private readonly IGet<UserGroupMember> _get = new ActionGet<UserGroupMember>(new ActionAppUserGroupMemberS());
 
 
@@ -41,7 +41,7 @@ namespace ASMBLL.Tests
         {
             //Arrange
             int expect = 3;
-            var para = new { Operate = "GetMemberListbyGroup", UserID = "asm", UserRole = "admin",  SchoolCode = "0000", AppID = "SIC", GroupID = "Primary Student Work group" };
+            var para = new { Operate = "GroupListStudent", UserID = "asm", UserRole = "admin",  SchoolCode = "0000", AppID = "SIC", GroupID = "Primary Student Work group" };
 
             //Act 
             var list = _action.GetObjList(para);

@@ -13,16 +13,41 @@ namespace ASMBLL.Tests
     public class ActionAppListTests
     {
         [TestMethod()]
-        public void GetObjList_GetAllUserGroupListItmsbyParame_ReturnTtypeList()
+        public void GetObjList2_GetAllUserGroupListItmsbyParame_ReturnUserGroupList()
         {
             //Arrange
             var expect = "Grade 05 Work Group";
             var para = new { Operate = "GetListbyApp", UserID = "asm", UserRole = "admin", SchoolCode = "0354", AppID = "SIC" };
             //Act 
-            var cAction = new ActionGet<UserGroup>(new ActionAppUserGroup());
-            var sp = cAction.GetSPName("Read");
+             //  DataOperateService<GroupList> dataOperateService = (DataOperateService<GroupList>)MapClass<GroupList>.DBSource("SQL");
 
-            var list = ActionAppList<GroupList>.GetObjList(sp, para);
+            var cAction = new ActionAppList<GroupList,UserGroup>("SQL"); // new ActionAppUserGroup());
+            //var sp = cAction.GetSPName("Read");
+
+            var list = cAction.GetObjList("ClassCall", para);
+
+            var result = from s in list
+                         where s.GroupID == "Grade 05 Work Group"
+                         select s.GroupID;
+
+            //Assert
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" User work Group  {list.Count}");
+        }
+        [TestMethod()]
+        public void GetObjList2_GetAllUserGroupListItmsbyAPI_ReturnUserGroupList()
+        {
+            //Arrange
+            var expect = "Grade 05 Work Group";
+            string uri = "usergroup/list";
+            string qStr = "/0354/SIC";
+
+            //Act 
+          //  DataOperateService<GroupList> dataOperateService = (DataOperateService<GroupList>)MapClass<GroupList>.DBSource("API");
+
+            var cAction = new ActionAppList<GroupList, UserGroup>("API"); // new ActionAppUserGroup());
+
+           // var cAction = new ActionAppList<GroupList, UserGroup>(); // new ActionAppUserGroup());
+            var list = cAction.GetObjList(uri, qStr);
 
             var result = from s in list
                          where s.GroupID == "Grade 05 Work Group"

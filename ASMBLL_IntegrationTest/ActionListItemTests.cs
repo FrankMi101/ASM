@@ -14,7 +14,7 @@ namespace ASMBLL.Tests
     {
         private CommonListParameter _clParameter = new CommonListParameter();
        // private readonly ActionListItem action = new ActionListItem();
-        private readonly ActionGet<NameValueList> _action = new ActionGet<NameValueList>(new ActionListItem());
+        private readonly IActionGet<NameValueList> _action = new ActionListItem();
 
  
 

@@ -100,12 +100,20 @@ namespace ASM.Pages
                 SchoolCode = ddlSchool.SelectedValue,
                 AppID = ddlApps.SelectedValue
             };
-
-            // var gList =   ListData.GeneralList<GroupList>("SecurityManage", pageID, parameter, btnSearchGo);
-           // var spClass = new ActionGet<UserGroup>(new ActionAppUserGroup());
-           // var gList = ManagePageList<T,UserGroup>.GetList(spClass,  parameter, btnSearchGo);
-            var gList = ManagePageList<T, UserGroup>.GetList("UserGroup", parameter, btnSearchGo);
-            return gList;
+            List<T> myList;
+            if (WebConfig.DataSource() == "API")
+            {
+                string uri = "common/grouplist";
+                string qStr = "/" + parameter.SchoolCode + "/" + parameter.AppID;
+                 myList = ManagePageList<T, UserGroup>.GetList("API",uri, qStr, btnSearchGo);
+            }
+            else
+            {
+                // var gList =   ListData.GeneralList<GroupList>("SecurityManage", pageID, parameter, btnSearchGo);
+                // var spClass = new ActionGet<UserGroup>(new ActionAppUserGroup())             
+                myList = ManagePageList<T,UserGroup>.GetList("SQL","ClassCall", parameter, btnSearchGo);
+            }
+            return myList;
 
         }
 
