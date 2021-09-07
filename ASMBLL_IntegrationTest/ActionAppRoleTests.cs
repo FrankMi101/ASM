@@ -16,7 +16,7 @@ namespace ASMBLL.Tests
         private int _ids = 0;
         private AppRole _para = new AppRole();
         //private readonly ActionAppRole   _action = new ActionAppRole();
-        private readonly IActionApp<AppRole> _action = new ActionAppRole();
+        private readonly IActionApp<AppRole> _action = new ActionAppRole("SQL");
        // private readonly IGet<AppRole> _get = new ActionGet<AppRole>(new ActionAppRole());
         //  private readonly IAction<AppRole> _action = new FakeAppAction<AppRole>(new ActionAppRole());
 

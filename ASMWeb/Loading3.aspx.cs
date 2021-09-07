@@ -15,9 +15,6 @@ namespace ASM
         {
             if (!Page.IsPostBack)
             {
-
-
-
                 var parameter = new MenuListParameter
                 {
                     Operate = Page.Request.QueryString["area"],
@@ -39,6 +36,8 @@ namespace ASM
                 string PagePath = myGoPageItem.PagePath;
                 string PageFile = myGoPageItem.PageFile;
                 string PagePara = myGoPageItem.PagePara;
+
+                PagePath = "/PagesForms/";
                 string CheckPage = PageSite + PagePath + PageFile;
                 string goPage = PageSite + PagePath + PageFile + PagePara;
                 if (parameter.PageID == "IEPPDF2")

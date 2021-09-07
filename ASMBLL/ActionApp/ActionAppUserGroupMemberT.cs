@@ -15,7 +15,15 @@ namespace ASMBLL
         //private readonly string _spEdit = "dbo.SIC_asm_AppUserGroupMemberT_Edit";
         private readonly string _invalidMessage = "Invalid Group Member ID";
         private readonly string _objName = typeof(UserGroupMember).Name;
-        private readonly IDataOperateService<UserGroupMemberTeacher> _dataOperate = (IDataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        private readonly IDataOperateService<UserGroupMemberTeacher> _dataOperate;// = (IDataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        public ActionAppUserGroupMemberT()  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource();
+        }
+        public ActionAppUserGroupMemberT(string dataSource)  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroupMemberTeacher>)MapClass<UserGroupMemberTeacher>.DBSource(dataSource);
+        }
         public string GetSPName(string action)
         {
            

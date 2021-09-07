@@ -1,6 +1,8 @@
 ﻿
+using ASMBLL;
 using ClassLibrary;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 
 namespace ASM.PagesForms
@@ -21,7 +23,7 @@ namespace ASM.PagesForms
                 Page.Response.Expires = 0;
                 SetPageAttribution();
                 AssemblePage();
-              
+                BindViewData();
             }
         }
 
@@ -68,50 +70,42 @@ namespace ASM.PagesForms
             };
             AppsPage.BuildingList(ddlStudentMemberID, "StudentMember", parameters, memberID);
         }
-  
-   
-        //private List<GroupList> GetDataSource()
-        //{ 
-        //    var parameter = new
-        //    {
-        //        Operate = "Get" , //"GroupInformation",
-        //        UserID = User.Identity.Name,
-        //        UserRole = Page.Request.QueryString["UserRole"].ToString(),
-        //        SchoolYear = Page.Request.QueryString["SchoolYear"].ToString(),
-        //        SchoolCode = Page.Request.QueryString["SchoolCode"].ToString(),
-        //        AppID = Page.Request.QueryString["AppID"].ToString(),
-        //        GroupID = Page.Request.QueryString["ObjID"].ToString(),
-        //    };
 
-        //    var myList = ListData.GeneralList<GroupList>("GeneralValue","ManageGroupList", parameter);
-        //    return myList;
-        //}
+        private void BindViewData()
+        {
+            try
+            {
+                if (hfIDs.Value != "0")
+                {
+                    var member = GetDataSource<UserGroupMemberStudent>()[0];
+                    AppsPage.SetListValue(ddlStudentMemberID, member.MemberID);
+                    TextComments.Text = member.Comments;
+                }
 
-        //protected void BtnSubmit_Click(object sender, EventArgs e)
-        //{
-        //   // SaveData("GrantPermission");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }      
+        }
 
-        //}
-        //private void SaveData(string action)
-        //{
-        //    var parameter = new
-        //    {
-        //        Operate = action,
-        //        UserID = User.Identity.Name,
-        //        UserRole = hfUserRole.Value
-        //        SchoolCode = ddlSchoolCode.SelectedValue,
-        //        CPNum = "",
-        //        AppID = ddlApps.SelectedValue,
-        //        GroupID = TextBoxGroupID.Text,
-        //        GroupName = TextBoxGroupName.Text,
-        //        Permission = rblPermission.SelectedValue,
-        //        StartDate = dateStart.Value,
-        //        EndDate = dateEnd.Value,
-        //        Comments = TextComments.Text
-        //    };
+        private List<T> GetDataSource<T>()
+        {
+            List<T> myList;
+            if (WebConfig.DataSource() == "API")
+            {
+                string uri = "UserGroupStudent/";
+                string qStr = "/" + hfIDs.Value;
+                myList = ManageFormContent<T>.GetListbyID("API", uri, qStr);
+            }
+            else
+            {
+                int id = int.Parse(hfIDs.Value);
+                myList = ManageFormContent<T>.GetListbyID("UserGroupStudent", id);
+            }
+            return myList;
 
-
-        //}
+        }
         private void CreateClientMessage(string result, string action)
         {
             try

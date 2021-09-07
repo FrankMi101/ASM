@@ -18,8 +18,14 @@ namespace ASM
         }
         public static List<T> GetListbyID(string obj, int para)
         {
-            IActionApp<T> action = (IActionApp<T>)MapClass<T>.ClassType(obj);
+           var action = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return GetListbyID(action, para);
+        }
+        public static List<T> GetListbyID(string dataSource,string obj, string para)
+        {          
+           // var action = (IActionApp<T>)MapClass<T>.DBSource(dataSource);
+            var action = new ActionAppList<T, T>(dataSource);
+            return action.GetObjList(obj, para);
         }
         public static List<T> GetListbyID(IActionApp<T> action, int para, WebControl actionControl)
         {
@@ -32,7 +38,7 @@ namespace ASM
 
         public static List<T> GetListbyID(string obj, int para, WebControl actionControl)
         {
-            IActionApp<T> action = (IActionApp<T>)MapClass<T>.ClassType(obj);
+            var action = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return GetListbyID(action, para , actionControl);         
         }
     }

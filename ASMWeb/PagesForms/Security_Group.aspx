@@ -283,9 +283,11 @@
                 Comments: $("#TextComments").val(),
             };
 
-            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para);
-            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para);
-            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs);
+            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para,"Parent");
+            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
+            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs, "Parent");
+
+      
 
             //  var result = SIC.Models.WebService.SaveSecurityGroup(para.Operate, para, onSuccess, onFailure);
 
@@ -314,7 +316,8 @@
             IncludeTeacher: $("input[type=checkbox][name='chbMemberTInclude']").prop("checked")
         };
         var uri = "usergroup/push";
-        SaveDataWebAPICall("POST", uri, para);
+ 
+        SaveDataWebAPICall("POST", uri, para,"Self");
     }
 
 

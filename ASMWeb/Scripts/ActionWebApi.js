@@ -37,7 +37,7 @@ async function GetDataWebAPICall(uri, id) {
     ////}
 }
 
-function DeleteDataWebAPICall(uri, id) {
+function DeleteDataWebAPICall(uri, id,refreshPage) {
     var myUrl = Url + uri + "/" + id;
     // var JSONStr = JSON.stringify(paraObj);
     try {
@@ -55,7 +55,8 @@ function DeleteDataWebAPICall(uri, id) {
             //   .then(data => console.log(data));
 
             alert(result);
-            parent.location.reload();
+            if (refreshPage == "Parent") { parent.location.reload(); }
+            else { location.reload();}
         })();
     }
     catch (ex) {
@@ -63,10 +64,10 @@ function DeleteDataWebAPICall(uri, id) {
     }
 }
 
-function SaveDataWebAPICall(verb, uri, paraObj) {
+function SaveDataWebAPICall(verb, uri, paraObj, refreshPage) {
     var myUrl = Url + uri;
     var JSONStr = JSON.stringify(paraObj);
-    try {
+     try {
         (async () => {
             const apiResponse = await fetch(myUrl, {
                 method: verb,
@@ -79,9 +80,11 @@ function SaveDataWebAPICall(verb, uri, paraObj) {
             const result = await apiResponse.json();
             //.then(response => response.json())
             //   .then(data => console.log(data));
-
             alert(result);
-            parent.location.reload();
+
+            if (refreshPage == "Parent") { parent.location.reload(); }
+            else { location.reload(); }
+
         })();
 
         //var myJSON = JSON.stringify(para);

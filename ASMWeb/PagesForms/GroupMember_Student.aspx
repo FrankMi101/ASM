@@ -123,8 +123,6 @@
         GroupID: $("#hfGroupID").val(),
         MemberID: $("#ddlStudentMemberID").val(),
         GroupType: $("#LabelGroupType").text(),
-        StartDate: $("#dateStart").val(),
-        EndDate: $("#dateEnd").val(),
         Comments: $("#TextComments").val(),
     };
 
@@ -144,11 +142,12 @@
             para.Comments = $("#TextComments").val(); 
             para.MemberID = $("#ddlStudentMemberID").val();   
 
-            var uri = "UserGroupMember/Student";
-            if (para == "Delete")
-                DeleteDataWebAPICall(uri, para.IDs);
-            else
-                SaveDataWebAPICall(uri, para);
+            var uri = "UserGroupStudent";
+            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para,"Parent");
+            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para,"Parent");
+            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs,"Parent");
+
+         //   parent.location.reload();
 
         //     var result = SIC.Models.WebService.SaveSecurityGroupMember("Students", para.Operate, para, onSuccess, onFailure);
         }
@@ -169,46 +168,46 @@
         JDatePicker.Initial($("#dateStart"), minD, maxD, minD);
         JDatePicker.Initial($("#dateEnd"), minD, maxD, maxD);
     }
-    function DeleteDataWebAPICall(uri, id) {
-        var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri + "id=" + id;
-        // var JSONStr = JSON.stringify(paraObj);
-        try {
+    //function DeleteDataWebAPICall(uri, id) {
+    //    var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri + "id=" + id;
+    //    // var JSONStr = JSON.stringify(paraObj);
+    //    try {
 
-            (async () => {
-                const apiResponse = await fetch(myUrl, {
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                });
-                alert(result);
-            })();
-        }
-        catch (ex) {
-            alert(ex.message);
-        }
-    }
-    function SaveDataWebAPICall(uri, paraObj) {
-        var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri;
-        var JSONStr = JSON.stringify(paraObj);
-        try {
+    //        (async () => {
+    //            const apiResponse = await fetch(myUrl, {
+    //                method: 'DELETE',
+    //                headers: {
+    //                    'Accept': 'application/json',
+    //                    'Content-Type': 'application/json'
+    //                }
+    //            });
+    //            alert(result);
+    //        })();
+    //    }
+    //    catch (ex) {
+    //        alert(ex.message);
+    //    }
+    //}
+    //function SaveDataWebAPICall(uri, paraObj) {
+    //    var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri;
+    //    var JSONStr = JSON.stringify(paraObj);
+    //    try {
 
-            (async () => {
-                const apiResponse = await fetch(myUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSONStr
-                });
-                const result = await apiResponse.json();
-                 alert(result);
-            })();
-        }
-        catch (ex) {
-            alert(ex.message);
-        }
-    }
+    //        (async () => {
+    //            const apiResponse = await fetch(myUrl, {
+    //                method: 'POST',
+    //                headers: {
+    //                    'Accept': 'application/json',
+    //                    'Content-Type': 'application/json'
+    //                },
+    //                body: JSONStr
+    //            });
+    //            const result = await apiResponse.json();
+    //             alert(result);
+    //        })();
+    //    }
+    //    catch (ex) {
+    //        alert(ex.message);
+    //    }
+    //}
 </script>

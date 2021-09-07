@@ -14,8 +14,15 @@ namespace ASMBLL
 
         private readonly string _invalidMessage = "Invalid Group ID";
         private readonly string _objName = typeof(StaffListSearch).Name;
-        private readonly IDataOperateService<StaffListSearch> _dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource("SQL");  // new DataOperateService<StaffListSearch>(new DataOperateServiceSQL<StaffListSearch>());
-
+        private readonly IDataOperateService<StaffListSearch> _dataOperate;// = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource("SQL");  // new DataOperateService<StaffListSearch>(new DataOperateServiceSQL<StaffListSearch>());
+        public ActionAppStaffs()  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource();
+        }
+        public ActionAppStaffs(string dataSource)  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource(dataSource);
+        }
         public string GetSPName(string action)
         {
             return _sp;

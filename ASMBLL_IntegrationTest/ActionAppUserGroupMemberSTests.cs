@@ -15,7 +15,7 @@ namespace ASMBLL.Tests
         private int _ids = 0;
         private UserGroupMemberStudent _para = new UserGroupMemberStudent();
         //  private readonly IAction<UserGroup> _action = new ActionAppUserGroup();
-        private readonly IActionApp<UserGroupMemberStudent> _action = new ActionAppUserGroupMemberS();
+        private readonly IActionApp<UserGroupMemberStudent> _action = new ActionAppUserGroupMemberS("SQL");
       //  private readonly IGet<UserGroupMember> _get = new ActionGet<UserGroupMember>(new ActionAppUserGroupMemberS());
 
 

@@ -12,7 +12,16 @@ namespace BLL
             else
                 return sp + GetParameterStrFromParameterObj(obj);
         }
+        public static string GetObjType(object obj)
+        {
+            var myP = PropertiesOfType<string>(obj);
 
+            foreach (var item in myP)
+            {
+                if (item.Key == "ObjType") return item.Value;
+            };
+            return "";
+        }
         private static string GetParameterStrFromParameterObj(object obj)
         {
             var myP = PropertiesOfType<string>(obj);
@@ -22,13 +31,15 @@ namespace BLL
             {
                 if (item.Value != null)
                 {
-                    if (x == 0)
-                        para = " @" + item.Key;
-                    else
-                        para = para + ",@" + item.Key;
-                    x++;
+                    if (item.Key != "ObjType")
+                    {
+                        if (x == 0)
+                            para = " @" + item.Key;
+                        else
+                            para = para + ",@" + item.Key;
+                        x++;
+                    }
                 }
-
             };
             return para;
         }

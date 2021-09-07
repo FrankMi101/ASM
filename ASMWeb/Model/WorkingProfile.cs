@@ -1,6 +1,7 @@
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using ASMBLL;
 /// <summary>
 /// Summary description for WorkingProfile
 /// </summary>

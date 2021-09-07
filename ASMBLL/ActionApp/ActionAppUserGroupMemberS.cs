@@ -15,8 +15,15 @@ namespace ASMBLL
         //private readonly string _spEdit = "dbo.SIC_asm_AppUserGroupMemberS_Edit";
         private readonly string _invalidMessage = "Invalid Group Member ID";
         private readonly string _objName = typeof(UserGroupMember).Name;
-        private readonly IDataOperateService<UserGroupMemberStudent> _dataOperate = (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
-
+        private readonly IDataOperateService<UserGroupMemberStudent> _dataOperate;//= (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        public ActionAppUserGroupMemberS()  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource();
+        }
+        public ActionAppUserGroupMemberS(string dataSource)  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource(dataSource);
+        }
         public string GetSPName(string action)
         {
 
@@ -81,8 +88,6 @@ namespace ASMBLL
                 paraObj.GroupID,
                 paraObj.MemberID,
                 paraObj.GroupType,
-                paraObj.StartDate,
-                paraObj.EndDate,
                 paraObj.Comments
             };
             return parameter;

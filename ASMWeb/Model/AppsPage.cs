@@ -2,6 +2,7 @@
 /// Summary description for WorkingProfile
 /// </summary>
 /// 
+using ASMBLL;
 using BLL;
 using ClassLibrary;
 using System.Collections.Generic;
@@ -92,13 +93,14 @@ namespace ASM
         }
         public static List<T> MultipleReportItemsList<T>(object parameter)
         {
-
             return GeneralList<T>("AppsPageHelp", "MultipleReport", parameter);
         }
         public static List<T> GoPageItemsList<T>(object parameter)
         {
+            var mySPclass = new List<CommonSP> { new AppsPageHelp() };
 
-            return GeneralList<T>("AppsPageHelp", "GoPageItems", parameter);
+            return GeneralList<T>(mySPclass, "GoPageItems", parameter);
+            //   return GeneralList<T>("AppsPageHelp", "GoPageItems", parameter);
         }
         public static List<T> ActionMenuList<T>(object parameter)
         {

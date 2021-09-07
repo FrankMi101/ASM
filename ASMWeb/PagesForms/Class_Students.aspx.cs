@@ -28,20 +28,15 @@ namespace ASM.PagesForms
         private void BindGridViewListData()
         {
            
-                    GridView1.DataSource = GetDataSource();
+                    GridView1.DataSource = GetDataSource<StudentList>();
                     GridView1.DataBind();    
          
         }
 
       
-        private List<StudentList> GetDataSource()
+        private List<T> GetDataSource<T>()
         {
-            var UserRole = Page.Request.QueryString["UserRole"].ToString();
-            var SchoolYear = Page.Request.QueryString["SchoolYear"].ToString();
-            var SchoolCode = Page.Request.QueryString["SchoolCode"].ToString();
-            var AppID = Page.Request.QueryString["AppID"].ToString();
-            var GroupID = Page.Request.QueryString["ObjID"].ToString();
-
+           
             var parameter = new
             {
                 Operate = "ClassStudents",
@@ -53,7 +48,8 @@ namespace ASM.PagesForms
                 GroupID = Page.Request.QueryString["ObjID"].ToString(),
             };
 
-            var myList = ListData.SearchGeneralList<StudentList>(pageID, parameter);
+           // var myList = ListData.SearchGeneralList<StudentList>(pageID, parameter);
+            var myList = ManagePageList<T, ClassStudentList>.GetList("SQL", "ClassCall", parameter);
             return myList;
         }
 

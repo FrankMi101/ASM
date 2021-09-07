@@ -16,8 +16,16 @@ namespace ASMBLL
         private readonly string _invalidMessage = "Invalid Group ID";
         private readonly string _objName = typeof(UserGroup).Name;
 
-        private readonly IDataOperateService<UserGroup> _dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        private readonly IDataOperateService<UserGroup> _dataOperate;// = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        public ActionAppUserGroup()  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();
+        }
 
+        public ActionAppUserGroup(string dataSource)  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource(dataSource);
+        }
         public string GetSPName(string action)
         {
 

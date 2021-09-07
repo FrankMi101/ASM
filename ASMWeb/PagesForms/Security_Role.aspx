@@ -48,24 +48,24 @@
                     </td>
                     <td colspan="4">
                         <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList></td>
-                    
+
                 </tr>
                 <tr>
                     <td>
-                        <label  >Role ID: </label>
+                        <label>Role ID: </label>
                         (
                             <asp:Label ID="lblIDs" runat="server" Text="0"></asp:Label>
                         )
                     </td>
-                    <td colspan="2" >
+                    <td colspan="2">
                         <asp:TextBox ID="TextBoxRoleID" runat="server" Width="90%" placeholder="role ID"></asp:TextBox>
 
-                    </td>  
-                   <td>Role Priority</td>
+                    </td>
+                    <td>Role Priority</td>
                     <td>
                         <asp:TextBox ID="TextBoxRolePriority" runat="server" Width="100%" placeholder="Priority"></asp:TextBox>
                     </td>
-                   
+
                 </tr>
                 <tr>
                     <td>
@@ -76,7 +76,7 @@
                     </td>
 
                 </tr>
-               
+
 
                 <tr>
                     <td>
@@ -90,19 +90,19 @@
                             <asp:ListItem Selected="True">Read</asp:ListItem>
                             <asp:ListItem>Update</asp:ListItem>
                             <asp:ListItem>Super</asp:ListItem>
-                             <asp:ListItem>Deny</asp:ListItem>
+                            <asp:ListItem>Deny</asp:ListItem>
                         </asp:RadioButtonList>
 
                     </td>
-                    
+
                 </tr>
-             <tr>
-                 <td>Access Scope</td>
+                <tr>
+                    <td>Access Scope</td>
                     <td colspan="4">
                         <asp:DropDownList ID="ddlScope" runat="server" Width="50%" CssClass="ddlControls"></asp:DropDownList>
                     </td>
-             </tr>
-               
+                </tr>
+
 
 
                 <tr>
@@ -135,40 +135,38 @@
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
             <asp:HiddenField ID="hfUserLoginRole" runat="server" />
             <asp:HiddenField ID="hfRunningModel" runat="server" />
- 
+
         </div>
     </form>
 </body>
 </html>
 
-<script src="../Scripts/MoursPoint.js"></script> 
-
+<script src="../Scripts/MoursPoint.js"></script>
+<script src="../Scripts/ActionWebApi.js"></script>
 <script type="text/javascript">
-     
+    var uri = "AppRole";
     var para = {
         Operate: $("#hfAction").val(),
         UserID: $("#hfUserID").val(),
-        UserRole: $("#hfUserRole").val(),
         AppID: $("#ddlApps").val(),
-        RoleType: $("#hfRoleType").val(),
         RoleID: $("#TextBoxRoleID").val(),
+        RoleType: $("#hfRoleType").val(),
         RoleName: $("#TextBoxRoleName").val(),
         RolePriority: $("#TextBoxRolePriority").val(),
         AccessScope: $("#ddlScope").val(),
-        Comments: $("#TextComments").val(),
-        Permission: $("input:radio[name='rblPermission']:checked").val(), 
-
+        Permission: $("input:radio[name='rblPermission']:checked").val(),
+        Comments: $("#TextComments").val()
     };
 
     function pageLoad(sender, args) {
 
         $(document).ready(function () {
- 
-  
+
+
             $("#btnSubmit").click(function (ev) {
                 SaveDataToDatabase();
             });
- 
+
         });
     }
 
@@ -181,7 +179,11 @@
             para.Comments = $("#TextComments").val();
             para.Permission = $("input:radio[name='rblPermission']:checked").val();
             para.AccessScope = $("#ddlScope").val();
-            var result = SIC.Models.WebService.SaveSecurityRole(para.Operate, para, onSuccess, onFailure);
+          //  var result = SIC.Models.WebService.SaveSecurityRole(para.Operate, para, onSuccess, onFailure);
+
+            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para, "Parent");
+            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
+            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs, "Parent");
         }
         catch (e) {
             alert(para.Operate + " Submit click something going wrong");
@@ -190,11 +192,11 @@
     function onSuccess(result) {
         alert(para.Operate + " " + para.RoleName + " was " + result);
         parent.location.reload();
-      
+
     }
     function onFailure() {
         alert(para.Operate + " operation failed");
     }
-     
+
 
 </script>

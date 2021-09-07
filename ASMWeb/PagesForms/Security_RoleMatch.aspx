@@ -99,9 +99,8 @@
     var para = {
         Operate: "Edit",
         UserID: $("#hfUserID").val(),
-        UserRole: $("#hfUserRole").val(),
         RoleID: $("#TextBoxRoleID").val(),
-        MatchType: $("#LabelMatchType").val(),
+        RoleType: $("#LabelMatchType").val(),
         MatchDesc: $("#LabelMatchDesc").val(),
         MatchRole: $("#ddlMatchRole").val(),
         MatchScope: $("#ddlMatchScope").val()
@@ -124,7 +123,10 @@
             para.MatchRole = $("#ddlMatchRole").val();
             para.MatchScope = $("#ddlMatchScope").val();
 
-            var result = SIC.Models.WebService.SaveSecurityRoleMatch(para.Operate, para, onSuccess, onFailure);
+            var uri = "/AppRoleMatch"
+            SaveDataWebAPICall("POST", uri, para, "Parent");
+
+          //  var result = SIC.Models.WebService.SaveSecurityRoleMatch(para.Operate, para, onSuccess, onFailure);
         }
         catch (e) {
             alert(para.Operate + " Submit click something going wrong");

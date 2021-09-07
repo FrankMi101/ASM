@@ -78,6 +78,8 @@
     <Compile Include="SetupList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Teacher.cs" />
+    <Compile Include="UserGroupList.cs" />
+    <Compile Include="UserGroupPermission.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

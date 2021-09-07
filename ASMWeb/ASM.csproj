@@ -46,6 +46,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -78,9 +81,6 @@
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
@@ -250,24 +250,26 @@
     <Content Include="PagesForms\Class_Students.aspx" />
     <Content Include="PagesForms\Group_Students.aspx" />
     <Content Include="PagesForms\Group_Teachers.aspx" />
+    <Content Include="PagesForms\Permission_Group.aspx" />
     <Content Include="PagesForms\Search_Staff.aspx" />
     <Content Include="PagesForms\Security_Group.aspx" />
     <Content Include="PagesForms\Security_Role.aspx" />
     <Content Include="PagesForms\Security_RoleMatch.aspx" />
+    <Content Include="PagesForms\Permission_Role.aspx" />
     <Content Include="PagesForms\Security_RoleP.aspx" />
     <Content Include="Pages\Error.aspx" />
     <Content Include="Pages\Loading2.aspx" />
     <Content Include="Pages\Loading.aspx" />
-    <Content Include="Pages\SecurityAccessSummary.aspx" />
-    <Content Include="Pages\SecurityManage.aspx" />
-    <Content Include="Pages\SecurityManageGroup.aspx" />
-    <Content Include="Pages\SecurityManageGroupSub.aspx" />
-    <Content Include="Pages\SecurityManageSub.aspx" />
+    <Content Include="Pages\AccessSummary.aspx" />
+    <Content Include="Pages\GroupManage.aspx" />
+    <Content Include="Pages\StaffManage.aspx" />
+    <Content Include="Pages\StaffManageSub.aspx" />
+    <Content Include="Pages\GroupManageSub.aspx" />
     <Content Include="PagesForms\GroupMember_Student.aspx" />
     <Content Include="PagesForms\GroupMember_Teacher.aspx" />
-    <Content Include="Pages\SecurityRoleManage.aspx" />
-    <Content Include="Pages\SecurityRoleManageSub.aspx" />
-    <Content Include="Pages\SecurityRolePermission.aspx" />
+    <Content Include="Pages\AppRoleManage.aspx" />
+    <Content Include="Pages\AppRoleManageSub.aspx" />
+    <Content Include="Pages\PermissionManage.aspx" />
     <Content Include="Scripts\ActionInPage.js" />
     <Content Include="Scripts\ActionMenu.js" />
     <Content Include="Scripts\ActionWebApi.js" />
@@ -415,7 +417,6 @@
     <Compile Include="Model\ValueData.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Model\WebConfig.cs" />
     <Compile Include="Model\WebService.asmx.cs">
       <DependentUpon>WebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -455,6 +456,13 @@
     <Compile Include="PagesForms\Group_Teachers.aspx.designer.cs">
       <DependentUpon>Group_Teachers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PagesForms\Permission_Group.aspx.cs">
+      <DependentUpon>Permission_Group.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\Permission_Group.aspx.designer.cs">
+      <DependentUpon>Permission_Group.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PagesForms\Search_Staff.aspx.cs">
       <DependentUpon>Search_Staff.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,6 +490,13 @@
     </Compile>
     <Compile Include="PagesForms\Security_RoleMatch.aspx.designer.cs">
       <DependentUpon>Security_RoleMatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesForms\Permission_Role.aspx.cs">
+      <DependentUpon>Permission_Role.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\Permission_Role.aspx.designer.cs">
+      <DependentUpon>Permission_Role.aspx</DependentUpon>
     </Compile>
     <Compile Include="PagesForms\Security_RoleP.aspx.cs">
       <DependentUpon>Security_RoleP.aspx</DependentUpon>
@@ -511,40 +526,40 @@
     <Compile Include="Pages\Loading.aspx.designer.cs">
       <DependentUpon>Loading.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityAccessSummary.aspx.cs">
-      <DependentUpon>SecurityAccessSummary.aspx</DependentUpon>
+    <Compile Include="Pages\AccessSummary.aspx.cs">
+      <DependentUpon>AccessSummary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityAccessSummary.aspx.designer.cs">
-      <DependentUpon>SecurityAccessSummary.aspx</DependentUpon>
+    <Compile Include="Pages\AccessSummary.aspx.designer.cs">
+      <DependentUpon>AccessSummary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityManage.aspx.cs">
-      <DependentUpon>SecurityManage.aspx</DependentUpon>
+    <Compile Include="Pages\GroupManage.aspx.cs">
+      <DependentUpon>GroupManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityManage.aspx.designer.cs">
-      <DependentUpon>SecurityManage.aspx</DependentUpon>
+    <Compile Include="Pages\GroupManage.aspx.designer.cs">
+      <DependentUpon>GroupManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityManageGroup.aspx.cs">
-      <DependentUpon>SecurityManageGroup.aspx</DependentUpon>
+    <Compile Include="Pages\StaffManage.aspx.cs">
+      <DependentUpon>StaffManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityManageGroup.aspx.designer.cs">
-      <DependentUpon>SecurityManageGroup.aspx</DependentUpon>
+    <Compile Include="Pages\StaffManage.aspx.designer.cs">
+      <DependentUpon>StaffManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityManageGroupSub.aspx.cs">
-      <DependentUpon>SecurityManageGroupSub.aspx</DependentUpon>
+    <Compile Include="Pages\StaffManageSub.aspx.cs">
+      <DependentUpon>StaffManageSub.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityManageGroupSub.aspx.designer.cs">
-      <DependentUpon>SecurityManageGroupSub.aspx</DependentUpon>
+    <Compile Include="Pages\StaffManageSub.aspx.designer.cs">
+      <DependentUpon>StaffManageSub.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityManageSub.aspx.cs">
-      <DependentUpon>SecurityManageSub.aspx</DependentUpon>
+    <Compile Include="Pages\GroupManageSub.aspx.cs">
+      <DependentUpon>GroupManageSub.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityManageSub.aspx.designer.cs">
-      <DependentUpon>SecurityManageSub.aspx</DependentUpon>
+    <Compile Include="Pages\GroupManageSub.aspx.designer.cs">
+      <DependentUpon>GroupManageSub.aspx</DependentUpon>
     </Compile>
     <Compile Include="PagesForms\GroupMember_Student.aspx.cs">
       <DependentUpon>GroupMember_Student.aspx</DependentUpon>
@@ -560,26 +575,26 @@
     <Compile Include="PagesForms\GroupMember_Teacher.aspx.designer.cs">
       <DependentUpon>GroupMember_Teacher.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityRoleManage.aspx.cs">
-      <DependentUpon>SecurityRoleManage.aspx</DependentUpon>
+    <Compile Include="Pages\AppRoleManage.aspx.cs">
+      <DependentUpon>AppRoleManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityRoleManage.aspx.designer.cs">
-      <DependentUpon>SecurityRoleManage.aspx</DependentUpon>
+    <Compile Include="Pages\AppRoleManage.aspx.designer.cs">
+      <DependentUpon>AppRoleManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityRoleManageSub.aspx.cs">
-      <DependentUpon>SecurityRoleManageSub.aspx</DependentUpon>
+    <Compile Include="Pages\AppRoleManageSub.aspx.cs">
+      <DependentUpon>AppRoleManageSub.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityRoleManageSub.aspx.designer.cs">
-      <DependentUpon>SecurityRoleManageSub.aspx</DependentUpon>
+    <Compile Include="Pages\AppRoleManageSub.aspx.designer.cs">
+      <DependentUpon>AppRoleManageSub.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\SecurityRolePermission.aspx.cs">
-      <DependentUpon>SecurityRolePermission.aspx</DependentUpon>
+    <Compile Include="Pages\PermissionManage.aspx.cs">
+      <DependentUpon>PermissionManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\SecurityRolePermission.aspx.designer.cs">
-      <DependentUpon>SecurityRolePermission.aspx</DependentUpon>
+    <Compile Include="Pages\PermissionManage.aspx.designer.cs">
+      <DependentUpon>PermissionManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

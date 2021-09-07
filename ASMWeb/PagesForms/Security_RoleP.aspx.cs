@@ -1,5 +1,6 @@
 ﻿//using BLL;
 //using SIC.Generic.LIB;
+using ASMBLL;
 using ClassLibrary;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,7 @@ namespace ASM.PagesForms
             var RoleID = Page.Request.QueryString["xID"].ToString();
             if (RoleID != "0")
             {
-                var RoleInfo = GetDataSource()[0];
+                var RoleInfo = GetDataSource<AppRoleList>()[0];
                 AppsPage.SetListValue(ddlApps, RoleInfo.AppID);
                 AppsPage.SetListValue(ddlScope, RoleInfo.AccessScope); 
 
@@ -131,7 +132,7 @@ namespace ASM.PagesForms
             }
         }
 
-        private List<AppRoleList> GetDataSource()
+        private List<T> GetDataSource<T>()
         { 
             var parameter = new
             {
@@ -145,8 +146,8 @@ namespace ASM.PagesForms
                 RoleType = hfRoleType.Value,
                 ModelID = TextBoxModelID.Text,
             };
-
-            var myList = ListData.GeneralList<AppRoleList>("SecurityManage", pageID, parameter);
+            var myList = ManagePageList<T, AppRole>.GetList("SQL", "ClassCall", parameter);
+           // var myList = ListData.GeneralList<AppRoleList>("SecurityManage", pageID, parameter);
             return myList;
         }
 

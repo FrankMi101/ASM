@@ -13,11 +13,14 @@ namespace ASMBLL
     public class ActionAppList<T, T2> : IActionGet<T>
     {
         private readonly IDataOperateService<T> _dataOperateService;
+        public ActionAppList()  //DataOperateService<T> iDos)
+        {
+            this._dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(); 
+        }
         public ActionAppList(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource); 
+            this._dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);
         }
-
         public List<T> GetObjByID(int id)
         {
             string sp = MapClass<T2>.SPName("Edit");

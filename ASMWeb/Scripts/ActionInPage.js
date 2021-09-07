@@ -13,7 +13,7 @@
 
 
 function OpenActionNew() {
-    var page = "../SICCommon/Security_Role.aspx"
+    var page = "../PagesForms/Security_Role.aspx"
     var schoolyear = $("#hfSchoolYear").val();
     var schoolcode = $("#hfSchoolCode").val();
     var appID = $("#ddlApps").val();

@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
               var _action = new ActionAppList<StaffListSearch,StaffList>(_dataSource);
 
         IList<StaffListSearch> result = null;
-            var para = new { Operate = "GetList", UserID = "asm", UserRole = "admin", SchoolCode,Searchby,SearchValue, Scope };
+            var para = new { Operate = "GetList", UserID = "asm", UserRole = "Admin", SchoolCode,Searchby,SearchValue, Scope };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         {
             var   _action = new ActionAppList<StaffList, StaffMemberOf>(_dataSource);
             IList<StaffList> result = null;
-            var para = new { Operate = "SAP", UserID = "asm", UserRole = "admin", SchoolCode, SchoolYear, CPNum };
+            var para = new { Operate = "SAP", UserID = "asm", UserRole = "Admin", SchoolCode, SchoolYear, CPNum };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         {
             var _action = new ActionAppList<ClassesList, StaffMemberOf>(_dataSource);
             IList<ClassesList> result = null;
-            var para = new { Operate = "SIS", UserID = "asm", UserRole = "admin", SchoolCode, SchoolYear, CPNum };
+            var para = new { Operate = "SIS", UserID = "asm", UserRole = "Admin", SchoolCode, SchoolYear, CPNum };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
         {
             var _action = new ActionAppList<GroupList, StaffMemberOf>(_dataSource);
             IList<GroupList> result = null;
-            var para = new { Operate = "APP", UserID = "asm", UserRole = "admin", SchoolCode, SchoolYear, CPNum };
+            var para = new { Operate = "APP", UserID = "asm", UserRole = "Admin", SchoolCode, SchoolYear, CPNum };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
         {
             var _action = new ActionAppList<GroupList, UserGroup>(_dataSource);
             IList<GroupList> result = null;
-            var para = new { Operate = "GroupList", UserID = "asm", UserRole = "admin", SchoolCode, AppID};
+            var para = new { Operate = "GroupList", UserID = "asm", UserRole = "Admin", SchoolCode, AppID};
             result = _action.GetObjList(para);
 
             if (result.Count == 0)

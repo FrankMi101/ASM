@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
+using ASMBLL;
 //using ASM.Model;
 using BLL;
 using ClassLibrary;
@@ -234,26 +235,45 @@ namespace ASM.Models
         }
 
         [WebMethod]
-        public string SaveSecurityGroupMember(string memberType, string operation, GroupOperation para)
+        public string SaveSecurityGroupMemberStudent(string memberType, string operation, UserGroupMemberStudent para)
         {
             try
             {
                 string result = "";
-                UserGroupMemberTeacher parameter = new UserGroupMemberTeacher { Operate = para.Operate, UserID = para.UserID, SchoolCode = para.SchoolCode };
 
-                if (memberType == "Students")
+                if (WebConfig.DataSource() == "API")
                 {
-                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent(operation, "StudentGroup", parameter);
-
+                    string uri = "UserGroupStudent";
+                    result = ManageFormSave<UserGroupMemberStudent>.SaveFormContent("API", uri, para);
                 }
-
-                if (memberType == "Teachers")
+                else
                 {
-
-                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent(operation, "TeacherGroup", parameter);
-
+                    result = ManageFormSave<UserGroupMemberStudent>.SaveFormContent(operation, "UserGroupTeacher", para);
                 }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                var em = ex.Message;
+                return "Failed";
+            }
+        }
+        [WebMethod]
+        public string SaveSecurityGroupMemberTeacher(string memberType, string operation, UserGroupMemberTeacher para)
+        {
+            try
+            {
+                string result = "";
 
+                if (WebConfig.DataSource() == "API")
+                {
+                    string uri = "UserGroupTeacher";
+                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent("API", uri, para);
+                }
+                else
+                {
+                    result = ManageFormSave<UserGroupMemberTeacher>.SaveFormContent(operation, "UserGroupTeacher", para);
+                }
                 return result;
             }
             catch (Exception ex)

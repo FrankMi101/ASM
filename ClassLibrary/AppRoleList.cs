@@ -15,4 +15,8 @@ namespace ClassLibrary
         public string SubActions { get; set; }
        // public ItemsOnList Actions {get; set;}
     }
+    public class AppRolePermissionList : AppRoleList
+    {
+        public string AppName { get; set; }
+    }
 }

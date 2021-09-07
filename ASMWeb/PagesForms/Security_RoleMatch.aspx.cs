@@ -1,5 +1,6 @@
 ﻿//using BLL;
 //using SIC.Generic.LIB;
+using ASMBLL;
 using ClassLibrary;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace ASM.PagesForms
                 Page.Response.Expires = 0;
                 SetPageAttribution();
                 AssemblePage();
-              //  BindViewData();
+                BindFormData();
             }
         }
 
@@ -32,19 +33,19 @@ namespace ASM.PagesForms
         {
             hfCategory.Value = "Home";
             hfPageID.Value = pageID;
-             hfUserID.Value = User.Identity.Name;
+            hfUserID.Value = User.Identity.Name;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
             hfSchoolYear.Value = WorkingProfile.SchoolYear;
             hfUserRole.Value = WorkingProfile.UserRole;
             hfRunningModel.Value = WebConfig.RunningModel();
             Session["HomePage"] = "Loading.aspx?pID=" + pageID;
-            hfAction.Value = Page.Request.QueryString["Action"].ToString(); 
+            hfAction.Value = Page.Request.QueryString["Action"].ToString();
 
             hfMatchRole.Value = Page.Request.QueryString["AppID"].ToString();
             hfMatchScope.Value = Page.Request.QueryString["ModelID"].ToString();
             LabelMatchType.Text = Page.Request.QueryString["xType"].ToString();
             LabelMatchDesc.Text = Page.Request.QueryString["xID"].ToString();
-       
+
 
         }
         private void AssemblePage()
@@ -65,29 +66,37 @@ namespace ASM.PagesForms
             AppsPage.BuildingList(ddlMatchRole, "MatchRole", parameters, hfMatchRole.Value);
 
         }
-  
+        private void BindFormData()
+        {
+            var matchData = GetDataSource<AppRoleMatchList>()[0];
+           // LabelMatchType.Text = matchData.RoleType;
+           // LabelMatchDesc.Text = matchData.MatchDesc;
+            AppsPage.SetListValue(ddlMatchRole, matchData.MatchRole);
+            AppsPage.SetListValue(ddlMatchScope, matchData.MatchScope);
+        }
 
-        private List<AppRoleMatchList> GetDataSource()
-        { 
+        private List<T> GetDataSource<T>()
+        {
             var parameter = new
             {
-                Operate = "Get" , //"RoleInformation",
+                Operate = "Get", //"RoleInformation",
                 UserID = User.Identity.Name,
-                UserRole =  hfUserRole.Value,  
-                RoleID ="",
-                MatchType = LabelMatchType.Text,
+                UserRole = hfUserRole.Value,
+                RoleID = "",
+                RoleType = LabelMatchType.Text,
                 MatchDesc = LabelMatchDesc.Text
             };
 
-            var myList = ListData.GeneralList<AppRoleMatchList>("SecurityManage", pageID, parameter);
+            //  var myList = ListData.GeneralList<AppRoleMatchList>("SecurityManage", pageID, parameter);
+            var myList = ManagePageList<T, AppRoleMatch>.GetList("SQL", "ClassCall", parameter);
             return myList;
         }
 
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
-           // SaveData("GrantPermission");
+            // SaveData("GrantPermission");
 
         }
-  
+
     }
 }

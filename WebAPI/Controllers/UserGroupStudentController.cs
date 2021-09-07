@@ -14,7 +14,8 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserGroupStudentController : ApiController
     {
-        private ActionAppUserGroupMemberS _action = new ActionAppUserGroupMemberS();
+        private readonly static string _dataSource = DataSource.Type();
+        private IActionApp<UserGroupMemberStudent> _action = new ActionAppUserGroupMemberS(_dataSource);
  
         // GET: api/UserGroupMembe
         [HttpGet]
@@ -22,7 +23,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult Get(string schoolCode, string appID)
         {
              IList<UserGroupMemberStudent> result = null;
-            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "admin", SchoolCode = schoolCode, AppID = appID };
+            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode, AppID = appID };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -38,7 +39,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult Get(string schoolCode,string appID, string groupID)
         {
              IList<UserGroupMemberStudent> result = null;
-            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "admin", SchoolCode = schoolCode, AppID=appID,GroupID=groupID};
+            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode, AppID=appID,GroupID=groupID};
             result = _action.GetObjList(para);
 
             if (result.Count == 0)

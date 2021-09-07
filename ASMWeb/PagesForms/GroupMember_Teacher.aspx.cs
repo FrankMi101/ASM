@@ -1,5 +1,6 @@
 ﻿//using BLL;
 //using SIC.Generic.LIB;
+using ASMBLL;
 using ClassLibrary;
 using System;
 using System.Collections.Generic;
@@ -46,9 +47,7 @@ namespace ASM.PagesForms
             hfIDs.Value = Page.Request.QueryString["IDs"].ToString();
             hfSchoolCode.Value = Page.Request.QueryString["sCode"].ToString();
             hfAppID.Value = Page.Request.QueryString["appID"].ToString();
-            hfGroupID.Value = Page.Request.QueryString["groupID"].ToString(); 
-
-
+            hfGroupID.Value = Page.Request.QueryString["groupID"].ToString();
         }
         private void AssemblePage()
         {
@@ -64,8 +63,8 @@ namespace ASM.PagesForms
                 Para3 = hfSchoolCode.Value,
                 Para4 = scope
             };
-            AppsPage.BuildingList(ddlStaff, "SchoolStaff", parameters );
-         
+            AppsPage.BuildingList(ddlStaff, "SchoolStaff", parameters);
+
         }
         private void InitialPage()
         {
@@ -77,13 +76,46 @@ namespace ASM.PagesForms
         }
         private void BindViewData()
         {
-           
+            try
+            {
+                if (hfIDs.Value != "0")
+                {
+                    var member = GetDataSource<UserGroupMemberTeacher>()[0];
+                    AppsPage.SetListValue(ddlStaff, member.MemberID);
+                    dateStart.Value = member.StartDate;
+                    dateEnd.Value = member.EndDate;
+                    TextComments.Text = member.Comments;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
-     
+        private List<T> GetDataSource<T>()
+        {
+            List<T> myList;
+            if (WebConfig.DataSource() == "API")
+            {
+                string uri = "UserGroupTeacher/";
+                string qStr = "/" + hfIDs.Value;
+                myList = ManageFormContent<T>.GetListbyID("API", uri, qStr);
+            }
+            else
+            {
+                int id = int.Parse(hfIDs.Value);
+                myList = ManageFormContent<T>.GetListbyID("UserGroupTeacher", id);
+            }
+            return myList;
+
+        }
+
 
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
-           // SaveData("GrantPermission");
+            // SaveData("GrantPermission");
 
         }
         //private void SaveData(string action)
@@ -118,6 +150,6 @@ namespace ASM.PagesForms
             catch (Exception ex)
             { string em = ex.StackTrace; }
         }
- 
+
     }
 }

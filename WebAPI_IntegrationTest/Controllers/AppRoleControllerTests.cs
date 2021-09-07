@@ -15,14 +15,19 @@ namespace WebAPI.Controllers.Tests
         private ActionAppRole _action = new ActionAppRole();
 
         [TestMethod()]
-        public void GetTest()
+        public void GetAllRoleList_ReturnAll_Test()
         {
-            //Arrange
-            var expect = "Application Admin";
-            var para = new { Operate = "GetListAll" };
+            // Arrange 
+            string uri = "approle";
+            var para = new { Operate = "GetListAll", SearchBy = "SurName", SearchValue = "Pa", Scope = "Board" };
+            string qStr = ""; // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
 
+           var expect = "Application Admin";
+ 
             //Act 
-               var list =  _action.GetObjList(para);
+
+            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
+            var list = iAction.GetObjList(uri, qStr);
  
             var result = from s in list
                          where s.RoleID == "Admin"
@@ -35,15 +40,46 @@ namespace WebAPI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void GetTest1()
+        public void GetRoleListbySAP_ReturnAllSAPRoleList_Test()
         {
-            Assert.Fail();
+            //Arrange
+            string uri = "approle";
+            var para = new { Operate = "GetListbyType", RoleType = "SAP"};
+            string qStr = "/" + para.RoleType ; // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
+            var expect = "Vice Principal";
+
+            //Act 
+            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
+            var list = iAction.GetObjList(uri, qStr);
+ 
+            var result = from s in list
+                         where s.RoleID == "VP"
+                         select s.RoleName;
+            //Assert
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" Application role list has items count {list.Count} . ");
+
         }
 
         [TestMethod()]
-        public void GetTest2()
+        public void GetRolebyID_ReturnRoleListofID_Test()
         {
-            Assert.Fail();
+            //Arrange
+            var expect = "Board Department Staff";
+            var para = new { Operate = "GetListbyType", UserID = "asm", IDs = "26" };
+
+            string uri = "approle/{id}";
+            int qStr =  int.Parse(para.IDs); // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
+     
+            //Act 
+            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
+            var list = iAction.GetObjByID(uri, qStr);
+             
+            var result = from s in list
+                         where s.RoleID == "Educator"
+                         select s.RoleName;
+            //Assert
+            Assert.AreEqual(expect, result.FirstOrDefault(), $" Application role list has items count {list.Count} . ");
+
         }
 
         [TestMethod()]

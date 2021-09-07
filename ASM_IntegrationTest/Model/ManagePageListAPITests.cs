@@ -8,8 +8,8 @@ namespace ASM.Tests
     [TestClass()]
     public class ManagePageListAPITests
     {
-        private readonly string _dataSource = "SQL";
-        private readonly string _callMethod = "ClassCall";
+      //  private readonly string _dataSource = "SQL";
+      //  private readonly string _callMethod = "ClassCall";
         [TestInitialize]
         public void Setup()
         {
@@ -129,7 +129,7 @@ namespace ASM.Tests
         public void GetList_GetStaffAppInfoStaffAPPAPI_ReturnUserGroupList()
         {
             // Arrange 
-            string uri = "staff/APP";
+            string uri = "staff/App";
             var para = new { SchoolCode = "0354", SchoolYear = "20202021", CPNum = "00050347" };
             string qStr = "/" + para.SchoolCode + "/" + para.SchoolYear + "/" + para.CPNum;
 

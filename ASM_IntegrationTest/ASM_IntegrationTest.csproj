@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\ManageFormContentTests.cs" />
+    <Compile Include="Model\ManageFormSaveGroupMemberStudentTests.cs" />
+    <Compile Include="Model\ManageFormSaveGroupMemberTeacherTests.cs" />
     <Compile Include="Model\ManageFormSaveTests.cs" />
     <Compile Include="Model\ManagePageListAPITests.cs" />
     <Compile Include="Model\ManagePageListTests.cs" />

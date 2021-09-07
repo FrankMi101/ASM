@@ -12,6 +12,7 @@ namespace ASMBLL.Tests
     [TestClass()]
     public class ActionAppListTests
     {
+        private readonly string _dataSource = "SQL";
         [TestMethod()]
         public void GetObjList2_GetAllUserGroupListItmsbyParame_ReturnUserGroupList()
         {
@@ -21,7 +22,7 @@ namespace ASMBLL.Tests
             //Act 
              //  DataOperateService<GroupList> dataOperateService = (DataOperateService<GroupList>)MapClass<GroupList>.DBSource("SQL");
 
-            var cAction = new ActionAppList<GroupList,UserGroup>("SQL"); // new ActionAppUserGroup());
+            var cAction = new ActionAppList<GroupList,UserGroup>(_dataSource); // new ActionAppUserGroup());
             //var sp = cAction.GetSPName("Read");
 
             var list = cAction.GetObjList("ClassCall", para);
@@ -60,14 +61,14 @@ namespace ASMBLL.Tests
         [TestMethod()]
         public void SPNameG_AppRole_Test()
         {
-            var cAction = new ActionGet<AppRole>(new ActionAppRole());
+            var cAction = new ActionGet<AppRole>(new ActionAppRole(_dataSource));
             var sp = cAction.GetSPName("Read");
             Assert.IsNotNull(sp);
         }
         [TestMethod()]
         public void SPNameG_UseGroup_Test()
         {
-            var cAction = new ActionGet<UserGroup>(new ActionAppUserGroup());
+            var cAction = new ActionGet<UserGroup>(new ActionAppUserGroup(_dataSource));
             var sp = cAction.GetSPName("Read");
             Assert.IsNotNull(sp);
         }

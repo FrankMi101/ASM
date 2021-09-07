@@ -173,8 +173,8 @@ namespace ASM.Tests
                 Operate = "SAP",
                 UserID = "Tester",
                 UserRole = "Test",
-                SchoolYear = "20202021",
-                SchoolCode = "0354",
+                 SchoolCode = "0354",
+               SchoolYear = "20202021",
                 CPNum = "00050347"
             };
 
@@ -200,19 +200,19 @@ namespace ASM.Tests
                 Operate = "SIS",
                 UserID = "Tester",
                 UserRole = "Test",
-                SchoolYear = "20202021",
-                SchoolCode = "0354",
+                 SchoolCode = "0354",
+               SchoolYear = "20202021",
                 CPNum = "00051449"
             };
 
-            string expect = "W04-05/2";
+            string expect = "04-05/2";
 
             //Act 
 
             var list = ManagePageList<ClassesList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.ClassCode == "W04-05/2"
+                         where s.ClassCode == "04-05/2"
                          select s.ClassName;
 
             //Assert
@@ -227,8 +227,8 @@ namespace ASM.Tests
                 Operate = "APP",
                 UserID = "Tester",
                 UserRole = "Test",
-                SchoolYear = "20202021",
                 SchoolCode = "0354",
+                SchoolYear = "20202021",
                 CPNum = "00050347"
             };
 

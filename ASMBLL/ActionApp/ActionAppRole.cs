@@ -15,8 +15,16 @@ namespace ASMBLL
         //private readonly string _spEdit = "dbo.SIC_asm_AppRole_Edit";
         private readonly string _invalidMessage = "Invalid Role ID";
         private readonly string _objName = typeof(AppRole).Name;
-        private readonly IDataOperateService<AppRole> _dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource("SQL"); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
-                                                                                                                                      //  private AppClass myMap = MapClass<AppRole>.GetClass(); 
+        private readonly IDataOperateService<AppRole> _dataOperate;// = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource("SQL"); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
+        public ActionAppRole()  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource();
+        }
+        public ActionAppRole(string dataSource)  //DataOperateService<T> iDos)
+        {
+            this._dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource(dataSource);
+        }
+        //  private AppClass myMap = MapClass<AppRole>.GetClass(); 
         public string GetSPName(string action)
         {
             return _sp;
@@ -30,12 +38,14 @@ namespace ASMBLL
         }
         public List<AppRole> GetObjList(string dataSource, object parameter)
         {
-            throw new NotImplementedException();
+            if (dataSource == "ClassCall") dataSource = MapClass<AppRole>.SPName("Read");
+            return _dataOperate.ListOfT(dataSource, parameter);
         }
 
         public List<AppRole> GetObjByID(string dataSource, int id)
         {
-            throw new NotImplementedException();
+            if (dataSource == "ClassCall") dataSource = MapClass<AppRole>.SPName("Read");
+            return _dataOperate.ListOfT(dataSource, id);
         }
         public List<AppRole> GetObjByID(int id)
         {
@@ -102,6 +112,9 @@ namespace ASMBLL
             return parameter;
         }
 
-   
+        public string ActionsObj(object parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

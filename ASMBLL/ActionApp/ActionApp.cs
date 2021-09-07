@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace ASMBLL
 {
-    public class ActionApp<T>  
+    public class ActionApp<T>
     {
-        private readonly IActionApp<T> _iActionApp;
-        public ActionApp(string objType ){
+        private readonly IActionApp<T> _iActionApp; // = (IActionApp<T>)MapClass<T>.ClassType();
+        public ActionApp()
+        {
+            this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType();
+        }
+        public ActionApp(string objType)
+        {
             this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType(objType);
         }
+
 
         public string AddObj(T parameter)
         {
@@ -40,13 +46,26 @@ namespace ASMBLL
         {
             return _iActionApp.GetObjList(parameter);
         }
+        public List<T> GetObjList(string dataSource, object parameter)
+        {
+            var dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);
+            if (dataSource == "ClassCall") dataSource = MapClass<T>.SPName("Read");
+            return dataOperateService.ListOfT(dataSource, parameter);
+
+        }
+        public string ActionsObj(string objType, object parameter)
+        {
+            var sp = MapClass<T>.SPName("Edit",objType);
+            var dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource();
+            return dataOperateService.EditResult(objType, sp, parameter);
+        }
 
         public string GetSPName(string action)
         {
-          return _iActionApp.GetSPName(action);
+            return _iActionApp.GetSPName(action);
         }
 
-    
+
     }
-     
+ 
 }

@@ -176,12 +176,13 @@
             para.MemberID = $("#ddlStaff").val();
             para.GroupName = $("#ddlStaff option:selected").text();
 
-            var uri = "UserGroupMember/Teacher";
-            if (para == "Delete")
-                DeleteDataWebAPICall(uri, para.IDs);
-            else
-                SaveDataWebAPICall(uri, para);
+            var uri = "UserGroupTeacher";
+ 
+            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para,"Parent");
+            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para,"Parent");
+            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs,"Parent");
 
+          //  parent.location.reload();
 
          //   var result = SIC.Models.WebService.SaveSecurityGroupMember("Teachers", para.Operate, para, onSuccess, onFailure);
         }
@@ -219,46 +220,5 @@
         })
         if (action == "Click") { $("#BubbleHelpDIV").fadeToggle("fast"); }
     }
-    function DeleteDataWebAPICall(uri, id) {
-        var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri + "id=" + id;
-        // var JSONStr = JSON.stringify(paraObj);
-        try {
-
-            (async () => {
-                const apiResponse = await fetch(myUrl, {
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                });
-                alert(result);
-            })();
-        }
-        catch (ex) {
-            alert(ex.message);
-        }
-    }
-    function SaveDataWebAPICall(uri, paraObj) {
-        var myUrl = "https://webt.tcdsb.org/Webapi/ASM/api/" + uri;
-        var JSONStr = JSON.stringify(paraObj);
-        try {
-
-            (async () => {
-                const apiResponse = await fetch(myUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSONStr
-                });
-                const result = await apiResponse.json();
-                alert(result);
-            })();
-        }
-        catch (ex) {
-            alert(ex.message);
-        }
-    }
+    
 </script>

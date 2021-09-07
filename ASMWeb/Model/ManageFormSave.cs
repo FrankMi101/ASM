@@ -14,12 +14,12 @@ namespace ASM
         }
         public static string SaveFormContent(string action, string obj, T parameter)
         {
-            IActionApp<T> actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
+            var actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return   SaveFormContent(action, actionClass, parameter);
         }
         public static string DeleteFormContent(int id, string obj, T parameter)
         {
-            IActionApp<T> actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
+            var actionClass = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return actionClass.DeleteObj(id);
         }
         private static string RunSaveToDB(string action, IActionApp<T> actionClass, T parameter)

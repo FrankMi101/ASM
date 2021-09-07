@@ -15,13 +15,17 @@ namespace ASM.Pages
             if (!Page.IsPostBack)
             {
                 string pID = Page.Request.QueryString["pID"].ToString();
-                string SchoolCode = Page.Request.QueryString["sCode"].ToString();
-                string SchoolYear = Page.Request.QueryString["sYear"].ToString();
                 string appID = Page.Request.QueryString["appID"].ToString();
-                string gID = Page.Request.QueryString["gID"].ToString();
-                string gType = Page.Request.QueryString["gType"].ToString();
+                string xID = Page.Request.QueryString["xID"].ToString();
+                string xType = Page.Request.QueryString["xType"].ToString();
+                string SchoolCode = WorkingProfile.SchoolCode; 
+                string SchoolYear = WorkingProfile.SchoolYear;
 
-                string Para = "?sYear=" + SchoolYear  + "&sCode=" + SchoolCode  + "&appID=" + appID + "&gID=" + gID + "&gType=" + gType;
+                if (Page.Request.QueryString["sCode"] != null) SchoolCode = Page.Request.QueryString["sCode"].ToString();
+ 
+                if (Page.Request.QueryString["sYear"] != null) SchoolYear = Page.Request.QueryString["sYear"].ToString();
+ 
+                string Para = "?sYear=" + SchoolYear  + "&sCode=" + SchoolCode  + "&appID=" + appID + "&xID=" + xID + "&xType=" + xType;
   
                 PageURL.HRef = GetGoPage(pID , Para); 
             }

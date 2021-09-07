@@ -238,39 +238,40 @@
                     {
                         "display": "Apps Access Control Summary",
                         "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/SecurityAccessSummary.aspx",
+                        "url": "Loading.aspx?pID=Pages/AccessSummary.aspx",
                         "target": "GoList",
                         "ID": "751",
                         "myClass": "Level-3"
                     },
                     {
-                        "display": "Security Group Management",
+                        "display": "App Role Management",
                         "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/SecurityManage.aspx",
+                        "url": "Loading.aspx?pID=Pages/AppRoleManage.aspx",
                         "target": "GoList",
                         "ID": "752",
                         "myClass": "Level-3"
                     },
                     {
-                        "display": "Security Group Member Management",
+                        "display": "User Group Management",
                         "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/SecurityManageGroup.aspx",
+                        "url": "Loading.aspx?pID=Pages/GroupManage.aspx",
                         "target": "GoList",
                         "ID": "753",
                         "myClass": "Level-3"
                     },
                     {
-                        "display": "Security SAP Basic Role Management",
+                        "display": "Staff Member Management",
                         "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/SecurityRoleManage.aspx",
+                        "url": "Loading.aspx?pID=Pages/StaffManage.aspx",
                         "target": "GoList",
                         "ID": "754",
                         "myClass": "Level-3"
                     },
+                   
                     {
-                        "display": "Apps Access Permision Management",
+                        "display": "Access Permision Management",
                         "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/SecurityRolePermission.aspx",
+                        "url": "Loading.aspx?pID=Pages/PermissionManage.aspx",
                         "target": "GoList",
                         "ID": "755",
                         "myClass": "Level-3"

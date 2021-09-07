@@ -14,7 +14,8 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserGroupTeacherController : ApiController
     {
-        private ActionAppUserGroupMemberT _action = new ActionAppUserGroupMemberT();
+        private readonly static string _dataSource = DataSource.Type();
+        private IActionApp<UserGroupMemberTeacher> _action = new ActionAppUserGroupMemberT(_dataSource);
  
     
 
@@ -24,7 +25,7 @@ namespace WebAPI.Controllers
         public IHttpActionResult GetTeacher(string schoolCode, string appID)
         {
              IList<UserGroupMemberTeacher> result = null;
-            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "admin", SchoolCode = schoolCode, AppID = appID };
+            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode, AppID = appID };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -40,7 +41,7 @@ namespace WebAPI.Controllers
         {
   
             IList<UserGroupMemberTeacher> result = null;
-            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "admin", SchoolCode = schoolCode,AppID = appID,GroupID = groupID };
+            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode,AppID = appID,GroupID = groupID };
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -73,11 +74,11 @@ namespace WebAPI.Controllers
 
             var result = _action.AddObj(userGroup);
 
-            if (result.Substring(0, 12) == "Successfully")
+
+            if (result == "Failed")
+                return new ReturnMessage(result, Request);
+            else           
                 return Ok(result); // Request.CreateResponse(HttpStatusCode.Created, result);
-            else
-                return new ReturnMessage("Add User Group Failed", Request);
-            //return Request.CreateResponse(HttpStatusCode.NotAcceptable, result);
         }
 
         // POST: api/usergroup/push

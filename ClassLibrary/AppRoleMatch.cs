@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class AppRoleMatch
+    public class AppRoleMatch: AppClass
     {
         public string RoleType { get; set; }
         public string MatchRole { get; set; }
@@ -17,8 +17,7 @@ namespace ClassLibrary
     }
     public class AppRoleMatchOperation : AppRoleMatch
     {
-        public string Operate { get; set; }
-        public string UserID { get; set; }
+ 
         public string UserRole { get; set; }
     }
 }

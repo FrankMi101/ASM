@@ -51,8 +51,16 @@ namespace ASM.PagesForms
         private void AssemblePage()
         {
 
-            string scope = "School";
-            if (hfUserRole.Value == "Admin") scope = "All";
+            string scope;
+            if (hfUserRole.Value == "Admin")
+                scope = "All";
+            else
+            {  if (hfSchoolCode.Value.Substring(0, 2) == "05")
+                    scope = "S";
+                else
+                    scope = "E"; 
+            }
+            
             var parameters = new CommonListParameter()
             {
                 Operate = "",
@@ -175,6 +183,7 @@ namespace ASM.PagesForms
             catch (Exception ex)
             {
                 var ms = ex.Message;
+                throw ex;
             }
         }
 

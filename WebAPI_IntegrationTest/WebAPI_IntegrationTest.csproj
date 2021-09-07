@@ -53,7 +53,9 @@
     <Compile Include="Controllers\ListItemsControllerTests.cs" />
     <Compile Include="Controllers\MenuControllerTests.cs" />
     <Compile Include="Controllers\SearchTeacherControllerTests.cs" />
+    <Compile Include="Controllers\StaffControllerTests.cs" />
     <Compile Include="Controllers\UserGroupControllerTests.cs" />
+    <Compile Include="Controllers\UserGroupStudentControllerTests.cs" />
     <Compile Include="Models\APIActionTests.cs" />
     <Compile Include="Models\APIListofTTests.cs" />
     <Compile Include="UnitTest1.cs" />

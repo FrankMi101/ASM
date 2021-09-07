@@ -19,9 +19,6 @@
         public string IsSSN { get; set; }
         public string IsESL { get; set; }
         public string Selected { get; set; }
-
-
-
     }
     public class StudentListSearch : StudentList
     {
@@ -29,5 +26,9 @@
         public string SearchBy { get; set; }
         public string SearchValue { get; set; }
     }
-
+    public class ClassStudentList : StudentList { 
+    }
+    public class GradeStudentList : StudentList
+    {
+    }
 }
