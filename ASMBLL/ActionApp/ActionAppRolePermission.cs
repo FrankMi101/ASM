@@ -27,7 +27,7 @@ namespace ASMBLL
         //  private AppClass myMap = MapClass<AppRolePermission>.GetClass(); 
         public string GetSPName(string action)
         {
-            return _sp;
+            return MapClass<AppRolePermission>.SPName(action); 
         }
         public List<AppRolePermission> GetObjList(object parameter)
         {
@@ -82,8 +82,8 @@ namespace ASMBLL
         {
             if (id <= 0) return _invalidMessage;
 
-            var para = new AppRolePermission { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Delete", para);
+            var para = new AppRolePermission {  UserID = "tester", IDs = id.ToString() };
+            return ObjOperation("Del", para);
         }
         private string ObjOperation(string action, AppRolePermission parameter)
         {

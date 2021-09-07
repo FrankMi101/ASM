@@ -27,7 +27,7 @@ namespace ASMBLL
         //  private AppClass myMap = MapClass<UserGroupPermission>.GetClass(); 
         public string GetSPName(string action)
         {
-            return _sp;
+            return MapClass<UserGroupPermission>.SPName(action); ;
         }
         public List<UserGroupPermission> GetObjList(object parameter)
         {
@@ -83,7 +83,7 @@ namespace ASMBLL
             if (id <= 0) return _invalidMessage;
 
             var para = new UserGroupPermission { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Delete", para);
+            return ObjOperation("Del", para);
         }
         private string ObjOperation(string action, UserGroupPermission parameter)
         {

@@ -20,6 +20,7 @@ namespace ClassLibrary
     }
     public class AppRolePermission : AppRole
     {
+        public string AppName { get; set; }
     }
     public class AppRoleOperation : AppRole
     {

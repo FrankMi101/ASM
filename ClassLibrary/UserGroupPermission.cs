@@ -10,6 +10,7 @@ namespace ClassLibrary
     {
         public string AccessScope { get; set; }
         public string ModelID { get; set; }
+        public string AppName { get; set; }
     }
 
     public class UserGroupPermissionList : UserGroupList

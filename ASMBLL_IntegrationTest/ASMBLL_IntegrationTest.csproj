@@ -57,6 +57,8 @@
     <Compile Include="ActionAppUserGroupMemberSTests.cs" />
     <Compile Include="ActionAppUserGroupMemberTTests.cs" />
     <Compile Include="ActionAppUserGroupTests.cs" />
+    <Compile Include="ActionApp\ActionAppRolePermissionTests.cs" />
+    <Compile Include="ActionApp\ActionUserGroupPermissionTests.cs" />
     <Compile Include="ActionListItemTests.cs" />
     <Compile Include="ActionMenuItemTests.cs" />
     <Compile Include="ConsumeRepositoryTests.cs" />
