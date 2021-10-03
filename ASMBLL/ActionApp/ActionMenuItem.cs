@@ -9,7 +9,7 @@ namespace ASMBLL
 {
     public class ActionMenuItem : IActionGet<MenuItems>
     {
-        private readonly IDataOperateService<MenuItems> _dataOperate = (IDataOperateService<MenuItems>)MapClass<MenuItems>.DBSource(); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
+        private readonly IDataOperateService<MenuItems> _dataOperate = MapClassForDB<MenuItems>.DBSource(); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
       //  private readonly IActionApp<MenuItems> _dataOperate = (IActionApp<MenuItems>)MapClass<MenuItems>.DBSource("SQL"); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
 
         private string  _sp = "dbo.SIC_sys_ActionMenuList @Operate, @UserID,@UserRole,@SchoolYear,@SchoolCode,@TabID,@ObjID,@AppID";

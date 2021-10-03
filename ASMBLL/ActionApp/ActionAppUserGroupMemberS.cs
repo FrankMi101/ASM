@@ -18,11 +18,11 @@ namespace ASMBLL
         private readonly IDataOperateService<UserGroupMemberStudent> _dataOperate;//= (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
         public ActionAppUserGroupMemberS()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource();
+            this._dataOperate =  MapClassForDB<UserGroupMemberStudent>.DBSource();
         }
         public ActionAppUserGroupMemberS(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupMemberStudent>)MapClass<UserGroupMemberStudent>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<UserGroupMemberStudent>.DBSource(dataSource);
         }
         public string GetSPName(string action)
         {
@@ -65,8 +65,10 @@ namespace ASMBLL
         {
             if (id <= 0 ) return _invalidMessage;
 
-            var para =   new UserGroupMemberStudent() { UserID = "tester", IDs = id.ToString() } ;
-            return ObjOperation("Delete", para);
+             var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<UserGroupMemberStudent>.SPName("Edit");
+            return _dataOperate.EditResult(_objName, _sp, para);
+
         }
         private string ObjOperation(string action, UserGroupMemberStudent parameter)
         {

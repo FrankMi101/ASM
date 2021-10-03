@@ -307,7 +307,7 @@ namespace ASMBLL.Tests
                 var result = _action.AddObj(_para).Replace("Successfully", "");
                 _ids = int.Parse(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 _ids = 0;
             }

@@ -25,5 +25,9 @@ namespace ASMBLL
         {
             return GeneralList.CommonList<T>(sp, parameter);
         }
+        public T OperateResult(string db, string sp, object parameter)
+        {
+            return GeneralValue.CommonValue<T>(db, sp, parameter);
+        }
     }
 }

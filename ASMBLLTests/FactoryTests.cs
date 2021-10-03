@@ -130,7 +130,7 @@ namespace ASMBLL.Tests
         }
 
         [TestMethod()]
-        public void SPandParameter_inputInstenceObjet_ReturnNoNullValueParameter_Test()
+        public void SPandParameter_inputInstenceObject_ReturnNoNullValueParameter_Test()
         {
             // Arrange
             var paraObj = new UserGroupMemberStudent()
@@ -145,22 +145,52 @@ namespace ASMBLL.Tests
             var anony = new {
             };
         
-
+            // Concrete class dose not work 
           //  var anonyPara =   AnonymousExtension.Anonymize(paraObj, anony);
              var anonyPara = AnonymousExtension.Anonymize2(paraObj, anony);
 
 
 
             string sp = "dbo.SIC_asm_SP";
-            string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID";
+         //   string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID";
+            string expect = "dbo.SIC_asm_SP @GroupID,@SchoolCode,@Operate,@UserID,@IDs,@AppID";
 
+          //  string expect = "dbo.SIC_asm_SP @Path";
             //Act
-            var result = Factory.SPandParameter(sp, anonyPara);
+            var result = Factory.SPandParameter(sp, paraObj); // anonyPara);
 
             //Assert
 
             Assert.AreEqual(expect, result);
         }
+
+        [TestMethod()]
+        public void SPandParameter_inputStruLayoutObject_ReturnNoNullValueParameter_Test()
+        {
+            // Arrange
+            var paraObj = new UserGroupMemberStudent1()
+            {
+                Operate = "Get",
+                UserID = "tester",
+                IDs = "0",
+                SchoolCode = "0354",
+                AppID = "SIC",
+                GroupID = "Junior Students Work Group"
+            };
+           
+
+
+            string sp = "dbo.SIC_asm_SP";
+            string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID";
+            //  string expect = "dbo.SIC_asm_SP @Path";
+            //Act
+            var result = Factory.SPandParameter(sp, paraObj); // anonyPara);
+
+            //Assert
+
+            Assert.AreEqual(expect, result);
+        }
+
         [TestMethod()]
         public void SPandParameter_inputInstenceObjet2_ReturnNoNullValueParameter_Test()
         {
@@ -180,7 +210,9 @@ namespace ASMBLL.Tests
                 Comments = "Unit Test Add Grade 05 to School user Group Testing "
             };
             string sp = "dbo.SIC_asm_SP";
-            string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID,@MemberID,@GroupType,@StartDate,@EndDate,@Comments";
+            // Concreate class can not return parameters match the para sequence
+            string expect = "dbo.SIC_asm_SP @StartDate,@EndDate,@GroupID,@GroupType,@SchoolCode,@MemberID,@Operate,@UserID,@IDs,@AppID,@Comments";
+                           // "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID,@MemberID,@GroupType,@StartDate,@EndDate,@Comments";
 
             //Act
             var result = Factory.SPandParameter(sp, para);

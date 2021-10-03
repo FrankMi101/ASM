@@ -66,13 +66,13 @@ namespace WebAPI.Controllers
         // POST: api/usergroup
         [HttpPost]
         [Route("api/usergroup")]
-        public IHttpActionResult Post([FromBody] UserGroup userGroup)
+        public IHttpActionResult Post([FromBody] UserGroup para)
         {
-            if (userGroup.GroupID == "")
+            if (para.GroupID == "")
                 return BadRequest("Invalid User Group data.");
             // return Request.CreateResponse(HttpStatusCode.BadRequest,"Group ID Can not be blank");
 
-            var result = _action.AddObj(userGroup);
+            var result = _action.AddObj(para);
             return CheckActionResult(result);
             //if (result.Substring(0, 12) == "Successfully")
             //    return Ok(result); // Request.CreateResponse(HttpStatusCode.Created, result);
@@ -84,13 +84,13 @@ namespace WebAPI.Controllers
         // POST: api/usergroup/push
         [HttpPost]
         [Route("api/usergroup/push")]
-        public IHttpActionResult Post([FromBody] UserGroupPush userGroup)
+        public IHttpActionResult Post([FromBody] UserGroupPush para)
         {
-            if (userGroup.GroupID == "")
+            if (para.GroupID == "")
                 return BadRequest("Invalid User Group data."); // return Request.CreateResponse(HttpStatusCode.BadRequest, "Group ID Can not be blank");
                                                                //  var  IActionApp<UserGroup> _action = new ActionAppUserGroup(_dataSource);
             var action = new ActionAppUserGroupPush(_dataSource);
-            var result = action.AddObj(userGroup);
+            var result = action.AddObj(para);
 
             return CheckActionResult(result);
         }
@@ -98,12 +98,12 @@ namespace WebAPI.Controllers
         // PUT: api/usergroup/
         [HttpPut]
         [Route("api/usergroup")]
-        public IHttpActionResult Put([FromBody] UserGroup userGroup)
+        public IHttpActionResult Put([FromBody] UserGroup para)
         {
-            if (userGroup.GroupID == "")
+            if (para.GroupID == "")
                 return BadRequest("Invalid User Group data."); // return Request.CreateResponse(HttpStatusCode.BadRequest, "Group ID Can not be blank");
 
-            var result = _action.EditObj(userGroup);
+            var result = _action.EditObj(para);
             return CheckActionResult(result);
         }
 

@@ -9,15 +9,16 @@ namespace ASMBLL
     public class ActionApp<T>
     {
         private readonly IActionApp<T> _iActionApp; // = (IActionApp<T>)MapClass<T>.ClassType();
+       // private readonly ActionAppService<T> _iActionApp; // = (IActionApp<T>)MapClass<T>.ClassType();
         public ActionApp()
         {
-            this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType();
+          // this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType();
+           this._iActionApp =  MapClass<T>.ActionClassType("");
         }
         public ActionApp(string objType)
         {
-            this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType(objType);
+            this._iActionApp = MapClass<T>.ActionClassType(objType);
         }
-
 
         public string AddObj(T parameter)
         {
@@ -56,7 +57,7 @@ namespace ASMBLL
         public string ActionsObj(string objType, object parameter)
         {
             var sp = MapClass<T>.SPName("Edit",objType);
-            var dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource();
+            var dataOperateService = MapClassForDB<T>.DBSource();
             return dataOperateService.EditResult(objType, sp, parameter);
         }
 

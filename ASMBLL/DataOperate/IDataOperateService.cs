@@ -15,6 +15,6 @@ namespace ASMBLL
         //T ValueOfT(string apiType, string sp, object parameter);
         //string ObjID(string apiType, string sp, object parameter);
         string EditResult(string apiType, string sp, object parameter);
-    
+        T OperateResult(string db, string sp, object parameter);
     }
 }

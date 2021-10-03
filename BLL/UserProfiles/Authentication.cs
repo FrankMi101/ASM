@@ -42,34 +42,40 @@ namespace BLL
 
         }
 
-        public static bool IsAuthenticated(string _domain, string username, string pwd)
+        public static string AuthenticateResult(string _domain, string username, string pwd)
         {
-
-            string _path = WebConfigurationManager.AppSettings["LDAP"]; // WebConfig.getValuebyKey("LDAP");
-            string domainAndUsername = _domain + "'\'" + username;
-            DirectoryEntry entry = new DirectoryEntry(_path, username, pwd);
             try
             {
-                Object obj = entry.NativeObject; //  .NativeObject;
-                DirectorySearcher search = new DirectorySearcher(entry)
+                string _path = WebConfigurationManager.AppSettings["LDAP"]; // WebConfig.getValuebyKey("LDAP");
+                string domainAndUsername = _domain + "'\'" + username;
+                DirectoryEntry entry = new DirectoryEntry(_path, username, pwd);
+                try
                 {
-                    Filter = "(SAMAccountName=" + username + ")"
-                };
-                search.PropertiesToLoad.Add("cn");
-                SearchResult result = search.FindOne();
+                    Object obj = entry.NativeObject; //  .NativeObject;
+                    DirectorySearcher search = new DirectorySearcher(entry);
+                    search.Filter = "(SAMAccountName=" + username + ")";
+                    search.PropertiesToLoad.Add("cn");
+                    SearchResult result = search.FindOne();
 
-                if (result == null)
-                    return false;
-                else
-                    return true;
-
+                    if (result == null)
+                        return "Login Failed with Name or Password Error";
+                    else
+                        return "true";
+                }
+                catch (Exception ex)
+                {
+                    return "Login Failed at NativeObject Authentication- " + ex.Message;
+                }
             }
             catch (Exception ex)
             {
-                string em = ex.Message;
-                return false; ;
-
+                return "Login Failed at DirectoryEntry Authentication- " + ex.Message;
             }
+        }
+        public static bool IsAuthenticated(string _domain, string username, string pwd)
+        {
+            if (AuthenticateResult(_domain, username, pwd) == "true") return true;
+            return false;
         }
         public static string AuthenticateMethod()
         {
@@ -85,32 +91,24 @@ namespace BLL
 
         public static string AuthenticateMethod(string loginUser)
         {
-            string authMethod = WebConfigurationManager.AppSettings["AuthenticateMethod"];
-            string hostName = System.Net.Dns.GetHostName();
-            if (authMethod == "NameOnly")
-            {
-                string appServers = WebConfigurationManager.AppSettings["AppServers"];
-                if (appServers.Contains(hostName)) authMethod = "NameOnlyFalse";
-            }
-            else
-            {
-                string developers = WebConfigurationManager.AppSettings["Developers"];
-                if (developers.Contains(loginUser.ToLower())) authMethod = "NameOnly";
-            }
+            string authMethod = AuthenticateMethod();
+            string developers = WebConfigurationManager.AppSettings["Developers"];
+            if (developers.Contains(loginUser.ToLower())) authMethod = "NameOnly";
             return authMethod;
         }
 
         public static string GetDomain()
-        { 
-            return System.Environment.UserDomainName; 
+        {
+            return System.Environment.UserDomainName;
         }
         public static string GetDomain(string objName)
-        {  if (objName == "") return GetDomain();
+        {
+            if (objName == "") return GetDomain();
             int stop = objName.IndexOf("\\");
             return (stop > -1) ? objName.Substring(0, stop) : string.Empty;
         }
         public static string GetUserName()
-        { 
+        {
             return System.Environment.UserName;
         }
         public static string GetUserName(string objName)

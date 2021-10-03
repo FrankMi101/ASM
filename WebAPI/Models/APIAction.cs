@@ -8,7 +8,7 @@ namespace WebAPI
 {
     public class APIAction<T> : IAPIAction<T>
     {
-        private readonly IDataOperateService<T> _dataOperate = (IDataOperateService<T>)MapClass<T>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
+        private readonly IDataOperateService<T> _dataOperate = (IDataOperateService<T>)MapClass<T>.DBSource("SQL");  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
 
         public List<T> ListOfT(string apiType, string sp, object parameter)
         {   

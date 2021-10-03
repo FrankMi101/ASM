@@ -44,8 +44,9 @@ namespace WebAPI.Controllers.Tests
         {
             //Arrange
             string uri = "approle";
-            var para = new { Operate = "GetListbyType", RoleType = "SAP"};
-            string qStr = "/" + para.RoleType ; // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
+            var para = new { Operate = "GetListbyType", AppID="SIC", RoleType = "SAP" };
+            string qStr = "/" + para.AppID + "/" + para.RoleType; // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
+            
             var expect = "Vice Principal";
 
             //Act 
@@ -67,8 +68,8 @@ namespace WebAPI.Controllers.Tests
             var expect = "Board Department Staff";
             var para = new { Operate = "GetListbyType", UserID = "asm", IDs = "26" };
 
-            string uri = "approle/{id}";
-            int qStr =  int.Parse(para.IDs); // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
+            string uri = "approle/";
+            int qStr =     int.Parse(para.IDs); // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
      
             //Act 
             var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());

@@ -186,10 +186,13 @@ namespace ASM.Tests
 
             var result = from s in list
                          where s.CPNum == para.CPNum
-                         select s.UserID;
-
+                         select s.UserID ;
             //Assert
-            Assert.AreEqual(expect, result.FirstOrDefault(), $" Geoup Member Student type  . ");
+
+            //    string checkResult  = list.FirstOrDefault(a => a.CPNum == para.CPNum)?.UserID;
+          
+             var checkResult = result.FirstOrDefault();
+            Assert.AreEqual(expect, checkResult, $" Geoup Member Student type  . ");
         }
         [TestMethod()]
         public void GetList_GetStaffSISInformation_ReturnStaffSISClassInfo()

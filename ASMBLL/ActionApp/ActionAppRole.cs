@@ -15,14 +15,14 @@ namespace ASMBLL
         //private readonly string _spEdit = "dbo.SIC_asm_AppRole_Edit";
         private readonly string _invalidMessage = "Invalid Role ID";
         private readonly string _objName = typeof(AppRole).Name;
-        private readonly IDataOperateService<AppRole> _dataOperate;// = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource("SQL"); // new DataOperateService<AppRole>(new DataOperateServiceSQL<AppRole>());
-        public ActionAppRole()  //DataOperateService<T> iDos)
+        private readonly IDataOperateService<AppRole> _dataOperate;  
+        public ActionAppRole()   
         {
-            this._dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource();
+            this._dataOperate = MapClassForDB<AppRole>.DBSource();
         }
         public ActionAppRole(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<AppRole>)MapClass<AppRole>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<AppRole>.DBSource(dataSource);
         }
         //  private AppClass myMap = MapClass<AppRole>.GetClass(); 
         public string GetSPName(string action)
@@ -31,9 +31,6 @@ namespace ASMBLL
         }
         public List<AppRole> GetObjList(object parameter)
         {
-            // var para = new { Operate = "GetListAll", UserID = "asm", UserRole = "admin"};
-          //  _sp = _spRead;//  CheckStoreProcedureParameters.GetParamerters(_spRead, parameter);// "dbo.SIC_asm_AppRoleList @Operate";
-                          //  var para = new { Operate = "GetList" };
             return _dataOperate.ListOfT(_objName, _sp, parameter);
         }
         public List<AppRole> GetObjList(string dataSource, object parameter)
@@ -51,7 +48,7 @@ namespace ASMBLL
         {
             if (id <= 0) return null;
 
-            var para = new { Operate = "GetbyID",UserID ="admin", IDs = id.ToString() };
+            var para = new { Operate = "Get",UserID ="admin", IDs = id.ToString() };
             _sp = MapClass<AppRole>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
 
             return _dataOperate.ListOfT(_objName, _sp, para);
@@ -82,8 +79,10 @@ namespace ASMBLL
         {
             if (id <= 0) return _invalidMessage;
 
-            var para = new AppRole { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Delete", para);
+            var para = new {Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<AppRole>.SPName("Edit"); 
+            return _dataOperate.EditResult(_objName, _sp, para);
+       
         }
         private string ObjOperation(string action, AppRole parameter)
         {

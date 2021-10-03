@@ -16,11 +16,11 @@ namespace ASMBLL
         private readonly IDataOperateService<UserGroupPush> _dataOperate;//  = (IDataOperateService<UserGroupPush>)MapClass<UserGroupPush>.DBSource();  // new DataOperateService<UserGroupPush>(new DataOperateServiceSQL<UserGroupPush>());
         public ActionAppUserGroupPush()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupPush>)MapClass<UserGroupPush>.DBSource();
+            this._dataOperate = MapClassForDB<UserGroupPush>.DBSource();
         }
         public ActionAppUserGroupPush(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupPush>)MapClass<UserGroupPush>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<UserGroupPush>.DBSource(dataSource);
         }
         public string GetSPName(string action)
         {

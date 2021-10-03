@@ -112,7 +112,7 @@ namespace ASMBLL.Tests
         {
             //Arrange
             PerpareForTest("Add");
-            var expect = "Role Permission " + _para.RoleID + " in " +  _para.AppID + " exists in the system already";
+            var expect = "Role Permission " + _para.RoleID + " in " + _para.ModelID + " of " +  _para.AppID + " exists in the system already";
 
             //Act 
             //  var roleList = new List<UserGroup> { _para };

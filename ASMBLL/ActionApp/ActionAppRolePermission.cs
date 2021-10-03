@@ -18,11 +18,11 @@ namespace ASMBLL
         private readonly IDataOperateService<AppRolePermission> _dataOperate;// = (IDataOperateService<AppRolePermission>)MapClass<AppRolePermission>.DBSource("SQL"); // new DataOperateService<AppRolePermission>(new DataOperateServiceSQL<AppRolePermission>());
         public ActionAppRolePermission()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<AppRolePermission>)MapClass<AppRolePermission>.DBSource();
+            this._dataOperate = MapClassForDB<AppRolePermission>.DBSource();
         }
         public ActionAppRolePermission(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<AppRolePermission>)MapClass<AppRolePermission>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<AppRolePermission>.DBSource(dataSource);
         }
         //  private AppClass myMap = MapClass<AppRolePermission>.GetClass(); 
         public string GetSPName(string action)
@@ -51,7 +51,7 @@ namespace ASMBLL
         {
             if (id <= 0) return null;
 
-            var para = new { Operate = "GetbyID", UserID = "admin", IDs = id.ToString() };
+            var para = new { Operate = "Get", UserID = "admin", IDs = id.ToString() };
             _sp = MapClass<AppRolePermission>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
 
             return _dataOperate.ListOfT(_objName, _sp, para);
@@ -82,8 +82,9 @@ namespace ASMBLL
         {
             if (id <= 0) return _invalidMessage;
 
-            var para = new AppRolePermission {  UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Del", para);
+            var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<AppRolePermission>.SPName("Edit");
+            return _dataOperate.EditResult(_objName, _sp, para);
         }
         private string ObjOperation(string action, AppRolePermission parameter)
         {

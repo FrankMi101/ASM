@@ -9,42 +9,42 @@ namespace BLL
   
     public static class AssemblingList
     {
-        public static void SetLists(System.Web.UI.WebControls.ListControl myListControl, List<NameValueList> myListData)
+        public static void SetLists(ListControl myListControl, List<NameValueList> myListData)
         {           
                 AssemblingMyList(myListControl, myListData, "Value", "Name");
         }
-        public static void SetLists(string ValueField, string NameField, System.Web.UI.WebControls.ListControl myListControl, List<NameValueList> myListData)
+        public static void SetLists(string ValueField, string NameField,ListControl myListControl, List<NameValueList> myListData)
         {
             AssemblingMyList(myListControl, myListData, ValueField, NameField);
         }
-        public static void SetLists(System.Web.UI.WebControls.ListControl myListControl, List<NameValueList> myListData, object initialValue)
+        public static void SetLists(ListControl myListControl, List<NameValueList> myListData, object initialValue)
         {
 
             SetLists(myListControl, myListData);
             SetValue(myListControl, initialValue);
         }
-        public static void SetLists(string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter)
+        public static void SetLists(string JsonSource, ListControl myListControl, string ddlType, CommonListParameter parameter)
         {
             List<NameValueList> myListData = ListDataSource(JsonSource, ddlType, parameter,"DDList");
             SetLists(myListControl, myListData);
         }
-        public static void SetLists(string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter, object initialValue)
+        public static void SetLists(string JsonSource, ListControl myListControl, string ddlType, CommonListParameter parameter, object initialValue)
         {
             SetLists(JsonSource, myListControl, ddlType, parameter);
             SetValue(myListControl, initialValue);
         }
-        public static void SetLists(string ValueField, string NameField, string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter)
+        public static void SetLists(string ValueField, string NameField, string JsonSource,  ListControl myListControl, string ddlType, CommonListParameter parameter)
         {
             List<NameValueList> myListData = ListDataSource(JsonSource, ddlType, parameter, "DDList");
             SetLists(ValueField, NameField,myListControl, myListData);
         }
-        public static void SetLists(string ValueField, string NameField, string JsonSource, System.Web.UI.WebControls.ListControl myListControl, string ddlType, CommonListParameter parameter, object initialValue)
+        public static void SetLists(string ValueField, string NameField, string JsonSource,  ListControl myListControl, string ddlType, CommonListParameter parameter, object initialValue)
         {
             SetLists(ValueField, NameField,JsonSource, myListControl, ddlType, parameter);
             SetValue(myListControl, initialValue);
         }
 
-        public static void SetValue(System.Web.UI.WebControls.ListControl myListControl, object objectValue)
+        public static void SetValue(ListControl myListControl, object objectValue)
         {
             try
             {
@@ -53,16 +53,16 @@ namespace BLL
 
                 if (objectValue != null)
                 {
-                    myListControl.Items.FindByValue(objectValue.ToString()).Selected = true;
+                    //  myListControl.Items.FindByValue(objectValue.ToString()).Selected = true;
 
-                    //foreach (ListItem item in myListControl.Items)
-                    //{
-                    //    if (item.Value.ToString().ToLower() == objectValue.ToString().ToLower())
-                    //    {
-                    //        item.Selected = true;
-                    //        break;
-                    //    }
-                    //}
+                    foreach (ListItem item in myListControl.Items)
+                    {
+                        if (item.Value.ToString().ToLower() == objectValue.ToString().ToLower())
+                        {
+                            item.Selected = true;
+                            break;
+                        }
+                    }
                 }
             }
             catch
@@ -94,8 +94,24 @@ namespace BLL
                 throw new Exception(ex.Message);
             }
         }
-
-        private static void AssemblingMyList(System.Web.UI.WebControls.ListControl myListControl, object myList, string ValueField, string TextField)
+        public static void SetValueCBL(ListControl myListControl, string objectValue)
+        {
+            try
+            {
+                ListItem li = new ListItem();
+                int x = 1;
+                foreach (ListItem item in myListControl.Items)
+                {
+                    if (objectValue.Substring(x, 1) == "1") item.Selected = true;
+                    x++;
+                }
+            }
+            catch
+            {
+                myListControl.SelectedIndex = 0;
+            }
+        }
+        private static void AssemblingMyList( ListControl myListControl, object myList, string ValueField, string TextField)
         {
             try
             {
@@ -119,7 +135,7 @@ namespace BLL
             { }
         }
 
-        public static void SetListSchool(System.Web.UI.WebControls.ListControl myListControl1, System.Web.UI.WebControls.ListControl myListControl2, string ddlType, CommonListParameter parameter, object initialValue)
+        public static void SetListSchool( ListControl myListControl1,  ListControl myListControl2, string ddlType, CommonListParameter parameter, object initialValue)
         {
             SetListSchool(myListControl1, myListControl2, ddlType, parameter);
             SetValue(myListControl1, initialValue);

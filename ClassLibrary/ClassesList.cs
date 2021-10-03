@@ -10,5 +10,9 @@ namespace ClassLibrary
     {
         public int RowNo { get; set; }
         public string Actions { get; set; }
+        public string ViewAction { get; set; }
+        public string EditAction { get; set; }
+        public string DeleteAction { get; set; }
+
     }
 }

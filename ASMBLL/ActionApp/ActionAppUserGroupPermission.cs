@@ -18,11 +18,11 @@ namespace ASMBLL
         private readonly IDataOperateService<UserGroupPermission> _dataOperate;// = (IDataOperateService<UserGroupPermission>)MapClass<UserGroupPermission>.DBSource("SQL"); // new DataOperateService<UserGroupPermission>(new DataOperateServiceSQL<UserGroupPermission>());
         public ActionUserGroupPermission()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupPermission>)MapClass<UserGroupPermission>.DBSource();
+            this._dataOperate =  MapClassForDB<UserGroupPermission>.DBSource();
         }
         public ActionUserGroupPermission(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroupPermission>)MapClass<UserGroupPermission>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<UserGroupPermission>.DBSource(dataSource);
         }
         //  private AppClass myMap = MapClass<UserGroupPermission>.GetClass(); 
         public string GetSPName(string action)
@@ -51,7 +51,7 @@ namespace ASMBLL
         {
             if (id <= 0) return null;
 
-            var para = new { Operate = "GetbyID", UserID = "admin", IDs = id.ToString() };
+            var para = new { Operate = "Get", UserID = "admin", IDs = id.ToString() };
             _sp = MapClass<UserGroupPermission>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
 
             return _dataOperate.ListOfT(_objName, _sp, para);
@@ -81,9 +81,10 @@ namespace ASMBLL
         public string DeleteObj(int id)
         {
             if (id <= 0) return _invalidMessage;
+            var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<UserGroupPermission>.SPName("Edit");
+            return _dataOperate.EditResult(_objName, _sp, para);
 
-            var para = new UserGroupPermission { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Del", para);
         }
         private string ObjOperation(string action, UserGroupPermission parameter)
         {

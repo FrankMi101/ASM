@@ -14,6 +14,10 @@ namespace ASMBLL
 /// <typeparam name="T"></typeparam>
     public class DataOperateServiceAPI<T> : IDataOperateService<T>
     {
+        public T OperateResult(string apiType, string uri, object parameter)
+        {
+            throw new NotImplementedException();
+        }
         public string EditResult(string apiType, string uri, object parameter)
         {
             switch (apiType)
@@ -160,5 +164,7 @@ namespace ASMBLL
                 return ex.Message;
             }
         }
+
+      
     }
 }

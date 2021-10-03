@@ -13,9 +13,9 @@ namespace ASMBLL
     public class DataOperateService<T>
     {
         private readonly IDataOperateService<T> _iDataOperateService;
-        public DataOperateService(string dataSource) //IDataOperateService<T> iDos)
+        public DataOperateService(string dataSource)  
         {
-            this._iDataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);// iDos;
+            this._iDataOperateService =  MapClassForDB<T>.DBSource(dataSource); 
         }
         public string EditResult(string apiType, string sp, object parameter)
         {
@@ -25,12 +25,16 @@ namespace ASMBLL
 
         public List<T> ListOfT(string apiType, string sp, object parameter)
         {
-            return _iDataOperateService.ListOfT(apiType, sp, parameter);
-        
+            return _iDataOperateService.ListOfT(apiType, sp, parameter);     
         }
         public List<T> ListOfT(string sp, object parameter)
         {
             return _iDataOperateService.ListOfT( sp, parameter);
+        }
+        public T OperateResult(string apiType, string sp, object parameter)
+        {
+            return _iDataOperateService.OperateResult(apiType, sp, parameter);
+
         }
     }
 }

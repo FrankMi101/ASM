@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ASMBLL
 {
  
-    public class ActionAppUserGroup : IActionApp<UserGroup>
+    public class ActionAppUserGroup: IActionApp<UserGroup>
     {
         //    private readonly Type T1 = typeof(UserGroup).MakeGenericType(u.GetType());
         private string _sp = MapClass<UserGroup>.SPName("Read");
@@ -19,12 +19,13 @@ namespace ASMBLL
         private readonly IDataOperateService<UserGroup> _dataOperate;// = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();  // new DataOperateService<UserGroup>(new DataOperateServiceSQL<UserGroup>());
         public ActionAppUserGroup()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();
+            this._dataOperate =  MapClassForDB<UserGroup>.DBSource();
+          //  this._dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource();
         }
 
         public ActionAppUserGroup(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<UserGroup>)MapClass<UserGroup>.DBSource(dataSource);
+            this._dataOperate =MapClassForDB<UserGroup>.DBSource(dataSource);
         }
         public string GetSPName(string action)
         {
@@ -67,8 +68,9 @@ namespace ASMBLL
         {
             if (id <= 0) return _invalidMessage;
 
-            var para = new UserGroup() { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Delete", para);
+             var para = new  { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<UserGroup>.SPName("Edit");
+            return _dataOperate.EditResult(_objName, _sp, para);
         }
         private string ObjOperation(string action, UserGroup parameter)
         {
@@ -96,7 +98,5 @@ namespace ASMBLL
             };
             return parameter;
         }
-
-
     }
 }

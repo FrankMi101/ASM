@@ -29,8 +29,7 @@ namespace ASMBLL.Tests
             _para.SchoolCode = "0354";
             _para.AppID = "SIC";
             _para.GroupID = "Junior Students Work Group";
-            _para.MemberID = "08";
-            _para.GroupType = "Grade";
+            _para.MemberID = "testID";
             _para.StartDate = "2020/09/01";
             _para.EndDate = "2021/06/30";
             _para.Comments = "Unit Test Add Grade 05 to School user Group Testing ";
@@ -180,7 +179,7 @@ namespace ASMBLL.Tests
             {
                 _para.IDs = "0";
                 _para.GroupID = "Junior Students Work Group";
-                _para.MemberID = "tester";
+                _para.MemberID = "testerID";
                // var pList = new List<UserGroupMember> { _para };
                 var result = _action.AddObj(_para).Replace("Successfully", "");
                 _para.IDs = result;

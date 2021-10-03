@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL;
 using ClassLibrary;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 
 namespace ASMBLL
@@ -28,11 +29,83 @@ namespace ASMBLL
         {
             return CheckStoreProcedureParameters.GetObjType( para);
         }
-    }
-    public class ObjClassFactory
-    {
          
     }
+    public class ActionFactory
+    {
+        private readonly IServiceProvider serviceProvider;
+
+        public ActionFactory(IServiceProvider serviceProvider)
+        {
+            this.serviceProvider = serviceProvider;
+        }
+
+        public IActionApp<T> GetClassService<T>(string objType)
+        {
+          
+            switch (objType)
+            {
+                case "AppRolePermission":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(AppRolePermission));
+                case "UserGroupPermission":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionUserGroupPermission));
+                case "UserGroup":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppUserGroup));
+                case "UserGroupPush":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppUserGroupPush));
+                case "GroupListStudent":
+                case "UserGroupStudent":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppUserGroupMemberS));
+
+                case "GroupListTeacher":
+                case "UserGroupTeacher":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppUserGroupMemberT));
+                case "ActionAppList":
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppList<T, T>));
+                default:
+                    return (IActionApp<T>)serviceProvider.GetService(typeof(ActionAppUserGroup));
+
+            }
+
+        }
+
+    }
+    public class RegistrationServices<T>
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+           // services.AddMvc();
+
+            services.AddScoped<ActionFactory>();
+
+            services.AddScoped<NetflixStreamService>()
+                        .AddScoped<IStreamService, NetflixStreamService>(s => s.GetService<NetflixStreamService>());
+
+            services.AddScoped<AmazonStreamService>()
+                        .AddScoped<IStreamService, AmazonStreamService>(s => s.GetService<AmazonStreamService>());
+        }
+    }
+
+    public class NetflixStreamService : IStreamService
+    {
+        public string[] ShowMovies()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AmazonStreamService : IStreamService
+    {
+        public string[] ShowMovies()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public interface IStreamService
+    {
+        string[] ShowMovies();
+    }
+
 
     public static class AnonymousExtension
     {

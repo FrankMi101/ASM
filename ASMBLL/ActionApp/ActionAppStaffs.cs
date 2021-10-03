@@ -11,17 +11,16 @@ namespace ASMBLL
     public class ActionAppStaffs : IActionApp<StaffListSearch> 
     {
         private string _sp = MapClass<StaffListSearch>.SPName("Read"); 
-
-        private readonly string _invalidMessage = "Invalid Group ID";
         private readonly string _objName = typeof(StaffListSearch).Name;
         private readonly IDataOperateService<StaffListSearch> _dataOperate;// = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource("SQL");  // new DataOperateService<StaffListSearch>(new DataOperateServiceSQL<StaffListSearch>());
-        public ActionAppStaffs()  //DataOperateService<T> iDos)
+   
+        public ActionAppStaffs()  
         {
-            this._dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource();
+             this._dataOperate =  MapClassForDB<StaffListSearch>.DBSource();
         }
         public ActionAppStaffs(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<StaffListSearch>)MapClass<StaffListSearch>.DBSource(dataSource);
+            this._dataOperate =  MapClassForDB<StaffListSearch>.DBSource(dataSource);
         }
         public string GetSPName(string action)
         {

@@ -69,13 +69,13 @@
       <Project>{1afbc2a1-efdd-4f09-9285-85b64ac856d9}</Project>
       <Name>ASMBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ASMWeb\ASM.csproj">
-      <Project>{15D019BB-AB72-4BD1-A2B4-3B047DA7B67E}</Project>
-      <Name>ASM</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
       <Project>{236FBB7B-0972-4289-B642-81AB05954D08}</Project>
       <Name>ClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSite\WebSite.csproj">
+      <Project>{15d019bb-ab72-4bd1-a2b4-3b047da7b67e}</Project>
+      <Name>WebSite</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

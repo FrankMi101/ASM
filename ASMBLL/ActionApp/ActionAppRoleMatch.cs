@@ -18,11 +18,11 @@ namespace ASMBLL
         private readonly IDataOperateService<AppRoleMatch> _dataOperate;// = (IDataOperateService<AppRoleMatch>)MapClass<AppRoleMatch>.DBSource("SQL"); // new DataOperateService<AppRoleMatch>(new DataOperateServiceSQL<AppRoleMatch>());
         public ActionAppRoleMatch()  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<AppRoleMatch>)MapClass<AppRoleMatch>.DBSource();
+            this._dataOperate =  MapClassForDB<AppRoleMatch>.DBSource();
         }
         public ActionAppRoleMatch(string dataSource)  //DataOperateService<T> iDos)
         {
-            this._dataOperate = (IDataOperateService<AppRoleMatch>)MapClass<AppRoleMatch>.DBSource(dataSource);
+            this._dataOperate = MapClassForDB<AppRoleMatch>.DBSource(dataSource);
         }
         //  private AppClass myMap = MapClass<AppRoleMatch>.GetClass(); 
         public string GetSPName(string action)
@@ -51,7 +51,7 @@ namespace ASMBLL
         {
             if (id <= 0) return null;
 
-            var para = new { Operate = "GetbyID",UserID ="admin", IDs = id.ToString() };
+            var para = new { Operate = "Get",UserID ="admin", IDs = id.ToString() };
             _sp = MapClass<AppRoleMatch>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
 
             return _dataOperate.ListOfT(_objName, _sp, para);
@@ -81,9 +81,10 @@ namespace ASMBLL
         public string DeleteObj(int id)
         {
             if (id <= 0) return _invalidMessage;
+             var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
+            _sp = MapClass<AppRoleMatch>.SPName("Edit");
+            return _dataOperate.EditResult(_objName, _sp, para);
 
-            var para = new AppRoleMatch { UserID = "tester", IDs = id.ToString() };
-            return ObjOperation("Delete", para);
         }
         private string ObjOperation(string action, AppRoleMatch parameter)
         {
