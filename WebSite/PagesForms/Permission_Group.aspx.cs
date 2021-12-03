@@ -109,7 +109,7 @@ namespace ASM.PagesForms
         private List<T> GetDataSource<T>()
         {
             int IDs = int.Parse(lblIDs.Text);
-            var myList = ManageFormContent<T>.GetListbyID("UserGroupPermission", IDs);
+            var myList = ManageFormContent<T>.GetListbyID("UserGroupPermission", IDs, btnSubmit);
 
             return myList;
         }

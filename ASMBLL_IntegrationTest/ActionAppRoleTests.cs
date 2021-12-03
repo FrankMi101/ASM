@@ -157,7 +157,7 @@ namespace ASMBLL.Tests
             //Arrange
             var expect = "Invalid Role ID";
             int ids = 0;
-            _para.RoleID = null;
+            _para.RoleID = "";
             //Act 
             // var roleList = new List<AppRole> { _para };
             var result = _action.AddObj(_para);
@@ -216,9 +216,9 @@ namespace ASMBLL.Tests
         public void EditObj_UpdateAppRoleRecordbyNullRoleID_ReturnInvalidMessage()
         {
             //Arrange
-            var expect = "Invalid Role ID";
+            var expect = "Role name  does not exists in the system";
             _para.IDs = "0";
-            _para.RoleID = null;
+            _para.RoleID = "";
             _para.Comments = "Update app role testing in 34 id ";
 
             //Act 
@@ -276,8 +276,9 @@ namespace ASMBLL.Tests
         {
             //Arrange
 
-            var expect = "Invalid Role ID"; // "There is no such role named " + "39" + " In the system' as rValue";
-                                            //Act 
+            var expect = "Invalid Apps ID";  
+            
+            //Act 
             var result = _action.DeleteObj(0);
 
             //Assert

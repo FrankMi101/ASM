@@ -106,7 +106,7 @@ namespace ASM.PagesForms
             else
             {
                 int id = int.Parse(hfIDs.Value);
-                myList = ManageFormContent<T>.GetListbyID("UserGroupTeacher", id);
+                myList = ManageFormContent<T>.GetListbyID("UserGroupTeacher", id, btnSubmit);
             }
             return myList;
 

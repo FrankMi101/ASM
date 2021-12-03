@@ -18,6 +18,28 @@ namespace ASM
         {
 
         }
+        public static string GetQueryString(Page page)
+        {
+            try
+            {
+                string action = page.Request.QueryString["Action"].ToString();
+                string ids = page.Request.QueryString["IDs"].ToString();
+                string sCode = page.Request.QueryString["SchoolCode"].ToString();
+                string sYear = page.Request.QueryString["SchoolYear"].ToString();
+                string appID = page.Request.QueryString["AppID"].ToString();
+                string model = page.Request.QueryString["ModelID"].ToString();
+                string xIden = page.Request.QueryString["xID"].ToString();
+                string xName = page.Request.QueryString["xName"].ToString();
+                string xType = page.Request.QueryString["xType"].ToString();
+
+                return "Action=" + action + "&IDs=" + ids + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&AppID=" + appID + "&ModelID=" + model + "&xID=" + xIden + "&xName=" + xName + "&xType=" + xType;
+
+            }
+            catch
+            {
+                return "";
+            }
+        }
         public static void SetPageAttribute(Page myPage)
         {
             try
@@ -98,7 +120,7 @@ namespace ASM
         {
             return GeneralList<T>("GeneralList", "ActionMenuList", parameter);
         }
-      
+
 
         public static string GoPage(object parameter)
         {
@@ -156,7 +178,7 @@ namespace ASM
             var mySPclass = new List<CommonSP> { new GeneralList() };
             var gradeList = AppsBase.GeneralList<NameValueList>(mySPclass, "Grade", parameter);
 
-          //  var gradeList = GeneralList<NameValueList>("GeneralList", "Grade", parameter);
+            //  var gradeList = GeneralList<NameValueList>("GeneralList", "Grade", parameter);
             var UL = new HtmlGenericControl("ul");
             try
             {
@@ -181,27 +203,27 @@ namespace ASM
             }
 
         }
-        public static void BuildingTab(HtmlGenericControl myDIVTab, object parameter,string cTab)
+        public static void BuildingTab(HtmlGenericControl myDIVTab, object parameter, string cTab)
         {
             var mySPclass = new List<CommonSP> { new GeneralList() };
             var gradeList = AppsBase.GeneralList<NameValueList>(mySPclass, "TabList", parameter);
 
-          //  var gradeList = GeneralList<NameValueList>("GeneralList", "TabList", parameter);
-            var UL = new HtmlGenericControl("ul"); 
+            //  var gradeList = GeneralList<NameValueList>("GeneralList", "TabList", parameter);
+            var UL = new HtmlGenericControl("ul");
             try
             {
                 foreach (var item in gradeList)
                 {
-                    var a = getALink(item.Value,item.Name, cTab) ;
+                    var a = getALink(item.Value, item.Name, cTab);
                     var li = getLi(item.Value, item.Name, cTab);
-                 
+
                     li.InnerText = "";
                     li.Controls.Add(a);
                     UL.Controls.Add(li);
 
                 }
-             myDIVTab.InnerHtml = "";
-               myDIVTab.Controls.Add(UL);
+                myDIVTab.InnerHtml = "";
+                myDIVTab.Controls.Add(UL);
 
             }
             catch (System.Exception ex)
@@ -249,7 +271,7 @@ namespace ASM
 
         }
 
-        
+
 
     }
 

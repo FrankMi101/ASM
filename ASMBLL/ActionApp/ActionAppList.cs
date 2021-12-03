@@ -13,11 +13,11 @@ namespace ASMBLL
     public class ActionAppList<T, T2> : IActionGet<T>
     {
         private readonly IDataOperateService<T> _dataOperateService;
-        public ActionAppList()  //DataOperateService<T> iDos)
+        public ActionAppList()  
         {
             this._dataOperateService = MapClassForDB<T>.DBSource(); 
         }
-        public ActionAppList(string dataSource)  //DataOperateService<T> iDos)
+        public ActionAppList(string dataSource)   
         {
             this._dataOperateService =  MapClassForDB<T>.DBSource(dataSource);
         }
@@ -33,8 +33,7 @@ namespace ASMBLL
         {
             string sp = MapClass<T2>.SPName("Read");
             return _dataOperateService.ListOfT(sp, parameter);
-         //   return GeneralList.CommonList<T>(sp, parameter);
-        }
+         }
    
         public List<T> GetObjList(string dataSource, object parameter)
         {
@@ -46,7 +45,7 @@ namespace ASMBLL
 
         public string GetSPName(string action)
         {
-            throw new NotImplementedException();
+          return  MapClass<T2>.SPName(action);
         }
 
      

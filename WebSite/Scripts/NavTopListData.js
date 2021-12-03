@@ -244,11 +244,19 @@
                         "myClass": "Level-3"
                     },
                     {
+                        "display": "Staff Permission Management",
+                        "role": "Admin",
+                        "url": "Loading.aspx?pID=Pages/StaffManage.aspx",
+                        "target": "GoList",
+                        "ID": "752",
+                        "myClass": "Level-3"
+                    },
+                    {
                         "display": "App Role Management",
                         "role": "Admin",
                         "url": "Loading.aspx?pID=Pages/AppRoleManage.aspx",
                         "target": "GoList",
-                        "ID": "752",
+                        "ID": "753",
                         "myClass": "Level-3"
                     },
                     {
@@ -256,27 +264,10 @@
                         "role": "Admin",
                         "url": "Loading.aspx?pID=Pages/GroupManage.aspx",
                         "target": "GoList",
-                        "ID": "753",
-                        "myClass": "Level-3"
-                    },
-                    {
-                        "display": "Staff Member Management",
-                        "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/StaffManage.aspx",
-                        "target": "GoList",
                         "ID": "754",
                         "myClass": "Level-3"
-                    },
-                   
-                    {
-                        "display": "Access Permision Management",
-                        "role": "Admin",
-                        "url": "Loading.aspx?pID=Pages/PermissionManage.aspx",
-                        "target": "GoList",
-                        "ID": "755",
-                        "myClass": "Level-3"
                     }
-
+  
                 ]
             },
             {

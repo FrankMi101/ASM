@@ -168,7 +168,7 @@ namespace ASMBLL.Tests
         public void SPandParameter_inputStruLayoutObject_ReturnNoNullValueParameter_Test()
         {
             // Arrange
-            var paraObj = new UserGroupMemberStudent1()
+            var paraObj = new UserGroupMemberStudent()
             {
                 Operate = "Get",
                 UserID = "tester",
@@ -181,7 +181,9 @@ namespace ASMBLL.Tests
 
 
             string sp = "dbo.SIC_asm_SP";
-            string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID";
+           // string expect = "dbo.SIC_asm_SP @Operate,@UserID,@IDs,@SchoolCode,@AppID,@GroupID";
+            string expect = "dbo.SIC_asm_SP @GroupID,@SchoolCode,@Operate,@UserID,@IDs,@AppID";
+
             //  string expect = "dbo.SIC_asm_SP @Path";
             //Act
             var result = Factory.SPandParameter(sp, paraObj); // anonyPara);

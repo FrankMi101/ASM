@@ -32,7 +32,7 @@ namespace ASM.Pages
         {
             hfCategory.Value = "Home";
             hfPageID.Value = pageID;
-            hfAppID.Value = "SIC";
+            hfAppID.Value = WorkingProfile.DefaultAppID;
             hfUserID.Value  = WorkingProfile.UserId  ;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
             hfUserRole.Value = WorkingProfile.UserRole;

@@ -69,3 +69,30 @@ function OpenInPage(title, page, pHeight, pWidth) {
     }
 
 }
+
+function OpenFormFromListPage(title, page, arg, pHeight, pWidth) {
+    var pTop = 50;
+    var pLeft = 50;
+    if (pHeight > 500) pTop = 50; 
+    if (mousex > pWidth) pLeft = mousex - pWidth - 30;
+
+    var goPage = "../PagesForms/Loading.aspx?pID=" + page + arg
+
+    try {
+
+        $("#editiFrame").attr('src', goPage);
+        $("#EditTitle").html(title);
+        $("#EditDIV").css({
+            top: pTop,
+            left: pLeft,
+            height: pHeight - 50,
+            width: pWidth - 50
+        });
+        $("#EditDIV").fadeToggle("fast");
+    }
+
+    catch (e) {
+        window.alert("Error:" + e.mess);
+    }
+
+}

@@ -96,6 +96,15 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.GridView GridView_SAP;
 
         /// <summary>
+        /// ImgSAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgSAP;
+
+        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>

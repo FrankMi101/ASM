@@ -16,7 +16,8 @@
     <script src="../Scripts/JqueryUI/jquery-ui.min.js"></script>
     <link href="../Scripts/JqueryUI/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-
+      <link href="../Content/ContentPage.css" rel="stylesheet" />
+    <link href="../Content/ContentForms.css" rel="stylesheet" />
 
     <style type="text/css">
         body {
@@ -162,7 +163,7 @@
                             <label for="ddlApps">Apps Name: </label>
                         </td>
                         <td colspan="4">
-                            <asp:DropDownList ID="ddlApps" runat="server" Width="400px" CssClass="ddlControls" OnSelectedIndexChanged="DDLApps_SelectedIndexChanged"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlApps" runat="server" Width="400px" CssClass="ddlControls Edit-Content-Control" OnSelectedIndexChanged="DDLApps_SelectedIndexChanged"></asp:DropDownList></td>
 
                     </tr>
                     <tr>
@@ -172,7 +173,7 @@
                         <td colspan="4">
                             <asp:UpdatePanel ID="UpdatePanel24" runat="server">
                                 <ContentTemplate>
-                                    <asp:DropDownList ID="ddlGroupID" runat="server" Width="400px" CssClass="ddlControls"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlGroupID" runat="server" Width="400px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
@@ -185,8 +186,8 @@
                         <td colspan="4">
                             <asp:UpdatePanel ID="UpdatePanel23" runat="server">
                                 <ContentTemplate>
-                                    <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="58px" AutoPostBack="true" CssClass="ddlControls" OnSelectedIndexChanged="DDLSchoolCode_SelectedIndexChanged"></asp:DropDownList>
-                                    <asp:DropDownList ID="ddlSchool" runat="server" Width="337px" AutoPostBack="true" CssClass="ddlControls" OnSelectedIndexChanged="DDLSchool_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="58px" AutoPostBack="true" CssClass="ddlControls Edit-Content-Control" OnSelectedIndexChanged="DDLSchoolCode_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlSchool" runat="server" Width="337px" AutoPostBack="true" CssClass="ddlControls Edit-Content-Control" OnSelectedIndexChanged="DDLSchool_SelectedIndexChanged"></asp:DropDownList>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
@@ -196,11 +197,11 @@
                         <td>  <label for="dateStart">Start Date: </label></td>
                        
                         <td colspan="4">
-                            <input runat="server" type="text" id="dateStart" size="9" />
+                            <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
                         
                             <label for="dateEnd">End Date: </label>
                     
-                            <input runat="server" type="text" id="dateEnd" size="9" /></td>
+                            <input runat="server" type="text" id="dateEnd" size="9" class="Edit-Content-Control" /></td>
                     </tr>
                     <tr>
                         <td>
@@ -208,7 +209,7 @@
 
                         </td>
                         <td colspan="4">
-                            <asp:RadioButtonList ID="rblPermission" runat="server" Width="180px" RepeatDirection="Horizontal">
+                            <asp:RadioButtonList ID="rblPermission" runat="server" Width="100%" RepeatDirection="Horizontal" CssClass="Edit-Content-Control">
                                 <asp:ListItem Selected="True">Read</asp:ListItem>
                                 <asp:ListItem>Update</asp:ListItem>
                                 <asp:ListItem>Super</asp:ListItem>
@@ -219,7 +220,7 @@
                     <tr>
                         <td></td>
                         <td colspan="4">
-                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="80px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="80px" TextMode="MultiLine" placeholder="Grant Permission Comments" CssClass="Edit-Content-Control"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

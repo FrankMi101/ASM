@@ -47,7 +47,7 @@ namespace ASMBLL.Tests
             Assert.AreEqual(expect, result.FirstOrDefault(), $" list control {ddlControlCategory} has items count {list.Count} . ");
         }
         [TestMethod()]
-        [DataRow("UserRole", 29)]
+        [DataRow("UserRole", 37)]
         public void GetObjList_InputParamater_ReturnUserRoleItemList_CountItems_Test(string ddlControlCategory, int expect)
         {
             //Arrange
@@ -59,14 +59,15 @@ namespace ASMBLL.Tests
             //Assert
             Assert.AreEqual(expect, result, $" Assembling list control {ddlControlCategory} has items count {result} . ");
         }
+
         [TestMethod()]
         [DataRow("Age", 2)]
-        [DataRow("AppsName", 6)]
+        [DataRow("AppsName", 7)]
         [DataRow("Grade", 4)]
         [DataRow("ListSchool", 256)]
         [DataRow("SchoolArea", 12)]
         [DataRow("SchoolYear", 12)]
-        [DataRow("UserRole", 29)]
+        [DataRow("UserRole", 37)]
         public void GetObjList_GroupInputParamater_ReturnList_CountItems_Test(string ddlControlCategory, int expect)
         {
             //Arrange

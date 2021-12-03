@@ -40,14 +40,14 @@
         </asp:ScriptManager>
 
         <%--<div style="overflow: scroll; width: 100%; height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
-        <div class="Edit-Content" >
+        <div class="Edit-Content-Control" >
             <table>
                 <tr>
                     <td>
                         <label for="ddlApps">Apps Name: </label>
                     </td>
                     <td colspan="3">
-                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                        
                             
                        </td>
@@ -69,7 +69,7 @@
                      
                     </td>
                     <td colspan="4" >
-                         <asp:DropDownList ID="ddlRoleID" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList>
+                         <asp:DropDownList ID="ddlRoleID" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>  
                  
                    
@@ -106,7 +106,7 @@
              <tr>
                     <td>Access Scope</td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlScope" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlScope" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>
              </tr>
                
@@ -115,7 +115,7 @@
                 <tr>
                     <td>Comments</td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextComments" runat="server" Width="99%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                        <asp:TextBox ID="TextComments" runat="server" Width="99%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments" CssClass="Edit-Content-Control" ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

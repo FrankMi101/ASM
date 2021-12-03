@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ASM
@@ -27,16 +28,16 @@ namespace ASM
             var action = new ActionAppList<T, T>(dataSource);
             return action.GetObjList(obj, para);
         }
-        public static List<T> GetListbyID(IActionApp<T> action, int para, WebControl actionControl)
+        public static List<T> GetListbyID(IActionApp<T> action, int para, HtmlControl actionControl)
         {
           //  var list = action.GetObjByID(para);
 
-            if (WebConfig.RunningModel() == "Design") actionControl.ToolTip = action.GetSPName("Read");
+            if (WebConfig.RunningModel() == "Design") actionControl.Attributes.Add("title", action.GetSPName("Read"));
 
             return GetListbyID(action, para);
         }
 
-        public static List<T> GetListbyID(string obj, int para, WebControl actionControl)
+        public static List<T> GetListbyID(string obj, int para, HtmlControl actionControl)
         {
             var action = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return GetListbyID(action, para , actionControl);         

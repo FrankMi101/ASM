@@ -1,4 +1,5 @@
 ﻿using ASMBLL;
+using BLL;
 using ClassLibrary;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,10 @@ namespace ASM
 
         public static List<T> GetList(string dataSource, string obj, object parameter, WebControl actionControl)
         {
-          //   if (WebConfig.RunningModel() == "Design") actionControl.ToolTip = _sp;
+            if (WebConfig.RunningModel() == "Design") {
+               var _sp = MapClass<T2>.SPName("Read");
+                actionControl.ToolTip = CheckStoreProcedureParameters.GetParamerters(_sp, parameter); ; 
+            }
             return RunGetListFromDB(dataSource,obj, parameter);
         }
    

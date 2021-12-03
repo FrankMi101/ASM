@@ -81,8 +81,8 @@ namespace ASM
                 case "Admin":
                     workingArea = "Board Info Center >> User Access Control Management >> Apps Access Control Summary";
                     goPage = "Pages/AccessSummary.aspx";
-                    hfTopMenuArea.Value = "TopItem_5"; 
-                    hfLevel1MenuArea.Value = "TopItem_55"; 
+                    hfTopMenuArea.Value = "TopItem_7"; 
+                    hfLevel1MenuArea.Value = "TopItem_71"; 
                     break;
                 default:
                     goPage = "Pages/AccessSummary.aspx";

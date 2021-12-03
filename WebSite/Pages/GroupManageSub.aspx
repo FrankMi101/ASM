@@ -282,7 +282,8 @@
                     </div>
                     <div class="Gridview-title">
                         <a href="javascript:AddDetail('GroupPermission')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
+                             <asp:ImageButton ID="ImgUGP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
+                            <%--<img src="../images/add.png" border="0" width="16" height="16" />--%>
                             Manage User Group Permission</a>
                     </div>
                     <div style="overflow: scroll; width: 100%; height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
@@ -444,8 +445,9 @@
     //        alert(action + " button click something going wrong");
     //    }
     //}
-    var page = "Permission_Group.aspx";
+     
     function GetGoPage(gType) {
+        var page =""
         if (gType == "TeacherMember")
             page = "GroupMember_Teacher.aspx";
         else if (gType == "StudentMember")
@@ -453,7 +455,7 @@
         else
             page = "Permission_Group.aspx";
 
-        return  "../PagesForms/Loading.aspx?pID=" + page;
+        return  page;
     }
     function AddDetail(gType) {
 
@@ -463,16 +465,16 @@
         var schoolCode = $("#hfSchoolCode").val();
       
         var arg = "&Action=Add" + "&IDs=0"  + "&SchoolYear=20202021" + "&SchoolCode=" + schoolCode + "&AppID=SIC" + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        var goPage = GetGoPage(gType);
+        var page = GetGoPage(gType);
     
-        OpenInPage('App User Group Permission', goPage + arg, 400, 600);
+        OpenFormFromListPage(xName, page, arg, 400, 600);
 
     }
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        var goPage = GetGoPage(type);
+        var page = GetGoPage(type);
         var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        OpenInPage(xName, goPage + arg, 400, 600);
-
+       // OpenInPage(xName, goPage + arg, 400, 600);
+        OpenFormFromListPage(xName, page, arg, 350, 550);
     }
 
 </script>

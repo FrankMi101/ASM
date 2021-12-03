@@ -248,12 +248,14 @@
     <Content Include="Model\WebService.asmx" />
     <Content Include="Model\WebServiceAction.asmx" />
     <Content Include="NotAllowView.aspx" />
+    <Content Include="PagesForms\AppsModel_Details.aspx" />
     <Content Include="PagesForms\Class_Students.aspx" />
     <Content Include="PagesForms\Group_Students.aspx" />
     <Content Include="PagesForms\Group_Teachers.aspx" />
     <Content Include="PagesForms\Loading.aspx" />
     <Content Include="PagesForms\Permission_Group.aspx" />
     <Content Include="PagesForms\Search_Staff.aspx" />
+    <Content Include="PagesForms\Apps_Details.aspx" />
     <Content Include="PagesForms\Security_Group.aspx" />
     <Content Include="PagesForms\Security_Role.aspx" />
     <Content Include="PagesForms\Security_RoleMatch.aspx" />
@@ -261,6 +263,8 @@
     <Content Include="PagesForms\Security_RoleP.aspx" />
     <Content Include="PagesForms\UserAppGroup.aspx" />
     <Content Include="PagesForms\StaffRoleManage.aspx" />
+    <Content Include="Pages\AppsManageSub.aspx" />
+    <Content Include="Pages\AppsManage.aspx" />
     <Content Include="Pages\Loading.aspx" />
     <Content Include="Pages\AccessSummary.aspx" />
     <Content Include="Pages\GroupManage.aspx" />
@@ -440,6 +444,13 @@
     <Compile Include="NotAllowView.aspx.designer.cs">
       <DependentUpon>NotAllowView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PagesForms\AppsModel_Details.aspx.cs">
+      <DependentUpon>AppsModel_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\AppsModel_Details.aspx.designer.cs">
+      <DependentUpon>AppsModel_Details.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PagesForms\Class_Students.aspx.cs">
       <DependentUpon>Class_Students.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -481,6 +492,13 @@
     </Compile>
     <Compile Include="PagesForms\Search_Staff.aspx.designer.cs">
       <DependentUpon>Search_Staff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesForms\Apps_Details.aspx.cs">
+      <DependentUpon>Apps_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\Apps_Details.aspx.designer.cs">
+      <DependentUpon>Apps_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="PagesForms\Security_Group.aspx.cs">
       <DependentUpon>Security_Group.aspx</DependentUpon>
@@ -530,6 +548,20 @@
     </Compile>
     <Compile Include="PagesForms\StaffRoleManage.aspx.designer.cs">
       <DependentUpon>StaffRoleManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppsManageSub.aspx.cs">
+      <DependentUpon>AppsManageSub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AppsManageSub.aspx.designer.cs">
+      <DependentUpon>AppsManageSub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AppsManage.aspx.cs">
+      <DependentUpon>AppsManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AppsManage.aspx.designer.cs">
+      <DependentUpon>AppsManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Loading.aspx.cs">
       <DependentUpon>Loading.aspx</DependentUpon>

@@ -12,9 +12,10 @@ namespace ASMBLL
 {
     public class ActionAppService<T> : IActionApp<T>
     {
-        private string _sp = MapClass<T>.SPName("Edit");
-        private readonly string _objName = typeof(T).Name;
+        //  private string _sp = MapClass<T>.SPName("Edit");
         private readonly IActionApp<T> _actionApp;
+        private readonly IDataOperateService<T> _dataOperate;
+
 
         public ActionAppService()
         {
@@ -22,11 +23,12 @@ namespace ASMBLL
             //  this._actionApp =  MapClass<T>.ActionClassType("");
             _actionApp = (IActionApp<T>)new ActionApp<T>();
         }
-        public ActionAppService(IActionApp<T> iActionapp)
+        public ActionAppService(IActionApp<T> iActionapp, string dataSource)
         {
             _actionApp = iActionapp;
-            //   this._actionApp = (IActionApp<T>)MapClass<T>.ClassType(objType);
-            //   this._actionApp = MapClass<T>.ActionClassType(objType);
+            // _actionApp = MapClass<T>.ActionClassType(objType);
+            this._dataOperate = MapClassForDB<T>.DBSource(dataSource);
+
         }
         public string GetSPName(string action)
         {
@@ -85,6 +87,12 @@ namespace ASMBLL
         public string RemoveObj(T parameter)
         {
             return _actionApp.EditObj(parameter);
+        }
+
+
+        public virtual object GetParameter(string operate, T paraObj)
+        {
+            return null;
         }
     }
 }

@@ -85,7 +85,7 @@ namespace ASM.PagesForms
                 Para4 = scope
             };
             AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
-            AppsPage.BuildingList(ddlApps, "AppsName", parameters, "SIC");
+            AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);
 
             SetAppsGroup();
 
@@ -139,7 +139,7 @@ namespace ASM.PagesForms
             else
             {
                 int ids = int.Parse(para.IDs);
-                myList = ManageFormContent<T>.GetListbyID("StaffWorkingGroups", ids);
+                myList = ManageFormContent<T>.GetListbyID("StaffWorkingGroups", ids, btnSubmit);
             }
             return myList;
         }

@@ -36,8 +36,8 @@ namespace ASMBLL.Tests
         [TestMethod()]
         public void GetObjByID_ReturnAppRolebyID_()
         {   //Arrange
-            int ids = 166;
-            string expect = "Teacher";
+            int ids = 9;
+            string expect = "AppSupport";
 
             //Act
             var list = _action.GetObjByID(ids);

@@ -202,7 +202,7 @@ namespace ASM.PagesForms
            // var myList = ManageFormContent<UserGroup>.GetListbyID("UserGroup",IDs);  need MapClass support
           //  var actionClass = new ActionGet<UserGroup>(new ActionAppUserGroup());
           //  var myList = ManageFormContent<UserGroup>.GetListbyID(actionClass, IDs);
-            var myList = ManageFormContent<UserGroup>.GetListbyID("UserGroup", IDs);
+            var myList = ManageFormContent<UserGroup>.GetListbyID("UserGroup", IDs, btnSubmit);
             return myList;
         }
 

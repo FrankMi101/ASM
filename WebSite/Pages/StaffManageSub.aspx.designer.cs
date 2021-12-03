@@ -96,6 +96,15 @@ namespace ASM.Pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SAP_Add;
 
         /// <summary>
+        /// ImgSAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgSAP;
+
+        /// <summary>
         /// GridView_SAP control.
         /// </summary>
         /// <remarks>
@@ -114,6 +123,15 @@ namespace ASM.Pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl APP_Add;
 
         /// <summary>
+        /// ImgAPP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgAPP;
+
+        /// <summary>
         /// GridView_APP control.
         /// </summary>
         /// <remarks>
@@ -130,6 +148,15 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl SIS_Add;
+
+        /// <summary>
+        /// ImgSIS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImgSIS;
 
         /// <summary>
         /// GridView_SIS control.

@@ -22,7 +22,7 @@ namespace ASM
            // string currentDb = DBConnection.CurrentDB;
           //  string connectStr = DBConnection.ConnectionSTR(currentDb);
           // DataAccess.SetSQLParameter.myDBConStr = connectStr;
-
+          
         }
 
         void Application_Error(object sender, EventArgs e)

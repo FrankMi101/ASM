@@ -37,7 +37,8 @@
     <Reference Include="itextsharp.pdfa">
       <HintPath>..\..\DLLReferance\itextsharp.pdfa.dll</HintPath>
     </Reference>
-    <Reference Include="MyBaseClassC">
+    <Reference Include="MyBaseClassC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DLLReferance\MyBaseClassC.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

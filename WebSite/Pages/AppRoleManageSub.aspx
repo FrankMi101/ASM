@@ -63,7 +63,7 @@
             margin-top: 5px;
             display: block;
             width: 100%;
-            height:25px;
+            height: 25px;
         }
 
             .Gridview-title img {
@@ -148,8 +148,9 @@
             </asp:UpdatePanel>
         </div>
         <div class="Gridview-title">
-            <a href="javascript:AddDetail('RolePermission')">
-                <img src="../images/add.png" border="0" />
+            <a href="javascript:AddDetail('SAP')">
+                 <asp:ImageButton ID="ImgSAP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
+              <%--  <img src="../images/add.png" border="0" />--%>
                 Manage SAP Role Permission</a>
         </div>
         <div class="Content-Area Content-Area-SAP">
@@ -289,26 +290,28 @@
         });
     }
 
-    var page = "../PagesForms/Loading.aspx?pID=Permission_Role.aspx";
+    var page = "";
     var arg = "";
 
     function AddDetail(xType) {
-      
+
         var xID = $("#LabelPositionRole").text();
         var xName = $("#LabelPositionRole").text();
-           arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021" + "&SchoolCode=0000" + "&AppID=SIC" + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName  + "&xType=" + xType;
-         OpenInPage('App Role Permission',page + arg, 350,550);
-
+        arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021" + "&SchoolCode=0000" + "&AppID=SIC" + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        //  OpenInPage('App Role Permission',page + arg, 350,550);
+        page = "Permission_Role.aspx";
+        OpenFormFromListPage(xName, page, arg, 350, 550);
     }
-    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType ) {
+    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
 
         if (type == "RolePermission")
-            page = "../PagesForms/Loading.aspx?pID=Permission_Role.aspx";
+            page = "Permission_Role.aspx";
         else
-            page = "../PagesForms/Loading.aspx?pID=Security_RoleMatch.aspx";
-          
-        OpenInPage(xName, page + arg, 350, 550);
+            page = "Security_RoleMatch.aspx";
+
+        // OpenInPage(xName, page + arg, 350, 550);
+        OpenFormFromListPage(xName, page, arg, 350, 550);
     }
 
 </script>

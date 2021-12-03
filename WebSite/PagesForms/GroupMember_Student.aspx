@@ -46,7 +46,7 @@
             </Services>
         </asp:ScriptManager>  
 
-                <table  class="Edit-Content">
+                <table >
                     
                     <tr>
                         <td>
@@ -55,7 +55,7 @@
                         <td >
                             <asp:Label ID="LabelGroupType" runat="server" Text="Label"></asp:Label>
                          
-                            <asp:DropDownList ID="ddlStudentMemberID" runat="server" Width="150px" CssClass="ddlControls"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlStudentMemberID" runat="server" Width="150px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                         </td>
                         
                     </tr>
@@ -63,7 +63,7 @@
                     <tr>
                         <td>Comments</td>
                         <td  >
-                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="comments to add this group"></asp:TextBox>
+                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="comments to add this group"  CssClass="Edit-Content-Control" ></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

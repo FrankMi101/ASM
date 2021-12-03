@@ -8,5 +8,7 @@
         public string SchoolYear { get; set; }
         public string SchoolCode { get; set; }
         public string StaffUserID { get; set; }
+        public string AppID { get; set; }
+        public string AppRole { get; set; }
     }
 }

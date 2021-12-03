@@ -105,6 +105,15 @@ namespace ASM.PagesForms
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnSubmit;
 
         /// <summary>
+        /// btnCheckPara control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnCheckPara;
+
+        /// <summary>
         /// hfCategory control.
         /// </summary>
         /// <remarks>

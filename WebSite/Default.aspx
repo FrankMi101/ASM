@@ -219,8 +219,8 @@
 
                     </table>
                 </div>
-                <div id="LoginAsDIV" class="bubble epahide">
-                    <asp:RadioButtonList ID="rblLoginAS" runat="server" AutoPostBack="true" Height="150px" OnSelectedIndexChanged="RblLoginAS_SelectedIndexChanged"></asp:RadioButtonList>
+                <div id="LoginAsDIV" class="bubble epahide" style="height:180px; overflow:auto">
+                    <asp:RadioButtonList ID="rblLoginAS" runat="server" AutoPostBack="true"  Height="200px" OnSelectedIndexChanged="RblLoginAS_SelectedIndexChanged" RepeatColumns="1"></asp:RadioButtonList>
                 </div>
             </div>
 

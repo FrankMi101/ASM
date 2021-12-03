@@ -93,6 +93,12 @@
             background:  linear-gradient(lightskyblue, white);
             Color: darkblue;
         }
+        .alter-title
+        {
+            display:inline;
+            margin-left:25px;
+            
+        }
     </style>
     <script type="text/javascript">
 
@@ -116,8 +122,9 @@
                     Staff Name:<asp:TextBox CssClass="SearchBox" ID="TextBoxStaffName" Width="120px" runat="server" placeholder="Staff name"></asp:TextBox>
                     CPNum:    
                     <asp:TextBox CssClass="SearchBox" ID="TextBoxCPNum" runat="server" Width="70px" placeholder="CP Number."></asp:TextBox>
-                    <asp:TextBox CssClass="SearchBox" ID="TextBoxStaffRole" runat="server" Width="80px" Visible="false" placeholder="SAP Role"></asp:TextBox>
-                    SAP Unit:<asp:TextBox CssClass="SearchBox" ID="TextBoxUnit" Width="200px" runat="server" placeholder="SAP Unit"></asp:TextBox>
+                    SAP Role:
+                    <asp:TextBox CssClass="SearchBox" ID="TextBoxStaffRole" runat="server" Width="80px" placeholder="SAP Role"></asp:TextBox>
+                    SAP Unit:<asp:TextBox CssClass="SearchBox" ID="TextBoxUnit" Width="100px" runat="server" placeholder="SAP Unit"></asp:TextBox>
                     <%--                    <asp:Button ID="btnGradeTab" runat="server" Text="" Height="0px" Width="0px" CssClass="HideButton" OnClick="BtnGradeTab_Click" />--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -136,9 +143,12 @@
                 <ContentTemplate>
 
                     <div class="Gridview-title" id="SAP_Add" runat="server">
-                        <a href="javascript:AddDetail('SAP')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
-                            Assign the User to New Role Overwrite SAP Role</a>
+                        <a href="javascript:AddDetail('SAP')" title =" Function about Apps access permission group " >
+                             <asp:ImageButton ID="ImgSAP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
+                             Assign the Staff to New Role Overwrite SAP Role</a>
+                        <div class ="alter-title">
+                            (Apps access permission group)
+                        </div>
                     </div>
                     <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent">
 
@@ -156,7 +166,7 @@
                                 <asp:BoundField DataField="EmployeeRole" ReadOnly="True" HeaderText="Employee Role" ItemStyle-CssClass="EmployeeRole">
                                     <ItemStyle Width="15%" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="SchoolName" ReadOnly="True" HeaderText="Unit Name" ItemStyle-CssClass="UnitName">
+                                <asp:BoundField DataField="SchoolName" ReadOnly="True" HeaderText="School Name" ItemStyle-CssClass="UnitName">
                                     <ItemStyle Width="20%" />
                                 </asp:BoundField>
                                 <asp:BoundField DataField="JobDesc" ReadOnly="True" HeaderText="Job Description" ItemStyle-CssClass="SchoolCode">
@@ -194,9 +204,12 @@
                         </asp:GridView>
                     </div>
                     <div class="Gridview-title" id="APP_Add" runat="server">
-                        <a href="javascript:AddDetail('APP')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
-                            Assign the User to App Group </a>
+                        <a href="javascript:AddDetail('APP')" title =" Function about User access student group ">
+                             <asp:ImageButton ID="ImgAPP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
+                             Assign the Staff to App Group </a>
+                         <div class ="alter-title">
+                            (User access student group)
+                        </div>
                     </div>
                     <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent2">
 
@@ -270,9 +283,12 @@
                         </asp:GridView>
                     </div>
                     <div class="Gridview-title" id="SIS_Add" runat="server">
-                        <a href="javascript:AddDetail('SIS')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
-                            Assign the User to SIS Class</a>
+                        <a href="javascript:AddDetail('SIS')"  title =" Function about Teacher access student group by class ">
+                            <asp:ImageButton ID="ImgSIS" runat="server"  src="../images/add.png" border="0" width="16" height="16" /> 
+                            Assign the Staff to SIS Class</a>
+                         <div class ="alter-title">
+                            (Teacher access student group by class)
+                        </div>
                     </div>
                     <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent3">
 
@@ -430,88 +446,64 @@
     var title = "";
     function GoPage(type, action) {
         if (type == 'SAP') {
-            page = "../PagesForms/Loading.aspx?pID=StaffRoleManage.aspx";
+            page = "StaffRoleManage.aspx";
             switch (action) {
                 case "Add":
-                    title = 'Add User to New App Role';
+                    title = 'Add Staff to New App Role';
                     break;
                 case "Edit":
                     title = 'Edit App Role of User';
                     break;
                 default:
-                    title = 'Remove User from the App Role';
+                    title = 'Remove Staff from the App Role';
             }
         }
         if (type == 'APP') {
-            page = "../PagesForms/Loading.aspx?pID=UserAppGroup.aspx";
+            page = "UserAppGroup.aspx";
             switch (action) {
                 case "Add":
-                    title = 'Add User to New App Group';
+                    title = 'Add Staff to New App Group';
                     break;
                 case "Edit":
                     title = 'Edit App Group of User';
                     break;
                 default:
-                    title = 'Remove User from the App Group';
+                    title = 'Remove Staff from the App Group';
             }
         }
 
         if (type == 'SIS') {
-            page = "../PagesForms/Loading.aspx?pID=UserSISClass.aspx";
+            page = "UserSISClass.aspx";
             switch (action) {
                 case "Add":
-                    title = 'Add User to SIS Class Operation';
+                    title = 'Add Staff to SIS Class Operation';
                     break;
                 case "Edit":
                     title = 'Edit SIS Class Operation of User';
                     break;
                 default:
-                    title = 'Remove User from the SIS Class Operation';
+                    title = 'Remove Staff from the SIS Class Operation';
             }
         }
     }
     function AddDetail(type) {
         GoPage(type, "Add");
         var staffID = $("#TextBoxUserID").val();
-        var staffRole = $("#TextBoxUserRole").val();
+        var staffRole = $("#TextBoxStaffRole").val();  
         var staffName = $("#TextBoxStaffName").val();
         var CPNum = $("#TextBoxCPNum").val();
         var schoolCode = $("#TextBoxUnit").val();
-        var arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021"  + "&SchoolCode=" + schoolCode + "&AppID=SIC" + "&ModelID=" + staffID + "&xID=" + CPNum + "&xName=" + staffName + "&xType=" + staffRole;
-        OpenInPage(title, page + arg, 400, 650);
+        var arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021" + "&SchoolCode=" + schoolCode + "&AppID=SIC" + "&ModelID=" + CPNum + "&xID=" + staffID + "&xName=" + staffName + "&xType=" + staffRole;
+       // OpenInPage(title, page + arg, 400, 650);
+        OpenFormFromListPage(title, page, arg, 400, 650);
     }
 
-    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
+    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, cpnum, xID, xName, xType) {
         GoPage(type, action);
        //  arg = "?StaffID=" + xID + "&StaffRole=" + xType + "&StaffName=" + groupID + "&CPNum=" + appID + "&Action=" + action + "&IDs=" + ids;
-        var  arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        OpenInPage(title, page + arg, 400, 650);  
+        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + cpnum + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        
+        OpenFormFromListPage(title, page, arg, 400, 650);
     }
-
-    //function OpenInMyPage() {
-    //    var goPage = page + para;
-    //    alert(goPage);
-
-    //    var vTop = 50;
-    //    var vLeft = 5;
-    //    var vHeight = 400;
-    //    var vWidth = 600;
-    //    try {
-
-    //        $("#editiFrame").attr('src', goPage);
-    //        $("#EditTitle").html(title + " ");
-    //        $("#EditDIV").css({
-    //            top: vTop,
-    //            left: vLeft,
-    //            height: vHeight - 50,
-    //            width: vWidth - 50
-    //        });
-    //        $("#EditDIV").fadeToggle("fast");
-    //    }
-
-    //    catch (e) {
-    //        window.alert("Error:" + e.mess);
-    //    }
-
-    //}
+     
 </script>

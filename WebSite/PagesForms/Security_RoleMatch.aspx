@@ -54,13 +54,13 @@
                 <tr>
                     <td>Match Role:</td>
                     <td>
-                        <asp:DropDownList ID="ddlMatchRole" runat="server" Width="80%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlMatchRole" runat="server" Width="80%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
                     <td>Match Scope: </td>
                     <td>
-                        <asp:DropDownList ID="ddlMatchScope" runat="server" Width="80%" CssClass="ddlControls"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlMatchScope" runat="server" Width="80%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td style="width:25%"></td>

@@ -52,7 +52,7 @@
                         <label for="ddlApps">Apps Name: </label>
                     </td>
                     <td colspan="3">
-                        <asp:DropDownList ID="ddlApps" runat="server" Width="400px" CssClass="ddlControls"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlApps" runat="server" Width="400px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList></td>
                     <td>Active Flag:
                             <asp:Label ID="LabelActive" runat="server" Text="X"></asp:Label>
                     </td>
@@ -65,7 +65,7 @@
                         )
                     </td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextBoxGroupID" runat="server" Width="100%" placeholder="Group ID"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxGroupID" runat="server" Width="100%" placeholder="Group ID" CssClass="Edit-Content-Control"></asp:TextBox>
 
                     </td>
 
@@ -75,7 +75,7 @@
                         <label for="TextBoxGroupName">Group Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextBoxGroupName" runat="server" Width="100%" placeholder="Group Name"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxGroupName" runat="server" Width="100%" placeholder="Group Name"  CssClass="Edit-Content-Control" ></asp:TextBox>
                     </td>
 
                 </tr>
@@ -84,11 +84,11 @@
                         <label for="ddlSchoolYear">Group Type: </label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlGroupType" runat="server" Width="100px" AutoPostBack="true" CssClass="ddlControls" OnSelectedIndexChanged="DdlGroupType_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlGroupType" runat="server" Width="100px" AutoPostBack="true" CssClass="ddlControls Edit-Content-Control" OnSelectedIndexChanged="DdlGroupType_SelectedIndexChanged"></asp:DropDownList>
                     </td>
                     <td colspan="2">Student Member:
                   
-                        <asp:DropDownList ID="ddlStudentMemberID" runat="server" Width="100px" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlStudentMemberID" runat="server" Width="100px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>
                     <td>
                         <asp:CheckBox ID="chbTeachers" runat="server" Text="Techer Members:" Enabled="false" />
@@ -103,7 +103,7 @@
 
                     </td>
                     <td colspan="2">
-                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="100%">
+                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="100%"  CssClass="Edit-Content-Control" >
                             <asp:ListItem Selected="True">Read</asp:ListItem>
                             <asp:ListItem>Update</asp:ListItem>
                             <asp:ListItem>Super</asp:ListItem>
@@ -117,9 +117,9 @@
                     <td>Working Date:</td>
                     <td colspan="4">
                         <label for="dateStart">Start Date: </label>
-                        <input runat="server" type="text" id="dateStart" size="9" />
+                        <input runat="server" type="text" id="dateStart" size="9" class ="Edit-Content-Control" />
                         <label for="dateEnd">End Date: </label>
-                        <input runat="server" type="text" id="dateEnd" size="9" />
+                        <input runat="server" type="text" id="dateEnd" size="9" class ="Edit-Content-Control" />
 
                     </td>
                 </tr>
@@ -128,15 +128,15 @@
                         <label for="ddlSchool">School Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="58px" CssClass="ddlControls"></asp:DropDownList>
-                        <asp:DropDownList ID="ddlSchool" runat="server" Width="400px" CssClass="ddlControls"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="58px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlSchool" runat="server" Width="400px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList></td>
                 </tr>
 
 
                 <tr>
                     <td>Comments</td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"  CssClass="Edit-Content-Control" ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                     </td>
                     <td colspan="4">
                         <div>
-                            <asp:DropDownList ID="ddlAppsTo" runat="server" Width="400px" CssClass="ddlControls"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlAppsTo" runat="server" Width="400px" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
 
                             <input id="btnPush" type="button" value="Push" runat="server" class="action-button" style="width: 80px" />
                         </div>
@@ -283,9 +283,13 @@
                 Comments: $("#TextComments").val(),
             };
 
-            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para,"Parent");
-            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
-            if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs, "Parent");
+            //if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para,"Parent");
+            //if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
+            //if (para.Operate == "Delete") DeleteDataWebAPICall(uri, para.IDs, "Parent");
+
+            if (para.Operate == "Add") WebAPICall.AddData(uri, para, "Parent"); 
+            if (para.Operate == "Edit") WebAPICall.EditData(uri, para, "Parent"); 
+            if (para.Operate == "Delete") WebAPICall.DeletData(uri, para.IDs, "Parent"); 
 
       
 

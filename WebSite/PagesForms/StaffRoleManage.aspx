@@ -16,6 +16,7 @@
     <script src="../Scripts/JqueryUI/jquery-ui.min.js"></script>
     <link href="../Scripts/JqueryUI/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/ContentForms.css" rel="stylesheet" />
 
 
     <style type="text/css">
@@ -130,6 +131,7 @@
             margin-top: -5px;
             margin-left: 5px;
         }
+
         .auto-style1 {
             height: 47px;
         }
@@ -156,13 +158,14 @@
             <div id="DIV_SAP" runat="server">
                 <table style="width: 100%">
                     <tr>
-                        <td colspan="4">Overwrite User SAP Role </td>
-                        <td>  <asp:Label ID="labelStaffUserID" runat="server" Text="staff id"></asp:Label></td>
+                        <td colspan="3">Overwrite User SAP Role </td>
+                        <td>User Login ID</td>
+                        <td>
+                            <asp:Label ID="labelStaffUserID" runat="server" Text="staff id"></asp:Label></td>
                     </tr>
                     <tr>
                         <td class="auto-style1">User Profile:</td>
-                        <td class="auto-style1">Staff Name: </td>
-                        <td class="auto-style1">
+                        <td class="auto-style1" colspan="2"> Name: 
                             <asp:Label ID="labelStaffName" runat="server" Text="user name"></asp:Label>
                         </td>
                         <td class="auto-style1">CPNum:</td>
@@ -173,27 +176,50 @@
 
                     <tr>
                         <td>Staff Role:</td>
-                        <td>
-                             SAP Role:  </td>
+                        <td>SAP Role:  </td>
                         <td>
                             <asp:Label ID="labelSAPRole" runat="server" Text="sap role"></asp:Label>
                         </td>
                         <td>Grant Role:</td>
                         <td>
-                            <asp:DropDownList ID="ddlGrentRole" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList></td>
+                            <asp:DropDownList ID="ddlGrentRole" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList></td>
                     </tr>
-
                     <tr>
-                        <td>Active <asp:CheckBox ID="chbActive" Checked="true" runat="server" />
+                        <td>Application:</td>
+                        <td colspan="4">
+                            <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Access Students:</td>
+                        <td>Scope by:</td>
+                        <td><asp:DropDownList ID="ddlScopeby" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control" OnSelectedIndexChanged="DDLScopeby_SelectedIndexChanged" AutoPostBack="true">
+                            <asp:ListItem>Board</asp:ListItem>
+                            <asp:ListItem>Panel</asp:ListItem>
+                            <asp:ListItem>Area</asp:ListItem>
+                            <asp:ListItem>District</asp:ListItem>
+                            <asp:ListItem>School</asp:ListItem>
+                            <asp:ListItem>Class</asp:ListItem>
+                            <asp:ListItem>Grade</asp:ListItem>
+                             <asp:ListItem>UserGroup</asp:ListItem>
+                            </asp:DropDownList></td>
+                        <td>Scope Value:</td>
+                        <td>
+                            <asp:DropDownList ID="ddlScopeByValue" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Active
+                            <asp:CheckBox ID="chbActive" Checked="true" runat="server" />
                         </td>
                         <td>Start Date:</td>
                         <td>
-                            <input runat="server" type="text" id="dateStart" size="9" />
+                            <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
                         </td>
                         <td>End Date:
                         </td>
                         <td>
-                            <input runat="server" type="text" id="dateEnd" size="9" />
+                            <input runat="server" type="text" id="dateEnd" size="9"  class="Edit-Content-Control"/>
                         </td>
 
                     </tr>
@@ -203,15 +229,15 @@
 
                         </td>
                         <td colspan="4">
-                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="120px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                            <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="120px" Cssclass="Edit-Content-Control" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
                         </td>
 
                     </tr>
                     <tr>
-                        <td colspan="5" style="text-align:center">
+                        <td colspan="5" style="text-align: center">
                             <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                                 <ContentTemplate>
-                                    <input id="btnSubmit" runat="server" type="button" value="Add User to New Role" class="action-button" />
+                                    <input id="btnSubmit" runat="server" type="button" value="Add User to New Role" class="action-button" title="" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
@@ -222,9 +248,9 @@
                     <tr>
                         <td style="width: 20%"></td>
                         <td style="width: 15%"></td>
-                        <td style="width: 25%"></td>
+                        <td style="width: 20%"></td>
                         <td style="width: 15%"></td>
-                        <td style="width: 25%"></td>
+                        <td style="width: 30%"></td>
                     </tr>
                 </table>
             </div>
@@ -242,7 +268,7 @@
             <asp:HiddenField ID="hfRunningModel" runat="server" />
             <asp:HiddenField ID="hfSchoolyearStartDate" runat="server" />
             <asp:HiddenField ID="hfSchoolyearEndDate" runat="server" />
-         </div>
+        </div>
     </form>
 </body>
 </html>
@@ -268,7 +294,7 @@
 
         $(document).ready(function () {
 
-            InitialDatePickerControl(); 
+            InitialDatePickerControl();
             $("#btnSubmit").click(function (e) {
                 SaveDataToDatabase();
             });
@@ -284,10 +310,13 @@
                 IDs: $("#hfIDs").val(),
                 StaffUserID: $("#labelStaffUserID").text(),
                 WorkingRole: $("#ddlGrentRole").val(),
+                AppID: $("#ddlApps").val(),
+                ScopeBy: $("#ddlScopeby").val(),
+                ScopeByValue: $("#ddlScopeByValue").val(),
                 StaffName: $("#labelStaffName").text(),
                 StartDate: $("#dateStart").val(),
                 EndDate: $("#dateEnd").val(),
-                ActiveFlag: $("#chbActive").val()? "x":"" ,
+                ActiveFlag: $("#chbActive").val() ? "x" : "",
                 Comments: $("#TextComments").val(),
             };
 
@@ -295,10 +324,10 @@
             // var result = SIC.Models.WebService.SaveSecurityGroupMemberTeacher("Teachers", action, para, onSuccess, onFailure);
 
             var uri = "WorkingRole";
-            alert("active : " + para.ActiveFlag +  "  Staff ID: "  +  para.StaffUserID + "  New Role= " + para.WorkingRole + " Start Date:" + para.StartDate +  " End Date: " + para.EndDate +  "  Staff Name: " + para.StaffName);
+            alert("active : " + para.ActiveFlag + "  Staff ID: " + para.StaffUserID + "  New Role= " + para.WorkingRole + " Start Date:" + para.StartDate + " End Date: " + para.EndDate + "  Staff Name: " + para.StaffName);
             if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para, "Parent");
             if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
-            if (para.Operate == "Delete") DeleteDataWebAPICall("DELETE",uri, para.IDs, "Parent");
+            if (para.Operate == "Delete") DeleteDataWebAPICall("DELETE", uri, para.IDs, "Parent");
 
             event.stopPropagation();
         }
@@ -306,7 +335,7 @@
             alert(action + " button click something going wrong");
         }
     }
-   
+
     function InitialDatePickerControl() {
         // var value = new Date().toDateString;
         // alert(minD);

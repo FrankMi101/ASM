@@ -87,7 +87,7 @@ namespace ASM.Pages
                 GroupID = TextBoxGroupID.Text
             };
 
-            return ManagePageList<T, T2>.GetList("SQL", "ClassCall", parameter);
+            return ManagePageList<T, T2>.GetList("SQL", "ClassCall", parameter, ImgUGP);
 
         }
 

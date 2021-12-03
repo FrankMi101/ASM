@@ -176,7 +176,8 @@
         <div class="staff-container" style="margin-top: 5px;">
             <div class="staff-list">
                 <a href="javascript:AddDetail();">
-                    <img src="../images/add.png" border="0" />
+                     <asp:ImageButton ID="ImgNewRole" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
+                   <%-- <img src="../images/add.png" border="0" />--%>
                     Add New Security Role </a>
 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -357,7 +358,7 @@
         alert("Get Menu Failed!");
     }
 
-    var page = "../PagesForms/Loading.aspx?pID=Security_Role.aspx";
+    var page = "Security_Role.aspx";
 
     var arg = "";
 
@@ -367,11 +368,10 @@
         var appID = $("#ddlApps").val();
         var modelID = "Pages";
         var roleType = $("#ddlRoleType").val();
-        var userID = $("#hfUserID").val();
-        var userrole = $("#hfUserRole").val();
         var roleID = "0";
-        arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + roleID + "&xName=" + "New Role" + "&xType=" + roleType;
-        OpenInPage('New Security Role', page + arg, "400", "600");
+        var xName = "New Role";
+        arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + roleID + "&xName=" + xName + "&xType=" + roleType;
+         OpenFormFromListPage(xName, page, arg, 400, 600);
     }
 
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
@@ -379,9 +379,9 @@
         if ($("#hfUserRole").val() != "Admin") {
             alert("Current User is View Permission only");
         }
-        else arg
-            para = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-             OpenInPage(xName, page + arg, "400", "600");
+        else {
+            arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+         OpenFormFromListPage(xName, page, arg, 400, 600);
         }
 
     }

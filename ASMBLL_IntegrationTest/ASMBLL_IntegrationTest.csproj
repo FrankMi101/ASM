@@ -57,8 +57,10 @@
     <Compile Include="ActionAppUserGroupMemberSTests.cs" />
     <Compile Include="ActionAppUserGroupMemberTTests.cs" />
     <Compile Include="ActionAppUserGroupTests.cs" />
+    <Compile Include="ActionApp\ActionAppAppsModelTests.cs" />
     <Compile Include="ActionApp\ActionAppRolePermissionTests.cs" />
     <Compile Include="ActionApp\ActionAppSchoolSelectedTests.cs" />
+    <Compile Include="ActionApp\ActionAppAppsTests.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingGroupsTests.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingRolesTests.cs" />
     <Compile Include="ActionApp\ActionUserGroupPermissionTests.cs" />

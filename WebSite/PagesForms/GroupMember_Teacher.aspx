@@ -47,7 +47,7 @@
                 <td>Staff Name
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlStaff" runat="server" Width="300px"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlStaff" runat="server" Width="300px"  CssClass="Edit-Content-Control" ></asp:DropDownList>
                 </td>
 
             </tr>
@@ -58,16 +58,16 @@
                 </td>
                 <td>
                     <label for="dateStart">Start Date: </label>
-                    <input runat="server" type="text" id="dateStart" size="9" />
+                    <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
                     <label for="dateEnd">End Date: </label>
-                    <input runat="server" type="text" id="dateEnd" size="9" />
+                    <input runat="server" type="text" id="dateEnd" size="9" class="Edit-Content-Control" />
 
                 </td>
             </tr>
             <tr>
                 <td>Comments</td>
                 <td>
-                    <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="150px" TextMode="MultiLine" placeholder="add Comments to here"></asp:TextBox>
+                    <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="150px" TextMode="MultiLine" placeholder="add Comments to here"  CssClass="Edit-Content-Control" ></asp:TextBox>
                 </td>
             </tr>
             <tr>

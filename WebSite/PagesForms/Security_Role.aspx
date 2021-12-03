@@ -47,7 +47,7 @@
                         <label for="ddlApps">Apps Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList></td>
 
                 </tr>
                 <tr>
@@ -58,12 +58,12 @@
                         )
                     </td>
                     <td colspan="2">
-                        <asp:TextBox ID="TextBoxRoleID" runat="server" Width="90%" placeholder="role ID"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxRoleID" runat="server" Width="90%" placeholder="role ID" CssClass="Edit-Content-Control"></asp:TextBox>
 
                     </td>
                     <td>Role Priority</td>
                     <td>
-                        <asp:TextBox ID="TextBoxRolePriority" runat="server" Width="100%" placeholder="Priority"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxRolePriority" runat="server" Width="100%" placeholder="Priority" CssClass="Edit-Content-Control"></asp:TextBox>
                     </td>
 
                 </tr>
@@ -72,7 +72,7 @@
                         <label for="TextBoxRoleName">Role Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextBoxRoleName" runat="server" Width="100%" placeholder="role Name"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxRoleName" runat="server" Width="100%" placeholder="role Name" CssClass="Edit-Content-Control"></asp:TextBox>
                     </td>
 
                 </tr>
@@ -86,7 +86,7 @@
 
                     </td>
                     <td colspan="4">
-                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="90%">
+                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="90%"  CssClass="Edit-Content-Control" >
                             <asp:ListItem Selected="True">Read</asp:ListItem>
                             <asp:ListItem>Update</asp:ListItem>
                             <asp:ListItem>Super</asp:ListItem>
@@ -99,23 +99,22 @@
                 <tr>
                     <td>Access Scope</td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlScope" runat="server" Width="50%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlScope" runat="server" Width="50%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>
                 </tr>
-
-
 
                 <tr>
                     <td>Comments</td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"  CssClass="Edit-Content-Control" ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 15%"></td>
                     <td style="width: 15%"></td>
                     <td style="width: 20%">
-                        <input id="btnSubmit" type="button" value="Submit" runat="server" class="action-button" style="width: 150px" /></td>
+                        <input id="btnSubmit" type="button" value="Submit" runat="server" class="action-button" style="width: 150px" /> 
+                        <input id="btnCheckPara" type="button" value="Check Paramters" runat="server" class="action-button" style="width: 150px" visible="false" /></td>
 
                     <td style="width: 15%"></td>
                     <td style="width: 35%"></td>
@@ -166,6 +165,9 @@
             $("#btnSubmit").click(function (ev) {
                 SaveDataToDatabase();
             });
+            $("#btnCheckPara").click(function (ev) {
+                CheckParas(para);
+            });
 
         });
     }
@@ -181,9 +183,9 @@
             para.AccessScope = $("#ddlScope").val();
           //  var result = SIC.Models.WebService.SaveSecurityRole(para.Operate, para, onSuccess, onFailure);
 
-            if (para.Operate == "Add") SaveDataWebAPICall("POST", uri, para, "Parent");
-            if (para.Operate == "Edit") SaveDataWebAPICall("PUT", uri, para, "Parent");
-            if (para.Operate == "Delete") DeleteDataWebAPICall("DELETE",uri, para.IDs, "Parent");
+            if (para.Operate == "Add") WebAPICall.AddData(uri, para, "Parent"); // SaveDataWebAPICall("POST", uri, para, "Parent");
+            if (para.Operate == "Edit") WebAPICall.EditData(uri, para, "Parent"); // SaveDataWebAPICall("PUT", uri, para, "Parent");
+            if (para.Operate == "Delete") WebAPICall.DeletData(uri, para.IDs, "Parent");// DeleteDataWebAPICall("DELETE",uri, para.IDs, "Parent");
         }
         catch (e) {
             alert(para.Operate + " Submit click something going wrong");
@@ -198,5 +200,10 @@
         alert(para.Operate + " operation failed");
     }
 
+    function CheckParas(para) {
 
+        for (let key in para) {
+            alert(key + " = " + para[key]);
+        }
+    }
 </script>

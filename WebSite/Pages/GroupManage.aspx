@@ -391,7 +391,7 @@
         }
 
     }
-    var page = "../PagesForms/Loading.aspx?pID=Security_Group.aspx";
+    var page = "Security_Group.aspx";
 
     function AddDetail() {
         var schoolYear = $("#hfSchoolYear").val();
@@ -401,14 +401,16 @@
         var xName = "New Security Group";
         var xType = "APP";
         var ids = "0";
+
         var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        alert(arg);
-       OpenInPage('New Security Group', page + arg, 500,650);
+   
+        OpenFormFromListPage(xName, page,  arg, 500,650);
     }
  
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID,xName,xType) {    
         var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        OpenInPage('Security Group Edit', page + arg, 500, 650);
+
+        OpenFormFromListPage(xName, page, arg, 500, 650);
      }
 
     var pagesub = "GroupManageSub.aspx";
@@ -418,32 +420,5 @@
         $("#IframeSubArea").attr('src', goPage);
 
     }
-
-
-    //function OpenInPage(title, page, para, groupId) {
-
-
-    //    var goPage = page + para;
-    //    var vTop = 50;
-    //    var vLeft = 5;
-    //    var vHeight = 500;
-    //    var vWidth = 700;
-    //    try {
-
-    //        $("#editiFrame").attr('src', goPage);
-    //        $("#EditTitle").html(title + " " + groupId);
-    //        $("#EditDIV").css({
-    //            top: vTop,
-    //            left: vLeft,
-    //            height: vHeight - 50,
-    //            width: vWidth - 50
-    //        });
-    //        $("#EditDIV").fadeToggle("fast");
-    //    }
-
-    //    catch (e) {
-    //        window.alert("Error:" + e.mess);
-    //    }
-
-    //}
+ 
 </script>

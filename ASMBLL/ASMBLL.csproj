@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionApp\ActionAppBase.cs" />
+    <Compile Include="ActionApp\ActionApps.cs" />
+    <Compile Include="ActionApp\ActionAppsModel.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingGroups.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingRoles.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingSchools.cs" />

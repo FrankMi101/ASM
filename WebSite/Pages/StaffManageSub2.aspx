@@ -121,7 +121,10 @@
         .ddlControls {
             height: 20px;
         }
-
+        .centerDIV {
+            height:20px;
+            margin:10px;
+        }
         .Content-Aeas-Grant img {
             height: 20px;
             width: 22px;
@@ -161,11 +164,20 @@
                     Staff Name:<asp:TextBox CssClass="SearchBox" ID="TextBoxStaffName" Width="120px" runat="server" placeholder="Staff name"></asp:TextBox>
                     CPNum:    
                     <asp:TextBox CssClass="SearchBox" ID="TextBoxCPNum" runat="server" Width="70px" placeholder="CP Number."></asp:TextBox>
-                    <asp:TextBox CssClass="SearchBox" ID="TextBoxStaffRole" runat="server" Width="80px" Visible="false" placeholder="SAP Role"></asp:TextBox>
-                    SAP Unit:<asp:TextBox CssClass="SearchBox" ID="TextBoxUnit" Width="200px" runat="server" placeholder="SAP Unit"></asp:TextBox>
+                    SAP Role:
+                    <asp:TextBox CssClass="SearchBox" ID="TextBoxStaffRole" runat="server" Width="80px"   placeholder="SAP Role"></asp:TextBox>
+                    SAP Unit:<asp:TextBox CssClass="SearchBox" ID="TextBoxUnit" Width="100px" runat="server" placeholder="SAP Unit"></asp:TextBox>
                     <asp:Button ID="btnGradeTab" runat="server" Text="" Height="0px" Width="0px" CssClass="HideButton" OnClick="BtnGradeTab_Click" />
                 </ContentTemplate>
             </asp:UpdatePanel>
+        </div>
+        <div class="centerDIV">
+            Application:
+            <asp:DropDownList ID="ddlApps" runat="server" Width="300px">
+            </asp:DropDownList>
+            App Role:
+            <asp:DropDownList ID="ddlAppRole" runat="server" Width="180px">
+            </asp:DropDownList>
         </div>
         <div style="margin-left: -2px;">
             <asp:UpdatePanel ID="UpdatePanel6" runat="server">
@@ -314,13 +326,15 @@
                 IDs: "0",
                 SchoolYear: $("#hfSchoolYear").val(),
                 SchoolCode: schoolcode,
-                StaffUserID: staffuserID
+                StaffUserID: staffuserID,
+                AppID: $("#ddlApps").val(),
+                AppRole:$("#ddlAppRole").val()
             };
-
+            alert(para.AppID +  "  " + para.AppRole);
             var uri = "WorkingSchool";
            // alert(para.Operate + " StaffUserID =" + para.StaffUserID + "  School select = " + para.SchoolCode);
-            SaveDataWebAPICall("POST", uri, para, "Self");
-
+           // SaveDataWebAPICall("POST", uri, para, "Self");
+            WebAPICall.AddData(uri, para, "Self");
 
             event.stopPropagation();
         }

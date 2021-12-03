@@ -17,6 +17,13 @@ namespace ASM
             // TODO: Add constructor logic here
             //
         }
+        public static string DefaultAppID
+        {
+            get
+            {
+                return  WebConfig.getValuebyKey("DefaultAppID");
+            }
+        }
         public static string ApplicationID
         {
             get

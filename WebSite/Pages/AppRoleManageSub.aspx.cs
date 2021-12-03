@@ -116,7 +116,7 @@ namespace ASM.Pages
 
 
             //  var myList = ListData.GeneralList<AppRoleMatchList>("SecurityManage", pageID, parameter);
-            var myList = ManagePageList<T, T2>.GetList("SQL", "ClassCall", parameter);
+            var myList = ManagePageList<T, T2>.GetList("SQL", "ClassCall", parameter,ImgSAP);
             return myList;
         }
 

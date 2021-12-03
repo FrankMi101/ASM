@@ -8,93 +8,17 @@ using System.Threading.Tasks;
 
 namespace ASMBLL
 {
-    public class ActionUserGroupPermission : IActionApp<UserGroupPermission>
+    public class ActionUserGroupPermission : ActionAppBase<UserGroupPermission>
     {
-        private string _sp = MapClass<UserGroupPermission>.SPName("Read");
-        //private readonly string _spRead = "dbo.SIC_asm_UserGroupPermission_Read";
-        //private readonly string _spEdit = "dbo.SIC_asm_UserGroupPermission_Edit";
-        private readonly string _invalidMessage = "Invalid Role ID";
-        private readonly string _objName = typeof(UserGroupPermission).Name;
-        private readonly IDataOperateService<UserGroupPermission> _dataOperate;// = (IDataOperateService<UserGroupPermission>)MapClass<UserGroupPermission>.DBSource("SQL"); // new DataOperateService<UserGroupPermission>(new DataOperateServiceSQL<UserGroupPermission>());
-        public ActionUserGroupPermission()  //DataOperateService<T> iDos)
-        {
-            this._dataOperate =  MapClassForDB<UserGroupPermission>.DBSource();
+         public ActionUserGroupPermission()  //DataOperateService<T> iDos)
+        {          
         }
-        public ActionUserGroupPermission(string dataSource)  //DataOperateService<T> iDos)
-        {
-            this._dataOperate =  MapClassForDB<UserGroupPermission>.DBSource(dataSource);
+        public ActionUserGroupPermission(string dataSource) : base(dataSource)
+        {         
         }
         //  private AppClass myMap = MapClass<UserGroupPermission>.GetClass(); 
-        public string GetSPName(string action)
-        {
-            return MapClass<UserGroupPermission>.SPName(action); ;
-        }
-        public List<UserGroupPermission> GetObjList(object parameter)
-        {
-            // var para = new { Operate = "GetListAll", UserID = "asm", UserRole = "admin"};
-            //  _sp = _spRead;//  CheckStoreProcedureParameters.GetParamerters(_spRead, parameter);// "dbo.SIC_asm_UserGroupPermissionList @Operate";
-            //  var para = new { Operate = "GetList" };
-            return _dataOperate.ListOfT(_objName, _sp, parameter);
-        }
-        public List<UserGroupPermission> GetObjList(string dataSource, object parameter)
-        {
-            if (dataSource == "ClassCall") dataSource = MapClass<UserGroupPermission>.SPName("Read");
-            return _dataOperate.ListOfT(dataSource, parameter);
-        }
 
-        public List<UserGroupPermission> GetObjByID(string dataSource, int id)
-        {
-            if (dataSource == "ClassCall") dataSource = MapClass<UserGroupPermission>.SPName("Read");
-            return _dataOperate.ListOfT(dataSource, id);
-        }
-        public List<UserGroupPermission> GetObjByID(int id)
-        {
-            if (id <= 0) return null;
-
-            var para = new { Operate = "Get", UserID = "admin", IDs = id.ToString() };
-            _sp = MapClass<UserGroupPermission>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
-
-            return _dataOperate.ListOfT(_objName, _sp, para);
-
-
-        }
-        public string AddObj(UserGroupPermission parameter)
-        {
-            if (parameter.GroupID == null || parameter.GroupID == "") return _invalidMessage;
-
-            return ObjOperation("Add", parameter);
-        }
-
-        public string EditObj(UserGroupPermission parameter)
-        {
-            if (parameter.GroupID == null || parameter.GroupID == "") return _invalidMessage;
-
-            return ObjOperation("Edit", parameter);
-        }
-
-        public string RemoveObj(UserGroupPermission parameter)
-        {
-            if (parameter.GroupID == null || parameter.GroupID == "") return _invalidMessage;
-            return ObjOperation("Remove", parameter);
-        }
-
-        public string DeleteObj(int id)
-        {
-            if (id <= 0) return _invalidMessage;
-            var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
-            _sp = MapClass<UserGroupPermission>.SPName("Edit");
-            return _dataOperate.EditResult(_objName, _sp, para);
-
-        }
-        private string ObjOperation(string action, UserGroupPermission parameter)
-        {
-            var para = GetParameter(action, parameter);
-            _sp = MapClass<UserGroupPermission>.SPName("Edit");//  CheckStoreProcedureParameters.GetParamerters(_spEdit, para);// "dbo.SIC_asm_UserGroupPermissionEdit @Operate,@UserID,@IDs,@RoleID,@RoleName";
-
-            return _dataOperate.EditResult(_objName, _sp, para);
-        }
-
-        private object GetParameter(string Operate, UserGroupPermission paraObj)
+        public override object GetParameter(string Operate, UserGroupPermission paraObj)
         {
             var parameter = new
             {
@@ -113,10 +37,6 @@ namespace ASMBLL
             };
             return parameter;
         }
-
-        public string ActionsObj(object parameter)
-        {
-            throw new NotImplementedException();
-        }
+ 
     }
 }

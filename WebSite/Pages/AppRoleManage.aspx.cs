@@ -32,7 +32,7 @@ namespace ASM.Pages
         {
             hfCategory.Value = "Home";
             hfPageID.Value = pageID;
-            hfAppID.Value = "SIC";
+            hfAppID.Value = WorkingProfile.DefaultAppID;
             hfUserID.Value  = WorkingProfile.UserId  ;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
             hfUserRole.Value = WorkingProfile.UserRole;
@@ -90,7 +90,7 @@ namespace ASM.Pages
             };
 
             //   var myList = ListData.GeneralList<T>("SecurityManage", pageID, parameter);
-            var myList = ManagePageList<T, AppRole>.GetList("SQL", "ClassCall", parameter);
+            var myList = ManagePageList<T, AppRole>.GetList("SQL", "ClassCall", parameter, ImgNewRole);
             return myList;
         }
 

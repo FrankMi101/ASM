@@ -62,7 +62,7 @@
                         <label for="ddlApps">Apps Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls" AutoPostBack="true" OnSelectedIndexChanged="ddlApps_SelectedIndexChanged"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddlApps" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control" AutoPostBack="true" OnSelectedIndexChanged="ddlApps_SelectedIndexChanged"></asp:DropDownList></td>
 
                 </tr>
                 <tr>
@@ -70,7 +70,7 @@
                         <label for="ddlModelID">Apps Model: </label>
                     </td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlModelID" runat="server" Width="80%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlModelID" runat="server" Width="80%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
 
                     </td>
                 </tr>
@@ -85,7 +85,7 @@
 
                     </td>
                     <td colspan="4">
-                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="100%">
+                        <asp:RadioButtonList ID="rblPermission" runat="server" RepeatDirection="Horizontal" Width="100%"  CssClass="Edit-Content-Control" >
                             <asp:ListItem Selected="True">Read</asp:ListItem>
                             <asp:ListItem>Update</asp:ListItem>
                             <asp:ListItem>Deny</asp:ListItem>
@@ -98,14 +98,14 @@
                 <tr>
                     <td>Access Scope</td>
                     <td colspan="4">
-                        <asp:DropDownList ID="ddlScope" runat="server" Width="100%" CssClass="ddlControls"></asp:DropDownList>
+                        <asp:DropDownList ID="ddlScope" runat="server" Width="100%" CssClass="ddlControls Edit-Content-Control"></asp:DropDownList>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Comments</td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="80px" TextMode="MultiLine" placeholder="Grant Permission Comments"></asp:TextBox>
+                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="80px" TextMode="MultiLine" placeholder="Grant Permission Comments"  CssClass="Edit-Content-Control" ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>

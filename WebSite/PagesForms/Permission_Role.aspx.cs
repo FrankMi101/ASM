@@ -36,8 +36,10 @@ namespace ASM.PagesForms
             hfPageID.Value = pageID;
             hfAppID.Value = Page.Request.QueryString["AppID"].ToString();
             hfRoleID.Value = Page.Request.QueryString["xID"].ToString();
-            TextBoxRoleName.Text = Page.Request.QueryString["xID"].ToString();
+            TextBoxRoleName.Text = Page.Request.QueryString["xName"].ToString();
+
             hfRoleType.Value = Page.Request.QueryString["xType"].ToString();
+
             hfUserID.Value  = WorkingProfile.UserId  ;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
             //           hfSchoolYear.Value = WorkingProfile.SchoolYear;
@@ -107,7 +109,7 @@ namespace ASM.PagesForms
         private List<T> GetDataSource<T>()
         {
             int IDs = int.Parse(lblIDs.Text);
-            var myList = ManageFormContent<T>.GetListbyID("AppRolePermission", IDs);
+            var myList = ManageFormContent<T>.GetListbyID("AppRolePermission", IDs, btnSubmit);
 
             return myList;
         }

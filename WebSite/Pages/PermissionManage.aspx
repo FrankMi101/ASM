@@ -274,7 +274,7 @@
         });
 
     }
-    var page = "../PagesForms/Loading.aspx?pID=Security_RoleP.aspx";
+    var page = "Security_RoleP.aspx";
     function AddDetail() {
         if ($("#hfUserRole").val() == "Principal") {
             alert("Current User is View Permission only");
@@ -287,14 +287,16 @@
             var modelID = "Pages";
             var ids = 0;
             var xID = "0";
-            var xName = "" 
+            var xName = "'New Security Role'"
             var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + roleType;
-            OpenInPage('New Security Role', page + arg, 400,550);
+
+            OpenFormFromListPage(xName, page, arg, 400, 550);
         }
     }
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        OpenInPage('Security Group Edit', page + arg, 400, 550);
+       
+        OpenFormFromListPage(xName, page, arg, 400, 550);
     }
      
 </script>

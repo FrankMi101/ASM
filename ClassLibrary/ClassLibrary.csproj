@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AppClass.cs" />
     <Compile Include="AppRole.cs" />
+    <Compile Include="AppsList.cs" />
     <Compile Include="AppRoleList.cs" />
     <Compile Include="AppRoleMatch.cs" />
     <Compile Include="AppRoleMatchList.cs" />

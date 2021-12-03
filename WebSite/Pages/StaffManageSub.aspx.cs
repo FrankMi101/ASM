@@ -5,6 +5,7 @@ using ClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace ASM.Pages
 {
@@ -30,10 +31,10 @@ namespace ASM.Pages
         private void GetQueryInfo()
         {
             TextBoxUnit.Text = Page.Request.QueryString["SchoolCode"].ToString(); 
-            TextBoxStaffRole.Text = Page.Request.QueryString["ModelID"].ToString();
-            TextBoxCPNum.Text = Page.Request.QueryString["xID"].ToString();
+            TextBoxStaffRole.Text = Page.Request.QueryString["xType"].ToString();
+            TextBoxCPNum.Text = Page.Request.QueryString["ModelID"].ToString();  
             TextBoxStaffName.Text = Page.Request.QueryString["xName"].ToString();
-            TextBoxUserID.Text = Page.Request.QueryString["xType"].ToString();
+            TextBoxUserID.Text = Page.Request.QueryString["xID"].ToString();
            
         }
         private void SetPageAttribution()
@@ -66,17 +67,17 @@ namespace ASM.Pages
         {
            // string Grade = hfSelectedTab.Value;
    
-                    GridView_SAP.DataSource = GetDataSource<StaffList>("SAP"); //GetDataSource_SAP();
+                    GridView_SAP.DataSource = GetDataSource<StaffList>("SAP", ImgSAP); //GetDataSource_SAP();
                     GridView_SAP.DataBind(); 
   
-                    GridView_SIS.DataSource = GetDataSource<ClassesList>("SIS"); // GetDataSource_SIS();
+                    GridView_SIS.DataSource = GetDataSource<ClassesList>("SIS", ImgSIS); // GetDataSource_SIS();
                     GridView_SIS.DataBind(); 
  
-                    GridView_APP.DataSource = GetDataSource<GroupList>("APP"); // GetDataSource_APP();
+                    GridView_APP.DataSource = GetDataSource<GroupList>("APP", ImgAPP); // GetDataSource_APP();
                     GridView_APP.DataBind(); 
    
         } 
-        private List<T> GetDataSource<T>(string grade)
+        private List<T> GetDataSource<T>(string grade, WebControl imgButton)
         {
             var para = new
             {
@@ -98,7 +99,7 @@ namespace ASM.Pages
             else
             {
                 // var myList = ListData.GeneralList<T>("SecurityManage", pageID, parameter);
-                myList = ManagePageList<T, StaffMemberOf>.GetList("SQL", "ClassCall", para);
+                myList = ManagePageList<T, StaffMemberOf>.GetList("SQL", "ClassCall", para, imgButton);
             }
             return myList;
         }

@@ -34,11 +34,12 @@ namespace ASM.PagesForms
             hfStaffUserID.Value = Page.Request.QueryString["xID"].ToString();
             hfAction.Value = Page.Request.QueryString["Action"].ToString();
             hfIDs.Value = Page.Request.QueryString["IDs"].ToString();
+            hfStaffRole.Value = Page.Request.QueryString["xType"].ToString();
+
+            labelSatffCPnum.Text = Page.Request.QueryString["ModelID"].ToString();
             labelStaffUserID.Text = Page.Request.QueryString["xID"].ToString();
             labelStaffName.Text = Page.Request.QueryString["xName"].ToString();
-            hfStaffRole.Value = Page.Request.QueryString["xType"].ToString();
-            labelSatffCPnum.Text = Page.Request.QueryString["ModelID"].ToString();
-
+            labelSAPRole.Text = Page.Request.QueryString["xType"].ToString();
 
 
             if (hfAction.Value == "Add") btnSubmit.Value = "Add User To Select Role";
@@ -78,7 +79,10 @@ namespace ASM.PagesForms
                 Para1 = hfStaffRole.Value,
                 Para2 = hfStaffUserID.Value
             };
-            AppsPage.BuildingList(ddlGrentRole, "AppRole", parameters, WorkingProfile.SchoolYear);
+            AppsPage.BuildingList(ddlGrentRole, "AppRoleAvailable", parameters, WorkingProfile.SchoolYear);
+            AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);
+            AppsPage.BuildingList(ddlScopeby, "AccessScope", parameters, "School");
+            AssiblingScopeValueDDL( WorkingProfile.SchoolCode );
 
         }
         private void BindFormData()
@@ -89,12 +93,14 @@ namespace ASM.PagesForms
                 labelStaffName.Text = RoleInfo.StaffName;
                 labelSatffCPnum.Text = RoleInfo.CPNum;
                 labelSAPRole.Text = RoleInfo.SAPRole;
-                AppsPage.SetListValue(ddlGrentRole, RoleInfo.WorkingRole);
                 dateStart.Value = RoleInfo.StartDate;
                 dateEnd.Value = RoleInfo.EndDate;
                 TextComments.Text = RoleInfo.Comments;
                 chbActive.Checked = RoleInfo.ActiveFlag.ToLower() == "x" ? true : false;
-
+                AppsPage.SetListValue(ddlGrentRole, RoleInfo.WorkingRole);
+                AppsPage.SetListValue(ddlApps, RoleInfo.AppID);
+                AppsPage.SetListValue(ddlScopeby, RoleInfo.ScopeBy);
+                AssiblingScopeValueDDL(RoleInfo.ScopeByValue);
             }
         }
         private List<T> GetDataSource<T>()
@@ -116,9 +122,32 @@ namespace ASM.PagesForms
             else
             {
                 int ids = int.Parse(para.IDs);
-                myList = ManageFormContent<T>.GetListbyID("StaffWorkingRoles", ids);
+                myList = ManageFormContent<T>.GetListbyID("StaffWorkingRoles", ids, btnSubmit);
             }
             return myList;
+        }
+
+        protected void DDLScopeby_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string initialValue = "";
+
+            if (ddlScopeby.SelectedValue == "School") initialValue = WorkingProfile.SchoolCode;
+
+            AssiblingScopeValueDDL(initialValue);
+        }
+        private void AssiblingScopeValueDDL(string initialValue)
+        {
+            var parameters = new CommonListParameter()
+            {
+                Operate = "AccessScopeValue",
+                UserID = WorkingProfile.UserId,
+                Para1 = ddlScopeby.SelectedValue,
+                Para2 = WorkingProfile.SchoolYear,
+                Para3 = WorkingProfile.SchoolCode,
+                Para4 = ddlApps.SelectedValue
+            };
+            //     AppsPage.BuildingList(ddlScopeByValue, "AccessScopeValue", parameters);
+            AppsPage.BuildingList(ddlScopeByValue, ddlScopeby.SelectedValue, parameters, initialValue);
         }
     }
 }

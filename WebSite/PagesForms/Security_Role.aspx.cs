@@ -62,6 +62,8 @@ namespace ASM.PagesForms
                 Para3 = WorkingProfile.SchoolCode,
                 Para4 = scope
             };
+
+            
             AppsPage.BuildingList(ddlScope, "AccessScope", parameters,"School");
             AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value);
 
@@ -144,8 +146,14 @@ namespace ASM.PagesForms
                 AppID = hfAppID.Value
            };
 
+          //  foreach (var prop in parameter.GetType().GetProperties(System.Reflection.BindingFlags.Instance))
+            //foreach ( KeyValuePair<string,object> kvp in parameter)
+            //{
+
+            //}
+
            // var myList = ListData.GeneralList<AppRoleList>("SecurityManage", pageID, parameter);
-            var myList = ManagePageList<T, AppRole>.GetList("SQL", "ClassCall", parameter);
+            var myList = ManagePageList<T, AppRole>.GetList("SQL", "ClassCall", parameter );
             return myList;
         }
 

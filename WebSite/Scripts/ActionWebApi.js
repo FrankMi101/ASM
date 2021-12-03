@@ -1,5 +1,13 @@
 ﻿var Url = "https://webt.tcdsb.org/Webapi/ASM/api/";
 
+var WebAPICall = {
+    GetData: function (uri, id) { return GetDataWebAPICall(uri, id)},
+    DeletData: function (uri, id, refreshPage) { DeleteDataWebAPICall('DELETE', uri, id, refreshPage) },
+    AddData: function (uri, para, refreshPage) { SaveDataWebAPICall('POST', uri, para, refreshPage)},
+    EditData: function (uri, para, refreshPage) { SaveDataWebAPICall('PUT', uri, para, refreshPage) },
+     
+}
+
 async function GetDataWebAPICall(uri, id) {
     var myUrl = Url + uri + "/" + id;
     // var JSONStr = JSON.stringify(paraObj);

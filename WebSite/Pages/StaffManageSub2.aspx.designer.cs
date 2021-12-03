@@ -87,6 +87,24 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.Button btnGradeTab;
 
         /// <summary>
+        /// ddlApps control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlApps;
+
+        /// <summary>
+        /// ddlAppRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAppRole;
+
+        /// <summary>
         /// UpdatePanel6 control.
         /// </summary>
         /// <remarks>

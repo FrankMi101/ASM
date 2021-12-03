@@ -32,10 +32,10 @@ namespace ASM.Pages
         private void GetQueryInfo()
         {
             TextBoxUnit.Text = Page.Request.QueryString["SchoolCode"].ToString();
-            TextBoxStaffRole.Text = Page.Request.QueryString["ModelID"].ToString();
-            TextBoxCPNum.Text = Page.Request.QueryString["xID"].ToString();
+            TextBoxStaffRole.Text = Page.Request.QueryString["xType"].ToString();
+            TextBoxCPNum.Text = Page.Request.QueryString["ModelID"].ToString();
             TextBoxStaffName.Text = Page.Request.QueryString["xName"].ToString();
-            TextBoxUserID.Text = Page.Request.QueryString["xType"].ToString();
+            TextBoxUserID.Text = Page.Request.QueryString["xID"].ToString();
             hfSelectedTab.Value = "North";
 
         }
@@ -81,8 +81,8 @@ namespace ASM.Pages
             };
             //AppsPage.BuildingList(ddlSchoolYear, "SchoolYear", parameters, WorkingProfile.SchoolYear);
             //AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
-            //AppsPage.BuildingList(ddlApps, "AppsName", parameters, "SIC");
-            //AppsPage.BuildingList(ddlAppRole, "AppRolee", parameters, "Teacher");
+            AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);
+            AppsPage.BuildingList(ddlAppRole, "AppRole", parameters, TextBoxStaffRole.Text);
           //  SetAppsGroup();
            Assembing_Tab();
         }

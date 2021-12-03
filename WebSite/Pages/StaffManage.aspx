@@ -410,8 +410,8 @@
         });
     }
 
-    function OpenSubPage(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-             var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+    function OpenSubPage(action, type, ids, schoolYear, schoolCode, appID, cpnum, xID, xName, xType) {
+        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + cpnum + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
             var page = ""
             if (action == "SubFun") page = "StaffManageSub.aspx"
             if (action == "SubFunM") page = "StaffManageSub2.aspx"
