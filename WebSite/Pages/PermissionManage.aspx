@@ -23,39 +23,12 @@
     <style type="text/css">
  
 
-        .staff-container {
-            margin-top: 5px;
-            display: grid;
-            grid-template-columns: 54% auto;
-            grid-template-rows: repeat(1,100%);
-            margin: auto;
-            text-align: left;
-            width: 100%
-        }
-
-        .staff-list {
-            text-align: left;
-        }
+      
 
         .function-list {
         }
 
-        .SearchBox {
-            width: 100px;
-            height: 19px;
-        }
-
-            .SearchBox:focus {
-                border: 1px solid dodgerblue;
-            }
-
-            .SearchBox:visited {
-                border: 1px solid skyblue;
-            }
-
-        .img-selected {
-            filter: contrast(300%);
-        }
+    
 
         #SearchBar {
             position: absolute;
@@ -72,20 +45,7 @@
             height: 95%;
         }
 
-        .staff-list img {
-            height: 20px;
-            width: 20px;
-            margin-top: -2px;
-            margin-bottom: 2px;
-        }
-
-        
-        #GridView1 img {
-            height: 18px;
-            width: 18px;
-            margin-top: 2px;
-            margin-left: 2px;
-        }
+ 
 
       .EditPage {
         width:100%; 
@@ -98,7 +58,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
 
             </Services>
         </asp:ScriptManager>
@@ -122,13 +82,15 @@
 
         <div class="staff-container" style="margin-top: 5px;">
             <div class="staff-list">
-                <a href="javascript:AddDetail();">
-                    <img src="../images/add.png" border="0" />
-                    Add New Model or Page Permission on the Role </a>
-
+                   <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail();">
+                            <asp:ImageButton ID="ImageNew" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                            Add New Model or Page Permission on the Role</a>
+                    </div>
+ 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <div style="overflow: scroll; width: 800px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+                        <div  class="GridView-List-Containor" style="width: 800px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
                             <asp:GridView ID="GridView1" CssClass ="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Security group show" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                                 <Columns>
                                     <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -172,7 +134,7 @@
                                 </Columns>
 
                                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                                <HeaderStyle CssClass="GridView-header" />
                                 <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                                 <RowStyle Height="25px" />
                                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -197,37 +159,22 @@
             <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
         </div>
         <div id="PopUpDIV" class="bubble epahide"></div>
-
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="editTitle">
-                <table>
-                    <tr>
-                        <td style="width: 90%">
-                            <div id="EditTitle"></div>
-                        </td>
-                        <td style="text-align: right">
-                            <img id="closeMe" src="../images/close.png" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" /></td>
-                    </tr>
-                </table>
+       <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
+                </div>
             </div>
+
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
-
         <div id="ActionMenuDIV" class="bubble epahide">
             <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
             <div id="ActionMenuUL" class="LeftSideMenu">
             </div>
         </div>
-        <div id="ActionPOPDIV" class="bubble epahide">
-            <div class="editTitle" style="display: block; margin-top: 5px;">
-                <div id="ActionTitle" style="display: inline; float: left; width: 96%"></div>
-                <div style="display: inline; float: left;">
-                    <img id="closeActionPOP" src="../images/close.ico" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" />
-                </div>
-            </div>
-            <iframe id="ActioniFramePage" name="ActioniFramePage" style="height: 425px; width: 99%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-        <div>
+         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />

@@ -110,10 +110,10 @@ namespace ASM.Tests
         {
             // Arrange 
             string uri = "staff/SIS";
-            var para = new { SchoolCode = "0354", SchoolYear = "20202021", CPNum = "00051449" };
+            var para = new { SchoolCode = "0354", SchoolYear = "20212022", CPNum = "00051449" };
             string qStr = "/" + para.SchoolCode + "/" + para.SchoolYear + "/" + para.CPNum;
 
-            string expect = "W04-05/2";
+            string expect = "W04-05/1";
 
             //Act 
 

@@ -5,7 +5,9 @@ var WebAPICall = {
     DeletData: function (uri, id, refreshPage) { DeleteDataWebAPICall('DELETE', uri, id, refreshPage) },
     AddData: function (uri, para, refreshPage) { SaveDataWebAPICall('POST', uri, para, refreshPage)},
     EditData: function (uri, para, refreshPage) { SaveDataWebAPICall('PUT', uri, para, refreshPage) },
-     
+    JWToken: function (uri, para) { GetJWTokenCall('POST', uri, para) },
+    Logout: function () { LogoutApps() },
+
 }
 
 async function GetDataWebAPICall(uri, id) {
@@ -31,7 +33,8 @@ async function GetDataWebAPICall(uri, id) {
     ////            method: 'GET',
     ////            headers: {
     ////                'Accept': 'application/json',
-    ////                'Content-Type': 'application/json;charset=utf-8'
+    ////                'Content-Type': 'application/json;charset=utf-8',
+    ////                'Authorization': 'Bearer ' + localStorage.getItem('token') // JWT token 
     ////            }
     ////        });
     ////        const result = await apiResponse.json();
@@ -55,7 +58,8 @@ function DeleteDataWebAPICall(verb,uri, id, refreshPage) {
                 method: verb,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token') // JWT token 
                 }
             });
             const result = await apiResponse.json();
@@ -79,7 +83,8 @@ function SaveDataWebAPICall(verb, uri, paraObj, refreshPage) {
                 method: verb,
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token') // JWT token 
                 },
                 body: JSONStr
             });
@@ -101,5 +106,33 @@ function SaveDataWebAPICall(verb, uri, paraObj, refreshPage) {
         alert(ex.message);
     }
 }
- 
+
+function GetJWToken(verb, uri, paraObj) {
+    var Url = "https://webt.tcdsb.org/Webapi/JWT/api/";
+    var myUrl = Url + uri;
+    var JSONStr = JSON.stringify(paraObj);
+    try {
+        (async () => {
+            const apiResponse = await fetch(myUrl, {
+                method: verb,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSONStr
+            });
+            const result = await apiResponse.json();
+            localStorage.setItem("token", result.token);
+
+        })();
+    }
+    catch (ex) {
+        alert(ex.message);
+    }
+}
+
+function LogoutApp() {
+    localStorage.removeItem("token");
+}
+
 

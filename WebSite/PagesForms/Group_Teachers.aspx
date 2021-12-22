@@ -50,7 +50,7 @@
                     </Columns>
 
                     <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                    <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                    <HeaderStyle CssClass="GridView-header" />
                     <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
 
                     <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />

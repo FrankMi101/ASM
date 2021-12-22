@@ -173,12 +173,12 @@ namespace ASM.Tests
                 Operate = "SAP",
                 UserID = "Tester",
                 UserRole = "Test",
-                 SchoolCode = "0354",
-               SchoolYear = "20202021",
-                CPNum = "00050347"
+                SchoolCode = "0354",
+                SchoolYear = "20212022",
+                CPNum = "00051449"
             };
 
-            string expect = "bonavoj";
+            string expect = "rodrigs03";
 
             //Act 
 
@@ -186,12 +186,12 @@ namespace ASM.Tests
 
             var result = from s in list
                          where s.CPNum == para.CPNum
-                         select s.UserID ;
+                         select s.UserID;
             //Assert
 
             //    string checkResult  = list.FirstOrDefault(a => a.CPNum == para.CPNum)?.UserID;
-          
-             var checkResult = result.FirstOrDefault();
+
+            var checkResult = result.FirstOrDefault();
             Assert.AreEqual(expect, checkResult, $" Geoup Member Student type  . ");
         }
         [TestMethod()]
@@ -203,19 +203,19 @@ namespace ASM.Tests
                 Operate = "SIS",
                 UserID = "Tester",
                 UserRole = "Test",
-                 SchoolCode = "0354",
-               SchoolYear = "20202021",
+                SchoolCode = "0354",
+                SchoolYear = "20212022",
                 CPNum = "00051449"
             };
 
-            string expect = "04-05/2";
+            string expect = "04-05/1";
 
             //Act 
 
             var list = ManagePageList<ClassesList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.ClassCode == "04-05/2"
+                         where s.ClassCode == "04-05/1"
                          select s.ClassName;
 
             //Assert
@@ -248,6 +248,6 @@ namespace ASM.Tests
             //Assert
             Assert.AreEqual(expect, result.FirstOrDefault(), $" Geoup Member Student type  . ");
         }
-     
+
     }
 }

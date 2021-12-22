@@ -24,7 +24,7 @@ namespace ASM.Pages
         private string GetGoPage(string page , string queryStr)
         {
             if (!File.Exists(Server.MapPath(page)))
-            { page = "../ComeSoon.aspx?pID=" + page; }
+            { page = "../PagesOther/ComeSoon.aspx?pID=" + page; }
             else
             {   page += "?" + queryStr; }
             return page;

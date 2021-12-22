@@ -11,7 +11,7 @@ namespace ASMBLL
         private readonly string _objName = typeof(T).Name;
         private string _sp = MapClass<T>.SPName("Read");
         private readonly string _invalidMessage = "Invalid Apps ID";
-         private readonly IDataOperateService<T> _dataOperate;
+        private readonly IDataOperateService<T> _dataOperate;
         public ActionAppBase()
         {
              this._dataOperate = MapClassForDB<T>.DBSource();
@@ -25,14 +25,15 @@ namespace ASMBLL
         {
             return MapClass<T>.SPName(action);
         }
+    
         public List<T> GetObjList(object parameter)
         {
-            return _dataOperate.ListOfT(_objName, _sp, parameter);
+            return _dataOperate.ListOfT( _sp, parameter,"SP");
         }
         public List<T> GetObjList(string dataSource, object parameter)
         {
             if (dataSource == "ClassCall") dataSource = MapClass<T>.SPName("Read");
-            return _dataOperate.ListOfT(dataSource, parameter);
+            return _dataOperate.ListOfT(dataSource, parameter,"SP");
         }
 
         public List<T> GetObjByID(string dataSource, int id)
@@ -47,10 +48,13 @@ namespace ASMBLL
             var para = new { Operate = "Get", UserID = "admin", IDs = id.ToString() };
             _sp = MapClass<T>.SPName("Edit");   //  CheckStoreProcedureParameters.GetParamerters(_spRead, para);
 
-            return _dataOperate.ListOfT(_objName, _sp, para);
-
-
+            return _dataOperate.ListOfT( _sp, para,"SP");
         }
+        public string GetValue(object parameter)
+        {
+            return _dataOperate.EditResult( _sp, parameter,"SP");
+        }
+
         public string AddObj(T parameter)
         {
             if (parameter  == null   ) return _invalidMessage;
@@ -77,7 +81,7 @@ namespace ASMBLL
 
             var para = new { Operate = "Delete", UserID = "tester", IDs = id.ToString() };
             _sp = MapClass<T>.SPName("Edit");
-            return _dataOperate.EditResult(_objName, _sp, para);
+            return _dataOperate.EditResult( _sp, para,"SP");
 
         }
         private string ObjOperation(string action, T parameter)
@@ -85,7 +89,7 @@ namespace ASMBLL
             var para = GetParameter(action, parameter);
             _sp = MapClass<T>.SPName("Edit");//  CheckStoreProcedureParameters.GetParamerters(_spEdit, para);// "dbo.SIC_asm_AppsEdit @Operate,@UserID,@IDs,@RoleID,@RoleName";
 
-            return _dataOperate.EditResult(_objName, _sp, para);
+            return _dataOperate.EditResult( _sp, para);
         }
 
         public virtual object GetParameter(string operate, T paraObj)
@@ -97,6 +101,16 @@ namespace ASMBLL
             return parameter;
         }
 
+        public List<T> GetListOfT(object parameter)
+        {
+            return _dataOperate.ListOfT(_sp, parameter, "SP");
+        }
+        public T GetValueOfT( object parameter)
+        {
+             _sp = MapClass<T>.SPName("Edit"); 
+
+            return _dataOperate.ValueOfT(_sp, parameter, "SP");
+        }
     }
  
 }

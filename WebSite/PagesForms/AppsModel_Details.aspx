@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AppsModel_Details.aspx.cs" Inherits="ASM.PagesForms.AppsModel_Details" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AppsModel_Details.aspx.cs" Inherits="ASM.PagesForms.AppsModel_Details" Async="true"  EnableTheming="true" %>
 
 <!DOCTYPE html>
 
@@ -40,17 +40,17 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <%--  <asp:ServiceReference Path="~/Models/WebService.asmx" />--%>
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
 
-        <%--<div style="overflow: scroll; width: 100%; height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
+        <%--<div class="GridView-List-Containor" style=" height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
         <div class="Edit-Content">
             <table>
                 <tr>
                     <td>Apps ID:</td>
                     <td colspan="4" >
-                         <asp:TextBox ID="TextBoxAppID" runat="server" Width="100%" placeholder="App ID"  ReadOnly="true"></asp:TextBox>
+                         <asp:TextBox ID="TextBoxAppID" runat="server" Width="100%" SkinId="LockText" placeholder="App ID"  ReadOnly="true"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -61,7 +61,7 @@
                         )
                     </td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextBoxModelID" runat="server" Width="100%" placeholder="Model ID" CssClass="Edit-Content-Control"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxModelID" runat="server" Width="100%" placeholder="Model ID"  ></asp:TextBox>
 
                     </td>
 
@@ -71,7 +71,7 @@
                         <label for="TextBoxModelName">Apps Name: </label>
                     </td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextBoxModelName" runat="server" Width="100%" placeholder="Model Name" CssClass="Edit-Content-Control"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxModelName" runat="server" Width="100%" placeholder="Model Name" ></asp:TextBox>
                     </td>
 
                 </tr>
@@ -80,14 +80,14 @@
                         <label for="TextBoxAOwner" class="label-right">Owner: </label>
                     </td>
                     <td colspan="2">
-                        <asp:TextBox ID="TextBoxOwner" runat="server" Width="100%" AutoPostBack="true" CssClass="ddlControls Edit-Content-Control"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxOwner" runat="server" Width="100%" AutoPostBack="true"  ></asp:TextBox>
                     </td>
                     <td>
                         <label for="TextBoxDeveloper">Developer:  </label>
                     </td>
                     <td >
 
-                        <asp:TextBox ID="TextBoxDeveloper" runat="server" Width="100%" AutoPostBack="true" CssClass="ddlControls Edit-Content-Control"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxDeveloper" runat="server" Width="100%" AutoPostBack="true"  ></asp:TextBox>
                     </td>
 
                 </tr>
@@ -97,9 +97,9 @@
                     <td>Apps Date:</td>
                     <td colspan="4">
                         <label for="dateStart">Start Date: </label>
-                        <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
+                        <input runat="server" type="text" id="dateStart" size="9" class="Calendar-Control" />
                         <label for="dateEnd">End Date: </label>
-                        <input runat="server" type="text" id="dateEnd" size="9" class="Edit-Content-Control" />
+                        <input runat="server" type="text" id="dateEnd" size="9" class="Calendar-Control" />
 
                     </td>
                 </tr>
@@ -108,7 +108,7 @@
                 <tr>
                     <td>Comments</td>
                     <td colspan="4">
-                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments" CssClass="Edit-Content-Control"></asp:TextBox>
+                        <asp:TextBox ID="TextComments" runat="server" Width="100%" Height="100px" TextMode="MultiLine" placeholder="Grant Permission Comments"  ></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -142,14 +142,7 @@
 </body>
 </html>
 
-<script src="../Scripts/MoursPoint.js"></script>
 <script src="../Scripts/CommonDOM.js"></script>
-<script src="../Scripts/GridView.js"></script>
-<script src="../Scripts/Appr_ListPage.js"></script>
-<script src="../Scripts/Appr_Help.js"></script>
-<script src="../Scripts/Appr_textEdit.js"></script>
-<script src="../Scripts/CommonListBuild.js"></script>
-<script src="../Scripts/ActionMenu.js"></script>
 <script src="../Scripts/ActionWebApi.js"></script>
 
 <script type="text/javascript">
@@ -157,14 +150,7 @@
     var minD = new Date($("#hfSchoolyearStartDate").val()); // today.getDate() - 90; //
     var maxD = new Date($("#hfSchoolyearEndDate").val());
 
-    var para = {
-        Operate: $("#hfAction").val(),
-        UserID: $("#hfUserID").val(),
-        IDs: $("#hfIDs").val(),
-
-
-    };
-
+  
     function pageLoad(sender, args) {
 
         $(document).ready(function () {

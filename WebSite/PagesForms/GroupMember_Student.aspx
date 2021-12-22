@@ -42,7 +42,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>  
 

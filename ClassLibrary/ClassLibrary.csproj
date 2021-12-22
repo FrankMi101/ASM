@@ -40,7 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppAccess.cs" />
     <Compile Include="AppClass.cs" />
+    <Compile Include="AuthUser.cs" />
+    <Compile Include="Feedback.cs" />
+    <Compile Include="RequestClassMatch.cs" />
+    <Compile Include="RequestPermissionList.cs" />
+    <Compile Include="RequestPermission.cs" />
+    <Compile Include="AppWorkingProfile.cs" />
     <Compile Include="AppRole.cs" />
     <Compile Include="AppsList.cs" />
     <Compile Include="AppRoleList.cs" />

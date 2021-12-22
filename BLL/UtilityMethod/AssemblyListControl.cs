@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 namespace BLL
 {
   
-    public static class AssemblingList
+    public class AssemblingList
     {
         public static void SetLists(ListControl myListControl, List<NameValueList> myListData)
         {           

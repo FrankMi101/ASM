@@ -33,7 +33,7 @@ namespace ASMBLL
         }
         public T OperateResult(string apiType, string sp, object parameter)
         {
-            return _iDataOperateService.OperateResult(apiType, sp, parameter);
+            return _iDataOperateService.ValueOfT(apiType, sp, parameter);
 
         }
     }

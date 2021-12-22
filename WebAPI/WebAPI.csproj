@@ -165,6 +165,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AppAccessController.cs" />
+    <Compile Include="Controllers\UserFeedbackController.cs" />
+    <Compile Include="Controllers\RequestPermissionController.cs" />
+    <Compile Include="Controllers\RequestClassMatchController.cs" />
     <Compile Include="Controllers\AppsModelController.cs" />
     <Compile Include="Controllers\AppsController.cs" />
     <Compile Include="Controllers\WorkingGroupController.cs" />

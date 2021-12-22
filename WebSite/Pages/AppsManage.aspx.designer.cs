@@ -96,15 +96,6 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.Label LabelTeacherName;
 
         /// <summary>
-        /// ActioniFramePage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe ActioniFramePage;
-
-        /// <summary>
         /// hfSchoolYear control.
         /// </summary>
         /// <remarks>

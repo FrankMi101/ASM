@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>School Staff List</title>
+    <title> Staff Role Manage</title>
     <meta http-equiv="Pragma" content="No-cache" />
     <meta http-equiv="Cache-Control" content="no-Store,no-Cache" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -150,7 +150,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
 
@@ -214,12 +214,12 @@
                         </td>
                         <td>Start Date:</td>
                         <td>
-                            <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
+                            <input runat="server" type="text" id="dateStart" size="9" class="Calendar-Control" />
                         </td>
                         <td>End Date:
                         </td>
                         <td>
-                            <input runat="server" type="text" id="dateEnd" size="9"  class="Edit-Content-Control"/>
+                            <input runat="server" type="text" id="dateEnd" size="9"  class="Calendar-Control"/>
                         </td>
 
                     </tr>

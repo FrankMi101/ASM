@@ -87,15 +87,6 @@ namespace ASM.Pages
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// SAP_Add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SAP_Add;
-
-        /// <summary>
         /// ImgSAP control.
         /// </summary>
         /// <remarks>
@@ -105,6 +96,15 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.ImageButton ImgSAP;
 
         /// <summary>
+        /// ImageGrant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageGrant;
+
+        /// <summary>
         /// GridView_SAP control.
         /// </summary>
         /// <remarks>
@@ -112,15 +112,6 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_SAP;
-
-        /// <summary>
-        /// APP_Add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl APP_Add;
 
         /// <summary>
         /// ImgAPP control.
@@ -139,15 +130,6 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_APP;
-
-        /// <summary>
-        /// SIS_Add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SIS_Add;
 
         /// <summary>
         /// ImgSIS control.
@@ -195,13 +177,13 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.Label LabelTeacherName;
 
         /// <summary>
-        /// ActioniFramePage control.
+        /// hfAppID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe ActioniFramePage;
+        protected global::System.Web.UI.WebControls.HiddenField hfAppID;
 
         /// <summary>
         /// hfCategory control.
@@ -292,5 +274,14 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfSchoolyearEndDate;
+
+        /// <summary>
+        /// hfSchoolyear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSchoolyear;
     }
 }

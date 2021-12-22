@@ -42,6 +42,7 @@ namespace ASM
             var action = (IActionApp<T>)MapClass<T>.ClassType(obj);
             return GetListbyID(action, para , actionControl);         
         }
+       
     }
  
 }

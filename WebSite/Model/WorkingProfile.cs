@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -7,9 +8,11 @@ using ASMBLL;
 /// </summary>
 /// 
 using BLL;
+using ClassLibrary;
+
 namespace ASM
 {
-    public class WorkingProfile : System.Web.UI.Page
+    public class WorkingProfile :Page
     {
         public WorkingProfile()
         {
@@ -24,16 +27,46 @@ namespace ASM
                 return  WebConfig.getValuebyKey("DefaultAppID");
             }
         }
-        public static string ApplicationID
+        public static string DefaultModelID
         {
             get
             {
-                return HttpContext.Current.Session["applicationID"].ToString();
+                return WebConfig.getValuebyKey("DefaultPage");
+            }
+        }
+        public static string AppID
+        {        
+            get
+            {
+                if (HttpContext.Current.Session["applicaionID"] == null)
+                {
+                    HttpContext.Current.Session["applicaionID"] = WebConfig.getValuebyKey("Application");
+                }
+                return HttpContext.Current.Session["applicaionID"].ToString();
             }
             set
             {
-                HttpContext.Current.Session["applicationID"] = value;
+                HttpContext.Current.Session["applicaionID"] = value;
             }
+
+        }
+        public static string ModelID
+        {
+   
+            get
+            {
+                if (HttpContext.Current.Session["applicaionModelID"] == null)
+                {
+                    HttpContext.Current.Session["applicaionModelID"] = WebConfig.getValuebyKey("DefaultPage");
+                }
+                return HttpContext.Current.Session["applicaionModelID"].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session["applicaionModelID"] = value;
+            }
+
+
         }
         public static string UserId
         {
@@ -58,15 +91,14 @@ namespace ASM
             }
 
         }
-
-       
+     
         public static string UserRole
         {
             get
             {
                 if (HttpContext.Current.Session["userrole"] == null)
                 {
-                    HttpContext.Current.Session["userrole"] = UserProfile.Role; ;
+                    HttpContext.Current.Session["userrole"] = UserProfile.Role; 
                 }
                 return HttpContext.Current.Session["userrole"].ToString();
             }
@@ -90,21 +122,7 @@ namespace ASM
                 HttpContext.Current.Session["userrolelogin"] = value;
             }
         }
-       public static string UserAppraisalRole
-        {
-            get
-            {
-                if (HttpContext.Current.Session["userappraisalrole"] == null)
-                {
-                    HttpContext.Current.Session["userappraisalrole"] = UserProfile.Role;
-                }
-                return HttpContext.Current.Session["userappraisalrole"].ToString();
-            }
-            set
-            {
-                HttpContext.Current.Session["userappraisalrole"] = value;
-            }
-        }
+   
         public static string ClientUserScreen
         {
             get
@@ -113,13 +131,11 @@ namespace ASM
                 {
                     HttpContext.Current.Session["clientuserscreen"] = UserLastWorking.ClientScreen;
                 }
-
                 return HttpContext.Current.Session["clientuserscreen"].ToString();
             }
             set
             {
                 HttpContext.Current.Session["clientuserscreen"] = value;
-
             }
         }
          public static string ImageFileId 
@@ -133,19 +149,11 @@ namespace ASM
                 HttpContext.Current.Session["imagefileID"] = value;
              }
         }
-         public static string Model 
-        {
-            get 
-            {
-                 return WebConfig.getValuebyKey("ApplicationModel");
-            }
   
-        }
         public static string PageCategory
         {
             get
             {
-
                 return HttpContext.Current.Session["pagecategoryID"].ToString();
             }
             set
@@ -157,7 +165,6 @@ namespace ASM
         {
             get
             {
-
                 return HttpContext.Current.Session["pageareaID"].ToString();
             }
             set
@@ -236,6 +243,87 @@ namespace ASM
                 HttpContext.Current.Session["openschoolyear"] = value;
             }
         }
+        public static string AppUserRole
+        {
+            get
+            {
+                if (HttpContext.Current.Session["userapprole"] == null)
+                {
+                    var para = new { Operate = "AppRole", UserID = UserId, AppID};
+                    HttpContext.Current.Session["userapprole"] = GetWorkingProfile(para)[0].UserRole;
+                }
+                return HttpContext.Current.Session["userapprole"].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session["userapprole"] = value;
+            }
+        }
+        public static string Permission
+        {
+            get
+            {
+                if (HttpContext.Current.Session["userappPermission"] == null)
+                {
+                    var para = new { Operate = "Permission", UserID = UserId, AppID, ModelID, UserRole = AppUserRole};
+                    HttpContext.Current.Session["userappPermission"] = GetWorkingProfile(para)[0].Permission;
+                }
+                return HttpContext.Current.Session["userappPermission"].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session["userappPermission"] = value;
+            }
+        }
+        public static string AccessScope
+        {
+            get
+            {
+                if (HttpContext.Current.Session["userappAccessScope"] == null)
+                {
+                    var para = new { Operate = "Scope", UserID = UserId, AppID, ModelID, UserRole = AppUserRole };
+                    HttpContext.Current.Session["userappAccessScope"] = GetWorkingProfile(para)[0].AccessScope;
+                }
+                return HttpContext.Current.Session["userappAccessScope"].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session["userappAccessScope"] = value;
+            }
+        }
+        public static List<AppWorkingProfile> GetWorkingProfile(object parameter)
+        {
+            try
+            {              
+                //var parameter = new
+                //{
+                //    Operate ,
+                //    UserID , 
+                //    AppID,
+                //    ModelID,
+                //    UserRole
+                //};
 
+                 List<AppWorkingProfile> myList;
+
+                if (WebConfig.DataSource() == "API")
+                {
+                    string uri = "WorkingProfile/list";
+                    string qStr = ""; // "/" + UserID + "/" + AppID + "/" + ModelID;
+                    myList = ManagePageList<AppWorkingProfile, AppWorkingProfile>.GetList("API", uri, qStr );
+                }
+                else
+                {
+                    myList = ManagePageList<AppWorkingProfile, AppWorkingProfile>.GetList("SQL", "ClassCall", parameter);
+                }
+                 return myList;
+
+            }
+            catch (System.Exception ex)
+            {
+                var em = ex.Message;
+                return null;
+            }
+        }
     }
 }

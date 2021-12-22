@@ -60,6 +60,15 @@ namespace ASM.Pages
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
+        /// ImageAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageAdd;
+
+        /// <summary>
         /// GridView_Students_Group control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_Students_Group;
+
+        /// <summary>
+        /// ImageNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ImageNew;
 
         /// <summary>
         /// GridView_Teachers_Group control.
@@ -78,13 +96,13 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.GridView GridView_Teachers_Group;
 
         /// <summary>
-        /// ImgUGP control.
+        /// ImageUGP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImgUGP;
+        protected global::System.Web.UI.WebControls.ImageButton ImageUGP;
 
         /// <summary>
         /// GridView_Permission control.

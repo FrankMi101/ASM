@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+
+        Development Steps:
+        0. Make sure the Data access Layer ready (BLL)
+        1. Create Domain Class in ClassLibrary Project
+        2. Create Database object on SQL Server to match the Domain Class
+        3. Create Business Model inheritance from ActionAppBase Model in ASMBLL Project
+        4. Add GetParameter Method in Business Model to match SP parameter
+        5. Add Class and StoreProcedure Name Mapping in MapClass.cs of ASMBLL project
+        6. Create List or Forms Page in Website Project
+        7. Create Database Object Store Procedure in SQL Server Management Studio
+        8. Add Integration Test for Business Model Method in ASMBLL_IntegrationTest Project
+        9. Add Restful API End Point in WebAPI Project if Forms or List using Restful WebAPI Call.
+
+        Key Architect
+        1. Database Layer using Dapper ORM
+        2. Using IActionApp.cs and IActionGet.cs Interface to follow SOILD pincipale 
+        3. Using abstract Base Class ActionAppBase to simplify the Business Model,
+        4. All construction to initila the Model Data Access object (SQL or API)
+        5. Using Integration Test Method to make sure all Model and SP are work ok
+        
+        Project Solution structure
+        1. BLL:  Data access
+        2. ASMLL: business Model
+        3. ClassLibrary: Domain Class Model
+        4. WebSite:
+        5. WebApi: 
+        6. Integration Test: 
+    </div>
+</body>
+</html>

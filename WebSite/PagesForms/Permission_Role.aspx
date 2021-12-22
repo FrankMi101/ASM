@@ -35,11 +35,11 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
 
-        <%--<div style="overflow: scroll; width: 100%; height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
+        <%--<div class="GridView-List-Containor" style=" height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
         <div class="Edit-Content">
             <table>
                    <tr>

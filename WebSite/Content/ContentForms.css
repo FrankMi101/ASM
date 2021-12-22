@@ -30,7 +30,16 @@ img {
         margin-top: -4px;
     }
 
+.Calendar-Control{
+    width:80px;
+}
 
+    .Calendar-Control:hover {
+        border-radius: 7px;
+        filter: contrast(200%);
+        border: 2px solid #0094ff;
+        box-shadow: 0 0 0 3px rgba(24,117,255,0.25);
+    }
 .Edit-Content-Control {
     border: 1px solid grey;
     background-color: cornsilk;
@@ -41,6 +50,18 @@ img {
         border: 2px solid #0094ff;
         box-shadow: 0 0 0 3px rgba(24,117,255,0.25);
     }
+
+.Edit-Content-Locked {
+    border: 1px solid grey;
+ }
+
+    .Edit-Content-Locked:hover {
+        border-radius: 7px;
+        filter: contrast(200%);
+        border: 2px solid #0094ff;
+        box-shadow: 0 0 0 3px rgba(24,117,255,0.25);
+    }
+
 .ContentPageHeader {
     width: 100%;
     background: lightblue; /* For browsers that do not support gradients */

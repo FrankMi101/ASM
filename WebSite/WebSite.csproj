@@ -105,10 +105,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
+    <Content Include="PagesForms\RequestClassMatchForm.aspx" />
+    <Content Include="PagesOther\About.aspx" />
     <Content Include="Account\Login.aspx" />
-    <Content Include="ComeSoon.aspx" />
-    <Content Include="Contact.aspx" />
+    <Content Include="PagesOther\AccessDeny.aspx" />
+    <Content Include="PagesOther\ComeSoon.aspx" />
+    <Content Include="PagesOther\Contact.aspx" />
     <Content Include="Content\ActionMenu.css" />
     <Content Include="Content\AngualJS.css" />
     <Content Include="Content\animate.css" />
@@ -168,6 +170,7 @@
     <Content Include="iBlankPage.html" />
     <Content Include="images\add.webp" />
     <Content Include="Documents\School_Security_Group.pdf" />
+    <Content Include="App_Themes\Theme1\Default.skin" />
     <None Include="Properties\PublishProfiles\ASM Website.pubxml" />
     <None Include="Properties\PublishProfiles\ASM.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -247,7 +250,7 @@
     <Content Include="Loading3.aspx" />
     <Content Include="Model\WebService.asmx" />
     <Content Include="Model\WebServiceAction.asmx" />
-    <Content Include="NotAllowView.aspx" />
+    <Content Include="PagesOther\NotAllowView.aspx" />
     <Content Include="PagesForms\AppsModel_Details.aspx" />
     <Content Include="PagesForms\Class_Students.aspx" />
     <Content Include="PagesForms\Group_Students.aspx" />
@@ -263,11 +266,13 @@
     <Content Include="PagesForms\Security_RoleP.aspx" />
     <Content Include="PagesForms\UserAppGroup.aspx" />
     <Content Include="PagesForms\StaffRoleManage.aspx" />
+    <Content Include="PagesForms\RequestAccessPermission.aspx" />
     <Content Include="Pages\AppsManageSub.aspx" />
     <Content Include="Pages\AppsManage.aspx" />
     <Content Include="Pages\Loading.aspx" />
     <Content Include="Pages\AccessSummary.aspx" />
     <Content Include="Pages\GroupManage.aspx" />
+    <Content Include="Pages\UserRequestPermissionManage.aspx" />
     <Content Include="Pages\StaffManage.aspx" />
     <Content Include="Pages\StaffManageSub2.aspx" />
     <Content Include="Pages\StaffManageSub.aspx" />
@@ -277,6 +282,7 @@
     <Content Include="Pages\AppRoleManage.aspx" />
     <Content Include="Pages\AppRoleManageSub.aspx" />
     <Content Include="Pages\PermissionManage.aspx" />
+    <Content Include="ReadMe.html" />
     <Content Include="Scripts\ActionInPage.js" />
     <Content Include="Scripts\ActionMenu.js" />
     <Content Include="Scripts\ActionWebApi.js" />
@@ -286,6 +292,7 @@
     <Content Include="Scripts\Appr_ListPage.js" />
     <Content Include="Scripts\Appr_textEdit.js" />
     <Content Include="Scripts\Appr_textPage.js" />
+    <Content Include="Scripts\AuthUserWithJwt_Angular.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CommonDOM.js" />
@@ -341,26 +348,41 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
+    <Compile Include="Model\SchoolYearDate.cs" />
+    <Compile Include="PagesForms\RequestClassMatchForm.aspx.cs">
+      <DependentUpon>RequestClassMatchForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\RequestClassMatchForm.aspx.designer.cs">
+      <DependentUpon>RequestClassMatchForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesOther\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="About.aspx.designer.cs">
+    <Compile Include="PagesOther\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ComeSoon.aspx.cs">
+    <Compile Include="PagesOther\AccessDeny.aspx.cs">
+      <DependentUpon>AccessDeny.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesOther\AccessDeny.aspx.designer.cs">
+      <DependentUpon>AccessDeny.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagesOther\ComeSoon.aspx.cs">
       <DependentUpon>ComeSoon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ComeSoon.aspx.designer.cs">
+    <Compile Include="PagesOther\ComeSoon.aspx.designer.cs">
       <DependentUpon>ComeSoon.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Contact.aspx.cs">
+    <Compile Include="PagesOther\Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
+    <Compile Include="PagesOther\Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
@@ -437,11 +459,11 @@
     <Compile Include="Model\WorkingProfile.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NotAllowView.aspx.cs">
+    <Compile Include="PagesOther\NotAllowView.aspx.cs">
       <DependentUpon>NotAllowView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NotAllowView.aspx.designer.cs">
+    <Compile Include="PagesOther\NotAllowView.aspx.designer.cs">
       <DependentUpon>NotAllowView.aspx</DependentUpon>
     </Compile>
     <Compile Include="PagesForms\AppsModel_Details.aspx.cs">
@@ -549,6 +571,13 @@
     <Compile Include="PagesForms\StaffRoleManage.aspx.designer.cs">
       <DependentUpon>StaffRoleManage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PagesForms\RequestAccessPermission.aspx.cs">
+      <DependentUpon>RequestAccessPermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagesForms\RequestAccessPermission.aspx.designer.cs">
+      <DependentUpon>RequestAccessPermission.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AppsManageSub.aspx.cs">
       <DependentUpon>AppsManageSub.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -583,6 +612,13 @@
     </Compile>
     <Compile Include="Pages\GroupManage.aspx.designer.cs">
       <DependentUpon>GroupManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UserRequestPermissionManage.aspx.cs">
+      <DependentUpon>UserRequestPermissionManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserRequestPermissionManage.aspx.designer.cs">
+      <DependentUpon>UserRequestPermissionManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\StaffManage.aspx.cs">
       <DependentUpon>StaffManage.aspx</DependentUpon>

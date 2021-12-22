@@ -35,11 +35,17 @@ namespace ASM
 
         private string GetGoPage(string page)
         {
-            if (!File.Exists(Server.MapPath("~/" + page)))
-              { page = "ComeSoon.aspx?pID="  + page; }
-
+            var runingPermission = WorkingProfile.Permission;
+            if (runingPermission == "Deny")
+            {
+                page = "~/PagesOther/AccessDeny.aspx";
+            }
+            else
+            {
+                if (!File.Exists(Server.MapPath("~/" + page)))
+                { page = "~/PagesOther/ComeSoon.aspx?pID=" + page; }
+            }
             return page;
         }
-
     }
 }

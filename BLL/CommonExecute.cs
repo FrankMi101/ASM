@@ -26,6 +26,43 @@ namespace BLL
                 throw;
             }
         }
+        public static List<T> ListOfT(string SP, object parameter, string DapparCommandType)
+        {
+            try
+            {
+                var mylist = new CommonOperate<T>();
+                return mylist.ListOfT(SP, parameter, DapparCommandType);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static List<T> ListOfT(string db, string SP, object parameter)
+        {
+            try
+            {
+                var mylist = new CommonOperate<T>();
+                return mylist.ListOfT(db, SP, parameter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static List<T> ListOfT(string db, string SP, object parameter, string DapparCommandType)
+        {
+            try
+            {
+                var mylist = new CommonOperate<T>();
+                return mylist.ListOfT(db, SP, parameter, DapparCommandType);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public static T ValueOfT(string SP, object parameter)
         {
             try
@@ -38,12 +75,36 @@ namespace BLL
                 throw;
             }
         }
-        public static String ValueOfString(string SP, object parameter)
+        public static T ValueOfT(string SP, object parameter, string DapparCommandType)
         {
             try
             {
-                var myvalue = new CommonOperate<string>();
-                return myvalue.ValueOfString(SP, parameter);
+                var myvalue = new CommonOperate<T>();
+                return myvalue.ValueOfT(SP, parameter, DapparCommandType);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static T ValueOfT(string db, string SP, object parameter)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<T>();
+                return myvalue.ValueOfT(db, SP, parameter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static T ValueOfT(string db, string SP, object parameter, string DapparCommandType)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<T>();
+                return myvalue.ValueOfT(db, SP, parameter, DapparCommandType);
             }
             catch
             {
@@ -51,6 +112,55 @@ namespace BLL
             }
         }
 
+
+        public static String ValueOfString(string SP, object parameter)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<string>();
+                return myvalue.ValueOfT(SP, parameter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static String ValueOfString(string SP, object parameter, string DapparCommandType)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<string>();
+                return myvalue.ValueOfT(SP, parameter, DapparCommandType);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static String ValueOfString(string db, string SP, object parameter)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<string>();
+                return myvalue.ValueOfT(db, SP, parameter);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public static String ValueOfString(string db, string SP, object parameter, string DapparCommandType)
+        {
+            try
+            {
+                var myvalue = new CommonOperate<string>();
+                return myvalue.ValueOfT(db, SP, parameter, DapparCommandType);
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
-     
+
 }

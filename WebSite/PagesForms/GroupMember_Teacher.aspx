@@ -37,7 +37,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
 
@@ -58,9 +58,9 @@
                 </td>
                 <td>
                     <label for="dateStart">Start Date: </label>
-                    <input runat="server" type="text" id="dateStart" size="9" class="Edit-Content-Control" />
+                    <input runat="server" type="text" id="dateStart" size="9" class="Calendar-Control Edit-Content-Control" />
                     <label for="dateEnd">End Date: </label>
-                    <input runat="server" type="text" id="dateEnd" size="9" class="Edit-Content-Control" />
+                    <input runat="server" type="text" id="dateEnd" size="9" class="Calendar-Control Edit-Content-Control" />
 
                 </td>
             </tr>

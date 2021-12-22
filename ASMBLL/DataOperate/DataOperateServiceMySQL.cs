@@ -12,21 +12,62 @@ namespace ASMBLL
 /// <typeparam name="T"></typeparam>
     public class DataOperateServiceMySQL<T> : IDataOperateService<T>
     {
-        public string EditResult(string apiType, string sp, object parameter)
+        public string EditResult(string sp, object parameter)
         {
-            return GeneralValue.CommonValue<string>(sp, parameter);
+            throw new NotImplementedException();
         }
 
-        public List<T> ListOfT(string apiType, string sp, object parameter)
+        public string EditResult(string sp, object parameter, string DapperCommandType)
         {
-            return GeneralList.CommonList<T>(sp, parameter);
+            throw new NotImplementedException();
         }
+
+        public string EditResult(string db, string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string EditResult(string db, string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<T> ListOfT(string sp, object parameter)
         {
-            return GeneralList.CommonList<T>(sp, parameter);
+            throw new NotImplementedException();
         }
 
-        public T OperateResult(string db, string sp, object parameter)
+        public List<T> ListOfT(string db, string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> ListOfT(string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> ListOfT(string db, string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string db, string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string db, string sp, object parameter, string DapperCommandType)
         {
             throw new NotImplementedException();
         }

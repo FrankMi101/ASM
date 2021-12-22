@@ -22,7 +22,7 @@ namespace ASM
         {
             if (WebConfig.RunningModel() == "Design") {
                var _sp = MapClass<T2>.SPName("Read");
-                actionControl.ToolTip = CheckStoreProcedureParameters.GetParamerters(_sp, parameter); ; 
+                actionControl.ToolTip = CheckStoreProcedureParameters.GetParamerters(_sp, parameter);
             }
             return RunGetListFromDB(dataSource,obj, parameter);
         }

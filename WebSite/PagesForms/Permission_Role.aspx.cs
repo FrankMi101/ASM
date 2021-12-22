@@ -67,7 +67,7 @@ namespace ASM.PagesForms
             };
             AppsPage.BuildingList(ddlScope, "AccessScope", parameters, "School");
             AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value);
-            parameters.Para2 = hfAppID.Value;
+            parameters.Para1 = hfAppID.Value;
             AppsPage.BuildingList(ddlModelID, "AppsModel", parameters, "Pages");
 
         }
@@ -77,8 +77,8 @@ namespace ASM.PagesForms
             {
                 Operate = "",
                 UserID  = WorkingProfile.UserId  ,
-                Para1 = hfUserRole.Value,
-                Para2 = ddlApps.SelectedValue,
+                Para1 = ddlApps.SelectedValue,
+                Para2 = WorkingProfile.SchoolYear,
                 Para3 = WorkingProfile.SchoolCode,
                 Para4 = "Board"
             };

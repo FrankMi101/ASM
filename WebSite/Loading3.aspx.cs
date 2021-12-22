@@ -57,7 +57,7 @@ namespace ASM
             if (source == "InApp")
             {
                 if (!File.Exists(Server.MapPath(cPage)))
-                { goPage = "ComeSoon.aspx?pID=" + cPage; }
+                { goPage = "~/PagesOther/ComeSoon.aspx?pID=" + cPage; }
 
             }
 

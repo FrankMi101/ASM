@@ -16,7 +16,7 @@
     <form id="form1" runat="server">
         <%--<div id="DivRoot" style="width: 100%; height: 400px">   </div>--%>
 
-            <div style="overflow: scroll; width: 100%; height:500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+            <div class="GridView-List-Containor" style=" height:500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
         <asp:GridView ID="GridView1" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Students in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
             <Columns>
                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -53,7 +53,7 @@
             </Columns>
 
             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+            <HeaderStyle CssClass="GridView-header" />
             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
 
             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />

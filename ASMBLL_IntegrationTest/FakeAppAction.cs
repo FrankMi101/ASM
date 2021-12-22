@@ -50,5 +50,10 @@ namespace ASMBLL_IntegrationTest
         {
             throw new NotImplementedException();
         }
+
+        public string GetValue(object parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

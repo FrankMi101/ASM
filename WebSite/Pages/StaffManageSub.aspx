@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaffManageSub.aspx.cs" Inherits="ASM.Pages.StaffManageSub" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaffManageSub.aspx.cs" Inherits="ASM.Pages.StaffManageSub" Async="true" EnableTheming="true" %>
 
 <!DOCTYPE html>
 
@@ -50,14 +50,7 @@
             color: black;
             font-size: 12px;
         }
-
-        .Content-Area-SAP img {
-            height: 18px;
-            width: 18px;
-            margin-top: -2px;
-            margin-left: 5px;
-        }
-
+ 
         #btnGradeTab {
             display: none;
         }
@@ -72,33 +65,8 @@
             height: 95%;
         }
 
-        .Gridview-title {
-            height: 25px;
-            margin-top: 5px;
-            margin-bottom: -5px;
-            display: block;
-            width: 100%;
-        }
 
-            .Gridview-title img {
-                height: 18px;
-                width: 18px;
-                margin-top: -7px;
-                margin-left: 5px;
-            }
-
-        .GridView-header {
-            font-family: Cambria;
-            font-size: 10px;
-            background:  linear-gradient(lightskyblue, white);
-            Color: darkblue;
-        }
-        .alter-title
-        {
-            display:inline;
-            margin-left:25px;
-            
-        }
+ 
     </style>
     <script type="text/javascript">
 
@@ -125,32 +93,32 @@
                     SAP Role:
                     <asp:TextBox CssClass="SearchBox" ID="TextBoxStaffRole" runat="server" Width="80px" placeholder="SAP Role"></asp:TextBox>
                     SAP Unit:<asp:TextBox CssClass="SearchBox" ID="TextBoxUnit" Width="100px" runat="server" placeholder="SAP Unit"></asp:TextBox>
-                    <%--                    <asp:Button ID="btnGradeTab" runat="server" Text="" Height="0px" Width="0px" CssClass="HideButton" OnClick="BtnGradeTab_Click" />--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <%--  <div style="margin-left: -2px;">
-            <asp:UpdatePanel ID="UpdatePanel6" runat="server">
-                <ContentTemplate>
-                    <div class="Horizontal_Tab" id="GradeTab" runat="server"></div>
-                    <asp:HiddenField ID="hfSelectedTab" runat="server" />
-                    <asp:HiddenField ID="hfSelectedTabL" runat="server" />
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>--%>
+
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-
-                    <div class="Gridview-title" id="SAP_Add" runat="server">
-                        <a href="javascript:AddDetail('SAP')" title =" Function about Apps access permission group " >
-                             <asp:ImageButton ID="ImgSAP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
-                             Assign the Staff to New Role Overwrite SAP Role</a>
-                        <div class ="alter-title">
-                            (Apps access permission group)
+                    <div class="List-Action-Containor">
+                        <div class="List-Action">
+                            <a class="List-Action-Title" href="javascript:AddDetail('SAP');" title=" Function about Apps access permission group ">
+                                <asp:ImageButton ID="ImgSAP" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                                Assign the Staff to New Role Overwrite SAP Role </a>
                         </div>
+                        <div class="List-Action" style="margin-left:70px;" >
+                            <a class="List-Action-Title" href="javascript:AddDetail('SAP');" title="Grant User Apps access permission by Request ">
+                                <asp:ImageButton ID="ImageGrant" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                                Grant User Apps access permission by Request </a>
+                        </div>
+                       <%-- <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%; font-size: 1em;"></td>
+                                <td style="width: 50%; font-size: 1em;"></td>
+                            </tr>
+                        </table>--%>
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+                    <div class="GridView-List-Containor" style=" height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent">
 
                         <asp:GridView ID="GridView_SAP" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
@@ -193,7 +161,7 @@
 
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle Height="25px" CssClass="GridView-header" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="26px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -203,15 +171,17 @@
                             <SortedDescendingHeaderStyle BackColor="#33276A" />
                         </asp:GridView>
                     </div>
-                    <div class="Gridview-title" id="APP_Add" runat="server">
-                        <a href="javascript:AddDetail('APP')" title =" Function about User access student group ">
-                             <asp:ImageButton ID="ImgAPP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
-                             Assign the Staff to App Group </a>
-                         <div class ="alter-title">
+                    <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail('APP');" title=" Function about User access student group ">
+                            <asp:ImageButton ID="ImgAPP" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                            Assign the Staff to App Group </a>
+
+                        <div class="List-Action-Title-Alter">
                             (User access student group)
                         </div>
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent2">
+
+                    <div class="GridView-List-Containor" style=" height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent2">
 
                         <asp:GridView ID="GridView_APP" CssClass="GridView-List" runat="server" CellPadding="1" Height="150px" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Apps security setup for the user" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
@@ -282,15 +252,19 @@
                             <SortedDescendingHeaderStyle BackColor="#33276A" />
                         </asp:GridView>
                     </div>
-                    <div class="Gridview-title" id="SIS_Add" runat="server">
-                        <a href="javascript:AddDetail('SIS')"  title =" Function about Teacher access student group by class ">
-                            <asp:ImageButton ID="ImgSIS" runat="server"  src="../images/add.png" border="0" width="16" height="16" /> 
-                            Assign the Staff to SIS Class</a>
-                         <div class ="alter-title">
-                            (Teacher access student group by class)
+
+                    <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail('SIS');" title="Function about Teacher access student group by class">
+                            <asp:ImageButton ID="ImgSIS" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                            Assign the Staff to App Group </a>
+
+                        <div class="List-Action-Title-Alter">
+                            (User access student group)
                         </div>
+
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent3">
+
+                    <div class="GridView-List-Containor" style=" height: 150px" onscroll="OnScrollDiv(this)" id="DivMainContent3">
 
                         <asp:GridView ID="GridView_SIS" CssClass="GridView-List" runat="server" CellPadding="1" Height="150px" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No SIS class information for selected user " EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
@@ -358,17 +332,13 @@
         </div>
 
         <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="editTitle">
-                <table>
-                    <tr>
-                        <td style="width: 90%">
-                            <div id="EditTitle"></div>
-                        </td>
-                        <td style="text-align: right">
-                            <img id="closeMe" src="../images/close.png" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" /></td>
-                    </tr>
-                </table>
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
+                </div>
             </div>
+
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
 
@@ -379,17 +349,9 @@
 
         </div>
         <div id="PopUpDIV" class="bubble epahide"></div>
-        <div id="ActionPOPDIV" class="bubble epahide">
-            <div class="editTitle" style="display: block; margin-top: 5px;">
-                <div id="ActionTitle" style="display: inline; float: left; width: 96%"></div>
-                <div style="display: inline; float: left;">
-                    <img id="closeActionPOP" src="../images/close.ico" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" />
-                </div>
-            </div>
-            <iframe id="ActioniFramePage" name="ActioniFramePage" style="height: 425px; width: 99%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
 
         <div>
+            <asp:HiddenField ID="hfAppID" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />
             <asp:HiddenField ID="hfUserID" runat="server" />
@@ -400,6 +362,7 @@
             <asp:HiddenField ID="hfRunningModel" runat="server" />
             <asp:HiddenField ID="hfSchoolyearStartDate" runat="server" />
             <asp:HiddenField ID="hfSchoolyearEndDate" runat="server" />
+            <asp:HiddenField ID="hfSchoolyear" runat="server" />
             <input id="clipboardText" type="text" style="position: absolute; top: 1px; left: -50px; width: 1px; height: 1px" />
         </div>
     </form>
@@ -409,9 +372,9 @@
 <script src="../Scripts/MoursPoint.js"></script>
 <script src="../Scripts/CommonDOM.js"></script>
 <script src="../Scripts/GridView.js"></script>
-<script src="../Scripts/Appr_ListPage.js"></script>
+<%--<script src="../Scripts/Appr_ListPage.js"></script>
 <script src="../Scripts/Appr_Help.js"></script>
-<script src="../Scripts/Appr_textEdit.js"></script>
+<script src="../Scripts/Appr_textEdit.js"></script>--%>
 <script src="../Scripts/CommonListBuild.js"></script>
 <script src="../Scripts/ActionMenu.js"></script>
 <script src="../Scripts/ActionInPage.js"></script>
@@ -423,6 +386,7 @@
     var ItemCode = $("#hfCode").val();
     var preaLinkID;
     var Action;
+
     function pageLoad(sender, args) {
 
         $(document).ready(function () {
@@ -442,8 +406,12 @@
             });
         });
     }
-    var page = ""; 
+    var page = "";
     var title = "";
+    var xheight = 400;
+    var xwidth = 650;
+
+
     function GoPage(type, action) {
         if (type == 'SAP') {
             page = "StaffRoleManage.aspx";
@@ -485,25 +453,44 @@
                     title = 'Remove Staff from the SIS Class Operation';
             }
         }
+        if (type == 'Grant') {
+            page = "RequestAccessPermission.aspx";
+            title = 'Grant Apps Access Permission by Request';
+            xheight = 500;
+            xwidth = 700;
+        }
+        else {
+            xheight = 400;
+            xwidth = 600;
+        }
     }
     function AddDetail(type) {
         GoPage(type, "Add");
         var staffID = $("#TextBoxUserID").val();
-        var staffRole = $("#TextBoxStaffRole").val();  
+        var staffRole = $("#TextBoxStaffRole").val();
         var staffName = $("#TextBoxStaffName").val();
-        var CPNum = $("#TextBoxCPNum").val();
+        var appID = $("#hfAppID").val();
+        var modelID = $("#TextBoxCPNum").val();
         var schoolCode = $("#TextBoxUnit").val();
-        var arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021" + "&SchoolCode=" + schoolCode + "&AppID=SIC" + "&ModelID=" + CPNum + "&xID=" + staffID + "&xName=" + staffName + "&xType=" + staffRole;
-       // OpenInPage(title, page + arg, 400, 650);
-        OpenFormFromListPage(title, page, arg, 400, 650);
+        var schoolYear = $("#hfSchoolyear").val();
+        if (type == "Grant") {
+            modelID = "Pages";
+            xheight = 500;
+            xwidth = 700;
+        }
+        var arg = "&Action=Add" + "@Type=" + type + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + staffID + "&xName=" + staffName + "&xType=" + staffRole;
+        // OpenInPage(title, page + arg, 400, 650);
+        OpenFormFromListPage(title, page, arg, xheight, 700);
     }
 
-    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, cpnum, xID, xName, xType) {
+    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         GoPage(type, action);
-       //  arg = "?StaffID=" + xID + "&StaffRole=" + xType + "&StaffName=" + groupID + "&CPNum=" + appID + "&Action=" + action + "&IDs=" + ids;
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + cpnum + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        
-        OpenFormFromListPage(title, page, arg, 400, 650);
+        //  arg = "?StaffID=" + xID + "&StaffRole=" + xType + "&StaffName=" + groupID + "&CPNum=" + appID + "&Action=" + action + "&IDs=" + ids;
+        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        if (type == "Grant") {
+
+        }
+        OpenFormFromListPage(title, page, arg, xheight, 700);
     }
-     
+
 </script>

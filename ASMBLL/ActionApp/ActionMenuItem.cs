@@ -21,7 +21,7 @@ namespace ASMBLL
 
         public List<MenuItems> GetObjList(object parameter)
         {
-            return _dataOperate.ListOfT("ListItems", _sp, parameter);
+            return _dataOperate.ListOfT( _sp, parameter);
   
         }
 

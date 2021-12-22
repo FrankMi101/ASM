@@ -14,10 +14,7 @@ namespace ASMBLL
 /// <typeparam name="T"></typeparam>
     public class DataOperateServiceAPI<T> : IDataOperateService<T>
     {
-        public T OperateResult(string apiType, string uri, object parameter)
-        {
-            throw new NotImplementedException();
-        }
+      
         public string EditResult(string apiType, string uri, object parameter)
         {
             switch (apiType)
@@ -165,6 +162,53 @@ namespace ASMBLL
             }
         }
 
-      
+
+     
+
+        public List<T> ListOfT(string sp, object parameter, string DapperCommandType)
+        {
+            return ListOfT(sp, parameter);
+        }
+
+        public List<T> ListOfT(string db, string sp, object parameter, string DapperCommandType)
+        {
+            return ListOfT(sp, parameter);
+        }
+
+  
+        public T ValueOfT(string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string db, string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T ValueOfT(string db, string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string EditResult(string sp, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string EditResult(string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string EditResult(string db, string sp, object parameter, string DapperCommandType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

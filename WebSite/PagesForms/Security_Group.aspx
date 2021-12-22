@@ -40,11 +40,11 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <%--  <asp:ServiceReference Path="~/Models/WebService.asmx" />--%>
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
 
-        <%--<div style="overflow: scroll; width: 100%; height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
+        <%--<div class="GridView-List-Containor" style=" height: 100%" onscroll="OnScrollDiv(this)" id="DivMainContent">    </div>--%>
         <div class="Edit-Content">
             <table>
                 <tr>
@@ -117,9 +117,9 @@
                     <td>Working Date:</td>
                     <td colspan="4">
                         <label for="dateStart">Start Date: </label>
-                        <input runat="server" type="text" id="dateStart" size="9" class ="Edit-Content-Control" />
+                        <input runat="server" type="text" id="dateStart" size="9"  class="Calendar-Control" />
                         <label for="dateEnd">End Date: </label>
-                        <input runat="server" type="text" id="dateEnd" size="9" class ="Edit-Content-Control" />
+                        <input runat="server" type="text" id="dateEnd" size="9"  class="Calendar-Control" />
 
                     </td>
                 </tr>

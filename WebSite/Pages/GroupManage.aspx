@@ -12,10 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <%--    <script src="../Scripts/bootstrap.min.js"></script>--%>
-    <%--    <link href="../Content/bootstrap.min.css" rel="stylesheet" />--%>
     <link href="../Content/BubbleHelp.css" rel="stylesheet" />
-    <%--    <link href="Content/DefaultPage.css" rel="stylesheet" />--%>
     <link href="../Content/ListPage.css" rel="stylesheet" />
     <link href="../Content/ContentPage.css" rel="stylesheet" />
     <link href="../Content/TabMenu.css" rel="stylesheet" />
@@ -33,19 +30,6 @@
             font-size: small;
         }
 
-
-        .DataContentTile {
-            font-family: Arial;
-            font-size: small;
-            font-weight: 300;
-            color: blue;
-            table-layout: auto;
-            display: block;
-            height: 99%;
-        }
-
-
-
         .SubstituedCell {
             color: red;
             text-decoration: underline;
@@ -57,7 +41,6 @@
             color: blue;
         }
 
-
         .FixedHeader {
             position: absolute;
             font-weight: bold;
@@ -65,18 +48,9 @@
             display: block;
         }
 
-
         .defaultBoard {
             border: 1px blue none;
         }
-
-
-
-        .hfSchoolYear, .hfSchoolCode, .hfEmployeeID, .hfTeacherName, .hfmyKey, .hfIDs {
-            display: none;
-            width: 0px;
-        }
-
 
 
         .top5Row {
@@ -89,38 +63,7 @@
             border: 0px;
         }
 
-        .staff-container {
-            margin-top: 5px;
-            display: grid;
-            grid-template-columns: auto 50%;
-            grid-template-rows: repeat(1,100%);
-            margin: auto;
-            text-align: left;
-            width: 100%
-        }
-
-        .staff-list {
-            text-align: left;
-        }
-
         .function-list {
-        }
-
-        .SearchBox {
-            width: 100px;
-            height: 19px;
-        }
-
-            .SearchBox:focus {
-                border: 1px solid dodgerblue;
-            }
-
-            .SearchBox:visited {
-                border: 1px solid skyblue;
-            }
-
-        .img-selected {
-            filter: contrast(300%);
         }
 
         #SearchingBar {
@@ -138,18 +81,9 @@
             height: 95%;
         }
 
-        .staff-list img {
-            height: 20px;
-            width: 20px;
-            margin-top: -2px;
-            margin-bottom: 2px;
-        }
 
-        #GridView1 img {
-            height: 18px;
-            width: 18px;
-            margin-top: 2px;
-            margin-left: 2px;
+        .staff-container {
+            grid-template-columns: 47% auto;
         }
     </style>
 
@@ -159,8 +93,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
-
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
         <div class="SearchArea-SchoolRow">
@@ -168,12 +101,12 @@
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     Apps: 
-            <asp:DropDownList ID="ddlApps" runat="server" Width="200px">
+            <asp:DropDownList ID="ddlApps" runat="server" Width="200px" CssClass="SearchDDL">
             </asp:DropDownList>
                     School:
-            <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="60px" AutoPostBack="True" OnSelectedIndexChanged="DDLSchoolCode_SelectedIndexChanged">
+            <asp:DropDownList ID="ddlSchoolCode" runat="server" Width="60px" CssClass="SearchDDL" AutoPostBack="True" OnSelectedIndexChanged="DDLSchoolCode_SelectedIndexChanged">
             </asp:DropDownList>
-                    <asp:DropDownList ID="ddlSchool" runat="server" Width="300px" AutoPostBack="True" OnSelectedIndexChanged="DDLSchool_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlSchool" runat="server" Width="300px" CssClass="SearchDDL" AutoPostBack="True" OnSelectedIndexChanged="DDLSchool_SelectedIndexChanged">
                     </asp:DropDownList>
                     <asp:ImageButton ID="btnSearchGo" CssClass="SearchGoButton" runat="server" ToolTip="Search ..." ImageUrl="../images/Go.png" OnClick="BtnSearchGo_Click" />
 
@@ -185,13 +118,16 @@
 
         <div class="staff-container" style="margin-top: 5px;">
             <div class="staff-list">
+                <div class="List-Action">
+                    <a class="List-Action-Title" href="javascript:AddDetail();">
+                        <asp:ImageButton ID="ImageAdd" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                        Add New Security Group </a>
+                </div>
 
-                <a href="javascript:AddDetail();">
-                    <img src="../images/add.png" border="0" style="margin-bottom: -2px;" />Add New Security Group </a>
 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <div style="overflow: scroll; width: 700px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+                        <div class="GridView-List-Containor" style="width: 700px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
                             <asp:GridView ID="GridView1" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Security group show" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                                 <Columns>
                                     <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -259,7 +195,7 @@
                                 </Columns>
 
                                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                                <HeaderStyle CssClass="GridView-header" />
                                 <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                                 <RowStyle Height="25px" />
                                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -286,33 +222,18 @@
         <div id="PopUpDIV" class="bubble epahide"></div>
 
         <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="editTitle">
-                <table>
-                    <tr>
-                        <td style="width: 90%">
-                            <div id="EditTitle"></div>
-                        </td>
-                        <td style="text-align: right">
-                            <img id="closeMe" src="../images/close.png" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" /></td>
-                    </tr>
-                </table>
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
+                </div>
             </div>
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
-
         <div id="ActionMenuDIV" class="bubble epahide">
             <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
             <div id="ActionMenuUL" class="LeftSideMenu">
             </div>
-        </div>
-        <div id="ActionPOPDIV" class="bubble epahide">
-            <div class="editTitle" style="display: block; margin-top: 5px;">
-                <div id="ActionTitle" style="display: inline; float: left; width: 96%"></div>
-                <div style="display: inline; float: left;">
-                    <img id="closeActionPOP" src="../images/close.ico" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" />
-                </div>
-            </div>
-            <iframe id="ActioniFramePage" name="ActioniFramePage" style="height: 425px; width: 99%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
@@ -403,15 +324,15 @@
         var ids = "0";
 
         var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-   
-        OpenFormFromListPage(xName, page,  arg, 500,650);
+
+        OpenFormFromListPage(xName, page, arg, 500, 650);
     }
- 
-    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID,xName,xType) {    
+
+    function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
 
         OpenFormFromListPage(xName, page, arg, 500, 650);
-     }
+    }
 
     var pagesub = "GroupManageSub.aspx";
     function OpenSubPage(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
@@ -420,5 +341,5 @@
         $("#IframeSubArea").attr('src', goPage);
 
     }
- 
+
 </script>

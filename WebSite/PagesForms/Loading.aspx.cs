@@ -25,19 +25,27 @@ namespace ASM.PagesForms
                 //string xType = Page.Request.QueryString["xType"].ToString();
                 //string action = Page.Request.QueryString["Action"].ToString();
                 //string Para = "?Action=" + action + "&IDs=" + ids + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
- 
-                string queryStr = AppsPage.GetQueryString(Page);  
- 
+
+                string queryStr = AppsPage.GetQueryString(Page);
+
                 PageURL.HRef = GetGoPage(pID, queryStr);
             }
         }
         private string GetGoPage(string page, string queryStr)
         {
-            if (!File.Exists(Server.MapPath(page)))
-            { page = "../ComeSoon.aspx?pID=" + page; }
+            var runingPermission = WorkingProfile.Permission;
+            if (runingPermission == "Deny")
+            { page = "~/PagesOther/AccessDeny.aspx"; }
             else
-            { page += "?" + queryStr; }
+            {
+                if (!File.Exists(Server.MapPath(page)))
+                { page = "../PagesOther/ComeSoon.aspx?pID=" + page; }
+                else
+                { page += "?" + queryStr; }
+
+            }
             return page;
         }
+
     }
 }

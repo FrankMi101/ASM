@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SQL_Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{9f4d66bf-0b0c-451f-b5eb-61d98e35a20f}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SQL_Database</RootNamespace>
+    <AssemblyName>SQL_Database</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>TRILLIUM_FG01</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Defaults\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Functions\Functions_Value" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Stored Procedures\Procs_asm" />
+    <Folder Include="dbo\Rules\" />
+    <Folder Include="dbo\User Defined Types\" />
+    <Folder Include="dbo\Stored Procedures\Procs_sys" />
+    <Folder Include="dbo\Functions\Function_Table" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Views\SIC_sys_SchoolClassTeacher.sql" />
+    <Build Include="dbo\Views\SIC_sys_SchoolsView.sql" />
+    <Build Include="dbo\Views\SIC_sys_SchoolYear.sql" />
+    <Build Include="dbo\Views\SIC_sys_Employee.sql" />
+    <Build Include="dbo\Views\SIC_Students.sql" />
+    <Build Include="dbo\Views\SIC_sys_Students.sql" />
+    <Build Include="dbo\Views\SIC_sys_Schools_view.sql" />
+    <Build Include="dbo\Views\SIC_sys_SchoolClasses_S.sql" />
+    <Build Include="dbo\Views\SIC_sys_StudentClasses.sql" />
+    <Build Include="dbo\Views\SIC_sys_SchoolClasses_E.sql" />
+    <Build Include="dbo\Views\SIC_sys_SchoolClasses.sql" />
+    <Build Include="dbo\Defaults\DF_tran_function.sql" />
+    <Build Include="dbo\Defaults\DF_tran_update_datetime.sql" />
+    <Build Include="dbo\Defaults\DF_iep_procedure.sql" />
+    <Build Include="dbo\Defaults\DF_iep_update.sql" />
+    <Build Include="dbo\Defaults\DF_Security_Lock.sql" />
+    <Build Include="dbo\Defaults\DF_iep_username.sql" />
+    <Build Include="dbo\Defaults\DF_Security_RunningID.sql" />
+    <Build Include="dbo\Defaults\DF_iep_username_new.sql" />
+    <Build Include="dbo\Defaults\DF_Security_Extend.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Appraisal.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.ASM.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Class.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Enrolment.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Image.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Report.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Staff.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Student.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Teacher.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.Title.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ActionTask.User.sql" />
+    <Build Include="dbo\Functions\Functions_Value\App.UserGroup.Model.AccessScope.sql" />
+    <Build Include="dbo\Functions\Functions_Value\App.UserGroup.Model.Permission.sql" />
+    <Build Include="dbo\Functions\Functions_Value\App.UserRole.Model.AccessScope.sql" />
+    <Build Include="dbo\Functions\Functions_Value\App.UserRole.Model.Permission.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Application.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Convert.TableToString.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Convert.TableToStringS.sql" />
+    <Build Include="dbo\Functions\Functions_Value\ConvertDateToString.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Current.School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolTerm.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolYear.PreNext.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolYear.PreNext5.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolYear.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolYear2.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Current.SchoolYearSSN.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchool.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolbyStudent.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolTerm.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYear.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYear2.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearCED.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearDay.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearLTO.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearNext.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearPLF.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearSES.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearSLIP.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearSLT.sql" />
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearTPA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\CurrentSchoolYearVPA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Date.Month.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Date.ToString.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Date.Week.sql" />
+    <Build Include="dbo\Functions\Functions_Value\DateDay.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Address.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Area.SIC.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Area.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.BSID.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Class.Teacher.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Date.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\School.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Name_Brief.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Panel.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Phone.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.eMailAddress.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.ID.LTO.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.LTO.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.PersonID.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.SIC.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Principal.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.PrincipalID2.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Region.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.Representative.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\School.SupportOffice.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.ActionTask.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.App.AccessScope.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.APP.Permission.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Area.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.GroupID.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.GroupName.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.GroupPermission.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.GroupType.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.GroupValue.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Assign.School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.eMailAddress.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.EmployeeRole.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.ID.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.IsPermanent.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Panel.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Profile.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.APP.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.Permission.APP.Model.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.Permission.APP.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.SAP.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.Scope.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.TPA.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.Role.Working.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Staff.TCDSB.eMailAddress.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.UserProfile.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Staff.WorkSchool.IsSelected.sql" />
+    <Build Include="dbo\Functions\Functions_Value\String.Format.Append.sql" />
+    <Build Include="dbo\Functions\Functions_Value\String.Format.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Achievement.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ActionTask.Group.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ActionTask.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Address.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Age.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Age.Today.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.AgebyDate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.AgeYear.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.BioGrophic.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.BirthDate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.CAT4.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Class.Info.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Class.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Class2.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ClassWD.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Cohort.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Contact.ByPriority.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Contact.Info.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Contact.Phone.Alternate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Contact.Phone.Secondary.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Contact.Phone.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Credit.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.CreditByCourse.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.CurrentLevel.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ELLELD.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Email.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Student.Enrolment.Funding.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Enrolment.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Enrolment.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.EQAO.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.EQAOAccomOnly.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Exceptionality.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.FormRecord.Check.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.French.Program.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.French.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.FTE.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.GAcount.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.GetAgebyDate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.GoPage.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Grade.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Grade12Years.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Grade12YearsbyAge.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.GradeA.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.GradeShow.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.HasFormRecord.Check.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Health.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Student.HomeRoom.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.HomeSchool.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ID.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IEP.CompleteCheck.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IEP.CompleteCheckDate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IEP.CompleteCheckResult.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IEP.CompleteDate.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IsInProgram.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IsInVritualSchool.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ISPProgram.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.IsWithSchool.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Mark.Average.Final.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Mark.Average.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Medical.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.MedicalAlertID.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Student.MedicalID.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Student.MedicalInformation.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Name.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.OptionSheet.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Panel.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Parents.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Functions\Functions_Value\Student.Picture.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Profile.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.ProfileByYear.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Program.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Religen.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.School.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.SE.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.SpecialEd.Code.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.SpecialEd.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Status.ByMonth.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Status.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Status.SSN.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Tasks.Completed.sql" />
+    <Build Include="dbo\Functions\Functions_Value\Student.Trillium.SpecialEd.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppPermission_SelfRequest.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRegister_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRegister_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRole_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRole_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRoleMatch_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRoleMatch_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRolePermission_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppRolePermission_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_Apps_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_Apps_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppSchoolStaffs_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppSchoolStaffsMember_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppsModel_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppsModel_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffSchoolSelect_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffWorkingGroup_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffWorkingGroups_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffWorkingRoles_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffWorkingSchools_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppStaffWorkingSchools_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroup_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroup_Push.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroup_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupMemberS_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupMemberS_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupMemberT_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupMemberT_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupPermission_Edit.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_AppUserGroupPermission_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_asm\SIC_asm_StudentList_Read.sql" />
+    <Build Include="dbo\Rules\flag_rule.sql" />
+    <Build Include="dbo\Rules\special_permission_rule.sql" />
+    <Build Include="dbo\Rules\east_flag_rule.sql" />
+    <Build Include="dbo\Rules\school_support_ind_rule.sql" />
+    <Build Include="dbo\User Defined Types\GeneralParameter.sql" />
+    <Build Include="dbo\User Defined Types\OneFieldTable.sql" />
+    <Build Include="dbo\User Defined Types\OneColumnTable.sql" />
+    <Build Include="dbo\User Defined Types\StudentsSet.sql" />
+    <Build Include="dbo\User Defined Types\TeachersSet.sql" />
+    <Build Include="dbo\User Defined Types\PositionSet.sql" />
+    <Build Include="dbo\User Defined Types\SingleFieldTable.sql" />
+    <Build Include="dbo\Tables\SIC_School_Areas.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_EXEC_SP.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_EXEC_SP_Result.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ActionMenu_GoPage.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ActionMenuList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_AppRoleList_Read.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ConvertFunctionCheck.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_GeneralList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_GoPageOfClassLevel.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_GoPageOfSchoolLevel.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_GoPageOfStudentLevel.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_GradeList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_HelpTitleContentSP.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListItems.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListItems_UDTT.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListItemsSchool.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListItemsStudents.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListItemsTab.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofAppraisal.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofClasses.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofMembersSecurityGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofReports.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofSchoolPrincipals.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofSchools.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofSchoolStaffs.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofSecurityGroups.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStaffsSecurity.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStaffsSecurityContent.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStudentEnrolmentRecords.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStudentGroup.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStudents.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_ListofStudentsForBatchPrint.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_LoginUserProfile.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_MenuOfClassList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_MenuOfGroupList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_MenuOfSchoolList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_MenuOfStaffList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_MenuOfStudentList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_SchoolDate.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_SchoolDateList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_SchoolList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_StudentListbyGrade.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_StudentSpedProfile.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_TabList.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserAppsRole.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserBaseRole.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserGroupMember.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserGroupMember_PushToApps.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserGroupMember_Students.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserGroupMember_Teachers.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserRoleManagement.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserRoleMatchManagement.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserRolePermission.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_sys_UserWorkingTrack.sql" />
+    <Build Include="dbo\Stored Procedures\Procs_sys\SIC_test_BaseClass_Integation_Apps.sql" />
+    <Build Include="dbo\Functions\Function_Table\Convert.StringToTable.sql" />
+    <Build Include="dbo\Functions\Function_Table\School.Courses.sql" />
+    <Build Include="dbo\Functions\Function_Table\School.Marks.Grades.sql" />
+    <Build Include="dbo\Functions\Function_Table\School.Marks.Period.sql" />
+    <Build Include="dbo\Functions\Function_Table\School.MsgrFraser.sql" />
+    <Build Include="dbo\Functions\Function_Table\SchoolList.byArea.sql" />
+    <Build Include="dbo\Functions\Function_Table\SecurityControlTable.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\Staff.Assign.GroupValues.sql" />
+    <Build Include="dbo\Functions\Function_Table\Staff.Classes.APP.sql" />
+    <Build Include="dbo\Functions\Function_Table\Staff.Schools.APP.sql" />
+    <Build Include="dbo\Functions\Function_Table\Staff.Schools.SAP.sql" />
+    <Build Include="dbo\Functions\Function_Table\Staff.Students.APP.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.Class.List.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.Classes.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.Cohorts.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.Contact.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.List.byClass.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.List.byGrade.sql" />
+    <Build Include="dbo\Functions\Function_Table\Student.TimeTable.sql" />
+    <Build Include="dbo\Functions\Function_Table\StudentOfficeIndexItem.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\StudentRelations.sql" />
+    <Build Include="dbo\Functions\Function_Table\StudentsTableToAPTTeacher.sql" />
+    <Build Include="dbo\Functions\Function_Table\StudentsTableToSchool.sql" />
+    <Build Include="dbo\Functions\Function_Table\StudentsTableToTeacher.sql" />
+    <Build Include="dbo\Functions\Function_Table\StudentsTableToUser.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\StudentTimeTable.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\TC_School.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\TC_Student.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\TC_StudentBackground.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\TC_Teacher.sql">
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Functions\Function_Table\Teacher.Current.WorkingSchools.sql" />
+    <Build Include="dbo\Functions\Function_Table\Teacher.SchoolList.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\SIC_Student_SpedProgramProfile.sql" />
+    <Build Include="dbo\Tables\SIC_sys_AccessPermission.sql" />
+    <Build Include="dbo\Tables\SIC_sys_AccessScope.sql" />
+    <Build Include="dbo\Tables\SIC_sys_Apps.sql" />
+    <Build Include="dbo\Tables\SIC_sys_AppsModels.sql" />
+    <Build Include="dbo\Tables\SIC_sys_ConvertFun_TestTable.sql" />
+    <Build Include="dbo\Tables\SIC_sys_Employee_OverWriteSAP.sql" />
+    <Build Include="dbo\Tables\SIC_sys_HelpTitleContent.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuItemProfile.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListCatelog.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListofClass.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfGroup.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfReports.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfSecurityList.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfStaff.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfStudent.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MenuListOfTPAList.sql" />
+    <Build Include="dbo\Tables\SIC_sys_MultipleSchool_User.sql" />
+    <Build Include="dbo\Tables\SIC_sys_Reports.sql" />
+    <Build Include="dbo\Tables\SIC_sys_ReportsManagement.sql" />
+    <Build Include="dbo\Tables\SIC_sys_SchoolAreas.sql" />
+    <Build Include="dbo\Tables\SIC_sys_SchoolAreaUser.sql" />
+    <Build Include="dbo\Tables\SIC_sys_SchoolGrade.sql" />
+    <Build Include="dbo\Tables\SIC_sys_SchoolPanelUser.sql" />
+    <Build Include="dbo\Tables\SIC_sys_Schools.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_AppsPermission.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_FeederSchools.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_FeederSchoolTeachers.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_Members.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_MemberStudents.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserGroup_MemberTeachers.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserProfile.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserProfileMatch_ClassTypeDesc.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserProfileMatch_PositionDesc.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserRequestLog.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserRole.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserRole_Apps.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserRole_AppsPermission.sql" />
+    <Build Include="dbo\Tables\SIC_sys_Users.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UsersActionTrack.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserWorkingRoles.sql" />
+    <Build Include="dbo\Tables\SIC_sys_UserWorkingSchools.sql" />
+    <Build Include="dbo\Tables\SIC_test_BaseClass_Dapper.sql" />
+    <Build Include="dbo\Tables\SIC_test_BaseClass_IntegrationTest.sql" />
+    <Build Include="dbo\Tables\SIC_test_BaseClass_UnitTest.sql" />
+  </ItemGroup>
+</Project>

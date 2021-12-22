@@ -56,6 +56,11 @@
   <ItemGroup>
     <Compile Include="ActionApp\ActionAppBase.cs" />
     <Compile Include="ActionApp\ActionApps.cs" />
+    <Compile Include="ActionApp\ActionAppsAccess.cs" />
+    <Compile Include="ActionApp\ActionAppsFeedback.cs" />
+    <Compile Include="ActionApp\ActionAppsRequestClassMatch.cs" />
+    <Compile Include="ActionApp\ActionAppsRequestPermission.cs" />
+    <Compile Include="ActionApp\ActionWorkingProfile.cs" />
     <Compile Include="ActionApp\ActionAppsModel.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingGroups.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingRoles.cs" />
@@ -104,6 +109,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UtilityMethod\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

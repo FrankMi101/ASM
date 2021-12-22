@@ -11,7 +11,7 @@ namespace ASM.PagesForms
 {
     public partial class Security_Group : System.Web.UI.Page
     {
-        readonly string pageID = "GroupMembersList";
+        readonly string pageID = "Group";
         protected void Page_Error(object sender, EventArgs e)
         {
             //Exception Ex = Server.GetLastError();
@@ -67,8 +67,8 @@ namespace ASM.PagesForms
                 UserID  = WorkingProfile.UserId  ,
                 Para1 = hfUserRole.Value,
                 Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = scope
+                Para3 = scope,
+                Para4 = WorkingProfile.AppID,
             };
             AppsPage.BuildingList(ddlGroupType, "GroupType", parameters,"School");
             AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, hfSchoolCode.Value);

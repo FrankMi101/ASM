@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaffManageSub2.aspx.cs" Inherits="ASM.Pages.StaffManageSub2" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="StaffManageSub2.aspx.cs" Inherits="ASM.Pages.StaffManageSub2" Async="true" EnableTheming="true" %>
 
 <!DOCTYPE html>
 
@@ -33,20 +33,7 @@
             font-family: Arial;
             font-size: small;
         }
-
-
-        .DataContentTile {
-            font-family: Arial;
-            font-size: small;
-            font-weight: 300;
-            color: blue;
-            table-layout: auto;
-            display: block;
-            height: 99%;
-        }
-
-
-
+ 
         .SubstituedCell {
             color: red;
             text-decoration: underline;
@@ -78,16 +65,7 @@
         .defaultBoard {
             border: 1px blue none;
         }
-
-
-
-        .hfSchoolYear, .hfSchoolCode, .hfEmployeeID, .hfTeacherName, .hfmyKey, .hfIDs {
-            display: none;
-            width: 0px;
-        }
-
-
-
+ 
         .top5Row {
             border-top: 5px solid darkcyan;
         }
@@ -97,12 +75,7 @@
             padding: 0px;
             border: 0px;
         }
-
-        .SearchBox {
-            background-color: transparent;
-            border: 0px solid blue;
-            color: white;
-        }
+ 
 
         .MessageRow {
             background: dodgerblue; /* For browsers that do not support gradients */
@@ -125,19 +98,7 @@
             height:20px;
             margin:10px;
         }
-        .Content-Aeas-Grant img {
-            height: 20px;
-            width: 22px;
-            margin-bottom: 0px;
-            margin-top: -4px;
-        }
-
-        .Content-Area-SAP img {
-            height: 18px;
-            width: 18px;
-            margin-top: -5px;
-            margin-left: 5px;
-        }
+ 
     </style>
     <script type="text/javascript">
 
@@ -153,7 +114,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+               <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
         <div class="MessageRow">
@@ -173,10 +134,10 @@
         </div>
         <div class="centerDIV">
             Application:
-            <asp:DropDownList ID="ddlApps" runat="server" Width="300px">
+            <asp:DropDownList ID="ddlApps" runat="server" Width="300px" CssClass="SearchDDL">
             </asp:DropDownList>
             App Role:
-            <asp:DropDownList ID="ddlAppRole" runat="server" Width="180px">
+            <asp:DropDownList ID="ddlAppRole" runat="server" Width="180px" CssClass="SearchDDL">
             </asp:DropDownList>
         </div>
         <div style="margin-left: -2px;">
@@ -191,7 +152,7 @@
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div style="overflow: scroll; width: 100%; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
+                    <div class="GridView-List-Containor" style=" height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
                         <asp:GridView ID="GridView1" CssClass="content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Apps security setup for the user" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -211,7 +172,7 @@
                                 </asp:BoundField>
                             </Columns>
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
 
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -232,16 +193,16 @@
 
         </div>
         <div id="PopUpDIV" class="bubble epahide"></div>
-        <div id="ActionPOPDIV" class="bubble epahide">
-            <div class="editTitle" style="display: block; margin-top: 5px;">
-                <div id="ActionTitle" style="display: inline; float: left; width: 96%"></div>
-                <div style="display: inline; float: left;">
-                    <img id="closeActionPOP" src="../images/close.ico" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" />
+       <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
                 </div>
             </div>
-            <iframe id="ActioniFramePage" name="ActioniFramePage" style="height: 425px; width: 99%" frameborder="0" scrolling="no" src="iBlankPage.html" runat="server"></iframe>
-        </div>
 
+            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
+        </div>
         <div>
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />

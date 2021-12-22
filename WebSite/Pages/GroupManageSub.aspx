@@ -12,10 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
-    <%--    <script src="../Scripts/bootstrap.min.js"></script>--%>
-    <%--    <script src="../Scripts/JqueryUI/jquery-ui.min.js"></script>
-    <link href="../Scripts/JqueryUI/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" />--%>
     <link href="../Content/BubbleHelp.css" rel="stylesheet" />
     <link href="../Content/ListPage.css" rel="stylesheet" />
     <link href="../Content/ContentPage.css" rel="stylesheet" />
@@ -34,18 +30,7 @@
             font-size: small;
         }
 
-
-        .DataContentTile {
-            font-family: Arial;
-            font-size: small;
-            font-weight: 300;
-            color: blue;
-            table-layout: auto;
-            display: block;
-            height: 99%;
-        }
-
-
+ 
 
         .SubstituedCell {
             color: red;
@@ -78,16 +63,7 @@
         .defaultBoard {
             border: 1px blue none;
         }
-
-
-
-        .hfSchoolYear, .hfSchoolCode, .hfEmployeeID, .hfTeacherName, .hfmyKey, .hfIDs {
-            display: none;
-            width: 0px;
-        }
-
-
-
+ 
         .top5Row {
             border-top: 5px solid darkcyan;
         }
@@ -114,28 +90,10 @@
                 font-weight: bold;
             }
 
-        .content-grid th {
-            background: linear-gradient(lightskyblue, white);
-            color: black;
-            font-size: 12px;
-        }
+        
 
         .ddlControls {
             height: 20px;
-        }
-
-        .Gridview-title {
-            margin-top: 10px;
-            display: block;
-            width: 100%;
-            height: 20px;
-        }
-
-        .Content-Area-SAP img {
-            height: 18px;
-            width: 18px;
-            margin-top: -3px;
-            margin-left: 5px;
         }
 
         .EditPage {
@@ -157,7 +115,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
         <div class="MessageRow">
@@ -175,13 +133,14 @@
         <div class="Content-Area Content-Area-SAP ">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div class="Gridview-title">
-                        <a href="javascript:AddDetail('StudentMember')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
+                    <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail('StudentMember');">
+                            <asp:ImageButton ID="ImageAdd" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
                             Add New Student Members to the Group</a>
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 120px" onscroll="OnScrollDiv(this)" id="DivMainContent-Student">
-                        <asp:GridView ID="GridView_Students_Group" CssClass="content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Students has been added to the Group" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
+    
+                    <div class="GridView-List-Containor" style=" height: 120px" onscroll="OnScrollDiv(this)" id="DivMainContent-Student">
+                        <asp:GridView ID="GridView_Students_Group" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Students has been added to the Group" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
                                     <ItemStyle Width="3%" />
@@ -214,7 +173,7 @@
                             </Columns>
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="25px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -224,13 +183,14 @@
                             <SortedDescendingHeaderStyle BackColor="#33276A" />
                         </asp:GridView>
                     </div>
-                    <div class="Gridview-title">
-                        <a href="javascript:AddDetail('TeacherMember')">
-                            <img src="../images/add.png" border="0" width="16" height="16" />
-                            Add New Teacher Members to the Group </a>
+                   <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail('TeacherMember');">
+                            <asp:ImageButton ID="ImageNew" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                           Add New Teacher Members to the Group</a>
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 180px" onscroll="OnScrollDiv(this)" id="DivMainContent-Teacher">
-                        <asp:GridView ID="GridView_Teachers_Group" CssClass="content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Teacher has been add to the Group" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
+  
+                     <div class="GridView-List-Containor" style=" height: 180px" onscroll="OnScrollDiv(this)" id="DivMainContent-Teacher">
+                        <asp:GridView ID="GridView_Teachers_Group" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Teacher has been add to the Group" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
                                     <ItemStyle Width="3%" />
@@ -269,7 +229,7 @@
                             </Columns>
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="25px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -280,14 +240,15 @@
                         </asp:GridView>
 
                     </div>
-                    <div class="Gridview-title">
-                        <a href="javascript:AddDetail('GroupPermission')">
-                             <asp:ImageButton ID="ImgUGP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
-                            <%--<img src="../images/add.png" border="0" width="16" height="16" />--%>
+                   <div class="List-Action">
+                        <a class="List-Action-Title" href="javascript:AddDetail('GroupPermission');">
+                            <asp:ImageButton ID="ImageUGP" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
                             Manage User Group Permission</a>
                     </div>
-                    <div style="overflow: scroll; width: 100%; height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
-                        <asp:GridView ID="GridView_Permission" CssClass="GridView-List content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
+ 
+    
+                    <div class="GridView-List-Containor" style=" height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
+                        <asp:GridView ID="GridView_Permission" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
                                     <ItemStyle Width="3%" />
@@ -324,7 +285,7 @@
                             </Columns>
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="25px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -341,17 +302,13 @@
         </div>
 
         <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="editTitle">
-                <table>
-                    <tr>
-                        <td style="width: 90%">
-                            <div id="EditTitle"></div>
-                        </td>
-                        <td style="text-align: right">
-                            <img id="closeMe" src="../images/close.png" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" /></td>
-                    </tr>
-                </table>
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
+                </div>
             </div>
+
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
 

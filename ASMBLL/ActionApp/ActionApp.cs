@@ -12,7 +12,6 @@ namespace ASMBLL
        // private readonly ActionAppService<T> _iActionApp; // = (IActionApp<T>)MapClass<T>.ClassType();
         public ActionApp()
         {
-          // this._iActionApp = (IActionApp<T>)MapClass<T>.ClassType();
            this._iActionApp =  MapClass<T>.ActionClassType("");
         }
         public ActionApp(string objType)
@@ -66,6 +65,19 @@ namespace ASMBLL
             return _iActionApp.GetSPName(action);
         }
 
+        public static List<T> GetListOfT(string dataSource, object parameter)
+        {
+            var dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);
+            if (dataSource == "ClassCall") dataSource = MapClass<T>.SPName("Read");
+            return dataOperateService.ListOfT(dataSource, parameter,"SP");
+        }
+        public static T GetValueOfT(string dataSource, object parameter)
+        {
+            var dataOperateService = (IDataOperateService<T>)MapClass<T>.DBSource(dataSource);
+            if (dataSource == "ClassCall") dataSource = MapClass<T>.SPName("Edit");
+            return dataOperateService.ValueOfT(dataSource, parameter, "SP");
+
+         }
 
     }
  

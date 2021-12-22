@@ -19,9 +19,20 @@ table tbody tr:nth-child(odd) {
     background-color: aliceblue;
 }
 
+.hfSchoolYear, .hfSchoolCode, .hfEmployeeID, .hfTeacherName, .hfmyKey, .hfIDs {
+    display: none;
+    width: 0px;
+}
+
+
 .loading {
     font-size: large;
 }
+
+.img-selected {
+    filter: contrast(300%);
+}
+
 .GridView-Selected {
     background: lightblue; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
@@ -30,6 +41,7 @@ table tbody tr:nth-child(odd) {
     background: linear-gradient(skyblue, white); /* Standard syntax */
     color: purple;
 }
+
 .GridView-List tr:hover {
     background: lightblue; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
@@ -37,6 +49,118 @@ table tbody tr:nth-child(odd) {
     background: -moz-linear-gradient(skyblue, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(skyblue, white); /* Standard syntax */
     color: purple;
+}
+
+.GridView-List-Containor {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+    .GridView-List-Containor img {
+        height: 18px;
+        width: 18px;
+        margin-top: 2px;
+        margin-left: 2px;
+    }
+
+.EditDIV {
+    border: 2px solid salmon;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.EditDIV-Header {
+    display: block;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+.EditDIV-Header-Title {
+    display: inline;
+    float: left;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: darkred
+}
+
+.EditDIV-Header-Close {
+    display: inline;
+    float: right;
+}
+
+.EditDIV-Header-Close-Img {
+    height: 20px;
+    width: 20px;
+    margin: -3px 0 -3px 0;
+    border: 1px solid dodgerblue;
+    border-radius: 5px;
+    /*   background-image: url(../images/close.png);
+    background: url('../images/close.png') no-repeat;*/
+}
+
+    .EditDIV-Header-Close-Img:hover {
+        filter: contrast(200%);
+        border: 2px solid #0094ff;
+        box-shadow: 0 0 0 3px rgba(24,117,255,0.25);
+    }
+
+List-Action-Containor {
+    display: flex;
+    justify-content: space-between;
+}
+
+.List-Action {
+    margin-top: 5px;
+    display: inline-flex;
+    /*     width: 100%;*/
+    height: 25px;
+}
+
+    .List-Action:hover {
+        font-size: 1.2em;
+        font-weight: 500;
+        color: purple;
+    }
+
+.List-Action-Title {
+}
+
+.List-Action-Image {
+    border: 0px;
+    Width: 16px;
+    Height: 16px;
+    margin-bottom: -3px;
+    scroll-margin-right: 10px;
+}
+
+
+
+.List-Action-Title-Alter {
+    display: inline;
+    margin-left: 125px;
+}
+
+.staff-container {
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: 50% auto;
+    grid-template-rows: repeat(1,100%);
+    margin: auto;
+    text-align: left;
+    width: 100%
+}
+
+.staff-list {
+    text-align: left;
+}
+ 
+.GridView-header {
+    background: linear-gradient(lightskyblue, white);
+    color: black;
+    font-size: 12px;
+    Height: 25px;
 }
 
 #GridView1 td {
@@ -59,13 +183,14 @@ table tbody tr:nth-child(odd) {
     background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
     background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
 }
+
 #GridView1 tr:hover {
     background: lightblue; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(skyblue, white); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(skyblue, white); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(skyblue, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(skyblue, white); /* Standard syntax */
-    color:purple;
+    color: purple;
 }
 
 #GridView1 tr:visited {
@@ -92,9 +217,7 @@ table tbody tr:nth-child(odd) {
     font-family: Arial, sans-serif;
     font-size: x-small;
 }
-#GridView1 img {
-    margin-top:-2px;
-}
+
  
 #DivRoot {
     width: 100%;
@@ -104,22 +227,21 @@ table tbody tr:nth-child(odd) {
 
 
 #btnSearch, #btApplicant, #Button1, .GoButton {
-    background-color:  white;
-    color:dodgerblue;
+    background-color: white;
+    color: dodgerblue;
     font-weight: 600;
     height: 22px;
     width: 40px;
 }
+
 .HideColumn {
     display: none;
 }
-.iFrameDIV
-{
-    height:95%;
+
+.iFrameDIV {
+    height: 95%;
 }
 
 #alphabateSearch a:visited {
- 
-text-decoration:underline;
-
+    text-decoration: underline;
 }

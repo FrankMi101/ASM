@@ -7,9 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASM {
-    
-    
-    public partial class ViewSwitcher {
+namespace ASM
+{
+
+
+    public partial class ViewSwitcher
+    {
     }
 }

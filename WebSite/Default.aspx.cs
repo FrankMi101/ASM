@@ -16,9 +16,32 @@ namespace ASM
             if (!Page.IsPostBack)
             {
                 Page.Response.Expires = 0;
-                SaveUserWorkingEnvironment();
- 
-                DefaultLoad();
+                Session["myTheme"] = "Theme1";
+
+                CheckUserRunningAppsPermission();
+              
+            }
+        }
+        private void CheckUserRunningAppsPermission()
+        {
+            var userAppRole = WorkingProfile.AppUserRole;
+            var para = new { 
+                Operate = "Permission", 
+                UserID = UserProfile.LoginUserId, 
+                AppID = WorkingProfile.AppID, 
+                ModelID = WorkingProfile.ModelID, 
+                UserRole = WorkingProfile.AppUserRole
+            };
+            var runingPermission = WorkingProfile.GetWorkingProfile(para)[0].Permission;
+            WorkingProfile.Permission = runingPermission;
+
+            if (runingPermission == "Deny")
+            {
+                 GoList.Attributes.Add("src", "~/PagesOther/AccessDeny.aspx");
+            }
+            else
+            {   SaveUserWorkingEnvironment();
+                DefaultLoad();         
             }
         }
         private void DefaultLoad()
@@ -28,8 +51,10 @@ namespace ASM
             WorkingProfile.PageItem = "EPA00";
             hfPageID.Value = "Default";
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
-            hfUserID.Value  = WorkingProfile.UserId  ;
+            hfUserID.Value = WorkingProfile.UserId;
             hfRunningModel.Value = WebConfig.RunningModel();
+
+
 
             if (DBConnection.CurrentDB != "Live")
             {
@@ -41,7 +66,7 @@ namespace ASM
                 var parameter = new CommonListParameter()
                 {
                     Operate = "UserRole",
-                    UserID  = WorkingProfile.UserId  ,
+                    UserID = WorkingProfile.UserId,
                     Para1 = "",
                     Para2 = "",
                     Para3 = "",
@@ -57,15 +82,21 @@ namespace ASM
                 GetUserLastWorkingValue();
             }
             catch (Exception ex)
-            { string em = ex.StackTrace; }
+            {
+                string em = ex.StackTrace;
+            }
             string pId = Page.Request.QueryString["pID"];
+
             pId = GetDefaultListbyRole();  // "Loading.aspx?pID=Summary";
 
             GoList.Attributes.Add("src", pId);
+
+
         }
 
         private string GetDefaultListbyRole()
-        { string workingArea = "Current Working Area";
+        {
+            string workingArea = "Current Working Area";
             string goPage = "HomePage.aspx";
             switch (WorkingProfile.UserRole)
             {
@@ -81,8 +112,8 @@ namespace ASM
                 case "Admin":
                     workingArea = "Board Info Center >> User Access Control Management >> Apps Access Control Summary";
                     goPage = "Pages/AccessSummary.aspx";
-                    hfTopMenuArea.Value = "TopItem_7"; 
-                    hfLevel1MenuArea.Value = "TopItem_71"; 
+                    hfTopMenuArea.Value = "TopItem_7";
+                    hfLevel1MenuArea.Value = "TopItem_71";
                     break;
                 default:
                     goPage = "Pages/AccessSummary.aspx";
@@ -90,7 +121,7 @@ namespace ASM
             }
             LabelPageTitle.Text = workingArea;
 
-            return "Loading.aspx?pID=" + goPage; 
+            return "Loading.aspx?pID=" + goPage;
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -110,7 +141,7 @@ namespace ASM
         private void GetUserLastWorkingValue()
         {
 
-            List<LastWorkInfo> lastInfo = GetLastWorkInfo()  ;
+            List<LastWorkInfo> lastInfo = GetLastWorkInfo();
             var myInfo = lastInfo[0];
             LabelSchoolYear.Text = UserProfile.CurrentSchoolYear;
             LabelSchoolCode.Text = myInfo.SchoolCode; // UserLastWorking.SchoolCode;
@@ -123,7 +154,7 @@ namespace ASM
             hfTeacherName.Value = myInfo.UserName;//   WorkingProfile.UserName;
 
             WorkingProfile.SchoolArea = hfSchoolArea.Value;
-            LabelUserIdentified.Text = HttpContext.Current.User.Identity.IsAuthenticated ? "Identified: Yes":"No";
+            LabelUserIdentified.Text = HttpContext.Current.User.Identity.IsAuthenticated ? "Identified: Yes" : "No";
             LabelUserIdentified.Text += HttpContext.Current.User.Identity.AuthenticationType;
         }
         private void SaveUserWorkingEnvironment()
@@ -143,10 +174,10 @@ namespace ASM
             var parameter = new
             {
                 Operate = "GetAll",
-                UserID  = WorkingProfile.UserId  
+                UserID = WorkingProfile.UserId
             };
 
-             var myList = AppsBase.GeneralList<LastWorkInfo>("dbo.SIC_sys_UserWorkingTrack", parameter);
+            var myList = AppsBase.GeneralList<LastWorkInfo>("dbo.SIC_sys_UserWorkingTrack", parameter);
             return myList;
         }
     }

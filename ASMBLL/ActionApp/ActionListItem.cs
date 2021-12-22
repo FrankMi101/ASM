@@ -25,7 +25,7 @@ namespace ASMBLL
 
         public List<NameValueList> GetObjList(object parameter)
         {
-             return _dataOperate.ListOfT("ListItems", _sp, parameter);
+             return _dataOperate.ListOfT(_sp, parameter);
         }
 
         public List<NameValueList> GetObjList(string dataSource, object parameter)

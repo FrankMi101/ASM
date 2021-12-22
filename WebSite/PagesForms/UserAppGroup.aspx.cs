@@ -81,8 +81,8 @@ namespace ASM.PagesForms
                 UserRole = hfUserRole.Value,
                 Para1 = hfUserRole.Value,
                 Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = scope
+                Para3 = scope,
+                Para4 = WorkingProfile.AppID,
             };
             AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
             AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);

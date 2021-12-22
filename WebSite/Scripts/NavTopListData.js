@@ -266,7 +266,16 @@
                         "target": "GoList",
                         "ID": "754",
                         "myClass": "Level-3"
+                    },
+                    {
+                        "display": "User Request Permission Management",
+                        "role": "Admin",
+                        "url": "Loading.aspx?pID=Pages/UserRequestPermissionManage.aspx",
+                        "target": "GoList",
+                        "ID": "755",
+                        "myClass": "Level-3"
                     }
+
   
                 ]
             },

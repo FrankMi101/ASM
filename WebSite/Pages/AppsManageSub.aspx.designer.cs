@@ -42,13 +42,13 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.TextBox TextBoxAppsName;
 
         /// <summary>
-        /// ImgNewRole control.
+        /// ImageAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImgNewRole;
+        protected global::System.Web.UI.WebControls.ImageButton ImageAdd;
 
         /// <summary>
         /// UpdatePanel1 control.
@@ -103,15 +103,6 @@ namespace ASM.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelTeacherName;
-
-        /// <summary>
-        /// ActioniFramePage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe ActioniFramePage;
 
         /// <summary>
         /// hfSchoolYear control.

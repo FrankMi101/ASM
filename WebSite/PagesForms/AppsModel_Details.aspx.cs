@@ -18,6 +18,12 @@ namespace ASM.PagesForms
             //Server.ClearError();
             //Response.Redirect("../Error.aspx?pID=" + pageID + "&ex=" + Ex.Message);
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["myTheme"] != null) this.Theme = Session["myTheme"].ToString();
+      
+        }
+         
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

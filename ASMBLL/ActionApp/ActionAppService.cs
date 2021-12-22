@@ -26,7 +26,6 @@ namespace ASMBLL
         public ActionAppService(IActionApp<T> iActionapp, string dataSource)
         {
             _actionApp = iActionapp;
-            // _actionApp = MapClass<T>.ActionClassType(objType);
             this._dataOperate = MapClassForDB<T>.DBSource(dataSource);
 
         }
@@ -89,10 +88,15 @@ namespace ASMBLL
             return _actionApp.EditObj(parameter);
         }
 
-
+        public string GetValue(object parameter)
+        {
+            return _actionApp.GetValue(parameter);
+        }
         public virtual object GetParameter(string operate, T paraObj)
         {
             return null;
         }
+
+
     }
 }

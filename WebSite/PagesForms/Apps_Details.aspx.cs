@@ -45,7 +45,7 @@ namespace ASM.PagesForms
         }
         private void AssemblePage()
         {
-            string scope;
+             
         }
         private void BindViewData()
         {

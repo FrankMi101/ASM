@@ -329,6 +329,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        GetJWTTokenAndSaveToLocalStorage();
         topSelectedMenuItem = topMenuID ;
         var vHeight = window.innerHeight - 140;
         $("#" + topMenuID).addClass("TopSelectItem");
@@ -455,5 +456,22 @@
             }
             catch (e) { }
         });
+    }
+
+    function GetJWTTokenAndSaveToLocalStorage() {
+        // use  JWT token to authticatio the user to Call Web API from client Restful API HTTP POST verb 
+        // Get JWT token and save to local storage of browser
+         var para = {
+            UserID: $("#hfUserID").val(),
+            UserRole: $("#hfUserLoginRole").val() 
+        };
+ 
+        var uri = "JWToken";
+        var token = WebAPICall.JWToken(uri, para);
+
+    }
+
+    function Logout() {
+        WebAPICall.Logout();
     }
 </script>

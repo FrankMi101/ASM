@@ -43,13 +43,7 @@
             font-size: 12px;
         }
 
-        .Content-Area-SAP img {
-            height: 18px;
-            width: 18px;
-            margin-top: -2px;
-            margin-left: 5px;
-        }
-
+     
         #btnGradeTab {
             display: none;
         }
@@ -58,20 +52,6 @@
             width: 100%;
             height: 100%;
         }
-
-        .Gridview-title {
-            margin-top: 5px;
-            display: block;
-            width: 100%;
-            height: 25px;
-        }
-
-            .Gridview-title img {
-                height: 18px;
-                width: 18px;
-                margin-top: -5px;
-                margin-left: 5px;
-            }
     </style>
     <script type="text/javascript">
 
@@ -87,7 +67,7 @@
 
         <asp:ScriptManager runat="server">
             <Services>
-                <asp:ServiceReference Path="~/Models/WebService.asmx" />
+                <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
             </Services>
         </asp:ScriptManager>
         <div class="MessageRow">
@@ -101,14 +81,13 @@
                     <div class="Horizontal_Tab" id="GradeTab" runat="server"></div>
                     <asp:HiddenField ID="hfSelectedTab" runat="server" />
                     <asp:HiddenField ID="hfSelectedTabL" runat="server" />
-                    <%-- <asp:CheckBox ID="chbNomatch" runat="server" Text="No Matched Position Description" />--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div style="overflow: scroll; width: 100%; height: 250px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
+                    <div class="GridView-List-Containor" style=" height: 250px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
                         <asp:GridView ID="GridView_SAP" CssClass="GridView-List content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -134,7 +113,7 @@
                             </Columns>
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="25px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -147,16 +126,16 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <div class="Gridview-title">
-            <a href="javascript:AddDetail('SAP')">
-                 <asp:ImageButton ID="ImgSAP" runat="server"  src="../images/add.png" border="0" width="16" height="16" />
-              <%--  <img src="../images/add.png" border="0" />--%>
-                Manage SAP Role Permission</a>
+        <div class="List-Action">
+            <a class="List-Action-Title" href="javascript:AddDetail('SAP');">
+                <asp:ImageButton ID="ImgSAP" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                Manage SAP Role Permission </a>
         </div>
+
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <div style="overflow: scroll; width: 100%; height: 250px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
+                    <div class="GridView-List-Containor" style=" height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
                         <asp:GridView ID="GridView_Permission" CssClass="GridView-List content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -194,7 +173,7 @@
                             </Columns>
 
                             <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                            <HeaderStyle BackColor="cornflowerblue" ForeColor="white" Height="25px" />
+                            <HeaderStyle CssClass="GridView-header" />
                             <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle Height="25px" />
                             <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -207,21 +186,17 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+
         <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="editTitle">
-                <table>
-                    <tr>
-                        <td style="width: 90%">
-                            <div id="EditTitle"></div>
-                        </td>
-                        <td style="text-align: right">
-                            <img id="closeMe" src="../images/close.png" style="height: 25px; width: 25px; margin: -3px 0 -3px 0" /></td>
-                    </tr>
-                </table>
+            <div class="EditDIV-Header">
+                <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                <div class="EditDIV-Header-Close">
+                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
+                </div>
             </div>
+
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
         </div>
-
         <div>
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />

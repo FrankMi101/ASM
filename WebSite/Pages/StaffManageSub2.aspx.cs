@@ -108,7 +108,7 @@ namespace ASM.Pages
                 SchoolYear = WorkingProfile.SchoolYear,
                 SchoolCode = TextBoxUnit.Text
             };
-            var Grade = hfSelectedTab.Value; ;
+            var Grade = hfSelectedTab.Value;
             AppsPage.BuildingTab(GradeTab, parameters, Grade);
 
 

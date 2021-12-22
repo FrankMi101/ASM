@@ -59,7 +59,7 @@ namespace ASM.Pages
 
         protected void DDLApps_SelectedIndexChanged(object sender, EventArgs e)
         {
-            WorkingProfile.ApplicationID = ddlApps.SelectedValue;
+            WorkingProfile.AppID = ddlApps.SelectedValue;
             hfAppID.Value = ddlApps.SelectedValue;
             BindGridViewListData();
         }

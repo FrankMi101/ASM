@@ -41,6 +41,7 @@ namespace ASM.Pages
         {
             hfCategory.Value = "Home";
             hfPageID.Value = pageID;
+            hfAppID.Value = WorkingProfile.DefaultAppID ;
             hfCode.Value = "Search";
             hfUserID.Value  = WorkingProfile.UserId  ;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;

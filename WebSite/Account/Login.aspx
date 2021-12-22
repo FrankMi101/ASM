@@ -39,8 +39,7 @@
 
         CenterDIV label {
             width: 120px;
-            C: \Users\mif\source\repos\Projects\ASM\ComeSoon.aspx text-align: left;
-        }
+         }
 
         CenterDIV input {
             width: 150px;

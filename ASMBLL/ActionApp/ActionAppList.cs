@@ -25,21 +25,21 @@ namespace ASMBLL
         {
             string sp = MapClass<T2>.SPName("Edit");
             var parameter = new { Operate = "Get", UserID = "asm", IDs = id };
-            return _dataOperateService.ListOfT(sp, parameter);
+            return _dataOperateService.ListOfT(sp, parameter, "SP");
           //  return GeneralList.CommonList<T>(sp, parameter);
         }
 
         public List<T> GetObjList(object parameter)
         {
             string sp = MapClass<T2>.SPName("Read");
-            return _dataOperateService.ListOfT(sp, parameter);
+            return _dataOperateService.ListOfT(sp, parameter,"SP");
          }
    
         public List<T> GetObjList(string dataSource, object parameter)
         {
             if (dataSource == "ClassCall") dataSource = MapClass<T2>.SPName("Read");
 
-            return _dataOperateService.ListOfT(dataSource, parameter);
+            return _dataOperateService.ListOfT(dataSource, parameter,"SP");
 
         }
 
