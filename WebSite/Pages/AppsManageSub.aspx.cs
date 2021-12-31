@@ -57,7 +57,7 @@ namespace ASM.Pages
         {
             var parameter = new
             {
-                Operate = "GetList",
+                Operate = "GetListbyAppID",
                 UserID  = WorkingProfile.UserId  ,
                 IDs = "0",
                 UserRole = hfUserRole.Value,

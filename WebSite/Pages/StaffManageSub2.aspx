@@ -187,7 +187,7 @@
         </div>
 
         <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
+            <asp:Label runat="server" ID="ActionMenuTitle" Text=""> </asp:Label>
             <div id="ActionMenuUL" class="LeftSideMenu">
             </div>
 

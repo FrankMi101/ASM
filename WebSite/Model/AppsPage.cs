@@ -22,23 +22,88 @@ namespace ASM
         {
             try
             {
-                string action = page.Request.QueryString["Action"].ToString();
-                string ids = page.Request.QueryString["IDs"].ToString();
-                string sCode = page.Request.QueryString["SchoolCode"].ToString();
-                string sYear = page.Request.QueryString["SchoolYear"].ToString();
-                string appID = page.Request.QueryString["AppID"].ToString();
-                string model = page.Request.QueryString["ModelID"].ToString();
-                string xIden = page.Request.QueryString["xID"].ToString();
-                string xName = page.Request.QueryString["xName"].ToString();
-                string xType = page.Request.QueryString["xType"].ToString();
+                string queryParas = "";
+                queryParas = QueryP("Action",page) ;
+                queryParas += "&" + QueryP("IDs", page);
+                queryParas += "&" + QueryP("SchoolYear", page);
+                queryParas += "&" + QueryP("SchoolCode", page);
+                queryParas += "&" + QueryP("AppID", page);
+                queryParas += "&" + QueryP("ModelID", page);
+                queryParas += "&" + QueryP("xID", page);
+                queryParas += "&" + QueryP("xName", page);
+                queryParas += "&" + QueryP("xType", page);
+                //if (page.Request.QueryString["Action"] != null)
+                //    queryParas += page.Request.QueryString["Action"].ToString();
+                //else
+                //    queryParas = "Action=";
 
-                return "Action=" + action + "&IDs=" + ids + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&AppID=" + appID + "&ModelID=" + model + "&xID=" + xIden + "&xName=" + xName + "&xType=" + xType;
+                //if (page.Request.QueryString["IDs"] != null)
+                //    queryParas += page.Request.QueryString["IDs"].ToString();
+                //else
+                //    queryParas += "&IDs=";
+
+                //if (page.Request.QueryString["SchoolYear"] != null)
+                //    queryParas += page.Request.QueryString["SchoolYear"].ToString();
+                //else
+                //    queryParas += "&SchoolYear=";
+
+                //if (page.Request.QueryString["SchoolCode"] != null)
+                //    queryParas += page.Request.QueryString["SchoolCode"].ToString();
+                //else
+                //    queryParas += "&SchoolCode=";
+
+                //if (page.Request.QueryString["AppID"] != null)
+                //    queryParas += page.Request.QueryString["AppID"].ToString();
+                //else
+                //    queryParas += "&AppID=";
+
+                //if (page.Request.QueryString["ModelID"] != null)
+                //    queryParas += page.Request.QueryString["ModelID"].ToString();
+                //else
+                //    queryParas += "&ModelID=";
+
+                //if (page.Request.QueryString["IDs"] != null)
+                //    queryParas += page.Request.QueryString["IDs"].ToString();
+                //else
+                //    queryParas += "&IDs=";
+
+                //if (page.Request.QueryString["xName"] != null)
+                //    queryParas += page.Request.QueryString["xName"].ToString();
+                //else
+                //    queryParas += "&xName=";
+
+                //if (page.Request.QueryString["xType"] != null)
+                //    queryParas += page.Request.QueryString["xType"].ToString();
+                //else
+                //    queryParas += "&xType=";
+
+                return queryParas;
+
+
+                //string ids = page.Request.QueryString["IDs"].ToString();
+                //string sCode = page.Request.QueryString["SchoolCode"].ToString();
+                //string sYear = page.Request.QueryString["SchoolYear"].ToString();
+                //string appID = page.Request.QueryString["AppID"].ToString();
+                //string model = page.Request.QueryString["ModelID"].ToString();
+                //string xIden = page.Request.QueryString["xID"].ToString();
+                //string xName = page.Request.QueryString["xName"].ToString();
+                //string xType = page.Request.QueryString["xType"].ToString();
+
+                //return "Action=" + action + "&IDs=" + ids + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&AppID=" + appID + "&ModelID=" + model + "&xID=" + xIden + "&xName=" + xName + "&xType=" + xType;
 
             }
             catch
             {
                 return "";
             }
+        }
+        private static string QueryP(string qp, Page page)
+        {
+            var rQP = qp + "=";
+            if (page.Request.QueryString[qp] != null)
+                rQP +=  page.Request.QueryString[qp].ToString();
+
+            return rQP;
         }
         public static void SetPageAttribute(Page myPage)
         {

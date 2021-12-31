@@ -13,7 +13,7 @@
 .ItemLevel0 {
     width: 180px;
     list-style-type: none;
-    margin-right: -5px; 
+    margin-right: auto; 
 }
 
     .ItemLevel0:hover, .ItemLevel1:hover {
@@ -23,16 +23,17 @@
         background: -o-linear-gradient(lightsalmon, white); /* For Opera 11.1 to 12.0 */
         background: -moz-linear-gradient(lightsalmon, white); /* For Firefox 3.6 to 15 */
         background: linear-gradient(lightsalmon, white); /* Standard syntax */
+        padding-right:5px;
     }
 
 .ItemLevel1_ul {
     border: 2px lightblue ridge;
     padding-left: 20px;
-    width: 400px;
+width: 400px;
     list-style-type: none;
     position: relative;
     top: -20px;
-    left: 177px;
+ /*   left: 180px;*/
     margin-left: 0px;
     background: #fff;
     padding: 0;
@@ -75,7 +76,7 @@
 #ActionMenuDIV {
     border: 2px lightblue ridge;
     height: 220px;
-    width: 210px;
+    width: 200px;
     background: lightblue;
     background: -webkit-linear-gradient(left,lightblue,white ); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right,lightblue,white ); /* For Opera 11.1 to 12.0 */
@@ -90,4 +91,8 @@
 .Top_ul_W {
     width:280px;
 
+}
+.Top_ul {
+    margin-left: 20px;
+    padding-left:0px;
 }

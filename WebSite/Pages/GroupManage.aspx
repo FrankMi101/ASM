@@ -215,26 +215,28 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
+        <div id="Action-Pgae-Container">
+            <%--<div id="HelpDIV" class="bubble epahide">
+                <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
+            </div>
+            <div id="PopUpDIV" class="bubble epahide"></div>--%>
 
-        <div id="HelpDIV" class="bubble epahide">
-            <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
+            <%--<div id="EditDIV" runat="server" class="EditDIV bubble epahide">
+                <div class="EditDIV-Header">
+                    <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                    <div class="EditDIV-Header-Close">
+                        <img id="closeMe" class="EditDIV-Header-Close-Img" onclick="CloseEditPage()" src="../images/close.png" />
+                    </div>
                 </div>
-            </div>
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
+                <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
+            </div>--%>
+           <%-- <div id="ActionMenuDIV" class="bubble epahide">
+                <asp:Label runat="server" ID="ActionMenuTitle" Text=""> </asp:Label>
+                <div id="ActionMenuUL" class="LeftSideMenu">
+                </div>
+            </div>--%>
         </div>
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-        </div>
+
         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
@@ -276,20 +278,18 @@
 
             // var vHeight = window.innerHeight - 50;
             //  MakeStaticHeader("GridView1", vHeight, 1500, 20, false);
-
-            $("#closeMe").click(function (event) {
-
-                $("#PopUpDIV").hide();
-                $("#EditDIV").hide();
-            });
+ 
 
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
-            })
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
+             })
             $('.GridView-List tr').mouseenter(function (event) {
                 if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
                 currentTR = $(this);
                 currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
 
         });
@@ -318,25 +318,25 @@
         var schoolYear = $("#hfSchoolYear").val();
         var schoolCode = $("#ddlSchool").val();
         var appID = $("#ddlApps").val();
+        var modelID = "Pages";
         var xID = "0";
         var xName = "New Security Group";
         var xType = "APP";
         var ids = "0";
-
-        var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        var action = "Add";
+        var arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
 
         OpenFormFromListPage(xName, page, arg, 500, 650);
     }
 
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-
+        var arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
         OpenFormFromListPage(xName, page, arg, 500, 650);
     }
 
     var pagesub = "GroupManageSub.aspx";
     function OpenSubPage(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
         var goPage = "Loading.aspx?pID=" + pagesub + arg;
         $("#IframeSubArea").attr('src', goPage);
 

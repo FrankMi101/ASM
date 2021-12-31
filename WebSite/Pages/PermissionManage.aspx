@@ -21,14 +21,10 @@
     <link href="../Content/ContentPage.css" rel="stylesheet" />
 
     <style type="text/css">
- 
-
-      
-
         .function-list {
         }
 
-    
+
 
         #SearchBar {
             position: absolute;
@@ -45,10 +41,10 @@
             height: 95%;
         }
 
- 
 
-      .EditPage {
-        width:100%; 
+
+        .EditPage {
+            width: 100%;
         }
     </style>
 
@@ -59,7 +55,6 @@
         <asp:ScriptManager runat="server">
             <Services>
                 <%-- <asp:ServiceReference Path="~/Models/WebService.asmx" /> --%>
-
             </Services>
         </asp:ScriptManager>
         <div class="SearchArea-SchoolRow">
@@ -82,16 +77,16 @@
 
         <div class="staff-container" style="margin-top: 5px;">
             <div class="staff-list">
-                   <div class="List-Action">
-                        <a class="List-Action-Title" href="javascript:AddDetail();">
-                            <asp:ImageButton ID="ImageNew" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
-                            Add New Model or Page Permission on the Role</a>
-                    </div>
- 
+                <div class="List-Action">
+                    <a class="List-Action-Title" href="javascript:AddDetail();">
+                        <asp:ImageButton ID="ImageNew" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
+                        Add New Model or Page Permission on the Role</a>
+                </div>
+
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <div  class="GridView-List-Containor" style="width: 800px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
-                            <asp:GridView ID="GridView1" CssClass ="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Security group show" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
+                        <div class="GridView-List-Containor" style="width: 800px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+                            <asp:GridView ID="GridView1" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Security group show" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                                 <Columns>
                                     <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
                                         <ItemStyle Width="3%" />
@@ -102,7 +97,7 @@
                                     <asp:BoundField DataField="RoleName" HeaderText="Role Name">
                                         <ItemStyle Width="25%" Wrap="False" />
                                     </asp:BoundField>
-                                      <asp:BoundField DataField="AppID" ReadOnly="True" HeaderText="App ID">
+                                    <asp:BoundField DataField="AppID" ReadOnly="True" HeaderText="App ID">
                                         <ItemStyle Width="10%" Wrap="False" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="ModelID" ReadOnly="True" HeaderText="Page or Model ID">
@@ -154,27 +149,9 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
-
-        <div id="HelpDIV" class="bubble epahide">
-            <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-       <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-        </div>
-         <div>
+           <div id="Action-Pgae-Container"></div>
+ 
+        <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />
@@ -200,24 +177,28 @@
 <script type="text/javascript">
     var UserID = $("#hfUserID").val();
     var UserRole = $("#hfUserRole").val();
- 
+
     var myKey;
     var currentTR;
     var myIDs;
     var currentTR;
     var currentSearchBoxID;
-   
+
     function pageLoad(sender, args) {
 
         $(document).ready(function () {
 
-            $("#closeMe").click(function (event) {
-                $("#EditDIV").hide();
-            });
-
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
             })
+            $('.GridView-List tr').mouseenter(function (event) {
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
+                currentTR = $(this);
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
+            });
         });
 
     }
@@ -230,20 +211,23 @@
             var schoolYear = $("#hfSchoolYear").val();
             var schoolCode = $("#hfSchoolCode").val();
             var appID = $("#ddlApps").val();
-            var roleType = $("#ddlRoleType").val();
             var modelID = "Pages";
             var ids = 0;
             var xID = "0";
             var xName = "'New Security Role'"
-            var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + roleType;
+            var xType = $("#ddlRoleType").val();
+            //var arg = "&Action=Add" + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + roleType;
+            var arg = GetArg("Add", "0", schoolYear, schoolCode, appID, modelID, xID, xName, xType);
 
             OpenFormFromListPage(xName, page, arg, 400, 550);
         }
     }
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-       
+        arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+
+     //   var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+
         OpenFormFromListPage(xName, page, arg, 400, 550);
     }
-     
+
 </script>

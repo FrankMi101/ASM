@@ -231,27 +231,9 @@
             </div>
    
         </div>
+        <div id="Action-Pgae-Container"></div>
 
-
-        <div id="HelpDIV" class="bubble epahide">
-            <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-       <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-        </div>
+       
          <div>
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />
@@ -281,20 +263,18 @@
 
         $(document).ready(function () {
             var vHeight = window.innerHeight - 50;
-            //  MakeStaticHeader("GridView1", vHeight, 1500, 20, false);
-
-            $("#closeMe").click(function (event) {
-                $("#PopUpDIV").hide();  //.fadeToggle("fast");
-                $("#EditDIV").hide();
-            });
+    
 
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
             })
             $('.GridView-List tr').mouseenter(function (event) {
-                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected "); }
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
                 currentTR = $(this);
-                currentTR.addClass("GridView-Selected ");
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
         });
     }

@@ -159,13 +159,13 @@ namespace ASM.Pages
         protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// LabelTeacherName control.
+        /// ActionMenuTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelTeacherName;
+        protected global::System.Web.UI.WebControls.Label ActionMenuTitle;
 
         /// <summary>
         /// EditDIV control.

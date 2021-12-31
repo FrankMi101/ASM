@@ -119,12 +119,18 @@ List-Action-Containor {
 }
 
     .List-Action:hover {
-        font-size: 1.2em;
-        font-weight: 500;
-        color: purple;
+    
     }
 
-.List-Action-Title {
+.List-Action-Title:hover {    /* font-size: 1.2em;
+        font-weight: 500;*/
+        color: purple;
+        border: 2px solid dodgerblue;
+        border-radius: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: -2px;
+        padding-bottom: -2px;
 }
 
 .List-Action-Image {

@@ -2,8 +2,7 @@
     $(document).ready(function () {
 
         $("#closeMe").click(function (event) {
-            alert("close page click");
-            $("#PopUpDIV").hide();
+             $("#PopUpDIV").hide();
             $("#EditDIV").hide();
 
         });
@@ -71,7 +70,10 @@ function OpenInPage(title, page, pHeight, pWidth) {
 }
 
 function OpenFormFromListPage(title, page, arg, pHeight, pWidth) {
+    var pageTemplte = GetEditPageTemplate()
+    $("#Action-Pgae-Container").html(pageTemplte);
     var pTop = 50;
+
     var pLeft = 50;
     if (pHeight > 500) pTop = 50; 
     if (mousex > pWidth) pLeft = mousex - pWidth - 30;
@@ -95,4 +97,20 @@ function OpenFormFromListPage(title, page, arg, pHeight, pWidth) {
         window.alert("Error:" + e.mess);
     }
 
+}
+function GetEditPageTemplate() {
+      return `<div id="PopUpDIV" class="bubble epahide"></div>
+                <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
+                <div class="EditDIV-Header">
+                    <div id="EditTitle" class="EditDIV-Header-Title"></div>
+                    <div class="EditDIV-Header-Close">
+                        <img id="closeMe" class="EditDIV-Header-Close-Img" onclick="CloseEditPage()" src="../images/close.png" />
+                    </div>
+                </div>
+                <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
+            </div>`
+}
+function CloseEditPage() {
+    $("#PopUpDIV").hide();
+    $("#EditDIV").hide();
 }

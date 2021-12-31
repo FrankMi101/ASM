@@ -57,6 +57,7 @@ namespace ASMBLL
             }
             catch (Exception ex)
             {
+                var sm = ex.Message;
                 return new ActionApp<T>();
             }
         }
@@ -69,6 +70,7 @@ namespace ASMBLL
             }
             catch (Exception ex)
             {
+                var sm = ex.Message;
                 return new ActionAppService<T>();
             }
         }

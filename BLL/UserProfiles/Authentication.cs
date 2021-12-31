@@ -46,6 +46,8 @@ namespace BLL
         {
             try
             {
+                if (string.IsNullOrEmpty(_domain)) _domain = WebConfigurationManager.AppSettings["Domain"];
+                // if (_domain == null ||_domain == "") _domain = WebConfigurationManager.AppSettings["Domain"];
                 string _path = WebConfigurationManager.AppSettings["LDAP"]; // WebConfig.getValuebyKey("LDAP");
                 string domainAndUsername = _domain + "'\'" + username;
                 DirectoryEntry entry = new DirectoryEntry(_path, username, pwd);

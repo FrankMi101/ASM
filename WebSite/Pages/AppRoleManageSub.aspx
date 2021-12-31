@@ -43,7 +43,7 @@
             font-size: 12px;
         }
 
-     
+
         #btnGradeTab {
             display: none;
         }
@@ -87,7 +87,7 @@
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div class="GridView-List-Containor" style=" height: 250px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
+                    <div class="GridView-List-Containor" style="height: 250px" onscroll="OnScrollDiv(this)" id="DivMainContent-sap">
                         <asp:GridView ID="GridView_SAP" CssClass="GridView-List content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -135,7 +135,7 @@
         <div class="Content-Area Content-Area-SAP">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <div class="GridView-List-Containor" style=" height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
+                    <div class="GridView-List-Containor" style="height: 200px" onscroll="OnScrollDiv(this)" id="DivMainContent-permission">
                         <asp:GridView ID="GridView_Permission" CssClass="GridView-List content-grid" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Appraisal Staff in current search condition" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                             <Columns>
                                 <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -186,17 +186,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
+        <div id="Action-Pgae-Container"></div>
         <div>
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />
@@ -251,17 +241,20 @@
                 preaLinkID = $("#hfSelectedTabL").val();
 
             });
+
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
             })
             $('.GridView-List tr').mouseenter(function (event) {
                 newRowNo = $(this).closest('tr').find('td.myRowNo').text();
-
-                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected "); }
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
                 currentTR = $(this);
-
-                currentTR.addClass("GridView-Selected ");
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
+
         });
     }
 
@@ -272,20 +265,19 @@
 
         var xID = $("#LabelPositionRole").text();
         var xName = $("#LabelPositionRole").text();
-        arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=20202021" + "&SchoolCode=0000" + "&AppID=SIC" + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        //  OpenInPage('App Role Permission',page + arg, 350,550);
+        arg = GetArg("Add", "0", "20202021", "0000", "SIC", "pages", xID, xName, xType);
+
         page = "Permission_Role.aspx";
         OpenFormFromListPage(xName, page, arg, 350, 550);
     }
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
 
         if (type == "RolePermission")
             page = "Permission_Role.aspx";
         else
             page = "Security_RoleMatch.aspx";
 
-        // OpenInPage(xName, page + arg, 350, 550);
         OpenFormFromListPage(xName, page, arg, 350, 550);
     }
 

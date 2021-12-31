@@ -166,6 +166,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AppAccessController.cs" />
+    <Compile Include="Controllers\TokenAuthController.cs" />
+    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\UserFeedbackController.cs" />
     <Compile Include="Controllers\RequestPermissionController.cs" />
     <Compile Include="Controllers\RequestClassMatchController.cs" />
@@ -286,9 +288,17 @@
       <Project>{1afbc2a1-efdd-4f09-9285-85b64ac856d9}</Project>
       <Name>ASMBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{37486668-2C72-4889-A6F0-FC4346FA230E}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj">
       <Project>{236fbb7b-0972-4289-b642-81ab05954d08}</Project>
       <Name>ClassLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JwtAuth\JwtAuth.csproj">
+      <Project>{dfbada8c-8ed8-4369-900a-03a0b279d0bd}</Project>
+      <Name>JwtAuth</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

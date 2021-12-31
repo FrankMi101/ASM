@@ -285,6 +285,7 @@
     <Content Include="ReadMe.html" />
     <Content Include="Scripts\ActionInPage.js" />
     <Content Include="Scripts\ActionMenu.js" />
+    <Content Include="Scripts\ActionMenuData.js" />
     <Content Include="Scripts\ActionWebApi.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Appr_Help.js" />

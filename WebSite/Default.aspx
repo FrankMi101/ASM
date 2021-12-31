@@ -310,6 +310,7 @@
 
     <script src="Scripts/NavTopListData.js"></script>
     <script src="Scripts/NavTopList.js"></script>
+    <script src="Scripts/ActionWebApi.js"></script>
 
 <script type="text/javascript">
     var currentY = 0;
@@ -329,7 +330,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        GetJWTTokenAndSaveToLocalStorage();
+       GetJWTTokenAndSaveToLocalStorage();
         topSelectedMenuItem = topMenuID ;
         var vHeight = window.innerHeight - 140;
         $("#" + topMenuID).addClass("TopSelectItem");
@@ -462,13 +463,13 @@
         // use  JWT token to authticatio the user to Call Web API from client Restful API HTTP POST verb 
         // Get JWT token and save to local storage of browser
          var para = {
-            UserID: $("#hfUserID").val(),
-            UserRole: $("#hfUserLoginRole").val() 
+             UserName: $("#hfUserID").val(),
+             UserRole: $("#hfUserLoginRole").val(),
+             Password: "1234"
         };
  
-        var uri = "JWToken";
-        var token = WebAPICall.JWToken(uri, para);
-
+        var uri = "token";
+         var token = WebAPICall.JWToken(uri, para);
     }
 
     function Logout() {

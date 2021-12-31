@@ -117,7 +117,7 @@
  
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <div style="overflow: scroll; width: 750px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
+                        <div  class="GridView-List-Containor"  style=" width: 750px; height: 500px" onscroll="OnScrollDiv(this)" id="DivMainContent">
                             <asp:GridView ID="GridView1" CssClass="GridView-List" runat="server" CellPadding="1" Height="100%" Width="100%" GridLines="Both" AutoGenerateColumns="False" BackColor="White" BorderColor="gray" BorderStyle="Ridge" BorderWidth="1px" CellSpacing="1" EmptyDataText="No Security group show" EmptyDataRowStyle-CssClass="emptyData" ShowHeaderWhenEmpty="true">
                                 <Columns>
                                     <asp:BoundField DataField="RowNo" HeaderText="No." ItemStyle-CssClass="myRowNo">
@@ -186,28 +186,8 @@
             </div>
           
         </div>
-
-        <div id="HelpDIV" class="bubble epahide">
-            <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-
-       <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe"  class="EditDIV-Header-Close-Img"  src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-        </div>
+             <div id="Action-Pgae-Container"></div>
+         
          <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
@@ -248,20 +228,17 @@
 
         $(document).ready(function () {
 
-            $("#closeMe").click(function (event) {
-                $("#EditDIV").hide();
-            });
-
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
             })
             $('.GridView-List tr').mouseenter(function (event) {
                 newRowNo = $(this).closest('tr').find('td.myRowNo').text();
-
-                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected "); }
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
                 currentTR = $(this);
-
-                currentTR.addClass("GridView-Selected ");
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
 
         });
@@ -285,15 +262,16 @@
         var schoolCode = $("#hfSchoolCode").val();
         var appID = $("#TextBoxAppsID").val();
         var modelID = "Pages";
-        var roleType = $("#ddlRoleType").val();
-        var roleID = "0";
+        var xType = $("#ddlRoleType").val();
+        var xID = "0";
         var xName = "New Model";
         // var page = "../SICCommon/Security_Role.aspx"
         if ($("#hfUserRole").val() != "Admin") {
             alert("Current User is View Permission only");
         }
         else {
-            arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + roleID + "&xName=" + xName + "&xType=" + roleType;
+            arg = GetArg("Add", "0", schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+           // arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + roleID + "&xName=" + xName + "&xType=" + roleType;
             OpenFormFromListPage(xName, page, arg, 400, 600);
         }
     }
@@ -304,7 +282,9 @@
             alert("Current User is View Permission only");
         }
         else {
-            arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+            arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+
+         //   arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
             OpenFormFromListPage(xName, page, arg, 400, 600);
         }
 

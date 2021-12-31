@@ -300,8 +300,9 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
+         <div id="Action-Pgae-Container"></div>
 
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
+       <%-- <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
             <div class="EditDIV-Header">
                 <div id="EditTitle" class="EditDIV-Header-Title"></div>
                 <div class="EditDIV-Header-Close">
@@ -310,7 +311,7 @@
             </div>
 
             <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
+        </div>--%>
 
 
         <div>
@@ -379,29 +380,7 @@
         alert(Action + " operation failed");
     }
 
-
-    //function OpenAddMember(memberType) {
-
-    //    var page = memberType == "Teachers" ? "GroupMember_Teacher.aspx" : "GroupMember_Student.aspx";
-
-    //    var param = "?IDs=0&sCode=" + para.SchoolCode + "&appID=" + para.AppID + "&groupID=" + para.GroupID + "&groupType=" + para.GroupType + "&Action=Add";
-
-    //    OpenInPage("Add New Group Member of", page, param, para.GroupID);
-    //}
-    //function OpenGroupMemberActionPage(ids, userRole, schoolYear, schoolCode, appID, groupID, memberID, memberType, actionType) {
-    //    try {
-    //        alert(actionType);
-    //        var page = memberType == "Teachers" ? "GroupMember_Teacher.aspx" : "GroupMember_Student.aspx";
-
-    //        var param = "?IDs=" + ids + "&sCode=" + schoolCode + "&appID=" + appID + "&groupID=" + groupID + "&groupType=" + para.GroupType + "&Action=" + actionType;
-
-    //        OpenInPage("Edit Group Member of", page, param, groupID);
-
-    //    }
-    //    catch (e) {
-    //        alert(action + " button click something going wrong");
-    //    }
-    //}
+     
      
     function GetGoPage(gType) {
         var page =""
@@ -420,18 +399,18 @@
         var xName = "Add " + gType;
         var xType = $("#TextBoxGroupType").val();
         var schoolCode = $("#hfSchoolCode").val();
-      
-        var arg = "&Action=Add" + "&IDs=0"  + "&SchoolYear=20202021" + "&SchoolCode=" + schoolCode + "&AppID=SIC" + "&ModelID=Pages" + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        var page = GetGoPage(gType);
+       var  arg = GetArg("Add", "0", "20202021", schoolCode, "SIC", "Pages", xID, xName, xType);
+
+         var page = GetGoPage(gType);
     
         OpenFormFromListPage(xName, page, arg, 400, 600);
 
     }
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         var page = GetGoPage(type);
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-       // OpenInPage(xName, goPage + arg, 400, 600);
-        OpenFormFromListPage(xName, page, arg, 350, 550);
+        arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+
+         OpenFormFromListPage(xName, page, arg, 350, 550);
     }
 
 </script>

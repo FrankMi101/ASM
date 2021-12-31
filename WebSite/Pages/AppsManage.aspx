@@ -193,28 +193,7 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
-
-        <div id="HelpDIV" class="bubble epahide">
-            <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-        </div>
+     <div id="Action-Pgae-Container"></div>>
 
         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
@@ -255,21 +234,18 @@
     function pageLoad(sender, args) {
 
         $(document).ready(function () {
-
-            $("#closeMe").click(function (event) {
-                $("#EditDIV").hide();
-            });
-
+ 
             $(".GridView-List img").click(function (en) {
                 $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
             })
             $('.GridView-List tr').mouseenter(function (event) {
                 newRowNo = $(this).closest('tr').find('td.myRowNo').text();
-
-                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected "); }
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
                 currentTR = $(this);
-
-                currentTR.addClass("GridView-Selected ");
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
 
         });
@@ -296,24 +272,22 @@
         var roleType = $("#ddlRoleType").val();
         var roleID = "0";
         var xName = "New Apps";
-        // var page = "../SICCommon/Security_Role.aspx"
-        if ($("#hfUserRole").val() != "Admin") {
+         if ($("#hfUserRole").val() != "Admin") {
             alert("Current User is View Permission only");
         }
         else {
-            arg = "&Action=Add" + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + roleID + "&xName=" + xName + "&xType=" + roleType;
-            OpenFormFromListPage(xName, page, arg, 400, 600);
+            arg =   GetArg("Add", "0", schoolYear, schoolCode, appID, modelID, roleID, xName, roleType);
+             OpenFormFromListPage(xName, page, arg, 400, 600);
         }
     }
 
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        // var page = "../SICCommon/Security_Role.aspx"
-        if ($("#hfUserRole").val() != "Admin") {
+         if ($("#hfUserRole").val() != "Admin") {
             alert("Current User is View Permission only");
         }
         else {
-            arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-            OpenFormFromListPage(xName, page, arg, 400, 600);
+            arg =   GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+             OpenFormFromListPage(xName, page, arg, 400, 600);
         }
 
     }
@@ -321,8 +295,8 @@
     var pagesub = "AppsManageSub.aspx";
 
     function OpenSubPage(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
-        arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-        var goPage = "Loading.aspx?pID=" + pagesub + arg;
+        arg =  GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
+         var goPage = "Loading.aspx?pID=" + pagesub + arg;
         $("#IframeSubArea").attr('src', goPage);
     }
 </script>

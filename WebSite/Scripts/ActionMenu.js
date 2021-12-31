@@ -1,4 +1,6 @@
-﻿var BasePara = {
+﻿var actionItemPosition;
+var actionItemTitle;
+var BasePara = {
     Operate: $("#hfPageID").val(),
     UserID: $("#hfUserID").val(),
     UserRole: $("#hfUserRole").val(),
@@ -34,18 +36,19 @@ function FetchMethod() {
    */
 }
 
-async function OpenMenu(sYear, sCode, tabID, objID, oen, sName) {
+async function OpenMenu(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
     BasePara.Semester = $("#ddlSemester").val();
     BasePara.Term = $("#ddlTerm").val();
-    BasePara.SchoolYear = sYear;
-    BasePara.SchoolCode = sCode;
+    BasePara.SchoolYear = schoolYear;
+    BasePara.SchoolCode = schoolCode;
     BasePara.TabID = $("#hfSelectedTab").val();
-    BasePara.ObjID = objID;
-    BasePara.AppID = oen;
-    $("#LabelTeacherName").text(sName);
-    CopyKeyIDToClipboard(objID + " " + sName);
+    BasePara.ObjID = xID;
+    BasePara.AppID = appID;
+    actionItemTitle = xName;
+   //  $("#ActionMenuTitle").text(xName);
+    CopyKeyIDToClipboard(xID + " " + xName);
 
-    var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole +"&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&TabID=" + BasePara.TabID + "&ObjID=" + objID + "&AppID=" + oen;
+    var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole +"&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&TabID=" + BasePara.TabID + "&ObjID=" + xID + "&AppID=" + appID;
     var myUrl = "https://webt.tcdsb.org/Webapi/SIC/api/Menu/?" + para;
 
     //$.get(myUrl, function (data, status) {
@@ -53,8 +56,9 @@ async function OpenMenu(sYear, sCode, tabID, objID, oen, sName) {
     //    BuildingListMenuAction(myData);
     //});
     try {
-        const response = await fetch(myUrl);
-        const data = await response.json();
+         const response = await fetch(myUrl);
+         const data = await response.json();
+        //  data = myActionMenuData; // menu data comes from Json object.
         BuildingListMenuAction(data);
     }
     catch (ex) {
@@ -62,7 +66,7 @@ async function OpenMenu(sYear, sCode, tabID, objID, oen, sName) {
     }
 }
 
-async function OpenMenuWSAsync(sYear, sCode, tabID, objID, oen, sName) {
+async function OpenMenuWSAsync(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
     // this async function dose not work
     BasePara.Semester = $("#ddlSemester").val();
     BasePara.Term = $("#ddlTerm").val();
@@ -71,7 +75,7 @@ async function OpenMenuWSAsync(sYear, sCode, tabID, objID, oen, sName) {
     BasePara.TabID = $("#hfSelectedTab").val();
     BasePara.ObjID = objID;
     BasePara.AppID = oen;
-    $("#LabelTeacherName").text(sName);
+    $("#ActionMenuTitle").text(sName);
     CopyKeyIDToClipboard(objID + " " + sName);
 
    // var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&TabID=" + BasePara.TabID + "&ObjID=" + objID + "&AppID=" + oen;
@@ -99,7 +103,7 @@ function OpenMenuWS(sYear, sCode, tabID, objID, oen, sName) {
     BasePara.TabID = $("#hfSelectedTab").val()
     BasePara.ObjID = objID;
     BasePara.AppID = oen;
-    $("#LabelTeacherName").text(sName);
+    $("#ActionMenuTitle").text(sName);
     CopyKeyIDToClipboard(objID + " " + sName);
     var menuList = SIC.Models.WebService.ActionMenuListService("Get", BasePara, onSuccessMenuList, onFailure);
 }
@@ -129,11 +133,14 @@ function onSuccessMenuList(result) {
 }
 function BuildingListMenuAction(result) {
    // console.log(result);
+    var actionTemplate = GetActionMenuTemplate('ActionMenu');
+    $("#Action-Pgae-Container").html(actionTemplate);
+
     BuildingList.ULList($("#ActionMenuUL"), BuildingActionMenuList(result));
     var menulength = 100;// result.length * 40 / 4;
     if (menulength < 150) menulength = 180;
-    var menuWidth = 215;
-    menulength = ActionMenuLevel1Length * 35;
+    var menuWidth = 200; //215;
+    menulength = ActionMenuLevel1Length * 40;
     if (ActionMenuLevel1Length == 1) {
         menulength = 100;
         menuWidth = 300;
@@ -141,7 +148,7 @@ function BuildingListMenuAction(result) {
     ShowBuildingMenuList(menuWidth, menulength);
 }
 function BuildingActionMenuList(DataSet) {
-    var img = '<img style="height: 25px; width: 30px; float:right; padding-top: -1px; " src="../images/submenu.png" />'
+    var img = '<img style="height: 25px; width: 25px; float:right; padding-top: -1px; " src="../images/submenu.png" />'
     var list = '<ul class="Top_ul" >';
     var tabData = getTabData(DataSet);
     var cData = "";
@@ -200,11 +207,7 @@ function menuElement4(DataSet, tabItemID, item) {
     var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Category + "','" + DataSet[x].Area + "','" + DataSet[x].Type + "','" + DataSet[x].AppSource + "','" + DataSet[x].AppID + "')";
     if (item == category)
         list += MenuItem.li(itemID) + MenuItem.img(DataSet[x].Image) + MenuItem.a(para, DataSet[x].Name) + '</li >';
-    //  list += liElement(xItemID) + imgElement(DataSet[x].Image) + aLinkElement(para, DataSet[x].Name) + '</li >';
-    //list += ' <li id="' + xItemID + '" class="ItemLevel1" >'
-    //    + '<img style="height: 18px; width: 18px; border: 0px; margin-top:auto;" src="../images/' + DataSet[x].Image + '"/>'
-    //    + '<a class="menuLink" href="' + para + '">' + DataSet[x].Name + ' </a> '
-    //    + '</li > ';
+  
 
     return list;
 }
@@ -220,16 +223,18 @@ function menuElement4(DataSet, tabItemID, item) {
 
 function ShowBuildingMenuList(width, length) {
     var vTop = mousey;
-    if (vTop > 500) {
-        vTop = vTop - 150;
+    if (vTop + length > 500) {
+        vTop = vTop - length + 20;
     }
     var Objcontrol = $("#ActionMenuDIV");
     Objcontrol.css({
         top: vTop - 12,
-        left: 58,
+        left: actionItemPosition,
         width: width,
         height: length
     });
+    $('.ItemLevel1_ul').css('left', width-19);
+
     Objcontrol.fadeToggle("fast");
 
 }
@@ -247,7 +252,7 @@ function openPage(vTop, vLeft, vHeight, vWidth, menuID, category, area, type, so
     var goPage = goPage + para;
 
     try {
-        $("#ActionMenuDIV").fadeToggle("fast");
+        $("#ActionMenuDIV").hide();
         $("#editiFrame", parent.document).attr('src', goPage);
         $("#EditTitle", parent.document).html(menuID + " " + BasePara.ObjID);
         $("#EditDIV", parent.document).css({
@@ -301,3 +306,94 @@ function GO_ReportPrint(reportName) {
 function onSuccessPrintReport(result) {
     window.open(result);
 }
+
+function GetActionMenuTemplate(actionType) {
+    if (actionType == "ActionMenu")
+        return ` <div id="ActionMenuDIV" class="bubble epahide">
+                ${actionItemTitle}
+                <div id="ActionMenuUL" class="LeftSideMenu">
+                </div>
+            </div>`
+     else
+
+        return `<div id="HelpDIV" class="bubble epahide">
+                <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
+            </div>`
+}
+var myActionMenuData = [
+    {
+        "Ptop": 5,
+        "Pleft": 10,
+        "Pwidth": 700,
+        "Pheight": 600,
+        "Area": "SecurityContentList",
+        "Category": "Class Information",
+        "Name": "View Class Students",
+        "MenuID": "View Class Students",
+        "AppID": null,
+        "Type": "Form",
+        "AppSource": "InApp",
+        "Image": "list32.ico",
+        "Orderby": "1-1"
+    },
+    {
+        "Ptop": 5,
+        "Pleft": 10,
+        "Pwidth": 700,
+        "Pheight": 600,
+        "Area": "SecurityContentList",
+        "Category": "Class Information",
+        "Name": "View Class Schedules",
+        "MenuID": "View Class Schedules",
+        "AppID": null,
+        "Type": "Form",
+        "AppSource": "InApp",
+        "Image": "form.png",
+        "Orderby": "1-2"
+    },
+    {
+        "Ptop": 5,
+        "Pleft": 10,
+        "Pwidth": 700,
+        "Pheight": 600,
+        "Area": "SecurityContentList",
+        "Category": "Security Group",
+        "Name": "View Group Member of Students",
+        "MenuID": "Member of Stuents",
+        "AppID": null,
+        "Type": "Form",
+        "AppSource": "InApp",
+        "Image": "list32.ico",
+        "Orderby": "2-1"
+    },
+    {
+        "Ptop": 5,
+        "Pleft": 10,
+        "Pwidth": 700,
+        "Pheight": 600,
+        "Area": "SecurityContentList",
+        "Category": "Security Group",
+        "Name": "View Group Member of Teachers",
+        "MenuID": "Member of Teachers",
+        "AppID": null,
+        "Type": "Form",
+        "AppSource": "InApp",
+        "Image": "list32.ico",
+        "Orderby": "2-2"
+    },
+    {
+        "Ptop": 5,
+        "Pleft": 10,
+        "Pwidth": 700,
+        "Pheight": 450,
+        "Area": "SecurityContentList",
+        "Category": "Security Group",
+        "Name": "Group Profile ",
+        "MenuID": "Group Profile",
+        "AppID": null,
+        "Type": "Form",
+        "AppSource": "InApp",
+        "Image": "form.png",
+        "Orderby": "2-3"
+    }
+]

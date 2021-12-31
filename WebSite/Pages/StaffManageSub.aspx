@@ -256,10 +256,10 @@
                     <div class="List-Action">
                         <a class="List-Action-Title" href="javascript:AddDetail('SIS');" title="Function about Teacher access student group by class">
                             <asp:ImageButton ID="ImgSIS" runat="server" src="../images/add.png" CssClass="List-Action-Image" />
-                            Assign the Staff to App Group </a>
+                            Assign the Staff to SIS Class Group </a>
 
                         <div class="List-Action-Title-Alter">
-                            (User access student group)
+                            (Assign the Staff to SIS Class Group)
                         </div>
 
                     </div>
@@ -330,26 +330,8 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-
-        <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
-            <div class="EditDIV-Header">
-                <div id="EditTitle" class="EditDIV-Header-Title"></div>
-                <div class="EditDIV-Header-Close">
-                    <img id="closeMe" class="EditDIV-Header-Close-Img" src="../images/close.png" />
-                </div>
-            </div>
-
-            <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
-        </div>
-
-        <div id="ActionMenuDIV" class="bubble epahide">
-            <asp:Label runat="server" ID="LabelTeacherName" Text=""> </asp:Label>
-            <div id="ActionMenuUL" class="LeftSideMenu">
-            </div>
-
-        </div>
-        <div id="PopUpDIV" class="bubble epahide"></div>
-
+           <div id="Action-Pgae-Container"></div>
+  
         <div>
             <asp:HiddenField ID="hfAppID" runat="server" />
             <asp:HiddenField ID="hfCategory" runat="server" />
@@ -372,8 +354,8 @@
 <script src="../Scripts/MoursPoint.js"></script>
 <script src="../Scripts/CommonDOM.js"></script>
 <script src="../Scripts/GridView.js"></script>
-<%--<script src="../Scripts/Appr_ListPage.js"></script>
-<script src="../Scripts/Appr_Help.js"></script>
+<script src="../Scripts/Appr_ListPage.js"></script>
+<%--<script src="../Scripts/Appr_Help.js"></script>
 <script src="../Scripts/Appr_textEdit.js"></script>--%>
 <script src="../Scripts/CommonListBuild.js"></script>
 <script src="../Scripts/ActionMenu.js"></script>
@@ -394,9 +376,9 @@
             // InitialDatePickerControl();
             //  preaLinkID = $("#hfSelectedTabL").val();
 
-            $("#closeMe").click(function (event) {
-                $("#EditDIV").hide();
-            });
+            //$("#closeMe").click(function (event) {
+            //    $("#EditDIV").hide();
+            //});
 
             $("#GridView_APP tr").mouseenter(function (event) {
                 if ($("#ActionMenuDIV").is(":visible")) $("#ActionMenuDIV").hide();
@@ -478,7 +460,9 @@
             xheight = 500;
             xwidth = 700;
         }
-        var arg = "&Action=Add" + "@Type=" + type + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + staffID + "&xName=" + staffName + "&xType=" + staffRole;
+        var arg = "&Type=" + type + GetArg("Add", "0", schoolYear, schoolCode, appID, modelID, staffID, staffName, staffRole);
+
+      //  var arg = "&Action=Add" + "&Type=" + type + "&IDs=0" + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + staffID + "&xName=" + staffName + "&xType=" + staffRole;
         // OpenInPage(title, page + arg, 400, 650);
         OpenFormFromListPage(title, page, arg, xheight, 700);
     }
@@ -486,7 +470,8 @@
     function OpenDetail(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
         GoPage(type, action);
         //  arg = "?StaffID=" + xID + "&StaffRole=" + xType + "&StaffName=" + groupID + "&CPNum=" + appID + "&Action=" + action + "&IDs=" + ids;
-        var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+       // var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
+        var arg = GetArg(action, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType);
         if (type == "Grant") {
 
         }

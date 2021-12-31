@@ -59,7 +59,7 @@ function DeleteDataWebAPICall(verb,uri, id, refreshPage) {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token') // JWT token 
+                    'Authorization': 'Bearer ' + localStorage.getItem('token-ASM') // JWT token
                 }
             });
             const result = await apiResponse.json();
@@ -84,7 +84,7 @@ function SaveDataWebAPICall(verb, uri, paraObj, refreshPage) {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token') // JWT token 
+                    'Authorization': 'Bearer ' + localStorage.getItem('token-ASM') // JWT token
                 },
                 body: JSONStr
             });
@@ -107,8 +107,8 @@ function SaveDataWebAPICall(verb, uri, paraObj, refreshPage) {
     }
 }
 
-function GetJWToken(verb, uri, paraObj) {
-    var Url = "https://webt.tcdsb.org/Webapi/JWT/api/";
+function GetJWTokenCall(verb, uri, paraObj) {
+    var Url = "https://webt.tcdsb.org/Webapi/ASM/api/";
     var myUrl = Url + uri;
     var JSONStr = JSON.stringify(paraObj);
     try {
@@ -122,8 +122,15 @@ function GetJWToken(verb, uri, paraObj) {
                 body: JSONStr
             });
             const result = await apiResponse.json();
-            localStorage.setItem("token", result.token);
 
+         /*   alert("Respons Result = " + result);*/
+
+            localStorage.setItem("token-ASM", result);
+
+        //    alert( "JWT Call = " +  localStorage.getItem("token"));
+
+            var playLoad = parseJwt(result)
+            console.log(playLoad);
         })();
     }
     catch (ex) {
@@ -134,5 +141,15 @@ function GetJWToken(verb, uri, paraObj) {
 function LogoutApp() {
     localStorage.removeItem("token");
 }
+
+function parseJwt(token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
 
 
