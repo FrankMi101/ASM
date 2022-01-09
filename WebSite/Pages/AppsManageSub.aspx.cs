@@ -10,7 +10,7 @@ namespace ASM.Pages
 {
     public partial class AppsManageSub : System.Web.UI.Page
     {
-        readonly string pageID = "AppsManage";
+        readonly string pageID = "AppsManageSub";
         protected void Page_Error(object sender, EventArgs e)
         {
             Exception Ex = Server.GetLastError();

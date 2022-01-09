@@ -20,7 +20,7 @@ namespace BLL
         public string ParaValue { get; set; }
 
     }
-    public class ListOfSelected
+    public class InputArg
     {
         public string UserID { get; set; }
         public string SchoolYear { get; set; }

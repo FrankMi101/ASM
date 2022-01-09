@@ -69,26 +69,11 @@
         .function-list {
         }
 
-        #SearchBar {
-            position: absolute;
-            top: 5px;
-            left: 700px;
-        }
 
         .highlightBoard {
             border: 2px #ff6a00 solid;
         }
-
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
-        #EditDIV {
-            border: 1px solid #ee7c40;
-            border-radius: 10px;
-            padding: 5px;
-        }
+ 
 
         .staff-container {
             grid-template-columns: 44% auto;
@@ -229,7 +214,7 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
-        <div id="Action-Pgae-Container"></div>
+        <div id="Action-Page-Container"></div>
 
 
         <div>

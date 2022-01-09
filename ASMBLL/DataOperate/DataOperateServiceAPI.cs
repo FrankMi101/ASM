@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Configuration;
@@ -14,23 +15,25 @@ namespace ASMBLL
 /// <typeparam name="T"></typeparam>
     public class DataOperateServiceAPI<T> : IDataOperateService<T>
     {
-      
+        private readonly string jwtAuth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyTmFtZSI6Im1pZiIsIlVzZXJSb2xlIjoiVGVjaGVyIiwiZXhwIjoxNjQwMzg0ODYwLCJpc3MiOiJ3d3cudGNkc2Iub3JnIiwiYXVkIjoiU2Nob29sIFRlYWNoZXIifQ.h2Bv6Jix0MJ5CGnqQmmE7jQE0nzlgmqYalpsGzf9wQU";
+
         public string EditResult(string apiType, string uri, object parameter)
         {
             switch (apiType)
             {
+                case "Add":
                 case "ADD":
                     return POST_Method(uri, parameter);
                 case "Edit":
                     return PUT_Method(uri, parameter);
                 case "Remove":
                     return PUT_Method(uri, parameter);
+                case "Delete":
                 case "DELETE":
                     return DELETE_Method(uri, parameter);
                 default:
                     return "";
             }
-
         }
 
         public List<T> ListOfT(string apiType, string uri, object parameter)
@@ -54,6 +57,7 @@ namespace ASMBLL
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Authorization =  new AuthenticationHeaderValue("Bearer", jwtAuth);               
                     //HTTP GET
                     var responseTask = client.GetAsync(uri + qStr);
                     responseTask.Wait();
@@ -83,7 +87,7 @@ namespace ASMBLL
 
             }
         }
-        private string POST_Method(string uri, object parameter)
+        private   string POST_Method(string uri, object parameter)
         {
             try
             {
@@ -91,15 +95,19 @@ namespace ASMBLL
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtAuth);
 
                     //HTTP POST
-                    var postTask = client.PostAsJsonAsync<T>(uri, (T)parameter);
+                    var postTask =  client.PostAsJsonAsync(uri, parameter);
                     postTask.Wait();
 
-                    var result = postTask.Result;
+                    var result =  postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        return result.ToString();
+                        // return  result.Content.ToString();
+
+                         var contents = postTask.Result.Content.ReadAsStringAsync();
+                        return contents.Result.ToString();
                     }
                 }
                 return "";
@@ -117,15 +125,18 @@ namespace ASMBLL
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(url);
-                    string id = (string)parameter;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtAuth);
+
+                   // string id = (string)parameter;
                     //HTTP POST
-                    var putTask = client.PutAsJsonAsync<T>(uri, (T)parameter);
+                    var putTask = client.PutAsJsonAsync(uri, parameter);
                     putTask.Wait();
 
                     var result = putTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        return result.ToString();
+                        var contents = putTask.Result.Content.ReadAsStringAsync();
+                        return contents.Result.ToString();
                     }
                 }
                 return "";
@@ -143,15 +154,19 @@ namespace ASMBLL
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(url);
-                    string id = (string)parameter;
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtAuth);
+
+                    //int id = (int) parameter ;
+                    var id = parameter;
                     //HTTP DELETE
-                    var deleteTask = client.DeleteAsync(uri +  id.ToString());
+                    var deleteTask = client.DeleteAsync(uri + "/" +  id.ToString());
                     deleteTask.Wait();
 
                     var result = deleteTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        return result.ToString();
+                        var contents = deleteTask.Result.Content.ReadAsStringAsync();
+                        return contents.Result.ToString();
                     }
                 }
                 return "";

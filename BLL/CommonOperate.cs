@@ -74,8 +74,6 @@ namespace BLL
             }
         }
 
-
-
         public T ValueOfT(string sp, object parameter)
         {
             try
@@ -90,7 +88,6 @@ namespace BLL
                 throw;
             }
         }
-  
         public T ValueOfT(string sp, object parameter, string DapperComandType)
         {
             try
@@ -104,7 +101,6 @@ namespace BLL
                 throw;
             }
         }
-
         public T ValueOfT(string db, string sp, object parameter)
         {
             try
@@ -119,7 +115,6 @@ namespace BLL
                 throw;
             }
         }
-  
         public T ValueOfT(string db, string sp, object parameter, string DapperComandType)
         {
             try

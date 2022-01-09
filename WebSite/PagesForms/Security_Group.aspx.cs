@@ -65,6 +65,7 @@ namespace ASM.PagesForms
             {
                 Operate = "",
                 UserID  = WorkingProfile.UserId  ,
+                UserRole = hfUserRole.Value,
                 Para1 = hfUserRole.Value,
                 Para2 = WorkingProfile.SchoolYear,
                 Para3 = scope,
@@ -125,6 +126,7 @@ namespace ASM.PagesForms
             {
                 Operate = "StudentMember",
                 UserID  = WorkingProfile.UserId  ,
+                UserRole = hfUserRole.Value,
                 Para1 = GroupType,
                 Para2 = hfSchoolYear.Value,
                 Para3 = ddlSchool.SelectedValue,

@@ -6,13 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ASMBLL;
+using ClassLibrary;
 
 namespace WebAPI.Controllers.Tests
 {
     [TestClass()]
     public class AppRoleControllerTests
     {
-        private ActionAppRole _action = new ActionAppRole();
+        private int _ids = 0;
+        private AppRole _para = new AppRole();
+
+        private readonly IActionApp<AppRole> _apiAction = new ActionAppRole("API");
+        private readonly IActionApp<AppRole> _action = new ActionAppRole("SQL");
+
+        [TestInitialize]
+        public void Setup()
+        {
+            // Runs before each test. (Optional)
+            _para.Operate = "Get";
+            _para.UserID = "tester";
+            _para.IDs = "0";
+            _para.RoleID = "NewRole";
+            _para.RoleName = "New Role Name";
+            _para.RoleType = "App";
+        }
+
 
         [TestMethod()]
         public void GetAllRoleList_ReturnAll_Test()
@@ -25,9 +43,7 @@ namespace WebAPI.Controllers.Tests
            var expect = "Application Admin";
  
             //Act 
-
-            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
-            var list = iAction.GetObjList(uri, qStr);
+            var list = _apiAction.GetObjList(uri, qStr);
  
             var result = from s in list
                          where s.RoleID == "Admin"
@@ -35,7 +51,6 @@ namespace WebAPI.Controllers.Tests
 
             //Assert
             Assert.AreEqual(expect, result.FirstOrDefault(), $" Application role list has items count {list.Count} . ");
-
 
         }
 
@@ -49,9 +64,8 @@ namespace WebAPI.Controllers.Tests
             
             var expect = "Vice Principal";
 
-            //Act 
-            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
-            var list = iAction.GetObjList(uri, qStr);
+            //Act  
+            var list = _apiAction.GetObjList(uri, qStr);
  
             var result = from s in list
                          where s.RoleID == "VP"
@@ -72,8 +86,7 @@ namespace WebAPI.Controllers.Tests
             int qStr =     int.Parse(para.IDs); // "/" + para.SchoolCode + "/" + para.SearchBy + "/" + para.SearchValue + "/" + para.Scope;
      
             //Act 
-            var iAction = new ActionAppRole("API"); // new ActionAppUserGroup());
-            var list = iAction.GetObjByID(uri, qStr);
+             var list = _apiAction.GetObjByID(uri, qStr);
              
             var result = from s in list
                          where s.RoleID == "Educator"
@@ -81,24 +94,6 @@ namespace WebAPI.Controllers.Tests
             //Assert
             Assert.AreEqual(expect, result.FirstOrDefault(), $" Application role list has items count {list.Count} . ");
 
-        }
-
-        [TestMethod()]
-        public void PostTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void PutTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DeleteTest()
-        {
-            Assert.Fail();
-        }
+        }        
     }
 }

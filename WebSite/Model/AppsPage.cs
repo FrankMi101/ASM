@@ -31,66 +31,8 @@ namespace ASM
                 queryParas += "&" + QueryP("ModelID", page);
                 queryParas += "&" + QueryP("xID", page);
                 queryParas += "&" + QueryP("xName", page);
-                queryParas += "&" + QueryP("xType", page);
-                //if (page.Request.QueryString["Action"] != null)
-                //    queryParas += page.Request.QueryString["Action"].ToString();
-                //else
-                //    queryParas = "Action=";
-
-                //if (page.Request.QueryString["IDs"] != null)
-                //    queryParas += page.Request.QueryString["IDs"].ToString();
-                //else
-                //    queryParas += "&IDs=";
-
-                //if (page.Request.QueryString["SchoolYear"] != null)
-                //    queryParas += page.Request.QueryString["SchoolYear"].ToString();
-                //else
-                //    queryParas += "&SchoolYear=";
-
-                //if (page.Request.QueryString["SchoolCode"] != null)
-                //    queryParas += page.Request.QueryString["SchoolCode"].ToString();
-                //else
-                //    queryParas += "&SchoolCode=";
-
-                //if (page.Request.QueryString["AppID"] != null)
-                //    queryParas += page.Request.QueryString["AppID"].ToString();
-                //else
-                //    queryParas += "&AppID=";
-
-                //if (page.Request.QueryString["ModelID"] != null)
-                //    queryParas += page.Request.QueryString["ModelID"].ToString();
-                //else
-                //    queryParas += "&ModelID=";
-
-                //if (page.Request.QueryString["IDs"] != null)
-                //    queryParas += page.Request.QueryString["IDs"].ToString();
-                //else
-                //    queryParas += "&IDs=";
-
-                //if (page.Request.QueryString["xName"] != null)
-                //    queryParas += page.Request.QueryString["xName"].ToString();
-                //else
-                //    queryParas += "&xName=";
-
-                //if (page.Request.QueryString["xType"] != null)
-                //    queryParas += page.Request.QueryString["xType"].ToString();
-                //else
-                //    queryParas += "&xType=";
-
+                queryParas += "&" + QueryP("xType", page); 
                 return queryParas;
-
-
-                //string ids = page.Request.QueryString["IDs"].ToString();
-                //string sCode = page.Request.QueryString["SchoolCode"].ToString();
-                //string sYear = page.Request.QueryString["SchoolYear"].ToString();
-                //string appID = page.Request.QueryString["AppID"].ToString();
-                //string model = page.Request.QueryString["ModelID"].ToString();
-                //string xIden = page.Request.QueryString["xID"].ToString();
-                //string xName = page.Request.QueryString["xName"].ToString();
-                //string xType = page.Request.QueryString["xType"].ToString();
-
-                //return "Action=" + action + "&IDs=" + ids + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&AppID=" + appID + "&ModelID=" + model + "&xID=" + xIden + "&xName=" + xName + "&xType=" + xType;
-
             }
             catch
             {
@@ -127,12 +69,7 @@ namespace ASM
                 myControl.Value = WorkingProfile.UserEmployeeId;
             }
             catch
-            {
-
-            }
-
-
-
+            {}
         }
         public static void SetPageAttribute2(Page myPage)
         {
@@ -154,11 +91,8 @@ namespace ASM
                 myControl.Value = "0";
             }
             catch
-            {
-
-            }
+            {}
         }
-
         public static void CheckPageReadOnly(Page myPage, string checkType, string loginUserId)
         {
             var parameter = new PageHelp
@@ -185,9 +119,7 @@ namespace ASM
         {
             return GeneralList<T>("GeneralList", "ActionMenuList", parameter);
         }
-
-
-        public static string GoPage(object parameter)
+       public static string GoPage(object parameter)
         {
             return GeneralValue<string>("AppsPageHelp", "GoPage", parameter);
         }
@@ -219,14 +151,18 @@ namespace ASM
             AssemblingList.SetLists("", myListControl, action, parameter, initialValue);
         }
 
-        public static void BuildingList(ListControl myListControl, string operate, string userId, string para1, string para2, string para3)
+        public static void BuildingList(ListControl myListControl, string operate, string para1, string para2, string para3)
         {
-            var parameter = CommonParameters.GetListParameters(operate, userId, para1, para2, para3);
+            var userid = WorkingProfile.UserId;
+            var userrole = WorkingProfile.UserRole;
+            var parameter = CommonParameters.GetListParameters(operate, userid,  userrole,para1, para2, para3);
             BuildingList(myListControl, operate, parameter);
         }
-        public static void BuildingList(ListControl myListControl, string operate, string userId, string para1, string para2, string para3, object initialvalue)
+        public static void BuildingList(ListControl myListControl, string operate,  string para1, string para2, string para3, object initialvalue)
         {
-            var parameter = CommonParameters.GetListParameters(operate, userId, para1, para2, para3);
+            var userid = WorkingProfile.UserId;
+            var userrole = WorkingProfile.UserRole;
+            var parameter = CommonParameters.GetListParameters(operate, userid, userrole, para1, para2, para3);
             BuildingList(myListControl, operate, parameter, initialvalue);
         }
 
@@ -238,6 +174,14 @@ namespace ASM
         {
             AssemblingList.SetListSchool(myCodeListControl, myListNameControl, action, parameter, initialValue);
         }
+        public static void BuildingList(ListControl myCodeListControl, ListControl myListNameControl, string action, string para1, string para2,string para3, object initialValue)
+        {
+            var userid = WorkingProfile.UserId;
+            var userrole = WorkingProfile.UserRole;
+            var parameter = CommonParameters.GetListParameters(action, userid, userrole, para1, para2, para3);
+            AssemblingList.SetListSchool(myCodeListControl, myListNameControl, action, parameter, initialValue);
+        }
+
         public static void BuildGradeTab(HtmlGenericControl myDIVTab, object parameter, string Grade)
         {
             var mySPclass = new List<CommonSP> { new GeneralList() };

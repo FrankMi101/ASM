@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 namespace ASMBLL
 {
 
-    public class ActionAppStaffWorkingRoles :ActionAppBase<StaffWorkingRoles>
+    public class ActionAppStaffWorkingRoles : ActionAppBase<StaffWorkingRoles>
     {
-         public ActionAppStaffWorkingRoles()  //DataOperateService<T> iDos)
+        public ActionAppStaffWorkingRoles()  //DataOperateService<T> iDos)
         {
-         }
+        }
 
-        public ActionAppStaffWorkingRoles(string dataSource) :base (dataSource)
+        public ActionAppStaffWorkingRoles(string dataSource) : base(dataSource)
         {
-         }
-       
+        }
+
         public override object GetParameter(string operate, StaffWorkingRoles paraObj)
         {
             var parameter = new

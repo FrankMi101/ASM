@@ -71,8 +71,6 @@ namespace ASM.Pages
 
                 throw ex;
             }
-
-
         }
 
         private List<T> GetDataSource<T, T2>(string listType)
@@ -91,8 +89,6 @@ namespace ASM.Pages
 
         }
 
-
-   
         private void CreateClientMessage(string result, string action)
         {
             try

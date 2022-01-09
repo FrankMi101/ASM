@@ -29,6 +29,11 @@ namespace ASMBLL
           //  return GeneralList.CommonList<T>(sp, parameter);
         }
 
+        public List<T> GetObjByID(string dataSource, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<T> GetObjList(object parameter)
         {
             string sp = MapClass<T2>.SPName("Read");

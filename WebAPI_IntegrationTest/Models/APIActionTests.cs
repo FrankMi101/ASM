@@ -41,7 +41,7 @@ namespace WebAPI.Tests
         }
 
         [TestMethod()]
-        public void CeneralVAlue_APIAction_ReturnAPIActionResult_Test()
+        public void CeneralValue_APIAction_ReturnAPIActionResult_Test()
         {
             //Arrange                                            
             var parameter = new

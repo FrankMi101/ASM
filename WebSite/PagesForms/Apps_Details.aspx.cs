@@ -59,7 +59,7 @@ namespace ASM.PagesForms
             var IDs = hfIDs.Value.ToString();
             if (IDs != "0")
             {
-                var appsInfo = GetDataSource()[0];
+                var appsInfo = GetDataSource<Apps>()[0];
 
                 TextBoxAppsID.Text = appsInfo.AppID;
                 TextBoxAppsName.Text = appsInfo.AppName;
@@ -119,7 +119,7 @@ namespace ASM.PagesForms
             }
         }
 
-        private List<Apps> GetDataSource()
+        private List<T> GetDataSource<T>()
         {
             var parameter = new
             {
@@ -135,7 +135,7 @@ namespace ASM.PagesForms
             // var myList = ManageFormContent<UserGroup>.GetListbyID("UserGroup",IDs);  need MapClass support
             //  var actionClass = new ActionGet<UserGroup>(new ActionAppUserGroup());
             //  var myList = ManageFormContent<UserGroup>.GetListbyID(actionClass, IDs);
-            var myList = ManageFormContent<Apps>.GetListbyID("Apps", IDs, btnSubmit);
+            var myList = ManageFormContent<T>.GetListbyID("Apps", IDs, btnSubmit);
             return myList;
         }
 

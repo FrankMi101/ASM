@@ -173,6 +173,7 @@
     <Content Include="App_Themes\Theme1\Default.skin" />
     <None Include="Properties\PublishProfiles\ASM Website.pubxml" />
     <None Include="Properties\PublishProfiles\ASM.pubxml" />
+    <Content Include="Scripts\ActionMenu.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="images\action.png" />
     <Content Include="images\action2.png" />

@@ -18,7 +18,9 @@ namespace ASM.Pages
 
                 string queryStr = AppsPage.GetQueryString(Page);
 
-                PageURL.HRef = GetGoPage(pID , queryStr); 
+               PageURL.HRef = GetGoPage(pID , queryStr); 
+                //string goPage = GetGoPage(pID, queryStr);
+                //Page.Response.Redirect(goPage);
             }
         }
         private string GetGoPage(string page , string queryStr)

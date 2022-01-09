@@ -185,7 +185,7 @@ namespace ASM.Tests
             var list = ManagePageList<StaffList, StaffMemberOf>.GetList(_dataSource, _callMethod, para);
 
             var result = from s in list
-                         where s.CPNum == para.CPNum
+                         where s.EmployeeID == para.CPNum
                          select s.UserID;
             //Assert
 

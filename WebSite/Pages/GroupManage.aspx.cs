@@ -44,20 +44,14 @@ namespace ASM.Pages
         }
         private void AssemblePage()
         {
+
             string BoardRole = WebConfig.getValuebyKey("BoardAccessRole");
+            string schoolScope = WorkingProfile.SchoolCode;
+            if (hfUserRole.Value == "Admin") schoolScope = "0000";
+   
+            AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", schoolScope,WorkingProfile.SchoolYear,WorkingProfile.AppID, WorkingProfile.SchoolCode);
+            AppsPage.BuildingList(ddlApps, "AppsName", "","","", hfAppID.Value);
 
-            var parameters = new CommonListParameter()
-            {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = "All"
-            };
-
-            AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value);
-            AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
             if (hfUserRole.Value == "Principal")
             {
                 ddlSchoolCode.Enabled = false;

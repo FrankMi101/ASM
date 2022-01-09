@@ -67,15 +67,20 @@ namespace ASM
             AssemblingList2.SetLists("", myListControl, action, parameter, initialValue);
         }
 
-        public static void BuildingList(System.Web.UI.WebControls.ListControl myListControl, string operate, string userId, string para1, string para2, string para3)
+        public static void BuildingList(System.Web.UI.WebControls.ListControl myListControl, string operate,  string para1, string para2, string para3)
         {
-            var parameter = CommonParameters.GetListParameters(operate, userId, para1, para2, para3);
-            BuildingList(myListControl, operate, parameter);
+            var userid = WorkingProfile.UserId;
+            var userrole = WorkingProfile.UserRole;
+            var parameter = CommonParameters.GetListParameters(operate, userid, userrole, para1, para2, para3);
+
+             BuildingList(myListControl, operate, parameter);
         }
-        public static void BuildingList(System.Web.UI.WebControls.ListControl myListControl, string operate, string userId, string para1, string para2, string para3, object initialvalue)
+        public static void BuildingList(System.Web.UI.WebControls.ListControl myListControl, string operate,  string para1, string para2, string para3, object initialvalue)
         {
-            var parameter = CommonParameters.GetListParameters(operate, userId, para1, para2, para3);
-            BuildingList(myListControl, operate, parameter, initialvalue);
+            var userid = WorkingProfile.UserId;
+            var userrole = WorkingProfile.UserRole;
+            var parameter = CommonParameters.GetListParameters(operate, userid, userrole, para1, para2, para3);
+             BuildingList(myListControl, operate, parameter, initialvalue);
         }
 
         public static void BuildingList(System.Web.UI.WebControls.ListControl myCodeListControl, System.Web.UI.WebControls.ListControl myListNameControl, string action, CommonListParameter parameter)

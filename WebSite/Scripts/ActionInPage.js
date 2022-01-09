@@ -71,9 +71,9 @@ function OpenInPage(title, page, pHeight, pWidth) {
 
 function OpenFormFromListPage(title, page, arg, pHeight, pWidth) {
     var pageTemplte = GetEditPageTemplate()
-    $("#Action-Pgae-Container").html(pageTemplte);
-    var pTop = 50;
+    $("#Action-Page-Container").html(pageTemplte);
 
+    var pTop = 50;
     var pLeft = 50;
     if (pHeight > 500) pTop = 50; 
     if (mousex > pWidth) pLeft = mousex - pWidth - 30;
@@ -90,6 +90,7 @@ function OpenFormFromListPage(title, page, arg, pHeight, pWidth) {
             height: pHeight - 50,
             width: pWidth - 50
         });
+        $("#PopUpDIV").fadeToggle("fast");
         $("#EditDIV").fadeToggle("fast");
     }
 
@@ -107,7 +108,7 @@ function GetEditPageTemplate() {
                         <img id="closeMe" class="EditDIV-Header-Close-Img" onclick="CloseEditPage()" src="../images/close.png" />
                     </div>
                 </div>
-                <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="" runat="server"></iframe>
+                <iframe class="EditPage" id="editiFrame" name="editiFrame" frameborder="0" scrolling="no" src="../iBlankPage.html" runat="server"></iframe>
             </div>`
 }
 function CloseEditPage() {

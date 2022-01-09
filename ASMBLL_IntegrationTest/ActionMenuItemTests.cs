@@ -13,8 +13,8 @@ namespace ASMBLL.Tests
     public class ActionMenuItemTests
     {
         private MenuListParameter _spParamater = new MenuListParameter();
-     //   private readonly ActionMenuItem action = new ActionMenuItem();
-        private readonly IActionGet<MenuItems> _action = new ActionMenuItem();
+        // private readonly ActionMenuItem action = new ActionMenuItem();
+        private readonly IActionGet<MenuItems> action = new ActionMenuItem();
 
         [TestInitialize]
         public void Setup()
@@ -25,7 +25,7 @@ namespace ASMBLL.Tests
             _spParamater.SchoolCode = "0501";
             _spParamater.TabID = "10";
             _spParamater.ObjID = "383823321";
-            _spParamater.AppID = "SIC"; 
+            _spParamater.AppID = "SIC";
         }
 
 
@@ -35,13 +35,25 @@ namespace ASMBLL.Tests
         [DataRow("ClassListPage")]
         [DataRow("StaffListPage")]
         [DataRow("SecurityGroupManage")]
-        public void GetObjList_SublistMeniItembyCategory_ReturnDetailMenuList_Test(string category) 
+        public void GetObjList_SublistMeniItembyCategory_ReturnDetailMenuList_Test(string category)
         {
             //Arrange 
             _spParamater.Operate = category;
             var expect = category;
+
+            var para = new
+            {
+                Operate = category,
+                UserID = "mif",
+                UserRole = "Admin",
+                SchoolYear = "20202021",
+                SchoolCode = "0501",
+                TabID = "10",
+                ObjID = "383823321",
+                AppID = "SIC"
+            };
             // Act  
-             var list = _action.GetObjList(_spParamater);
+             var list = action.GetObjList(para);
             var result = from s in list
                          where s.Area == category
                          select s.Area;

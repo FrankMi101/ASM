@@ -1,5 +1,6 @@
 ﻿var actionItemPosition;
 var actionItemTitle;
+var MenuDataSource;
 var BasePara = {
     Operate: $("#hfPageID").val(),
     UserID: $("#hfUserID").val(),
@@ -24,7 +25,7 @@ function FetchMethod() {
                 .then(function (text) {
                     poemDisplay.textContent = text;
                 });
-    });
+        });
     /*
      The first line is saying "fetch the resource located at URL" (fetch(url)) and "then run the specified function 
      when the promise resolves" (.then(function() { ... })). "Resolve" means "finish performing the specified operation
@@ -36,7 +37,7 @@ function FetchMethod() {
    */
 }
 
-async function OpenMenu(action, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
+async function OpenMenu(dataSource, type, ids, schoolYear, schoolCode, appID, modelID, xID, xName, xType) {
     BasePara.Semester = $("#ddlSemester").val();
     BasePara.Term = $("#ddlTerm").val();
     BasePara.SchoolYear = schoolYear;
@@ -45,20 +46,26 @@ async function OpenMenu(action, type, ids, schoolYear, schoolCode, appID, modelI
     BasePara.ObjID = xID;
     BasePara.AppID = appID;
     actionItemTitle = xName;
-   //  $("#ActionMenuTitle").text(xName);
+    //  $("#ActionMenuTitle").text(xName);
     CopyKeyIDToClipboard(xID + " " + xName);
-
-    var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole +"&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&TabID=" + BasePara.TabID + "&ObjID=" + xID + "&AppID=" + appID;
-    var myUrl = "https://webt.tcdsb.org/Webapi/SIC/api/Menu/?" + para;
-
-    //$.get(myUrl, function (data, status) {
-    //    var myData = JSON.parse(data);
-    //    BuildingListMenuAction(myData);
-    //});
+    var myUrl = "";
+    var data;
     try {
-         const response = await fetch(myUrl);
-         const data = await response.json();
-        //  data = myActionMenuData; // menu data comes from Json object.
+        if (MenuDataSource == "JavaScriptJson") {
+            data = myActionMenuData;
+        }
+        else {
+            if (MenuDataSource == "WebApi") {
+                var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&TabID=" + BasePara.TabID + "&ObjID=" + xID + "&AppID=" + appID;
+                myUrl = "https://webt.tcdsb.org/Webapi/SIC/api/Menu/?" + para;
+            }
+            else if (MenuDataSource == "JsonFile") {
+                myUrl = "../Scripts/ActionMenu.json";
+            }
+            const response = await fetch(myUrl);
+            data = await response.json();
+        }
+
         BuildingListMenuAction(data);
     }
     catch (ex) {
@@ -78,7 +85,7 @@ async function OpenMenuWSAsync(action, type, ids, schoolYear, schoolCode, appID,
     $("#ActionMenuTitle").text(sName);
     CopyKeyIDToClipboard(objID + " " + sName);
 
-   // var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&TabID=" + BasePara.TabID + "&ObjID=" + objID + "&AppID=" + oen;
+    // var para = "Operate=" + BasePara.Operate + "&UserID=" + BasePara.UserID + "&UserRole=" + BasePara.UserRole + "&SchoolYear=" + sYear + "&SchoolCode=" + sCode + "&TabID=" + BasePara.TabID + "&ObjID=" + objID + "&AppID=" + oen;
     var myUrl = "SIC.Models.WebService/ActionMenuListService(" + "Get" + BasePara + ")"
 
 
@@ -125,50 +132,51 @@ function OpenMenu2(userID, userRole, sYear, sCode, appID, groupID, memberID, mem
 function onFailure() {
     alert("Get Menu Failed!");
 }
+
 var ActionMenuLevel1Length;
 
 function onSuccessMenuList(result) {
 
     BuildingListMenuAction(result);
 }
-function BuildingListMenuAction(result) {
-   // console.log(result);
+function BuildingListMenuAction(menuData) {
+    // console.log(result);
     var actionTemplate = GetActionMenuTemplate('ActionMenu');
-    $("#Action-Pgae-Container").html(actionTemplate);
+    $("#Action-Page-Container").html(actionTemplate);
 
-    BuildingList.ULList($("#ActionMenuUL"), BuildingActionMenuList(result));
-    var menulength = 100;// result.length * 40 / 4;
-    if (menulength < 150) menulength = 180;
+    BuildingList.ULList($("#ActionMenuUL"), BuildingActionMenuList(menuData));
+
+    var menulength = ActionMenuLevel1Length * 40; //if (menulength < 150) menulength = 180 ;
     var menuWidth = 200; //215;
-    menulength = ActionMenuLevel1Length * 40;
+
     if (ActionMenuLevel1Length == 1) {
         menulength = 100;
         menuWidth = 300;
     }
+
     ShowBuildingMenuList(menuWidth, menulength);
 }
 function BuildingActionMenuList(DataSet) {
-    var img = '<img style="height: 25px; width: 25px; float:right; padding-top: -1px; " src="../images/submenu.png" />'
-    var list = '<ul class="Top_ul" >';
+    var Submenuimg = '<img class ="SubmenuImg" src="../images/submenu.png" />'; //'<img style="height: 25px; width: 25px; float:right; padding-top: -1px; " src="../images/submenu.png" />';
+    var list = '<ul';
     var tabData = getTabData(DataSet);
-    var cData = "";
     ActionMenuLevel1Length = tabData.length;
     if (ActionMenuLevel1Length === 1) {
-        list = '<ul class="Top_ul_W" >';
+        list += ' class="Top_ul_W" >';
         list += MenuItem.loop(DataSet, "Tab_1", '0');
-        list += '</ul>';
     }
     else {
+        list += ' class="Top_ul" >';
         tabData.forEach((item, index) => {
             var tabItemID = + "Tab_" + index.toString();
-            list += MenuItem.li0(tabItemID, img, item);
+            list += MenuItem.li0(tabItemID, Submenuimg, item);
             list += MenuItem.ul();
             list += MenuItem.loop(DataSet, tabItemID, item);
             list += '</ul></li>';
         });
-        list += '</ul>';
     }
-    return list;
+    list += '</ul>';
+   return list;
 }
 
 var MenuItem = {
@@ -176,41 +184,45 @@ var MenuItem = {
     menu: function (data, tabid, item) { return menuElement(data, tabid, item); },
     li0: function (id, img, name) { return `<li id="${id}" class="ItemLevel0"> ${img} <a  href="#" target="">${name}</a>` },
     li: function (value) { return `<li id="${value}" class="ItemLevel1" >`; },
-    img: function (img) { return `<img style="height: 18px; width: 18px; border: 0px; margin-top:auto;" src="../images/${img}"/>`; },
+    img: function (img) { return `<img class="ItemImg" src="../images/${img}"/>`; },
     a: function (para, name) { return `<a class="menuLink" href=" ${para} "> ${name} </a>`; },
     ul: function () { return `<ul class="ItemLevel1_ul hideMenuItem" >` },
 };
 
-function loopMenu(DataSet, tabItemID, item) {
+function loopMenu(Nodes, tabItemID, item) {
     var list = "";
-    for (x in DataSet) {
-        if (tabItemID === "Tab_1" && item === "0") { item = DataSet[x].Category };
+    for (x in Nodes) {
+        if (tabItemID === "Tab_1" && item === "0") { item = Nodes[x].Category };
         // var item = DataSet[x].Category;
-        list += MenuItem.menu(DataSet, tabItemID, item);
+        list += MenuItem.menu(Nodes[x], tabItemID, item);
     };
     return list
 }
 
-function menuElement(DataSet, tabItemID, item) {
+function menuElement(Node, tabItemID, item) {
     var list = ""
     var itemID = tabItemID + '_menu_' + x.toString();
-    var category = DataSet[x].Category;
-    var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Category + "','" + DataSet[x].Area + "','" + DataSet[x].Type + "','" + DataSet[x].AppSource + "','" + DataSet[x].AppID + "')";
+    var category = Node.Category;
+    var para = GetPara(Node);
     if (item == category)
-        list += MenuItem.li(itemID) + MenuItem.img(DataSet[x].Image) + MenuItem.a(para, DataSet[x].Name) + '</li >';
+        list += MenuItem.li(itemID) + MenuItem.img(Node.Image) + MenuItem.a(para, Node.Name) + '</li >';
     return list;
 }
-function menuElement4(DataSet, tabItemID, item) {
-    var list = ""
-    var itemID = tabItemID + '_menu_' + x.toString();
-    var category = DataSet[x].Category;
-    var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Category + "','" + DataSet[x].Area + "','" + DataSet[x].Type + "','" + DataSet[x].AppSource + "','" + DataSet[x].AppID + "')";
-    if (item == category)
-        list += MenuItem.li(itemID) + MenuItem.img(DataSet[x].Image) + MenuItem.a(para, DataSet[x].Name) + '</li >';
-  
+function GetPara(Node) {
+    var para = "javascript:openPage(" + Node.Ptop + "," + Node.Pleft + "," + Node.Pheight + "," + Node.Pwidth + ",'" + Node.MenuID + "','" + Node.Category + "','" + Node.Area + "','" + Node.Type + "','" + Node.AppSource + "','" + Node.AppID + "')";
+    return para
+}
+//function menuElement4(DataSet, tabItemID, item) {
+//    var list = ""
+//    var itemID = tabItemID + '_menu_' + x.toString();
+//    var category = DataSet[x].Category;
+//    var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Category + "','" + DataSet[x].Area + "','" + DataSet[x].Type + "','" + DataSet[x].AppSource + "','" + DataSet[x].AppID + "')";
+//    if (item == category)
+//        list += MenuItem.li(itemID) + MenuItem.img(DataSet[x].Image) + MenuItem.a(para, DataSet[x].Name) + '</li >';
 
-    return list;
-}
+
+//    return list;
+//}
 // function liElement(itemID) {
 //    return `<li id="${itemID}" class="ItemLevel1" >`;
 // }
@@ -233,7 +245,7 @@ function ShowBuildingMenuList(width, length) {
         width: width,
         height: length
     });
-    $('.ItemLevel1_ul').css('left', width-19);
+    $('.ItemLevel1_ul').css('left', width - 19);
 
     Objcontrol.fadeToggle("fast");
 
@@ -309,16 +321,11 @@ function onSuccessPrintReport(result) {
 
 function GetActionMenuTemplate(actionType) {
     if (actionType == "ActionMenu")
-        return ` <div id="ActionMenuDIV" class="bubble epahide">
-                ${actionItemTitle}
-                <div id="ActionMenuUL" class="LeftSideMenu">
-                </div>
-            </div>`
-     else
-
+        return `<div id="ActionMenuDIV" class="bubble epahide">
+                ${actionItemTitle} <div id="ActionMenuUL" class="LeftSideMenu"></div></div>`
+    else
         return `<div id="HelpDIV" class="bubble epahide">
-                <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
-            </div>`
+                <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox></div>`
 }
 var myActionMenuData = [
     {
@@ -336,6 +343,7 @@ var myActionMenuData = [
         "Image": "list32.ico",
         "Orderby": "1-1"
     },
+
     {
         "Ptop": 5,
         "Pleft": 10,
@@ -343,21 +351,6 @@ var myActionMenuData = [
         "Pheight": 600,
         "Area": "SecurityContentList",
         "Category": "Class Information",
-        "Name": "View Class Schedules",
-        "MenuID": "View Class Schedules",
-        "AppID": null,
-        "Type": "Form",
-        "AppSource": "InApp",
-        "Image": "form.png",
-        "Orderby": "1-2"
-    },
-    {
-        "Ptop": 5,
-        "Pleft": 10,
-        "Pwidth": 700,
-        "Pheight": 600,
-        "Area": "SecurityContentList",
-        "Category": "Security Group",
         "Name": "View Group Member of Students",
         "MenuID": "Member of Stuents",
         "AppID": null,
@@ -365,35 +358,6 @@ var myActionMenuData = [
         "AppSource": "InApp",
         "Image": "list32.ico",
         "Orderby": "2-1"
-    },
-    {
-        "Ptop": 5,
-        "Pleft": 10,
-        "Pwidth": 700,
-        "Pheight": 600,
-        "Area": "SecurityContentList",
-        "Category": "Security Group",
-        "Name": "View Group Member of Teachers",
-        "MenuID": "Member of Teachers",
-        "AppID": null,
-        "Type": "Form",
-        "AppSource": "InApp",
-        "Image": "list32.ico",
-        "Orderby": "2-2"
-    },
-    {
-        "Ptop": 5,
-        "Pleft": 10,
-        "Pwidth": 700,
-        "Pheight": 450,
-        "Area": "SecurityContentList",
-        "Category": "Security Group",
-        "Name": "Group Profile ",
-        "MenuID": "Group Profile",
-        "AppID": null,
-        "Type": "Form",
-        "AppSource": "InApp",
-        "Image": "form.png",
-        "Orderby": "2-3"
     }
+
 ]

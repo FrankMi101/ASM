@@ -21,6 +21,8 @@ namespace ASMBLL
         {
             switch (dbType)
             {
+                case "MySQL":
+                    return new DataOperateServiceMySQL<T>();
                 case "SQL":
                     return new DataOperateServiceSQL<T>();
                 case "ORA":

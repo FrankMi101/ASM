@@ -96,3 +96,17 @@ width: 400px;
     margin-left: 20px;
     padding-left:0px;
 }
+.ItemImg {
+    height: 18px;
+    width: 18px;
+    border: 0px;
+    padding-top: -3px;
+    margin-top: auto;
+}
+
+.SubmenuImg {
+    height: 25px;
+    width: 25px;
+    float: right;
+    padding-top: -3px;
+}

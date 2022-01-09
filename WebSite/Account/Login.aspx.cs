@@ -20,14 +20,12 @@ namespace ASM
                 LabelAppName.Text = WebConfig.AppName();
                 HostName.InnerText = System.Net.Dns.GetHostName();
 
-               // var iName = @"CEC\userid";// WorkingProfile.UserId; // @"CEC\mif";
-                var iName =  System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-
-             
+               //  var iName =  System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+          
                 //if (User.Identity.IsAuthenticated)
-                //    iName = HttpContext.Current.User.Identity.Name;
-                txtDomain.Text = Authentication.GetDomain(iName);
-                txtUserName.Text = Authentication.GetUserName(iName);
+               //    iName = HttpContext.Current.User.Identity.Name;
+               // txtDomain.Text = Authentication.GetDomain(iName);
+               // txtUserName.Text = Authentication.GetUserName(iName);
 
 
                 txtUserName.Focus();

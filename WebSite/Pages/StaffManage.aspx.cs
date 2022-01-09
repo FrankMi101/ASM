@@ -47,38 +47,18 @@ namespace ASM.Pages
         {
             string BoardRole = WebConfig.getValuebyKey("BoardAccessRole");
             string schoolScope = WorkingProfile.SchoolCode;
-            if (hfUserRole.Value == "Admin") schoolScope = "All";
-            var parameters = new CommonListParameter()
+            if (hfUserRole.Value == "Admin") schoolScope = "0000";
+
+            AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", schoolScope, WorkingProfile.SchoolYear, WorkingProfile.AppID, WorkingProfile.SchoolCode);
+ 
+            if (hfUserRole.Value == "Principal")
             {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = "All",
-                Para4 =  WorkingProfile.AppID
-            };
-            
-            AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
-       
+                ddlSchoolCode.Enabled = false;
+                ddlSchool.Enabled = false;
+            }
         }
         private void InitialPage()
         {
-            //if (WorkingProfile.SchoolCode == "")
-            //{
-            //    ddlSchool.SelectedIndex = 0;
-            //    AppsPage.SetListValue(ddlSchoolCode, ddlSchool.SelectedValue);
-            //    WorkingProfile.SchoolCode = ddlSchool.SelectedValue;
-            //}
-            //else
-            //{
-            //    AppsPage.SetListValue(ddlSchoolCode, WorkingProfile.SchoolCode);
-            //    AppsPage.SetListValue(ddlSchool, WorkingProfile.SchoolCode);
-
-            //}
-            //ddlSearchby.SelectedIndex = 0;
-            //TextSearch.Visible = true;
-            //ddlSearchValue.Visible = false;
-
 
         }
 

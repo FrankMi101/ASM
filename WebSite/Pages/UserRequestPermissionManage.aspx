@@ -64,26 +64,11 @@
             border: 0px;
         }
 
-        .function-list {
-        }
-
- 
-
-        #SearchBar {
-            position: absolute;
-            top: 5px;
-            left: 700px;
-        }
 
         .highlightBoard {
             border: 2px #ff6a00 solid;
         }
-
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
+ 
    
         .RightSide {
          margin-left: 180px;
@@ -231,7 +216,7 @@
             </div>
    
         </div>
-        <div id="Action-Pgae-Container"></div>
+        <div id="Action-Page-Container"></div>
 
        
          <div>

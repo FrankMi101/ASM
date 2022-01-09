@@ -376,7 +376,7 @@ namespace ASM.Models
 
         }
         [WebMethod]
-        public Byte[] PrintReportService(string reportID, ListOfSelected parameter)
+        public Byte[] PrintReportService(string reportID, InputArg parameter)
         {
             //try
             //{
@@ -435,7 +435,7 @@ namespace ASM.Models
         }
 
         [WebMethod(EnableSession = true)]
-        public void SelectedStudentDataSet(string operate, List<ListOfSelected> parameters)
+        public void SelectedStudentDataSet(string operate, List<InputArg> parameters)
         {
             Session["SelectedDataSet"] = parameters;
         }

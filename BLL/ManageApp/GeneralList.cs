@@ -66,7 +66,7 @@ namespace BLL
         }
         private static string GetSPInClass(string action)
         {
-            string parameter = " @Operate,@UserID,@Para1,@Para2,@Para3,@Para4";
+            string parameter = " @Operate,@UserID,@UserRole,@Para1,@Para2,@Para3,@Para4";
             string parameter1 = " @Operate,@UserID,@UserRole,@SchoolYear,@SchoolCode";
             string parameter2 = parameter1 + ",@Grade,@SearchBy,@SearchValue";
 

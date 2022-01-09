@@ -50,6 +50,11 @@ namespace ASMBLL
                     case "StaffWorkingRoles": return new ActionAppStaffWorkingRoles();
                     case "StaffWorkingGroups": return new ActionAppStaffWorkingGroups();
                     case "ActionAppList": return new ActionAppList<T, T>();
+                    case "NameValue":
+                    case "ListItem":
+                    case "ListItems": return new ActionListItem();
+                    case "MenuItem":
+                    case "MenuItems": return new ActionMenuItem();
                     case "AppWorkingProfile": return new ActionWorkingProfile();
                     default: return new ActionApp<T>();
                         //  return new ActionApp<UserGroupMemberTeacher>(new ActionAppUserGroupMemberT());
@@ -66,12 +71,12 @@ namespace ASMBLL
         {
             try
             {
-                return new ActionAppService<T>();
+                return null;
             }
             catch (Exception ex)
             {
                 var sm = ex.Message;
-                return new ActionAppService<T>();
+                return null;
             }
         }
         public static string SPName(string action)
@@ -85,8 +90,9 @@ namespace ASMBLL
             switch (objType)
             {
                 case "SchoolDateStr": return "dbo.SIC_sys_SchoolDate";
+                case "NameValueList":
                 case "NameValue": return "dbo.SIC_sys_ListItems";
-                case "MenuItem": return "dbo.SIC_sys_ActionMenuList";
+                case "MenuItems": return "dbo.SIC_sys_ActionMenuList";
                 case "Feedback": return "dbo.SIC_sys_Feedback_" + action;
                 case "Apps": return "dbo.SIC_asm_Apps_" + action;
                 case "AppsModel": return "dbo.SIC_asm_AppsModel_" + action;

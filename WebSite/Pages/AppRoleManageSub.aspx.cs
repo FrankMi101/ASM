@@ -48,26 +48,10 @@ namespace ASM.Pages
         }
         private void AssemblePage()
         {
-
-            string scope = "School";
-            if (hfUserRole.Value == "Admin") scope = "All";
-            var parameters = new CommonListParameter()
-            {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                UserRole = hfUserRole.Value,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = scope
-            };
-
             Assembing_Tab();
         }
         private void InitialPage()
         {
-
-
         }
         protected void BtnGradeTab_Click(object sender, EventArgs e)
         {

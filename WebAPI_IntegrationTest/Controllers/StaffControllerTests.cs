@@ -14,6 +14,7 @@ namespace WebAPI.Controllers.Tests
     public class StaffControllerTests
     {
         private readonly string _url = WebConfig.APISite();
+       // private readonly IActionApp<StaffListSearch> apiAction = new ActionAppStaffs("API");
 
         [TestMethod()]
         public void Get_bySearchStaffListbySurName_ReturnStaffListMatccSearchcondition_Test()
@@ -92,7 +93,7 @@ namespace WebAPI.Controllers.Tests
             string expect = "Grade 05 Students";
 
             //Act 
-            var iAction = new ActionAppList<GroupList, StaffMemberOf>("API"); // new ActionAppUserGroup());
+             var iAction = new ActionAppList<GroupList, StaffMemberOf>("API"); // new ActionAppUserGroup());
             var list = iAction.GetObjList(uri, qStr);
 
 
@@ -116,11 +117,7 @@ namespace WebAPI.Controllers.Tests
             string expect = "Grade 05 Students";
 
             //Act
-
-          //  var _action = new ActionAppList<GroupList, UserGroup>("SQL");
-          //   var list = _action.GetObjList(para);
-
-
+ 
             var iAction = new ActionAppList<GroupList, UserGroup>("API"); // new ActionAppUserGroup());
             var list = iAction.GetObjList(uri, qStr);
 

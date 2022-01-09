@@ -10,14 +10,14 @@ namespace BLL
 {
     public class RenderDocuments
     {
-        public static void RenderDocument(ReportBase reportPara, List<ListOfSelected> myList)
+        public static void RenderDocument(ReportBase reportPara, List<InputArg> myList)
         {
             try
             {
                 Byte[] myDoc;
 
-                if (myList.Count == 1) myDoc = GeneratePDFReport.GetOneReport(reportPara, myList[0]); 
-                else  myDoc = GeneratePDFReport.GetMultipleReports(reportPara, myList);  
+                if (myList.Count == 1) myDoc = GeneratePDFReport.GetOneReport(reportPara, myList[0]);
+                else myDoc = GeneratePDFReport.GetMultipleReports(reportPara, myList);
 
                 ShowDocument.Show(reportPara.ReportName, reportPara.ReportFormat, myDoc);
             }
@@ -26,7 +26,7 @@ namespace BLL
                 throw new Exception(ex.Message);
             }
         }
-        public static void SaveDocuments(ReportBase reportPara, List<ListOfSelected> myList)
+        public static void SaveDocuments(ReportBase reportPara, List<InputArg> myList)
         {
             foreach (var item in myList)
             {
@@ -35,7 +35,7 @@ namespace BLL
                     try
                     {
                         Byte[] myPDF;
-                        myPDF = GeneratePDFReport.GetOneReport(reportPara, item); //  item => ListOfSelected
+                        myPDF = GeneratePDFReport.GetOneReport(reportPara, item); //  item => InputArg
                         string fileName = reportPara.ReportName + " " + item.SchoolYear + " " + item.ObjID + " " + item.ObjNo + "." + reportPara.ReportFormat;
                         string filePath = "C:Temp/" + reportPara.ReportName;
 
@@ -98,20 +98,13 @@ namespace BLL
         {
             switch (reportFormat)
             {
-                case "PDF":
-                    return "application/pdf";
-                case "CSV":
-                    return "application/csv";
-                case "EXCEL":
-                    return "application / vnd.ms - excel";
-                case "IMAGE":
-                    return "image/tiff";
-                case "HTML":
-                    return "application/html";
-                case "XML":
-                    return "application/xml";
-                default:
-                    return "application/pdf";
+                case "PDF": return "application/pdf";
+                case "CSV": return "application/csv";
+                case "EXCEL": return "application / vnd.ms - excel";
+                case "IMAGE": return "image/tiff";
+                case "HTML": return "application/html";
+                case "XML": return "application/xml";
+                default: return "application/pdf";
             }
         }
 

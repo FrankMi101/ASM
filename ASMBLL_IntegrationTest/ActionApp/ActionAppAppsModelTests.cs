@@ -73,6 +73,7 @@ namespace ASMBLL.Tests
             var expect = "Successfully";
             _para.IDs = "0";
             _para.Operate = "Add";
+            _para.UserID = "tester";
             //Act    
             var result = _action.AddObj(_para);
 

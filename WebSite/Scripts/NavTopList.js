@@ -4,6 +4,7 @@
     var menulist = myTopNavLoopRecurse(myMenuList, "N");
     $("#TopNav").html("");
     $("#TopNav").html(menulist);
+
     var menulistM = myTopNavLoopRecurse(myMenuList, "M");
     $("#TopNavM").html("");
     $("#TopNavM").html(menulistM);
@@ -165,14 +166,10 @@ function checkItemShowbyRole(CurrentUserRole, RoleItem) {
 
 function getShortLevel(myClass) {
     switch (myClass) {
-        case "Level-1":
-            return "A";
-        case "Level-2":
-            return "B";
-        case "Level-3":
-            return "C";
-        default:
-            return "A";
+        case "Level-1": return "A";
+        case "Level-2": return "B";
+        case "Level-3": return "C";
+        default:        return "A";
     }
 }
 
@@ -196,25 +193,7 @@ function aLinkStrTop(myArray, index, mobile) {
             + 'target="' + getTarget(myArray[index].target, myArray[index].subItems, mobile) + '" >'
             + myArray[index].display + '</a> ';
 }
-
-//function getMyALinkOld(myArray, k, level, mobile) {
-//    var myString = ' <li> <a ' + 'id="' + getShortLevel(myArray[k].myClass) + '-' + myArray[k].ID + '" '
-//        + 'class="' + myArray[k].myClass + '" '
-//        + 'href="' + getUrl(myArray[k].url, myArray[k].subItems, mobile) + '" '
-//        + 'target="' + getTarget(myArray[k].target, myArray[k].subItems, mobile) + '" >'
-//        + myArray[k].display + '</a> ';
-//    //    + getStr(myArray[k].subItems, "ImgStr", "</li>", level);
-//    if (typeof myArray[k].subItems === 'undefined') {
-//        myString += '</li> ';
-//    }
-//    else {
-//        if (myArray[k].myClass === "Level-2") {
-//            myString += ' <img style ="height:25px; width:30px; float:right; padding-top:-3px;" src="images/submenu.png" /> ';
-//        }
-//    }
-//    return myString;
-//}
-
+ 
 function getTarget(target, subitem, mobile) {
     if (mobile === "M" && typeof subitem === "undefined") {
         target = "GoList";
@@ -243,17 +222,11 @@ function getStr(mySubItem, sType, pValue, level) {
             case "Href":
                 rStr = '#';
                 break;
-            case "Target":
-                rStr = '_self';
-                break;
             default:
                 rStr = '_self';
-                break;
-        }
-
+                break;        }
     }
     return rStr;
-
 }
 
 function OpenPopPage(goPage) {

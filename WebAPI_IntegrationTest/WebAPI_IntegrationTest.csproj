@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AppRoleControllerTests.cs" />
+    <Compile Include="Controllers\AppsModelControllerTests.cs" />
     <Compile Include="Controllers\ListItemsControllerTests.cs" />
     <Compile Include="Controllers\MenuControllerTests.cs" />
-    <Compile Include="Controllers\SearchTeacherControllerTests.cs" />
     <Compile Include="Controllers\StaffControllerTests.cs" />
     <Compile Include="Controllers\UserGroupControllerTests.cs" />
     <Compile Include="Controllers\UserGroupStudentControllerTests.cs" />

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using ASMBLL;
 
 namespace WebAPI.Controllers.Tests
 {
@@ -15,26 +16,21 @@ namespace WebAPI.Controllers.Tests
         [TestMethod()]
         public void Get_GenericListitembyCategory_ReturnListItems_Test()
         {
-            //Arrange                                            
-            var parameter = new
-            {
-                Operate = "Get",
-                UserID = "mif",
-                Para1 = "Admin",
-                Para2 = "20202021",
-                Para3 = "0501",
-                Para4 = "Grade"
-            };
-            var sp = "dbo.SIC_sys_ListItems";
+            // Arrange 
+            string uri = "ListItems";
+            string qStr = "/AppRole/tester/admin/1/2/3/4"; 
+            string expect = "Principal";
 
             //Act
-            var _iapiaction = new APIAction<NameValueList>();
-            var result = _iapiaction.ListOfT("ListItem", sp, parameter);
+            var apiAction = new ActionAppList<NameValueList, NameValueList>("API");
+            var list = apiAction.GetObjList(uri, qStr);
 
-            // var result = APIListofT<Student>.CeneralList("StudentList", sp, parameter);
-
+            var result = from s in list
+                         where s.Value == "Principal"
+                         select s.Name;
             //Assert
-            Assert.IsNotNull(result, $"Search Student List Testing {result.Count}");
+             StringAssert.Contains(result.FirstOrDefault(), expect, $" App Role contain {result} ");
+           //  Assert.AreEqual(expect,result, $"App List item Testing {list.Count}");
         }
     }
 }

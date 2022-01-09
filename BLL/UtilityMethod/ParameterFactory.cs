@@ -30,7 +30,7 @@ namespace BLL
         }
     }
     abstract class Para {
-        public virtual List<ReportParameter> rParameter(ListOfSelected parameter) {
+        public virtual List<ReportParameter> rParameter(InputArg parameter) {
             var rParameter = new List<ReportParameter>();
             return rParameter;
         } 
@@ -38,7 +38,7 @@ namespace BLL
    class IEPPara : Para { 
         public IEPPara() {
         }
-        public override List<ReportParameter> rParameter(ListOfSelected parameter)
+        public override List<ReportParameter> rParameter(InputArg parameter)
         {
             var rParameter = new List<ReportParameter> {
                 new ReportParameter() { ParaName = "Operate", ParaValue = "Report" },
@@ -54,7 +54,7 @@ namespace BLL
         public SSFPara()
         {
         }
-        public override List<ReportParameter> rParameter(ListOfSelected parameter)
+        public override List<ReportParameter> rParameter(InputArg parameter)
         {
             var rParameter = new List<ReportParameter> {
                 new ReportParameter() { ParaName = "Operate", ParaValue = "Report" },

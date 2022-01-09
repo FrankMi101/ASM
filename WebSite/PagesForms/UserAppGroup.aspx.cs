@@ -168,6 +168,7 @@ namespace ASM.PagesForms
             {
                 Operate = "AppsGroupID",
                 UserID = WorkingProfile.UserId,
+                UserRole = hfUserRole.Value,
                 Para1 = hfUserRole.Value,
                 Para2 = ddlApps.SelectedValue,
                 Para3 = ddlSchoolCode.SelectedValue,

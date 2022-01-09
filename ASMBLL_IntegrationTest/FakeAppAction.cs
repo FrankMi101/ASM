@@ -55,5 +55,30 @@ namespace ASMBLL_IntegrationTest
         {
             throw new NotImplementedException();
         }
+
+        public string EditObj(string apiType, string uri, T parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string AddObj(string apiType, string uri, T parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteObj(string apiType, string uri, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetObjList(string dataSource, object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<T> GetObjByID(string dataSource, int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -22,10 +22,10 @@ namespace WebAPI.Controllers
         // GET: api/UserGroupMembe
         [HttpGet]
         [Route("api/UserGroupTeacher/{schoolCode}/{appID}")]
-        public IHttpActionResult GetTeacher(string schoolCode, string appID)
+        public IHttpActionResult GetTeacher(string SchoolCode, string AppID)
         {
              IList<UserGroupMemberTeacher> result = null;
-            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode, AppID = appID };
+            var para = new { Operate = "GroupListbyApp", UserID = "asm", UserRole = "Admin", SchoolCode, AppID};
             result = _action.GetObjList(para);
 
             if (result.Count == 0)
@@ -37,11 +37,11 @@ namespace WebAPI.Controllers
         // GET: api/UserGroupMembe?
         [HttpGet]
         [Route("api/UserGroupTeacher/{schoolcode}/{appID}/{groupID}")]
-        public IHttpActionResult GetTeacher(string schoolCode, string appID, string groupID)
+        public IHttpActionResult GetTeacher(string SchoolCode, string AppID, string GroupID)
         {
   
             IList<UserGroupMemberTeacher> result = null;
-            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "Admin", SchoolCode = schoolCode,AppID = appID,GroupID = groupID };
+            var para = new { Operate = "GroupListbyGroup", UserID = "asm", UserRole = "Admin", SchoolCode ,AppID,GroupID};
             result = _action.GetObjList(para);
 
             if (result.Count == 0)

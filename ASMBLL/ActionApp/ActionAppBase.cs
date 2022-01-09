@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASMBLL
 {
-    public abstract class ActionAppBase<T> :IActionApp<T>
+    public abstract class ActionAppBase<T> :IActionApp<T>,IActionGet<T>
     {
         private readonly string _objName = typeof(T).Name;
         private string _sp = MapClass<T>.SPName("Read");
@@ -61,6 +61,11 @@ namespace ASMBLL
 
             return ObjOperation("Add", parameter);
         }
+        public string AddObj(string apiType, string uri, T parameter)
+        {
+            var para = GetParameter("Add", parameter);
+            return _dataOperate.EditResult(apiType, uri, para);
+        }
 
         public string EditObj(T parameter)
         {
@@ -68,13 +73,16 @@ namespace ASMBLL
 
             return ObjOperation("Edit", parameter);
         }
-
+        public string EditObj(string apiType, string uri, T parameter)
+        {
+            var para = GetParameter(apiType, parameter);
+            return _dataOperate.EditResult(apiType, uri, para);
+        }
         public string RemoveObj(T parameter)
         {
             if (parameter == null  ) return _invalidMessage;
             return ObjOperation("Remove", parameter);
         }
-
         public string DeleteObj(int id)
         {
             if (id <= 0) return _invalidMessage;
@@ -84,12 +92,19 @@ namespace ASMBLL
             return _dataOperate.EditResult( _sp, para,"SP");
 
         }
+        public string DeleteObj(string apiType, string uri,int id)
+        {
+            var para = id;
+            return _dataOperate.EditResult(apiType, uri, para);
+
+        }
+
         private string ObjOperation(string action, T parameter)
         {
             var para = GetParameter(action, parameter);
             _sp = MapClass<T>.SPName("Edit");//  CheckStoreProcedureParameters.GetParamerters(_spEdit, para);// "dbo.SIC_asm_AppsEdit @Operate,@UserID,@IDs,@RoleID,@RoleName";
 
-            return _dataOperate.EditResult( _sp, para);
+            return _dataOperate.EditResult(_sp, para);
         }
 
         public virtual object GetParameter(string operate, T paraObj)

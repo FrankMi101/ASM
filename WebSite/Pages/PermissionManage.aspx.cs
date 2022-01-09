@@ -41,20 +41,7 @@ namespace ASM.Pages
         }
         private void AssemblePage()
         {
-            string BoardRole = WebConfig.getValuebyKey("BoardAccessRole");
-
-            var parameters = new CommonListParameter()
-            {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = "All"
-            };
-            
-            AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value); 
- 
+            AppsPage.BuildingList(ddlApps, "AppsName", "","","", hfAppID.Value);  
         }
  
         protected void DDLApps_SelectedIndexChanged(object sender, EventArgs e)

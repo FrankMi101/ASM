@@ -59,6 +59,7 @@ namespace ASM.PagesForms
             {
                 Operate = "",
                 UserID  = WorkingProfile.UserId  ,
+                UserRole = hfUserRole.Value,
                 Para1 = hfUserRole.Value,
                 Para2 = WorkingProfile.SchoolYear,
                 Para3 = WorkingProfile.SchoolCode,

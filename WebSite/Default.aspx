@@ -268,7 +268,7 @@
             <asp:HiddenField ID="hfTeacherName" runat="server" />
             <asp:HiddenField ID="hfSchoolArea" runat="server" />
             <asp:HiddenField ID="hfTopMenuArea" runat="server" />
-              <asp:HiddenField ID="hfLevel1MenuArea" runat="server" />
+            <asp:HiddenField ID="hfLevel1MenuArea" runat="server" />
 
         </div>
         <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
@@ -347,18 +347,19 @@
 
         $("#closeMe").click(function (event) {
 
-            $("#PopUpDIV").fadeToggle("fast");
-
-            if ($("#EditDIV").css('display') === "block") { $("#EditDIV").fadeToggle("fast"); }
-
-            if ($("#ApprDIV").css('display') === "block") { $("#ApprDIV").fadeToggle("fast"); }
+            $("#PopUpDIV").hide();
+            $("#EditDIV").hide();
+            $("#ApprDIV").hide();
+            //if ($("#EditDIV").css('display') === "block") { $("#EditDIV").fadeToggle("fast"); }
+            //if ($("#ApprDIV").css('display') === "block") { $("#ApprDIV").fadeToggle("fast"); }
         });
 
         $("#closeActionPOP").click(function (event) {
 
-            if ($("#PopUpDIV").css('display') === "block") $("#PopUpDIV").fadeToggle("fast");
-
-            if ($("#ActionPOPDIV").css('display') === "block") { $("#ActionPOPDIV").fadeToggle("fast"); }
+            $("#PopUpDIV").hide();
+            $("#ActionPOPDIV").hide();
+            //if ($("#PopUpDIV").css('display') === "block") $("#PopUpDIV").fadeToggle("fast");
+            //if ($("#ActionPOPDIV").css('display') === "block") { $("#ActionPOPDIV").fadeToggle("fast"); }
 
         });
 

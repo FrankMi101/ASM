@@ -9,12 +9,13 @@ namespace BLL
 {
     public class CommonParameters
     {
-        public static CommonListParameter GetListParameters(string operate, string userId, string para1, string para2, string para3)
+        public static CommonListParameter GetListParameters(string operate, string userId, string userrole, string para1, string para2, string para3)
         {
             var parameters = new CommonListParameter()
             {
                 Operate = operate,
                 UserID = userId,
+                UserRole = userrole,
                 Para1 = para1,
                 Para2 = para2,
                 Para3 = para3,

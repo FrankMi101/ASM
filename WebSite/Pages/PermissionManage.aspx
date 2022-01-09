@@ -21,27 +21,11 @@
     <link href="../Content/ContentPage.css" rel="stylesheet" />
 
     <style type="text/css">
-        .function-list {
-        }
-
-
-
-        #SearchBar {
-            position: absolute;
-            top: 5px;
-            left: 600px;
-        }
-
+    
         .highlightBoard {
             border: 2px #ff6a00 solid;
         }
-
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
-
+ 
 
         .EditPage {
             width: 100%;
@@ -149,7 +133,7 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
-           <div id="Action-Pgae-Container"></div>
+           <div id="Action-Page-Container"></div>
  
         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />

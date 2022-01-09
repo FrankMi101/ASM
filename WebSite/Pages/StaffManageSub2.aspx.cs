@@ -25,7 +25,7 @@ namespace ASM.Pages
                 GetQueryInfo();
                 SetPageAttribution();
                 AssemblePage();
-                
+
                 BindGridViewListData(hfSelectedTab.Value);
             }
         }
@@ -44,17 +44,17 @@ namespace ASM.Pages
             hfCategory.Value = "Home";
             hfPageID.Value = pageID;
             hfCode.Value = "Search";
-            hfUserID.Value  = WorkingProfile.UserId  ;
+            hfUserID.Value = WorkingProfile.UserId;
             hfUserLoginRole.Value = WorkingProfile.UserRoleLogin;
             hfUserRole.Value = WorkingProfile.UserRole;
             hfSchoolYear.Value = WorkingProfile.SchoolYear;
             hfRunningModel.Value = WebConfig.RunningModel();
             Session["HomePage"] = "Loading.aspx?pID=" + pageID;
-          //  hfSelectedTab.Value = "North";
+            //  hfSelectedTab.Value = "North";
             var parameter = new Base2Parameter()
             {
                 Operate = "SchoolYearDate",
-                UserID  = WorkingProfile.UserId  ,
+                UserID = WorkingProfile.UserId,
                 UserRole = hfUserRole.Value,
                 SchoolYear = WorkingProfile.SchoolYear,
                 SchoolCode = WorkingProfile.SchoolCode,
@@ -67,24 +67,10 @@ namespace ASM.Pages
         private void AssemblePage()
         {
 
-            string scope = "School";
-            if (hfUserRole.Value == "Admin") scope = "All";
-            var parameters = new CommonListParameter()
-            {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                UserRole = hfUserRole.Value,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = scope
-            };
-            //AppsPage.BuildingList(ddlSchoolYear, "SchoolYear", parameters, WorkingProfile.SchoolYear);
-            //AppsPage.BuildingList(ddlSchoolCode, ddlSchool, "DDLListSchool", parameters, WorkingProfile.SchoolCode);
-            AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);
-            AppsPage.BuildingList(ddlAppRole, "AppRole", parameters, TextBoxStaffRole.Text);
-          //  SetAppsGroup();
-           Assembing_Tab();
+            AppsPage.BuildingList(ddlApps, "AppsName", "", "", "", WorkingProfile.DefaultAppID);
+            AppsPage.BuildingList(ddlAppRole, "AppRole", "", "", "", TextBoxStaffRole.Text);
+
+            Assembing_Tab();
         }
         private void InitialPage()
         {
@@ -128,17 +114,17 @@ namespace ASM.Pages
         }
 
         private void BindGridViewListData(string grade)
-        { 
-                    GridView1.DataSource = GetDataSource<SchoolSelectedList>(grade); // GetDataSource_APP();
-                    GridView1.DataBind();
-                    GridView1.Visible = true;        
+        {
+            GridView1.DataSource = GetDataSource<SchoolSelectedList>(grade); // GetDataSource_APP();
+            GridView1.DataBind();
+            GridView1.Visible = true;
         }
         private List<T> GetDataSource<T>(string grade)
         {
             var para = new
             {
                 Operate = "SchoolList",
-                UserID  = WorkingProfile.UserId  ,
+                UserID = WorkingProfile.UserId,
                 UserRole = hfUserRole.Value,
                 SchoolYear = WorkingProfile.SchoolYear,
                 SchoolCode = grade,
@@ -160,7 +146,7 @@ namespace ASM.Pages
             return myList;
         }
 
-      
+
         private void CreateClientMessage(string result, string action)
         {
             try

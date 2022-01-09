@@ -13,22 +13,22 @@ namespace BLL
 {
     public class GeneratePDFReport
     {
-        public static Byte[] GetOneReport2(ListOfSelected parameter, ReportBase reportPara)
+        public static Byte[] GetOneReport2(InputArg parameter, ReportBase reportPara)
         {
             var reportParameters = BuildReportingParameters.GetReportParameter(reportPara.ReportType, parameter);
 
             return getPDFReport(reportPara, reportParameters);
         }
-        public static Byte[] GetOneReport(ReportBase reportPara, ListOfSelected parameter)
+        public static Byte[] GetOneReport(ReportBase reportPara, InputArg parameter)
         {
-            var reportParameters = BuildReportingParameters.GetReportParameter(reportPara.ReportType, parameter);
-           // string reportServer = getReportLocation(reportType, "Service");
-          //  string reportPath = getReportLocation(reportType, "Path");
+            var reportParameters = GetSpecificReportParamaters.GetReportParameters(reportPara.ReportType, parameter);
+           // var reportParameters = BuildReportingParameters.GetReportParameter(reportPara.ReportType, parameter);
+          
 
             return getPDFReport(reportPara, reportParameters);
         }
 
-        public static Byte[] GetMultipleReports(ReportBase reportPara, List<ListOfSelected> myList)
+        public static Byte[] GetMultipleReports(ReportBase reportPara, List<InputArg> myList)
         {
             Document doc = new Document();
             MemoryStream msOutput = new MemoryStream();
@@ -38,7 +38,7 @@ namespace BLL
             {
                 try
                 {
-                    Byte[] myPDF = GetOneReport(reportPara, item); // item  => ListOFSelected
+                    Byte[] myPDF = GetOneReport(reportPara, item); // item  => InputArg
                     if (myPDF.Length > 10)
                     {
                         AddFileToPCopy(ref pCopy, myPDF);

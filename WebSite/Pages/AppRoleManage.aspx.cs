@@ -43,17 +43,20 @@ namespace ASM.Pages
         {
             string BoardRole = WebConfig.getValuebyKey("BoardAccessRole");
 
-            var parameters = new CommonListParameter()
-            {
-                Operate = "",
-                UserID  = WorkingProfile.UserId  ,
-                Para1 = hfUserRole.Value,
-                Para2 = WorkingProfile.SchoolYear,
-                Para3 = WorkingProfile.SchoolCode,
-                Para4 = "All"
-            };
+            //var parameters = new CommonListParameter()
+            //{
+            //    Operate = "",
+            //    UserID  = WorkingProfile.UserId  ,
+            //    UserRole = WorkingProfile.UserRole,
+            //    Para1 = hfUserRole.Value,
+            //    Para2 = WorkingProfile.SchoolYear,
+            //    Para3 = WorkingProfile.SchoolCode,
+            //    Para4 = "All"
+            //};
 
-            AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value);
+            //  AppsPage.BuildingList(ddlApps, "AppsName", parameters, hfAppID.Value);
+            var initialValue = hfAppID.Value;
+            AppsPage.BuildingList(ddlApps, "AppsName", "","","", initialValue);
 
         }
 

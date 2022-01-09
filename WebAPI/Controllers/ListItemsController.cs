@@ -20,17 +20,26 @@ namespace WebAPI.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-
-        // GET: api/ListItems/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/ListItems/{Operate}/{UserID}/{UserRole}")]
+        public IEnumerable<NameValueList> Get(string Operate, string UserID, string UserRole)
         {
-            return "value";
-        }
-        public IEnumerable<NameValueList> Get(string Operate, string UserID, string Para1, string Para2, string Para3, string Para4 )
-        {
-            var parameter = new { Operate, UserID, Para1, Para2, Para3, Para4 };
+            var parameter = new { Operate, UserID, UserRole};
              return _action.GetObjList(parameter);
         }
-       
+        [HttpGet]
+        [Route("api/ListItems/{Operate}/{UserID}/{UserRole}/{Para1}")]
+        public IEnumerable<NameValueList> Get(string Operate, string UserID, string UserRole, string Para1)
+        {
+            var parameter = new { Operate, UserID, UserRole, Para1};
+            return _action.GetObjList(parameter);
+        }
+        [HttpGet]
+        [Route("api/ListItems/{Operate}/{UserID}/{UserRole}/{Para1}/{Para2}/{Para3}/{Para4}")]
+        public IEnumerable<NameValueList> Get(string Operate, string UserID, string UserRole, string Para1, string Para2, string Para3, string Para4)
+        {
+            var parameter = new { Operate, UserID, UserRole, Para1, Para2, Para3, Para4 };
+            return _action.GetObjList(parameter);
+        }
     }
 }

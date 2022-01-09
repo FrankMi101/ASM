@@ -37,29 +37,41 @@ function BuildingULList6(DataSet) {
 
 }
 function BuildingULListWithTab(DataSet) {
-    var img = '<img style="height: 25px; width: 30px; float:right; padding-top: -3px; " src="../images/submenu.png">'
-    var list = '<ul class="Top_ul" >';
+    var list = '<ul class="Top_ul" >' + GetULHtml() + '</ul>';
+    return list;
+}
+
+function GetULHtml(DataSet) {
     var tabData = getTabData(DataSet);
     var cData = "";
-
+    //var subMenuimg = '<img style="height: 25px; width: 30px; float:right; padding-top: -3px; " src="../images/submenu.png">'
     tabData.forEach((item, index) => {
         var tabItemID = + "Tab_" + index.toString();
-        list += '<li id="' + tabItemID + '"  class="ItemLevel0">' + img + '<a  href="#" target="">' + item + '</a>';
+        list += '<li id="' + tabItemID + '"  class="ItemLevel0">' + GetItemImg('submenu.png', 'SubmenuImg') + '<a  href="#" target="">' + item + '</a>';
         list += '<ul class="ItemLevel1_ul hideMenuItem" >';
         for (x in DataSet) {
             var xItemID = tabItemID + '_menu_' + x.toString();
             var category = DataSet[x].Category;
-            var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Type + "')";
             if (item == category)
-                list += ' <li id="' + xItemID + '" class="ItemLevel1" >'
-                    + '<img style="height: 18px; width: 18px; border="0" padding-top: -3px; src="../images/' + DataSet[x].Image + '"/>'
-                    + '<a class="menuLink" href="' + para + '">'
-                    + DataSet[x].Name + ' </a> </li>';
+                list += GetliItem(DataSet[x], xItemID);
         };
         list += '</ul></li>';
     });
-    list += '</ul>';
-    return list;
+}
+function GetliItem(Data, xItemID) {
+    return ' <li id="' + xItemID + '" class="ItemLevel1" >'
+        + GetItemImg(Data.Image, 'ItemImg')
+        + GetAItem(Data)
+        + '</li >'
+}
+function GetAItem(Data) {
+    //  var para = "javascript:openPage(" + DataSet[x].Ptop + "," + DataSet[x].Pleft + "," + DataSet[x].Pheight + "," + DataSet[x].Pwidth + ",'" + DataSet[x].MenuID + "','" + DataSet[x].Type + "')";
+    var para = "javascript:openPage(" + Data.Ptop + "," + Data.Pleft + "," + Data.Pheight + "," + Data.Pwidth + ",'" + Data.MenuID + "','" + Data.Type + "')";
+    return '<a class="menuLink" href="' + para + '">' + Data.Name + ' </a>';
+}
+
+function GetItemImg(img, imgClass) {
+    return `'<img class = ${imgClass} src="../images/' ${img} '"/>'`;
 }
 function getTabData(DataSet) {
     var tabData = [];

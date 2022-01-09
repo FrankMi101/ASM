@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClassLibrary;
+using ASMBLL;
 
 namespace WebAPI.Controllers.Tests
 {
@@ -13,30 +14,38 @@ namespace WebAPI.Controllers.Tests
     public class MenuControllerTests
     {
         [TestMethod()]
-        public void Get_GetStudentListMenuItems_ReturnMenuItems_Test()
+        [DataRow("StudentListPage")]
+        [DataRow("GroupListPage")]
+        [DataRow("ClassListPage")]
+        [DataRow("StaffListPage")]
+        [DataRow("SecurityGroupManage")]
+        public void Get_GetMenuItems_ReturnMenuItems_Test(string menuType)
         {
-            //Arrange                                            
-            var parameter = new
-            {
-                Operate = "StudentListPage",
+            // Arrange 
+            string uri = "Menu";
+            var P = new
+            {   Operate = menuType,
                 UserID = "mif",
                 UserRole = "Admin",
-                SchoolYear = "20202021",
-                SchoolCode = "0501",
+                Year = "20202021",
+                Code = "0501",
                 TabID = "10",
-                ObjID = "0000",
-                AppID = "SIC",
+                ObjID = "383823321",
+                AppID = "SIC"
             };
-            var sp = "dbo.SIC_sys_ActionMenuList";
+            string qStr = "/" + P.Operate + "/" + P.UserID + "/" + P.UserRole + "/" + P.Year + "/" + P.Code + "/" + P.TabID + "/" + P.ObjID + "/" + P.AppID;
+            string expect = menuType;
 
             //Act
-            var _iapiaction = new APIAction<MenuItems>();
-            var result = _iapiaction.ListOfT("StudentMenuItems", sp, parameter);
+            var apiAction = new ActionAppList<MenuItems, MenuItems>("API");
+            var list = apiAction.GetObjList(uri, qStr);
 
-            // var result = APIListofT<Student>.CeneralList("StudentList", sp, parameter);
-
+            var result = from s in list
+                         where s.MenuID == menuType
+                         select s.Name;
             //Assert
-            Assert.IsNotNull(result, $"Search Student List Testing {result.Count}");
+            //StringAssert.Contains(result.FirstOrDefault(), expect, $" App Role contain {result} ");
+            Assert.IsNotNull(result, $"App List item Testing {list.Count}");
         }
     }
 }

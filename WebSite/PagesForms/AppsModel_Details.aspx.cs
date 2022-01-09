@@ -61,7 +61,7 @@ namespace ASM.PagesForms
             var IDs = hfIDs.Value.ToString();
             if (IDs != "0")
             {
-                var modelInfo = GetDataSource()[0];
+                var modelInfo = GetDataSource<AppsModel>()[0];  
 
                 lblIDs.Text = modelInfo.IDs;
                 TextBoxAppID.Text = modelInfo.AppID;
@@ -117,7 +117,7 @@ namespace ASM.PagesForms
             }
         }
 
-        private List<AppsModel> GetDataSource()
+        private List<T> GetDataSource<T>()
         {
             var parameter = new
             {
@@ -129,7 +129,7 @@ namespace ASM.PagesForms
             };
 
             int IDs = int.Parse(hfIDs.Value);
-            var myList = ManageFormContent<AppsModel>.GetListbyID("AppsModel", IDs, btnSubmit);
+            var myList = ManageFormContent<T>.GetListbyID("AppsModel", IDs, btnSubmit);
             return myList;
         }
 

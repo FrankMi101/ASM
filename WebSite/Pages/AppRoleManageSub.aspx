@@ -28,15 +28,6 @@
             border: 1px blue none;
         }
 
-
-        .MessageRow {
-            background: dodgerblue; /* For browsers that do not support gradients */
-            background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
-        }
-
         .content-grid th {
             background: linear-gradient(lightskyblue, white);
             color: black;
@@ -186,7 +177,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <div id="Action-Pgae-Container"></div>
+        <div id="Action-Page-Container"></div>
         <div>
             <asp:HiddenField ID="hfCategory" runat="server" />
             <asp:HiddenField ID="hfPageID" runat="server" />

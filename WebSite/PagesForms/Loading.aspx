@@ -8,11 +8,15 @@
     <title>Loading Page</title>
     <style>
         div {
-            height: 99.5%;
-            width: 99.5%;
-            text-align: center;
+             text-align: center;
             margin: 0 auto;
-            padding-top: 20%;
+            padding-top: 20%;         
+        }
+      img {
+          margin-bottom:-10px;
+      }
+      a {
+            margin-left:20px;
         }
     </style>
 </head>

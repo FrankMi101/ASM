@@ -311,7 +311,7 @@ function openEditPage5(vHeight, vWidth, goPage, pTitle) {
 }
 
 function GetArg(action,ids,schoolYear,schoolCode,appID,modelID,xID, xName,xType) {
-    var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xTypepp=" + xType;
+    var arg = "&Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
     return arg
 }
 

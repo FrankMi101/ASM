@@ -42,8 +42,6 @@ namespace ASM.Pages
         private void AssemblePage()
         {
             string BoardRole = WebConfig.getValuebyKey("BoardAccessRole");
- 
-
         }
  
         private void BindGridViewListData()

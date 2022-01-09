@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    //interface IReportParameter
-    //{
-    //    List<ReportParameter> ReportParameters();
-    //}
-    public class IEPReportParameter : IReportParameter
+  
+
+    public interface IReportParameter
     {
-        readonly InputArg _parameter;
-        public IEPReportParameter(InputArg parameter)
-        {
-            this._parameter = parameter;
-        }
-        public List<ReportParameter> ReportParameters()
+        List<ReportParameter> ReportParameters(InputArg passparameter);
+        //string ReportName(string reportType);
+    }
+  
+
+    public class IEPReportParameter1 : IReportParameter 
+    {
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -27,22 +27,13 @@ namespace BLL
                new ReportParameter() { ParaName = "SchoolCode", ParaValue = _parameter.SchoolCode },
                new ReportParameter() { ParaName = "Term", ParaValue = "0" },
            };
-            return reportParameters;
+            return reportParameters ;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
-        {
-            throw new NotImplementedException();
-        }
+   
     }
-    public class SSFormReportParameter : IReportParameter
+    public class SSFormReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-        public SSFormReportParameter(InputArg parameter)
-        {
-            this._parameter = parameter;
-        }
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -55,21 +46,14 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
-    public class TPAReportParameter : IReportParameter
+    public class TPAReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-        public TPAReportParameter(InputArg parameter)
-        {
-            this._parameter = parameter;
-        }
-
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -83,21 +67,14 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
-    public class GiftReportParameter : IReportParameter
+    public class GiftReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-        public GiftReportParameter(InputArg parameter)
-        {
-            this._parameter = parameter;
-        }
-
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -110,20 +87,14 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
-    public class IndexCardReportParameter : IReportParameter
+    public class IndexCardReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-        public IndexCardReportParameter(InputArg parameter)
-        {
-            this._parameter = parameter;
-        }
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -135,22 +106,14 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
-    public class AlertCardReportParameter : IReportParameter
+    public class AlertCardReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-
-        public AlertCardReportParameter(InputArg parameter)
-        {
-            _parameter = parameter;
-        }
-
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -163,21 +126,14 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
-    public class RCReportParameter : IReportParameter
+    public class RCReportParameter1 : IReportParameter
     {
-        readonly InputArg _parameter;
-        public RCReportParameter(InputArg parameter)
-        {
-            _parameter = parameter;
-        }
-
-        public List<ReportParameter> ReportParameters()
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
         {
             var reportParameters = new List<ReportParameter>
             {
@@ -190,64 +146,77 @@ namespace BLL
             };
             return reportParameters;
         }
-
-        public List<ReportParameter> ReportParameters(InputArg passparameter)
+        public string ReportName(string reportType)
         {
-            throw new NotImplementedException();
+            return reportType;
         }
     }
 
-    public class BuildReportingParameters 
-    {      
-        public static List<ReportParameter> GetReportParameter(string reportType, InputArg parameter)
+
+    public class GetCommonReportParameters
+    {
+        private readonly IReportParameter _iParameter;
+        public GetCommonReportParameters(IReportParameter _parameter)
         {
-            //ParameterFactory pFactory = new ParameterFactory();
-            //var pFactory = new ParameterFactory(new IEPPara()) ;
-            //return pFactory.rParameter(parameter);
-            //  IReportParameter iParameter = new IReportParameter(parameter);
-
-            // var mySPclass = new List<IReportParameter> { new IEPReportParameter() };
-
+            _iParameter = _parameter;
+        }
+        public List<ReportParameter> ReportParameters(InputArg _parameter)
+        {
+            return _iParameter.ReportParameters(_parameter);
+        }
+        //public string GetName(string reportType)
+        //{
+        //    return _iParameter.ReportName(reportType); 
+        //}
+    }
+    public class ReportParameterFactory
+    {
+        public static IReportParameter GetObj(string reportType)
+        {
             switch (reportType)
             {
-                case "IEP":
-                    return new IEPReportParameter(parameter).ReportParameters();
-                case "TPA":
-                    return new TPAReportParameter(parameter).ReportParameters();
-                case "SSF":
-                    return new SSFormReportParameter(parameter).ReportParameters(); ;
-                case "OfficeIndixCard":
-                    return new IndexCardReportParameter(parameter).ReportParameters();
-                case "RC":
-                    return new RCReportParameter(parameter).ReportParameters();
-                    ;
-                case "AlterRC":
-                    return new AlertCardReportParameter(parameter).ReportParameters();
-
-                case "GiftRC":
-                    return new GiftReportParameter(parameter).ReportParameters();
-
-                default:
-                    return new IEPReportParameter(parameter).ReportParameters();
-
+                case "IEP": return new IEPReportParameter1();
+                case "TPA": return new TPAReportParameter1();
+                case "SSF": return new SSFormReportParameter1();
+                case "OfficeIndixCard": return new IndexCardReportParameter1();
+                case "RC": return new RCReportParameter1();
+                case "AlterRC": return new AlertCardReportParameter1();
+                case "GiftRC": return new GiftReportParameter1();
+                default: return new IndexCardReportParameter1();
             }
         }
     }
-    public class GenerallObject 
+    public class GetSpecificReportParamaters
     {
-
-        public static T ObjectOfT<T>(string reportType, InputArg parameter)
+        public static List<ReportParameter> GetReportParameters(string reportType, InputArg _parameter)
         {
-            try
-            {
-                return default(T);
-            }
-            catch (Exception ex)
-            {
-                var exm = ex.Message;
-                throw;
-            }
+            IReportParameter iReport = ReportParameterFactory.GetObj(reportType);
+            var rParaeter = new GetCommonReportParameters(iReport);
+            return rParaeter.ReportParameters(_parameter);
         }
+
+        public static List<ReportParameter> GetReportParameters(IReportParameter iReport, InputArg _parameter)
+        {
+            var rParaeter = new GetCommonReportParameters(iReport);
+            return rParaeter.ReportParameters(_parameter);
+        }
+        public static List<ReportParameter> GetReportParameters_IEP(InputArg _parameter)
+        {
+            var rParaeter = new GetCommonReportParameters(new IEPReportParameter1());
+            return rParaeter.ReportParameters(_parameter);
+        }
+        public static List<ReportParameter> GetReportParameters_SSF(InputArg _parameter)
+        {
+            var rParaeter = new GetCommonReportParameters(new SSFormReportParameter1());
+            return rParaeter.ReportParameters(_parameter);
+        }
+        public static List<ReportParameter> GetReportParameters_TPA(InputArg _parameter)
+        {
+            var rParaeter = new GetCommonReportParameters(new TPAReportParameter1());
+            return rParaeter.ReportParameters(_parameter);
+        }
+
     }
 
 }
+

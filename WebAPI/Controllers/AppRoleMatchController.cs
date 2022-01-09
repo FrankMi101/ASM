@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         [Route("api/AppRoleMatch")]
         public IHttpActionResult Post([FromBody] AppRoleMatch appRole)
         {
-            if (appRole.RoleID == "")
+            if (appRole.MatchRole == "")
                 return BadRequest("Invalid SAP match Role ID data."); // return Request.CreateResponse(HttpStatusCode.BadRequest, "Group ID Can not be blank");
 
             var result = _action.AddObj(appRole);
@@ -67,7 +67,18 @@ namespace WebAPI.Controllers
             return CheckActionResult(result);
 
         }
- 
+        [HttpPut]
+        [Route("api/AppRoleMatch")]
+        public IHttpActionResult Put([FromBody] AppRoleMatch appRole)
+        {
+            if (appRole.MatchRole == "")
+                return BadRequest("Invalid SAP match Role ID data."); // return Request.CreateResponse(HttpStatusCode.BadRequest, "Group ID Can not be blank");
+
+            var result = _action.EditObj(appRole);
+
+            return CheckActionResult(result);
+
+        }
         private IHttpActionResult CheckGetResult(List<AppRoleMatch> result)
         {
             if (result.Count == 0)

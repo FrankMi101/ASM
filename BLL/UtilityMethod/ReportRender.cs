@@ -426,14 +426,14 @@ namespace BLL
 
         }
 
-        private static Byte[] GetOneReport(string reportName, ListOfSelected parameter)
+        private static Byte[] GetOneReport(string reportName, InputArg parameter)
         {
             var reportParameters = GetReportParameter(parameter);
  
             return GetReportR2(reportName, "PDF", reportParameters);
 
         }
-        private static List<ReportParameter> GetReportParameter(ListOfSelected parameter)
+        private static List<ReportParameter> GetReportParameter(InputArg parameter)
         {
             var reportParameters = new List<ReportParameter>();
             reportParameters.Add(new ReportParameter() { ParaName = "Operate", ParaValue = "Report" });

@@ -30,21 +30,6 @@
             width: 99%;
         }
 
-
-        .MessageRow {
-            height: 25px;
-            background: dodgerblue; /* For browsers that do not support gradients */
-            background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
-        }
-
-        .SearchBox {
-            margin-top: 5px;
-            height: 18px;
-        }
-
         .content-grid th {
             background: linear-gradient(lightskyblue, white);
             color: black;
@@ -60,13 +45,6 @@
             height: 100%;
         }
 
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
-
- 
     </style>
     <script type="text/javascript">
 
@@ -330,7 +308,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-           <div id="Action-Pgae-Container"></div>
+           <div id="Action-Page-Container"></div>
   
         <div>
             <asp:HiddenField ID="hfAppID" runat="server" />
@@ -362,6 +340,7 @@
 <script src="../Scripts/ActionInPage.js"></script>
 <script src="../Scripts/ActionWebApi.js"></script>
 <script type="text/javascript">
+    MenuDataSource = "JavaScriptJson";
 
     var UserID = $("#hfUserID").val();
     var UserRole = $("#hfUserRole").val();
@@ -385,6 +364,19 @@
             });
             $("#GridView_SIS tr").mouseenter(function (event) {
                 if ($("#ActionMenuDIV").is(":visible")) $("#ActionMenuDIV").hide();
+            });
+
+
+            $(".GridView-List img").click(function (en) {
+                $(this).addClass("img-selected");
+                var objC = $(this)[0].offsetParent; //$(this)[0].offsetParent.offsetLeft       // var objC = $(".myAction")[0]; // .offsetLeft              
+                actionItemPosition = objC.offsetLeft + objC.offsetWidth;
+            })
+            $('.GridView-List tr').mouseenter(function (event) {
+                if (currentTR !== undefined) { currentTR.removeClass("GridView-Selected"); }
+                currentTR = $(this);
+                currentTR.addClass("GridView-Selected");
+                $("#ActionMenuDIV").hide();
             });
         });
     }

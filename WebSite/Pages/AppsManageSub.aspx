@@ -65,25 +65,8 @@
             border: 0px;
         }
 
-      
-        .function-list {
-        }
-
- 
-
-        #SearchBar {
-            position: absolute;
-            top: 5px;
-            left: 600px;
-        }
-
         .highlightBoard {
             border: 2px #ff6a00 solid;
-        }
-
-        #editiFrame {
-            width: 100%;
-            height: 95%;
         }
  
   
@@ -186,7 +169,7 @@
             </div>
           
         </div>
-             <div id="Action-Pgae-Container"></div>
+             <div id="Action-Page-Container"></div>
          
          <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />

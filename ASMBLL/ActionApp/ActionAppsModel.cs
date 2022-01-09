@@ -17,6 +17,7 @@ namespace ASMBLL
         public ActionAppsModel(string dataSource) : base(dataSource)
         {
         }
+       
         public override object GetParameter(string operate, AppsModel paraObj)
         {
             var parameter = new

@@ -13,13 +13,14 @@
 
     <script src="../Scripts/jquery-3.4.1.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Content/BubbleHelp.css" rel="stylesheet" />
+ 
+     <link href="../Content/BubbleHelp.css" rel="stylesheet" />
     <link href="../Content/ListPage.css" rel="stylesheet" />
     <link href="../Content/ContentPage.css" rel="stylesheet" />
     <link href="../Content/TabMenu.css" rel="stylesheet" />
     <link href="../Content/ActionMenu.css" rel="stylesheet" />
     <link href="../Content/SearchArea.css" rel="stylesheet" />
+
 
     <style type="text/css">
         body {
@@ -71,22 +72,11 @@
 
         .function-list {
         }
-
-        #SearchBar {
-            position: absolute;
-            top: 5px;
-            left: 600px;
-        }
-
         .highlightBoard {
             border: 2px #ff6a00 solid;
         }
 
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
+  
    
     </style>
 
@@ -201,7 +191,7 @@
             </div>
         </div>
 
-        <div id="Action-Pgae-Container"></div>
+        <div id="Action-Page-Container"></div>
 
         <div>
             <asp:HiddenField ID="hfSchoolYear" runat="server" />
@@ -228,6 +218,8 @@
 <script src="../Scripts/ActionInPage.js"></script>
 
 <script type="text/javascript">
+    MenuDataSource = "JsonFile";
+
     var UserID = $("#hfUserID").val();
     var UserRole = $("#hfUserRole").val();
     var ItemCode = $("#hfCode").val();

@@ -33,13 +33,13 @@ namespace ASM.PagesOther
 
             //string pID = "../PagesForms/RequestAccessPermission.aspx";
             //string arg = "Action=" + action + "&IDs=" + ids + "&SchoolYear=" + schoolYear + "&SchoolCode=" + schoolCode + "&AppID=" + appID + "&ModelID=" + modelID + "&xID=" + xID + "&xName=" + xName + "&xType=" + xType;
-            string arg = $"javascript:OpenRequestForm('{action}','{type}','{ids}','{schoolYear}','{schoolCode}','{appID}','{modelID}','{xID}','{xName}','{xType}')";
-            RequestLink.HRef = arg;
-            string arg2 = $"javascript:OpenClassMatchForm('{action}','{type}','{ids}','{schoolYear}','{schoolCode}','{appID}','{modelID}','{xID}','{xName}','{xType}')";
-            RequestClassMatchLink.HRef = arg2;
+            // string arg3 = $"javascript:OpenFeedBackForm('{action}','{type}','{ids}','{schoolYear}','{schoolCode}','{appID}','{modelID}','{xID}','{xName}','{xType}')";
 
-            string arg3 = $"javascript:OpenFeedBackForm('{action}','{type}','{ids}','{schoolYear}','{schoolCode}','{appID}','{modelID}','{xID}','{xName}','{xType}')";
-            FeedbackLinK.HRef = arg3;
+            string arg = $"'{action}','{type}','{ids}','{schoolYear}','{schoolCode}','{appID}','{modelID}','{xID}','{xName}','{xType}')";
+ 
+            RequestLink.HRef = "javascript:OpenForm('Permission'," + arg;
+            RequestClassMatchLink.HRef = "javascript:OpenForm('ClassMatch'," + arg;
+            FeedbackLinK.HRef = "javascript:OpenForm('Feedback'," + arg;
         }
         private static List<AppWorkingProfile> GetWorkingProfile(object parameter)
         {

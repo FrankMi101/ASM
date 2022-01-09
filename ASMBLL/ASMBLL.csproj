@@ -58,8 +58,10 @@
     <Compile Include="ActionApp\ActionApps.cs" />
     <Compile Include="ActionApp\ActionAppsAccess.cs" />
     <Compile Include="ActionApp\ActionAppsFeedback.cs" />
+    <Compile Include="ActionApp\ActionListItem.cs" />
     <Compile Include="ActionApp\ActionAppsRequestClassMatch.cs" />
     <Compile Include="ActionApp\ActionAppsRequestPermission.cs" />
+    <Compile Include="ActionApp\ActionFactory.cs" />
     <Compile Include="ActionApp\ActionWorkingProfile.cs" />
     <Compile Include="ActionApp\ActionAppsModel.cs" />
     <Compile Include="ActionApp\ActionAppStaffWorkingGroups.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="ActionApp\ActionAppUserGroupPermission.cs" />
     <Compile Include="ActionApp\ActionAppRolePermission.cs" />
     <Compile Include="ActionApp\ActionAppRoleMatch.cs" />
-    <Compile Include="ActionApp\ActionAppService.cs" />
+    <Compile Include="ActionApp\ActionService.cs" />
     <Compile Include="ActionApp\ActionAppStaffs.cs" />
     <Compile Include="ActionApp\ActionAppUserGroupPush.cs" />
     <Compile Include="ActionApp\ActionGet.cs" />
@@ -79,7 +81,7 @@
     <Compile Include="ActionApp\ActionAppUserGroup.cs" />
     <Compile Include="ActionApp\ActionAppList.cs" />
     <Compile Include="ActionApp\ActionMenuItem.cs" />
-    <Compile Include="ActionApp\ActionListItem.cs" />
+    <Compile Include="ActionApp\ActionListItem1.cs" />
     <Compile Include="DataOperate\DataOperateService.cs" />
     <Compile Include="DataOperate\DataOperateServiceORA.cs" />
     <Compile Include="DataOperate\DataOperateServiceAPI.cs" />

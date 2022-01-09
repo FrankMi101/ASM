@@ -4,14 +4,18 @@
 <html >
 
 <head runat="server">
-    <title>Loading Page</title>
+    <title>Home Loading Page</title>
     <style>
         div {
-      /*      height: 99.5%;
-            width: 99.5%;*/
             text-align: center;
             margin: 0 auto;
             padding-top: 15%;
+        }
+         img {
+          margin-bottom:-10px;
+      }
+      a {
+            margin-left:20px;
         }
     </style>
 </head>

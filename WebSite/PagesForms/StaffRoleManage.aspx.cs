@@ -41,7 +41,6 @@ namespace ASM.PagesForms
             labelStaffName.Text = Page.Request.QueryString["xName"].ToString();
             labelSAPRole.Text = Page.Request.QueryString["xType"].ToString();
 
-
             if (hfAction.Value == "Add") btnSubmit.Value = "Add User To Select Role";
             if (hfAction.Value == "Edit") btnSubmit.Value = "Save & Submit";
             if (hfAction.Value == "Delete") btnSubmit.Value = "Remove User From the Role";
@@ -83,7 +82,6 @@ namespace ASM.PagesForms
             AppsPage.BuildingList(ddlApps, "AppsName", parameters, WorkingProfile.DefaultAppID);
             AppsPage.BuildingList(ddlScopeby, "AccessScope", parameters, "School");
             AssiblingScopeValueDDL( WorkingProfile.SchoolCode );
-
         }
         private void BindFormData()
         {
@@ -141,6 +139,7 @@ namespace ASM.PagesForms
             {
                 Operate = "AccessScopeValue",
                 UserID = WorkingProfile.UserId,
+                UserRole = hfUserRole.Value,
                 Para1 = ddlScopeby.SelectedValue,
                 Para2 = WorkingProfile.SchoolYear,
                 Para3 = WorkingProfile.SchoolCode,

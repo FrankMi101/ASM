@@ -93,18 +93,21 @@
 </html>
 
 <script src="../Scripts/MoursPoint.js"></script>
+<script src="../Scripts/Appr_textEdit.js"></script> 
+<script src="../Scripts/ActionWebApi.js"></script>
 
 <script type="text/javascript">
 
     var para = {
         Operate: "Edit",
         UserID: $("#hfUserID").val(),
-        RoleID: $("#TextBoxRoleID").val(),
-        RoleType: $("#LabelMatchType").val(),
-        MatchDesc: $("#LabelMatchDesc").val(),
+        RoleID: $("#hfUserRole").val(),
+        RoleType: $("#LabelMatchType").text(),
+        MatchDesc: $("#LabelMatchDesc").text(),
         MatchRole: $("#ddlMatchRole").val(),
         MatchScope: $("#ddlMatchScope").val()
     };
+     
 
     function pageLoad(sender, args) {
 
@@ -123,13 +126,17 @@
             para.MatchRole = $("#ddlMatchRole").val();
             para.MatchScope = $("#ddlMatchScope").val();
 
+            console.log(para);
+
             var uri = "/AppRoleMatch"
-            SaveDataWebAPICall("POST", uri, para, "Parent");
+            WebAPICall.EditData(uri, para, "Parent");
+          //  SaveDataWebAPICall("POST", uri, para, "Parent");
 
           //  var result = SIC.Models.WebService.SaveSecurityRoleMatch(para.Operate, para, onSuccess, onFailure);
         }
         catch (e) {
             alert(para.Operate + " Submit click something going wrong");
+            alert(e.message);
         }
     }
     function onSuccess(result) {

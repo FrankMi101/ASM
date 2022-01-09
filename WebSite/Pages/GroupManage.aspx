@@ -51,37 +51,18 @@
         .defaultBoard {
             border: 1px blue none;
         }
-
-
         .top5Row {
             border-top: 5px solid darkcyan;
         }
-
         .HideButton {
             margin: 0px;
             padding: 0px;
             border: 0px;
         }
-
-        .function-list {
-        }
-
-        #SearchingBar {
-            position: absolute;
-            top: 5px;
-            left: 600px;
-        }
-
+ 
         .highlightBoard {
             border: 2px #ff6a00 solid;
         }
-
-        #editiFrame {
-            width: 100%;
-            height: 95%;
-        }
-
-
         .staff-container {
             grid-template-columns: 47% auto;
         }
@@ -215,7 +196,7 @@
                 <iframe id="IframeSubArea" name="IframeSubArea" style="height: 100%; width: 100%" frameborder="0" scrolling="no" src="" runat="server"></iframe>
             </div>
         </div>
-        <div id="Action-Pgae-Container">
+        <div id="Action-Page-Container">
             <%--<div id="HelpDIV" class="bubble epahide">
                 <asp:TextBox ID="HelpTextContent" runat="server" TextMode="MultiLine" CssClass="HelpTextBox" BackColor="transparent"></asp:TextBox>
             </div>
@@ -262,11 +243,11 @@
 <script src="../Scripts/ActionInPage.js"></script>
 
 <script type="text/javascript">
+    MenuDataSource = "JsonFile";
     var UserID = $("#hfUserID").val();
     var UserRole = $("#hfUserRole").val();
     var ItemCode = $("#hfCode").val();
     var SchoolYear = $("#hfSchoolYear").val();
-
     var myKey;
     var currentTR;
     var myIDs;

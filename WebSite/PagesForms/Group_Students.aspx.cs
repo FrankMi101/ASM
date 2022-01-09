@@ -28,13 +28,13 @@ namespace ASM.PagesForms
         private void BindGridViewListData()
         {
            
-                    GridView1.DataSource = GetDataSource();
+                    GridView1.DataSource = GetDataSource<StudentList>();
                     GridView1.DataBind();    
          
         }
 
       
-        private List<StudentList> GetDataSource()
+        private List<T> GetDataSource<T>()
         {
              var parameter = new
             {
@@ -48,7 +48,7 @@ namespace ASM.PagesForms
                 MemberID = Page.Request.QueryString["MemberID"].ToString(),
              };
 
-            var myList = ListData.SearchGeneralList<StudentList>(pageID, parameter);
+            var myList = ListData.SearchGeneralList<T>(pageID, parameter);
             return myList;
         }
 

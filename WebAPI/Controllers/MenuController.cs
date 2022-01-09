@@ -14,10 +14,24 @@ namespace WebAPI.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MenuController : ApiController
     {
-        private ActionMenuItem _action = new ActionMenuItem();
+        private readonly static string _dataSource = DataSource.Type();
+        private IActionApp<MenuItems> _action = new ActionMenuItem(_dataSource);
+
+
+      //  private ActionMenuItem _action = new ActionMenuItem();
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
+        }
+        public IEnumerable<MenuItems> Get(string Operate, string UserID, string UserRole)
+        {
+            var parameter = new { Operate, UserID, UserRole};
+            return _action.GetObjList(parameter);
+        }
+        public IEnumerable<MenuItems> Get(string Operate, string UserID, string UserRole, string SchoolYear, string SchoolCode)
+        {
+            var parameter = new { Operate, UserID, UserRole, SchoolYear, SchoolCode };
+            return _action.GetObjList(parameter);
         }
         public IEnumerable<MenuItems> Get(string Operate, string UserID, string UserRole, string SchoolYear, string SchoolCode, string TabID, string ObjID, string AppID)
         {

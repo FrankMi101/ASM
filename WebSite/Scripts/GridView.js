@@ -1,4 +1,6 @@
-﻿function MakeStaticHeader(gridId, height, width, headerHeight, isFooter) {
+﻿var currentTR;
+
+function MakeStaticHeader(gridId, height, width, headerHeight, isFooter) {
     var tbl = document.getElementById(gridId);
     if (tbl) {
         var DivHR = document.getElementById('DivHeaderRow');
@@ -71,6 +73,12 @@ function addGridViewHeader() {
 }
 
 function OnScrollDiv(Scrollablediv) {
-    document.getElementById('DivHeaderRow').scrollLeft = Scrollablediv.scrollLeft;
+    try {
+
+     document.getElementById('DivHeaderRow').scrollLeft = Scrollablediv.scrollLeft;
+   }
+    catch (ex) {
+       // alert(ex.message);
+    }
 }
 

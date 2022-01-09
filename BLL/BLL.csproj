@@ -71,6 +71,7 @@
     <Compile Include="ManageApp\AppsPageHelp.cs" />
     <Compile Include="ManageApp\GeneralValue.cs" />
     <Compile Include="ISecurityManageData.cs" />
+    <Compile Include="Reports\IReportParameter.cs" />
     <Compile Include="SISInfo\SISInfoBase.cs" />
     <Compile Include="SPandParameters.cs" />
     <Compile Include="UserProfiles\UserLastWorking.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="SystemSetup\AppsSetup.cs" />
     <Compile Include="SystemSetup\StaffProfile.cs" />
     <Compile Include="UserProfiles\Authentication.cs" />
+    <Compile Include="UtilityMethod\BuildingTree.cs" />
     <Compile Include="UtilityMethod\DateFormat.cs" />
     <Compile Include="UtilityMethod\DBConnection.cs" />
     <Compile Include="UtilityMethod\eMailNotification.cs" />

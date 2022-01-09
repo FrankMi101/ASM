@@ -76,20 +76,6 @@
 
 
 
-        .MessageRow {
-            background: dodgerblue; /* For browsers that do not support gradients */
-            background: -webkit-linear-gradient(dodgerblue, lightblue); /* For Safari 5.1 to 6.0 */
-            background: -o-linear-gradient(dodgerblue, lightblue); /* For Opera 11.1 to 12.0 */
-            background: -moz-linear-gradient(dodgerblue, lightblue); /* For Firefox 3.6 to 15 */
-            background: linear-gradient(dodgerblue, lightblue); /* Standard syntax */
-        }
-
-            .MessageRow .SearchBox {
-                background-color: transparent;
-                border: 0px;
-                font-weight: bold;
-            }
-
         
 
         .ddlControls {
@@ -300,7 +286,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-         <div id="Action-Pgae-Container"></div>
+         <div id="Action-Page-Container"></div>
 
        <%-- <div id="EditDIV" runat="server" class="EditDIV bubble epahide">
             <div class="EditDIV-Header">

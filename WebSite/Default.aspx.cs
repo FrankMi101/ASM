@@ -67,6 +67,7 @@ namespace ASM
                 {
                     Operate = "UserRole",
                     UserID = WorkingProfile.UserId,
+                    UserRole = "",
                     Para1 = "",
                     Para2 = "",
                     Para3 = "",

@@ -17,7 +17,10 @@ namespace ASM.PagesForms
                 string pID = Page.Request.QueryString["pID"].ToString();
                  string queryStr = AppsPage.GetQueryString(Page);
 
-                PageURL.HRef = GetGoPage(pID, queryStr);
+             //   string goPage = GetGoPage(pID, queryStr);
+             //   Page.Response.Redirect(goPage);
+
+               PageURL.HRef = GetGoPage(pID, queryStr);
             }
         }
         private string GetGoPage(string page, string queryStr)

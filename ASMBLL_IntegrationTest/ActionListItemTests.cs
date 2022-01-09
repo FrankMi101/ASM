@@ -24,6 +24,7 @@ namespace ASMBLL.Tests
             // Runs before each test. (Optional)
             _clParameter.Operate = "";
             _clParameter.UserID = "mif";
+            _clParameter.UserRole = "tester";
             _clParameter.Para1 = "Admin";
             _clParameter.Para2 = "20192020";
             _clParameter.Para3 = "0501";
@@ -64,9 +65,9 @@ namespace ASMBLL.Tests
         [DataRow("Age", 2)]
         [DataRow("AppsName", 8)]
         [DataRow("Grade", 4)]
-        [DataRow("ListSchool", 256)]
+        [DataRow("ListSchool", 213)]
         [DataRow("SchoolArea", 12)]
-        [DataRow("SchoolYear", 12)]
+        [DataRow("SchoolYear", 13)]
         [DataRow("UserRole", 38)]
         public void GetObjList_GroupInputParamater_ReturnList_CountItems_Test(string ddlControlCategory, int expect)
         {

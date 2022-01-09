@@ -36,8 +36,8 @@ namespace ASMBLL.Tests
         [TestMethod()]
         public void GetObjByID_ReturnAppGroupbyID_()
         {   //Arrange
-            int ids = 5163;
-            string expect = "bonavoj";
+            int ids = 5130;
+            string expect = "felicid";
 
             //Act
             var list = _action.GetObjByID(ids);
